@@ -11,7 +11,7 @@ import exceptions.DALException;
 public class Connector 
 {
 	/**
-	 * 
+	 * Creates a connection to the given URL
 	 * @param url to MySQL Database
 	 * @param username for MySQL user
 	 * @param password for MySQL user
@@ -35,7 +35,7 @@ public class Connector
 	private static Statement stm;
 	
 	/**
-	 * 
+	 * Constructor for the connector class
 	 * @param server
 	 * @param port
 	 * @param database
@@ -54,7 +54,7 @@ public class Connector
 	}
 	
 	/**
-	 * 
+	 * Executes a query command to SQL database
 	 * @param command (SQL query command)
 	 * @return a ResultSet object of data produced by the given query command
 	 * @throws DALException
@@ -69,7 +69,7 @@ public class Connector
 	}
 	
 	/**
-	 * 
+	 * Executes an updating command to SQL database
 	 * @param command (SQL query command for updates)
 	 * @return an Interger. Either row count for SQL DML or 0 for SQL that returns nothing
 	 * @throws DALException
