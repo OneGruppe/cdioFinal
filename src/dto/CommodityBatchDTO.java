@@ -2,7 +2,7 @@ package dto;
 
 public class CommodityBatchDTO
 {
-	private int cbid;
+	private int cbID;
 	private int commodityID;
 	private double amount;
 	
@@ -13,26 +13,21 @@ public class CommodityBatchDTO
 	 * @param commodityID ID of the commodity
 	 * @param amount Amount that is stored..?
 	 */
-	public CommodityBatchDTO (int cbid, int commodityID, double amount)
+	public CommodityBatchDTO (int cbID, int commodityID, double amount)
 	{
-		this.cbid = cbid;
+		this.cbID = cbID;
 		this.commodityID = commodityID;
 		this.amount = amount;
 	}
 	
-	public String toString()
-	{
-		return "" + cbid + commodityID + amount;
-	}
-	
 	public int getCbid()
 	{
-		return cbid;
+		return cbID;
 	}
 	
-	public void setCbid(int id)
+	public void setCbid(int cbID)
 	{
-		cbid = id;
+		this.cbID = cbID;
 	}
 	
 	public int getCommodityID()
@@ -40,9 +35,9 @@ public class CommodityBatchDTO
 		return commodityID;
 	}
 	
-	public void setCommodityID(int id)
+	public void setCommodityID(int commodityID)
 	{
-		commodityID = id;
+		this.commodityID = commodityID;
 	}
 	
 	public double getAmount()
@@ -50,8 +45,15 @@ public class CommodityBatchDTO
 		return amount;
 	}
 	
-	public void setAmount(double wishedAmount)
+	public void setAmount(double Amount)
 	{
-		amount = wishedAmount;
+		this.amount = Amount;
 	}
+
+	@Override
+	public String toString() {
+		return "CommodityBatchDTO [cbid=" + cbID + ", commodityID=" + commodityID + ", amount=" + amount + "]";
+	}
+	
+	
 }
