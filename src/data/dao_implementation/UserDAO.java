@@ -25,7 +25,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users(userID, name, initial) "
+		con.doUpdate("INSERT INTO users(userID, name, initial, active) "
 						 + "VALUES(" +user.getUserID()+ ", '" +user.getUserName()+ "', '" +user.getUserIni()+ "',"  +user.getActive()+ ")");
 		
 	}
