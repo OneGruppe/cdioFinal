@@ -1,4 +1,4 @@
-package Test;
+package test;
 import data.dao_implementation.UserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;
