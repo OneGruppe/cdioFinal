@@ -11,7 +11,7 @@ import data.dto.UserDTO;
 import exceptions.DALException;
 
 public class UserDAO implements IUserDAO {
-	Connector connector;
+	private Connector connector;
 	
 	public UserDAO() 
 	{
@@ -26,28 +26,23 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		// TODO Auto-generated method stub
+		connector.doUpdate("INSERT INTO users(userID, name, initial) "
+						 + "VALUES(" +user.getUserID()+ ", '" +user.getUserName()+ "', '" +user.getUserIni()+ "',"  +user.getActive()+ ")");
 		
 	}
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		// TODO Auto-generated method stub
+		connector.doUpdate("UPDATE users SET name = '" +user.getUserName()+ "', initial = '" +user.getUserIni()+ "'"
+				         + " WHERE userID = " +user.getUserID());
 		
 	}
 
 	@Override
-	public void deactivateUser(int userID) throws DALException 
+	public void setUserState(int userID, int state) throws DALException 
 	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void activateUser(int userID) throws DALException 
-	{
-		// TODO Auto-generated method stub
+		connector.doUpdate("UPDATE users SET active = " +state+ " WHERE userID = " +userID);
 		
 	}
 
@@ -63,7 +58,7 @@ public class UserDAO implements IUserDAO {
 				throw new DALException("Brugeren med ID " +userID+ " findes ikke");
 			}
 			
-			return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"));
+			return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
 		} 
 		catch (SQLException e) {throw new DALException(e.getMessage());}
 	}
@@ -77,7 +72,7 @@ public class UserDAO implements IUserDAO {
 		{
 			while(rs.next()) 
 			{
-				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial")));
+				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
 			}
 			return users;
 		}
