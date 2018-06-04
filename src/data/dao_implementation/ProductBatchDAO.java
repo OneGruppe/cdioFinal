@@ -15,48 +15,62 @@ import exceptions.DALException;
 
 public class ProductBatchDAO implements IProductBatchDAO {
 
-		private Connector connector;
+		private Connector con;
 	
 
 	public ProductBatchDAO()
 	{
 		try {
-			connector = new Connector();
+			con = new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException();
 		}
 	}
 	
 	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchDAO#createProductBatch(data.dto.ProductBatchDTO)
+	 */
 	@Override
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		connector.doUpdate("INSERT INTO productBatch" +productBatch.getPbID()+ 
-				productBatch.getStatus()+ productBatch.getRecipeID()+ userID+);
+		con.doUpdate("INSERT INTO productBatch (" +productBatch.getPbID()+ ", " 
+				+productBatch.getStatus()+ ", " +productBatch.getRecipeID()+ userID);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchDAO#updateProductBatch(data.dto.ProductBatchDTO)
+	 */
 	@Override
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		connector.doUpdate("UPDATE productBatch SET status=" +productBatch.getStatus()+
+		con.doUpdate("UPDATE productBatch SET status=" +productBatch.getStatus()+
 					", userID="+productBatch.getUserID()+"WHERE productBatchID =" 
 					+productBatch.getPbID());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchDAO#deleteProductBatch(int)
+	 */
 	@Override
 	public void deleteProductBatch(int pbID) throws DALException 
 	{
-		connector.doUpdate("DELETE FROM productBatch WHERE produktBatchID =" +pbID);
+		con.doUpdate("DELETE FROM productBatch WHERE produktBatchID =" +pbID);
 		
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchDAO#showProductBatch(int)
+	 */
 	@Override
 	public ProductBatchDTO showProductBatch(int productbatchID) throws DALException
 	{
-		ResultSet rs = connector.doQuery("SELECT * FROM productBatch WHERE productBatchID ="
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID ="
 						+ productbatchID);
 		try 
 		{
@@ -74,12 +88,15 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	}
 
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchDAO#showProductBatch()
+	 */
 	@Override
 	public List<ProductBatchDTO> showProductBatch() throws DALException
 	{
 		List<ProductBatchDTO> PBatches = new ArrayList<ProductBatchDTO>();
-		ResultSet rs = connector.doQuery("SELECT * FROM productBatch");
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch");
 		
 		try 
 		{

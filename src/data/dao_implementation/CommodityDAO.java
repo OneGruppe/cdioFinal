@@ -23,7 +23,10 @@ public class CommodityDAO implements ICommodityDAO {
 		}
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.ICommodityDAO#createCommodity(data.dto.CommodityDTO)
+	 */
 	@Override
 	public void createCommodity(CommodityDTO commodity) throws DALException 
 	{
@@ -31,7 +34,11 @@ public class CommodityDAO implements ICommodityDAO {
 
 		con.doUpdate(commodityQuery);
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.ICommodityDAO#updateCommodity(data.dto.CommodityDTO)
+	 */
 	@Override
 	public void updateCommodity(CommodityDTO commodity) throws DALException 
 	{
@@ -40,6 +47,10 @@ public class CommodityDAO implements ICommodityDAO {
 		con.doUpdate(commodityQuery);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.ICommodityDAO#deleteCommodity(int)
+	 */
 	@Override
 	public void deleteCommodity(int commodityID) throws DALException 
 	{
@@ -48,6 +59,10 @@ public class CommodityDAO implements ICommodityDAO {
 		con.doUpdate(commodityQuery);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.ICommodityDAO#showCommodity(int)
+	 */
 	@Override
 	public CommodityDTO showCommodity(int commodityID) throws DALException
 	{
@@ -73,6 +88,10 @@ public class CommodityDAO implements ICommodityDAO {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.ICommodityDAO#showAllCommodities()
+	 */
 	@Override
 	public List<CommodityDTO> showAllCommodities() throws DALException
 	{

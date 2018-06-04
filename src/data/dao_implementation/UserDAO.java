@@ -13,6 +13,7 @@ import exceptions.DALException;
 public class UserDAO implements IUserDAO {
 	private Connector con;
 	
+	
 	public UserDAO() throws DALException 
 	{
 		try {
@@ -22,6 +23,10 @@ public class UserDAO implements IUserDAO {
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IUserDAO#createUser(data.dto.UserDTO)
+	 */
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
@@ -29,7 +34,11 @@ public class UserDAO implements IUserDAO {
 						 + "VALUES(" +user.getUserID()+ ", '" +user.getUserName()+ "', '" +user.getUserIni()+ "',"  +user.getActive()+ ")");
 		
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IUserDAO#updateUser(data.dto.UserDTO)
+	 */
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
@@ -37,7 +46,11 @@ public class UserDAO implements IUserDAO {
 				         + " WHERE userID = " +user.getUserID());
 		
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IUserDAO#setUserState(int, int)
+	 */
 	@Override
 	public void setUserState(int userID, int state) throws DALException 
 	{
@@ -45,6 +58,10 @@ public class UserDAO implements IUserDAO {
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IUserDAO#showUser(int)
+	 */
 	@Override
 	public UserDTO showUser(int userID) throws DALException 
 	{
@@ -62,6 +79,10 @@ public class UserDAO implements IUserDAO {
 		catch (SQLException e) {throw new DALException(e.getMessage());}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IUserDAO#showAllUsers()
+	 */
 	@Override
 	public List<UserDTO> showAllUsers() throws DALException 
 	{
