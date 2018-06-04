@@ -30,14 +30,18 @@ public class RecipeDAO implements IRecipeDAO {
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		connector.doUpdate("UPDATE recipe SET recipeName= '" +recipe.getRecipeName() +"' commodityID, nomNetto, tolerance)";
+		connector.doUpdate("UPDATE recipe SET recipeID= " +recipe.getRecipeID()
+							+", recipeName= '" +recipe.getRecipeName() 
+							+"', commodityID= " commodityID
+							+", nomNetto= " +recipe.getRecipenomNetto()
+							+", tolerance= " +recipe.getRecipeTolerance());
 		connector.doQuery(RecipeQuery);
 	}
 
 	@Override
 	public void deleteRecipe(int recipeID) throws DALException 
 	{
-		String RecipeQuery = "DELETE FROM recipe WHERE" +recipeID;
+		String RecipeQuery = "DELETE FROM recipe WHERE recipeID= " +recipeID;
 		connector.doQuery(RecipeQuery);
 	}
 
