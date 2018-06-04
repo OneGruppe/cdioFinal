@@ -20,18 +20,12 @@ public interface IUserDAO {
 	public void updateUser(UserDTO user) throws DALException;
 	
 	/**
-	 * Changes the users status to inactive.
-	 * @param user
+	 * Changes the users state.
+	 * @param user 
+	 * @param state 1 for active, 0 for inactive 
 	 * @throws DALException
 	 */
-	public void deactivateUser(int userID) throws DALException;
-	
-	/**
-	 * Sets the users status to active.
-	 * @param user
-	 * @throws DALException
-	 */
-	public void activateUser(int userID) throws DALException;
+	public void setUserState(int userID, int state) throws DALException;
 	
 	/**
 	 * Returns a single user
