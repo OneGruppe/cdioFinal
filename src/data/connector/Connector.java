@@ -54,6 +54,18 @@ public class Connector
 	}
 	
 	/**
+	 * Constructor using the constants from the Constant class 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public Connector() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		this(Constant.server, Constant.port, Constant.database, Constant.username, Constant.password);
+	}
+	
+	/**
 	 * Executes a query command to SQL database
 	 * @param command (SQL query command)
 	 * @return a ResultSet object of data produced by the given query command
