@@ -18,7 +18,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 		private Connector con;
 	
 
-	public ProductBatchDAO()
+	public ProductBatchDAO() throws DALException
 	{
 		try {
 			con = new Connector();
