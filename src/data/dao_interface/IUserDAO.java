@@ -1,5 +1,6 @@
 package data.dao_interface;
 
+import java.util.List;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
@@ -31,4 +32,19 @@ public interface IUserDAO {
 	 * @throws DALException
 	 */
 	public void activateUser(int userID) throws DALException;
+	
+	/**
+	 * Returns a single user
+	 * @param userID the id of the user
+	 * @return user with id userID in form of UserDTO
+	 * @throws DALException
+	 */
+	public UserDTO showUser(int userID) throws DALException;
+	
+	/**
+	 * Returns a list of all users
+	 * @return List of all users in form of UserDTO
+	 * @throws DALException
+	 */
+	public List<UserDTO> showAllUsers() throws DALException;
 }

@@ -1,5 +1,6 @@
 package data.dao_interface;
 
+import java.util.List;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
@@ -20,8 +21,23 @@ public interface IRecipeDAO {
 	
 	/**
 	 * Deletes the recipe with the given ID
-	 * @param recipe
+	 * @param recipeID
 	 * @throws DALException
 	 */
 	public void deleteRecipe(int recipeID) throws DALException;
+	
+	/**
+	 * Returns a single recipe
+	 * @param recipeID the id of the recipe
+	 * @return user with id recipeID in form of RecipeDTO
+	 * @throws DALException
+	 */
+	public RecipeDTO showRecipe(int recipeID) throws DALException;
+	
+	/**
+	 * Returns a list of all recipes
+	 * @return List of all recipes in form of RecipeDTO
+	 * @throws DALException
+	 */
+	public List<RecipeDTO> showAllRecipes() throws DALException;
 }
