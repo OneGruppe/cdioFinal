@@ -12,7 +12,7 @@ public interface IRecipeDAO {
 	public void createRecipe(RecipeDTO recipe) throws DALException;
 	
 	/**
-	 * Updates the information of the recipe with the given ID.
+	 * Updates the information of the given recipe.
 	 * @param recipe
 	 * @throws DALException
 	 */
@@ -23,5 +23,5 @@ public interface IRecipeDAO {
 	 * @param recipe
 	 * @throws DALException
 	 */
-	public void deleteRecipe(RecipeDTO recipe) throws DALException;
+	public void deleteRecipe(int recipeID) throws DALException;
 }

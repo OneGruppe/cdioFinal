@@ -21,7 +21,7 @@ public class RecipeDAO implements IRecipeDAO {
 	}
 
 	@Override
-	public void deleteRecipe(RecipeDTO recipe) throws DALException 
+	public void deleteRecipe(int recipeID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		

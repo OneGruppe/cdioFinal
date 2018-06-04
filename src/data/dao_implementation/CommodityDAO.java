@@ -21,7 +21,7 @@ public class CommodityDAO implements ICommodityDAO {
 	}
 
 	@Override
-	public void deleteCommodity(CommodityDTO commodity) throws DALException 
+	public void deleteCommodity(int commodityID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		

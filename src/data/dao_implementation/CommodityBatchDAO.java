@@ -21,7 +21,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	}
 
 	@Override
-	public void deleteCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
+	public void deleteCommodityBatch(int cbID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		

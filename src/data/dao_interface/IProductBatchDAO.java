@@ -12,7 +12,7 @@ public interface IProductBatchDAO {
 	 */
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException;
 	/**
-	 * Updates the information of the product batch with the given ID.
+	 * Updates the information of the given product batch.
 	 * @param produktBatch
 	 * @throws DALException
 	 */
@@ -23,5 +23,5 @@ public interface IProductBatchDAO {
 	 * @param produktBatch
 	 * @throws DALException
 	 */
-	public void deleteProductBatch(ProductBatchDTO productBatch) throws DALException;
+	public void deleteProductBatch(int pbID) throws DALException;
 }

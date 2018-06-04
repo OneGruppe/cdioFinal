@@ -21,14 +21,14 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void deactivateUser(UserDTO user) throws DALException 
+	public void deactivateUser(int userID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void activateUser(UserDTO user) throws DALException 
+	public void activateUser(int userID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		

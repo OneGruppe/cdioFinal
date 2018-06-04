@@ -21,7 +21,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	}
 
 	@Override
-	public void deleteProductBatch(ProductBatchDTO productBatch) throws DALException 
+	public void deleteProductBatch(int pbID) throws DALException 
 	{
 		// TODO Auto-generated method stub
 		
