@@ -70,6 +70,10 @@ public class UserDAO implements IUserDAO {
 		ResultSet rs = connector.doQuery("SELECT * FROM users");
 		try
 		{
+			if(!rs.first())
+			{
+				throw new DALException("Der findes ingen brugere i systemet");
+			}
 			while(rs.next()) 
 			{
 				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
