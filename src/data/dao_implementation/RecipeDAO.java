@@ -24,27 +24,22 @@ public class RecipeDAO implements IRecipeDAO {
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String RecipeQuery = "INSERT INTO recipe (recipeID, recipeName, commodityID, nomNetto, tolerance) "  
-							 + "VALUES(" +recipe.getRecipeID() +", '" +recipe.getRecipeName() +"', ";
+		String RecipeQuery = "CALL createRecipe (" + recipe.getRecipeID() + recipe.getRecipeName() + recipe.getCommodityID() + recipe.getNomNetto() + recipe.getNomNetto() + ")";
 		connector.doQuery(RecipeQuery);
 	}
 
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		connector.doUpdate("UPDATE recipe SET recipeID= " +recipe.getRecipeID()
-							+", recipeName= '" +recipe.getRecipeName() 
-							+"', commodityID= " commodityID
-							+", nomNetto= " +recipe.getNomNetto()
-							+", tolerance= " +recipe.getRecipeTolerance());
-		connector.doQuery(RecipeQuery);
+		String recipeQuery = "CALL recipeUpdate (" + recipe.getRecipeID() + recipe.getRecipeName() + recipe.getCommodityID() + recipe.getNomNetto() + recipe.getNomNetto() + ")";
+		connector.doUpdate(recipeQuery);
 	}
 
 	@Override
 	public void deleteRecipe(int recipeID) throws DALException 
 	{
-		String RecipeQuery = "DELETE FROM recipe WHERE recipeID= " +recipeID;
-		connector.doQuery(RecipeQuery);
+		String RecipeQuery = "DELETE FROM recipe WHERE recipeID= " + recipeID;
+		connector.doUpdate(RecipeQuery);
 	}
 
 	@Override
