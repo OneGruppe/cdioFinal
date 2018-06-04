@@ -9,15 +9,18 @@ import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public class CommodityBatchDAO implements ICommodityBatchDAO {
+public class CommodityBatchDAO implements ICommodityBatchDAO 
+{
 	private Connector con;
 
 	public CommodityBatchDAO() throws DALException
 	{
-		try {
+		try 
+		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			throw new DALException();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
+		{
+			throw new DALException(e.getMessage());
 		}
 	}
 
@@ -72,17 +75,20 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 
 		ResultSet rs = con.doQuery("SELECT * FROM commodityBatchID "
 				+ "WHERE commodityBatchID='" + combatchID + "'");
-		
+
 		try {
-			if(!rs.first()) {
+			if(!rs.first()) 
+			{
 				throw new DALException();
 			}
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 				cID = rs.getInt("commodityID");
 				amount = rs.getDouble("amount");
 			}
-		} catch (SQLException e) {
-			throw new DALException();
+		} catch (SQLException e) 
+		{
+			throw new DALException(e.getMessage());
 		}
 		return new CommodityBatchDTO(combatchID, cID, amount); 
 	}
@@ -96,22 +102,26 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	{
 		int cbID = 0, cID = 0;
 		double amount = 0;
-		
+
 		List<CommodityBatchDTO> comBatchList = null;
 		ResultSet rs = con.doQuery("SELECT * FROM commodityBatchID");
 
-		try {
-			if(!rs.first()) {
+		try 
+		{
+			if(!rs.first()) 
+			{
 				throw new DALException();
 			}
-			while(rs.next()) {
+			while(rs.next()) 
+			{
 				cbID = rs.getInt("commodityBatchID");
 				cID = rs.getInt("commodityID");
 				amount = rs.getDouble("amount");
 				comBatchList.add(new CommodityBatchDTO(cbID, cID, amount));
 			}
-		} catch (SQLException e) {
-			throw new DALException();
+		} catch (SQLException e) 
+		{
+			throw new DALException(e.getMessage());
 		}
 		return comBatchList;
 	}

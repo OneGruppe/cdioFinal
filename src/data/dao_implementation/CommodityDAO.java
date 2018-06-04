@@ -12,15 +12,18 @@ import data.dto.RecipeDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class CommodityDAO implements ICommodityDAO {
+public class CommodityDAO implements ICommodityDAO 
+{
 	private Connector con;
 
 	public CommodityDAO () throws DALException
 	{
-		try {
+		try 
+		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			throw new DALException();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
+		{
+			throw new DALException(e.getMessage());
 		}
 	}
 
@@ -91,7 +94,7 @@ public class CommodityDAO implements ICommodityDAO {
 		}
 		catch (SQLException e)
 		{
-			throw new DALException();	
+			throw new DALException(e.getMessage());	
 		}
 	}
 
@@ -140,7 +143,7 @@ public class CommodityDAO implements ICommodityDAO {
 		}
 		catch(SQLException e)
 		{
-			throw new DALException("SQLException in showAllCommodities" +e.getMessage());	
+			throw new DALException(e.getMessage());	
 		}
 	}
 }

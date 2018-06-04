@@ -11,18 +11,20 @@ import data.dto.UserDTO;
 import exceptions.DALException;
 
 public class UserDAO implements IUserDAO {
+
 	private Connector con;
-	
-	
+
 	public UserDAO() throws DALException 
 	{
-		try {
+		try 
+		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			throw new DALException();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
+		{
+			throw new DALException(e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IUserDAO#createUser(data.dto.UserDTO)
@@ -31,10 +33,10 @@ public class UserDAO implements IUserDAO {
 	public void createUser(UserDTO user) throws DALException 
 	{
 		con.doUpdate("INSERT INTO users(userID, name, initial, active) "
-						 + "VALUES(" +user.getUserID()+ ", '" +user.getUserName()+ "', '" +user.getUserIni()+ "',"  +user.getActive()+ ")");
-		
+				+ "VALUES(" + user.getUserID() + ", '" + user.getUserName() + "', '" + user.getUserIni() + "',"  + user.getActive() + ")");
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IUserDAO#updateUser(data.dto.UserDTO)
@@ -42,11 +44,11 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET name = '" +user.getUserName()+ "', initial = '" +user.getUserIni()+ "'"
-				         + " WHERE userID = " +user.getUserID());
-		
+		con.doUpdate("UPDATE users SET name = '" + user.getUserName() + "', initial = '" + user.getUserIni() + "'"
+				+ " WHERE userID = " + user.getUserID());
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IUserDAO#setUserState(int, int)
@@ -54,8 +56,8 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void setUserState(int userID, int state) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET active = " +state+ " WHERE userID = " +userID);
-		
+		con.doUpdate("UPDATE users SET active = " + state + " WHERE userID = " + userID);
+
 	}
 
 	/*
@@ -66,17 +68,20 @@ public class UserDAO implements IUserDAO {
 	public UserDTO showUser(int userID) throws DALException 
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM users WHERE userID = " + userID);
-		
+
 		try 
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("Brugeren med ID " +userID+ " findes ikke");
+				throw new DALException("Brugeren med ID " + userID + " findes ikke");
 			}
-			
+
 			return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
 		} 
-		catch (SQLException e) {throw new DALException(e.getMessage());}
+		catch (SQLException e) 
+		{
+			throw new DALException(e.getMessage());
+		}
 	}
 
 	/*
@@ -100,7 +105,10 @@ public class UserDAO implements IUserDAO {
 			}
 			return users;
 		}
-		catch(SQLException e) {throw new DALException(e.getMessage());}
+		catch(SQLException e) 
+		{
+			throw new DALException(e.getMessage());
+		}
 	}
-	
+
 }
