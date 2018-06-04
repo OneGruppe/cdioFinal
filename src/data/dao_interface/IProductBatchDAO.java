@@ -1,4 +1,7 @@
-package data.dao;
+package data.dao_interface;
+
+import data.dto.ProductBatchDTO;
+import exceptions.DALException;
 
 public interface IProductBatchDAO {
 	
@@ -7,25 +10,18 @@ public interface IProductBatchDAO {
 	 * @param produktBatch
 	 * @throws DALException
 	 */
-	public void createProductBatch(ProduktBatchDTO produktBatch) throws DALException {
-		
-	}
-	
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException;
 	/**
 	 * Updates the information of the product batch with the given ID.
 	 * @param produktBatch
 	 * @throws DALException
 	 */
-	public void updateProductBatch(ProduktBatchDTO produktBatch) throws DALException {
-		
-	}
+	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException;
 	
 	/**
 	 * Deletes the product batch with the given ID
 	 * @param produktBatch
 	 * @throws DALException
 	 */
-	public void deleteProductBatch(ProduktBatchDTO produktBatch) throws DALException{
-		
-	}
+	public void deleteProductBatch(ProductBatchDTO productBatch) throws DALException;
 }
