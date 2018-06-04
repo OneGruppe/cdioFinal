@@ -10,8 +10,7 @@ import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 public class CommodityBatchDAO implements ICommodityBatchDAO {
-
-	Connector con;
+	private Connector con;
 
 	public CommodityBatchDAO() throws DALException{
 		try {

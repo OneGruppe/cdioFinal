@@ -11,22 +11,21 @@ import data.dto.UserDTO;
 import exceptions.DALException;
 
 public class UserDAO implements IUserDAO {
-	private Connector connector;
+	private Connector con;
 	
-	public UserDAO() 
+	public UserDAO() throws DALException 
 	{
 		try {
-			connector = new Connector();
+			con = new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException();
 		}
 	}
 	
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		connector.doUpdate("INSERT INTO users(userID, name, initial) "
+		con.doUpdate("INSERT INTO users(userID, name, initial, active) "
 						 + "VALUES(" +user.getUserID()+ ", '" +user.getUserName()+ "', '" +user.getUserIni()+ "',"  +user.getActive()+ ")");
 		
 	}
@@ -34,7 +33,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		connector.doUpdate("UPDATE users SET name = '" +user.getUserName()+ "', initial = '" +user.getUserIni()+ "'"
+		con.doUpdate("UPDATE users SET name = '" +user.getUserName()+ "', initial = '" +user.getUserIni()+ "'"
 				         + " WHERE userID = " +user.getUserID());
 		
 	}
@@ -42,14 +41,14 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void setUserState(int userID, int state) throws DALException 
 	{
-		connector.doUpdate("UPDATE users SET active = " +state+ " WHERE userID = " +userID);
+		con.doUpdate("UPDATE users SET active = " +state+ " WHERE userID = " +userID);
 		
 	}
 
 	@Override
 	public UserDTO showUser(int userID) throws DALException 
 	{
-		ResultSet rs = connector.doQuery("SELECT * FROM users WHERE userID = " + userID);
+		ResultSet rs = con.doQuery("SELECT * FROM users WHERE userID = " + userID);
 		
 		try 
 		{
@@ -67,7 +66,7 @@ public class UserDAO implements IUserDAO {
 	public List<UserDTO> showAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
-		ResultSet rs = connector.doQuery("SELECT * FROM users");
+		ResultSet rs = con.doQuery("SELECT * FROM users");
 		try
 		{
 			if(!rs.first())

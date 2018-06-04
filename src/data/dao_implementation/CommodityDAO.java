@@ -12,15 +12,14 @@ import java.util.List;
 import data.connector.*;
 
 public class CommodityDAO implements ICommodityDAO {
-	Connector conn;
+	private Connector con;
 
-	public CommodityDAO ()
+	public CommodityDAO () throws DALException
 	{
 		try {
-			conn = new Connector();
+			con = new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException();
 		}
 	}
 
@@ -30,7 +29,7 @@ public class CommodityDAO implements ICommodityDAO {
 	{
 		String commodityQuery = "CALL createCommodity (" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ", " + commodity.getSupplier() + ")";
 
-		conn.doUpdate(commodityQuery);
+		con.doUpdate(commodityQuery);
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class CommodityDAO implements ICommodityDAO {
 	{
 		String commodityQuery = "CALL updateCommodity(" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ", " + commodity.getSupplier() + ")";
 
-		conn.doUpdate(commodityQuery);
+		con.doUpdate(commodityQuery);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class CommodityDAO implements ICommodityDAO {
 	{
 		String commodityQuery = "DELETE FROM commoity WHERE commodity ID = " + commodityID + "";
 
-		conn.doUpdate(commodityQuery);
+		con.doUpdate(commodityQuery);
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class CommodityDAO implements ICommodityDAO {
 		String commodityName = null;
 		String supplierName = null;
 
-		ResultSet rs = conn.doQuery(commodityQuery);
+		ResultSet rs = con.doQuery(commodityQuery);
 		try
 		{
 			while(rs.next())
@@ -85,7 +84,7 @@ public class CommodityDAO implements ICommodityDAO {
 		String commodityName = null;
 		String supplierName = null;
 
-		ResultSet rs = conn.doQuery(commodityQuery);
+		ResultSet rs = con.doQuery(commodityQuery);
 
 		try
 		{
