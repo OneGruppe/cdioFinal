@@ -4,7 +4,7 @@ import java.util.List;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public interface IUserDAO {
+public interface IUserDAO {	
 	/**
 	 * Creates an user object and save it to the database.
 	 * @param user

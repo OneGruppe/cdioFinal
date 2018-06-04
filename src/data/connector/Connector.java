@@ -55,6 +55,8 @@ public class Connector
 	
 	/**
 	 * Constructor using the constants from the Constant class 
+	 * and the Constructor from this class with the "this" keyword
+	 * to create connection. 
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
