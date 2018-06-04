@@ -1,16 +1,16 @@
 package data.dao_implementation;
 
-import data.dao_interface.ICommodityDAO;
-import data.dto.CommodityDTO;
-import data.dto.SupplierDTO;
-import exceptions.DALException;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.connector.*;
+import data.connector.Connector;
+import data.dao_interface.ICommodityDAO;
+import data.dto.CommodityDTO;
+import data.dto.RecipeDTO;
+import data.dto.SupplierDTO;
+import exceptions.DALException;
 
 public class CommodityDAO implements ICommodityDAO {
 	private Connector con;
@@ -102,32 +102,39 @@ public class CommodityDAO implements ICommodityDAO {
 	@Override
 	public List<CommodityDTO> showAllCommodities() throws DALException
 	{
-		List<CommodityDTO> commodityList = new ArrayList<CommodityDTO>();
-
-		String commodityQuery = "SELECT * FROM commodityView";
-
-		int id = 0;
-		String commodityName = null;
-		String supplierName = null;
-
-		ResultSet rs = con.doQuery(commodityQuery);
-
+		List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
+		ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
+		ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
 		try
 		{
-			while(rs.next())
+			if(!rsCom.first()) 
 			{
-				id = rs.getInt("commodityID");
-				commodityName = rs.getString("commodityName");
-				supplierName = rs.getString("supplierName");
-
-				CommodityDTO commodity = new CommodityDTO(id, commodityName, supplierName);
-				commodityList.add(commodity);
-
+				throw new DALException("Der findes ikke nogle råvare i systemet.");
 			}
-			return commodityList;
-		} catch (SQLException e) {
-			throw new DALException("SQLException in showAllCommodities(): " + e.getMessage());
-		}
-
-	}
+			while(rsCom.next()) 
+			{
+				comList.add(new CommodityDTO(rsCom.getInt("commodityID"),
+							rsCom.getString("commodityName"), null));
+			}
+			while (rsCom.next())
+			{
+				for (CommodityDTO comDTO : comList)
+				{
+					if (comDTO.getCommodityID() == rsCom.getInt("comodityID"))
+					{
+						if (comDTO.getSupplier() == null)
+						{
+							List<SupplierDTO> exSupList = new ArrayList<SupplierDTO>();
+							exSupList.add(rsSup.getInt("supplierID"), rsSup.getString("supplierName"));
+							comDTO.setSupplier(exSupList);
+						}else 
+						{
+							List<SupplierDTO> exSupList = comDTO.getSupplier();
+							exSupList.add(rsSup.getInt("supplierID"), rsSup.getString("supplierName"));
+						}
+					}
+				}
+			}
+			return comList;
+		}-
 }

@@ -6,7 +6,7 @@ public class CommodityDTO
 {
 	private int commodityID;
 	private String commodityName;
-	private List<String> suppliers;
+	private List<SupplierDTO> suppliers;
 	
 	
 	/**
