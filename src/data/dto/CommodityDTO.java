@@ -15,11 +15,11 @@ public class CommodityDTO
 	 * @param CommodityName The name of the commodity
 	 * @param supplier The suppler of the commodity
 	 */
-	public CommodityDTO (int commodityID, String CommodityName, List<String> suppliers)
+	public CommodityDTO (int commodityID, String CommodityName, List<SupplierDTO> supplierList)
 	{
 		this.commodityID = commodityID;
 		this.commodityName = CommodityName;
-		this.suppliers = suppliers;
+		this.suppliers = supplierList;
 	}
 	
 	public int getCommodityID()

@@ -46,7 +46,7 @@ public class RecipeDAO implements IRecipeDAO {
 	public RecipeDTO showRecipe(int recipeID) throws DALException {
 		List<Integer> commodityList = new ArrayList<Integer>();
 		double nomNetto = 0, tolerance = 0;
-		String recipeName = null, commodityName = null;
+		String recipeName = null;
 		ResultSet rs = connector.doQuery("SELECT * FROM recipeView WHERE recipeID = " + recipeID);
 
 		try
@@ -70,8 +70,57 @@ public class RecipeDAO implements IRecipeDAO {
 	}
 
 	@Override
-	public List<RecipeDTO> showAllRecipes() throws DALException {
-		return null;
+	public List<RecipeDTO> showAllRecipes() throws DALException
+	{
+		List<RecipeDTO> recipeList = new ArrayList<RecipeDTO>();
+		String showAllRecipiesRecs = "SELECT * FROM recipe";
+		String showAllRecipiesComs = "SELECT * FROM recipe_commodity";
+		
+		int recipeID = 0;
+		String recipeName = null;
+		double nonNetto = 0.0;
+		double tolerance = 0.0;
+		
+		ResultSet rsRecs = connector.doQuery(showAllRecipiesRecs);
+		ResultSet rsComs = connector.doQuery(showAllRecipiesComs);
+		try
+		{
+			while(rsRecs.next())
+			{
+				recipeID = rsRecs.getInt("recipeID");
+				recipeName = rsRecs.getString("recipeName");
+				nonNetto = rsRecs.getDouble("nomNetto");
+				tolerance = rsRecs.getDouble("tolerance");
+				
+				RecipeDTO recipeDTO = new RecipeDTO(recipeID, recipeName, null, nonNetto, tolerance);
+				recipeList.add(recipeDTO);
+			}
+			while (rsComs.next())
+			{
+				for (RecipeDTO recipeDTO : recipeList)
+				{
+					if (recipeDTO.getRecipeID() == rsComs.getInt("comodityID"))
+					{
+						if (recipeDTO.getCommodityID() == null)
+						{
+							List<Integer> exComList = new ArrayList<Integer>();
+							int comList = rsComs.getInt("commodityID");
+							exComList.add(comList);
+							recipeDTO.setCommodityID(exComList);
+						}else {
+							List<Integer> exComList = recipeDTO.getCommodityID();
+							exComList.add(rsComs.getInt("commodityID"));
+						}
+					}
+				}
+			}
+			return recipeList;
+			
+		} catch (SQLException e) {
+			throw new DALException("SQLException in getUserList(): " + e.getMessage());
+		}
+		
+		
 	}
 
 }

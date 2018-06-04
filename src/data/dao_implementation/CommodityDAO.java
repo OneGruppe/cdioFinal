@@ -2,6 +2,7 @@ package data.dao_implementation;
 
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
+import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 import java.sql.ResultSet;
@@ -66,25 +67,31 @@ public class CommodityDAO implements ICommodityDAO {
 	@Override
 	public CommodityDTO showCommodity(int commodityID) throws DALException
 	{
-		String commodityQuery = "SELECT * FROM commodityView WHERE commodityID = " + commodityID + "";
-
-		int id = 0;
+		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
+		
 		String commodityName = null;
-		String supplierName = null;
-
+		
+		String commodityQuery = "SELECT * FROM commodityView WHERE commodityID = " + commodityID + "";
+		
 		ResultSet rs = con.doQuery(commodityQuery);
+		
 		try
 		{
+			if (!rs.first())
+			{
+				throw new DALException();
+			}
+			
 			while(rs.next())
 			{
-				id = rs.getInt("commodityID");
 				commodityName = rs.getString("commodityName");
-				supplierName = rs.getString("supplierName");
+				supplierList.add(new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName")));
 			}
-			CommodityDTO commodity = new CommodityDTO(id, commodityName, supplierName);
-			return commodity;
-		} catch (SQLException e) {
-			throw new DALException("SQLException in showCommodity(): " + e.getMessage());
+		return new CommodityDTO(commodityID, commodityName, supplierList);
+		}
+		catch (SQLException e)
+		{
+			throw new DALException();	
 		}
 	}
 
