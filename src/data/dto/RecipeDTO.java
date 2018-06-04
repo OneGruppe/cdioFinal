@@ -6,12 +6,12 @@ public class RecipeDTO
 {
 	private int recipeID;
 	private String recipeName;
-	private List<CommodityDTO> commodityID; 
+	private List<Integer> commodityID; 
 	private double nomNetto;
 	private double recipeTolerance;
 	
 	
-	public RecipeDTO(int recipeID, String recipeName, List<CommodityDTO> commodityID, double nomNetto, double recipeTolerance) {
+	public RecipeDTO(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto, double recipeTolerance) {
 		this.recipeID = recipeID;
 		this.recipeName = recipeName;
 		this.commodityID = commodityID;
@@ -48,12 +48,12 @@ public class RecipeDTO
 		this.recipeTolerance = recipeTolerance;
 	}	
 	
-	public List<CommodityDTO> getCommodityID() {
+	public List<Integer> getCommodityID() {
 		return commodityID;
 	}
 
 
-	public void setCommodityID(List<CommodityDTO> commodityID) {
+	public void setCommodityID(List<Integer> commodityID) {
 		this.commodityID = commodityID;
 	}
 
