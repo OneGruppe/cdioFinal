@@ -2,6 +2,7 @@ package data.dao_implementation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import data.connector.Connector;
@@ -30,18 +31,18 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	
 	
 	@Override
-	public void createProductBatch(ProductBatchDTO productBatch, int userID, int commodityBatchID, double tara, double netto) throws DALException 
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
 		connector.doUpdate("INSERT INTO productBatch" +productBatch.getPbID()+ 
-				productBatch.getStatus()+ productBatch.getRecipeID()+ userID+
-				commodityBatchID+ tara + netto);
+				productBatch.getStatus()+ productBatch.getRecipeID()+ userID+);
 	}
 
 	@Override
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		
-		
+		connector.doUpdate("UPDATE productBatch SET status=" +productBatch.getStatus()+
+					", userID="+productBatch.getUserID()+"WHERE productBatchID =" 
+					+productBatch.getPbID());
 	}
 
 	@Override
@@ -77,8 +78,23 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	@Override
 	public List<ProductBatchDTO> showProductBatch() throws DALException
 	{
-		// TODO Auto-generated method stub
-		return null;
-	} 
+		List<ProductBatchDTO> PBatches = new ArrayList<ProductBatchDTO>();
+		ResultSet rs = connector.doQuery("SELECT * FROM productBatch");
+		
+		try 
+		{
+			if(!rs.first()) 
+			{
+				throw new DALException("Der findes ingen produkt batches i databsen.");
+			}
+			while (rs.next()) {
+			PBatches.add(new ProductBatchDTO(rs.getInt("productBatchID"), 
+					rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"),
+					rs.getInt("commodityBatchID"), rs.getDouble("tara"), rs.getDouble("netto")));
+							}
+			return PBatches;
+			} 
+		catch (SQLException e) {throw new DALException(e.getMessage());}
+		} 
 
 }

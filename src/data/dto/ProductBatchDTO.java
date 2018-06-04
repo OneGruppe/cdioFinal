@@ -45,6 +45,39 @@ public class ProductBatchDTO
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+	public int getComBatID() {
+		return comBatID;
+	}
+
+	public void setComBatID(int comBatID) {
+		this.comBatID = comBatID;
+	}
+
+	public double getTara() {
+		return tara;
+	}
+
+	public void setTara(double tara) {
+		this.tara = tara;
+	}
+
+	public double getNetto() {
+		return netto;
+	}
+
+	public void setNetto(double netto) {
+		this.netto = netto;
+	}
+
 
 	@Override
 	public String toString() {

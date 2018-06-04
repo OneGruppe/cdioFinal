@@ -11,7 +11,7 @@ public interface IProductBatchDAO {
 	 * @param productBatch
 	 * @throws DALException
 	 */
-	public void createProductBatch(ProductBatchDTO productBatch, int userID, int commodityBatchID, double tara, double netto) throws DALException;
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException;
 	/**
 	 * Updates the information of the given product batch.
 	 * @param productBatch
