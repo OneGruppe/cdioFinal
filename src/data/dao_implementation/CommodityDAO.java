@@ -140,7 +140,7 @@ public class CommodityDAO implements ICommodityDAO {
 		}
 		catch(SQLException e)
 		{
-			throw new DALException();	
+			throw new DALException("SQLException in showAllCommodities" +e.getMessage());	
 		}
 	}
 }
