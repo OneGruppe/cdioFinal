@@ -4,7 +4,8 @@ import java.util.List;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
-public interface IRecipeDAO {
+public interface IRecipeDAO 
+{
 	/**
 	 * Creates a recipe and save it to the database.
 	 * @param recipe

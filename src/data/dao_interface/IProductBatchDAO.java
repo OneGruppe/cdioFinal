@@ -4,7 +4,8 @@ import java.util.List;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public interface IProductBatchDAO {
+public interface IProductBatchDAO 
+{
 	
 	/**
 	 * Creates a product batch and save it to the database.
