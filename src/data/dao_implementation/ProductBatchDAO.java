@@ -8,7 +8,6 @@ import java.util.List;
 import data.connector.Connector;
 import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
-import data.dto.UserDTO;
 import exceptions.DALException;
 
 
