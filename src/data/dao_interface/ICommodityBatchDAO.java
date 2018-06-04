@@ -13,7 +13,7 @@ public interface ICommodityBatchDAO {
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException;
 	
 	/**
-	 * Updates the information of the commodity batch with the given ID.
+	 * Updates the information of the given commodity batch.
 	 * @param commodityBatch
 	 * @throws DALException
 	 */
@@ -24,5 +24,5 @@ public interface ICommodityBatchDAO {
 	 * @param commodityBatch
 	 * @throws DALException
 	 */
-	public void deleteCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException;
+	public void deleteCommodityBatch(int cbID) throws DALException;
 }

@@ -12,23 +12,23 @@ public interface IUserDAO {
 	public void createUser(UserDTO user) throws DALException;
 	
 	/**
-	 * Updates the users information with the given ID.
+	 * Updates the information of a given user.
 	 * @param user
 	 * @throws DALException
 	 */
 	public void updateUser(UserDTO user) throws DALException;
 	
 	/**
-	 * Changes the user with the given ID's status to inactive.
+	 * Changes the users status to inactive.
 	 * @param user
 	 * @throws DALException
 	 */
-	public void deactivateUser(UserDTO user) throws DALException;
+	public void deactivateUser(int userID) throws DALException;
 	
 	/**
-	 * Sets the user with the given ID's status to active.
+	 * Sets the users status to active.
 	 * @param user
 	 * @throws DALException
 	 */
-	public void activateUser(UserDTO user) throws DALException;
+	public void activateUser(int userID) throws DALException;
 }

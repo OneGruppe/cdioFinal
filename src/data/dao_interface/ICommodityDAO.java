@@ -13,7 +13,7 @@ public interface ICommodityDAO {
 	public void createCommodity(CommodityDTO commodity) throws DALException;
 	
 	/**
-	 * Updates the information of the commodity with the given ID.
+	 * Updates the information of the given commodity.
 	 * @param commodity
 	 * @throws DALException
 	 */
@@ -24,5 +24,5 @@ public interface ICommodityDAO {
 	 * @param commodity
 	 * @throws DALException
 	 */
-	public void deleteCommodity(CommodityDTO commodity) throws DALException;
+	public void deleteCommodity(int commodityID) throws DALException;
 }
