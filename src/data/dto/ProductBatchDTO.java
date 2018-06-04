@@ -5,12 +5,21 @@ public class ProductBatchDTO
 	private int pbID;
 	private int recipeID;
 	private int status;
+	private int userID;
+	private int comBatID;
+	private double tara;
+	private double netto;
 	
-	public ProductBatchDTO (int pbID, int recipeID, int status)
+	public ProductBatchDTO (int pbID, int status, int recipeID, int userID,
+							int comBatID, double tara, double netto)
 	{
 		this.pbID = pbID;
-		this.recipeID = recipeID;
 		this.status = status;
+		this.recipeID = recipeID;
+		this.userID = userID;
+		this.comBatID = comBatID;
+		this.tara = tara;
+		this.netto = netto;
 	}
 
 	public int getPbID() {
