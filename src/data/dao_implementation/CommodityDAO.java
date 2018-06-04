@@ -35,7 +35,7 @@ public class CommodityDAO implements ICommodityDAO {
 
 		con.doUpdate(commodityQuery);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityDAO#updateCommodity(data.dto.CommodityDTO)
@@ -68,26 +68,26 @@ public class CommodityDAO implements ICommodityDAO {
 	public CommodityDTO showCommodity(int commodityID) throws DALException
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		
+
 		String commodityName = null;
-		
+
 		String commodityQuery = "SELECT * FROM commodityView WHERE commodityID = " + commodityID + "";
-		
+
 		ResultSet rs = con.doQuery(commodityQuery);
-		
+
 		try
 		{
 			if (!rs.first())
 			{
 				throw new DALException();
 			}
-			
+
 			while(rs.next())
 			{
 				commodityName = rs.getString("commodityName");
 				supplierList.add(new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName")));
 			}
-		return new CommodityDTO(commodityID, commodityName, supplierList);
+			return new CommodityDTO(commodityID, commodityName, supplierList);
 		}
 		catch (SQLException e)
 		{
@@ -102,11 +102,12 @@ public class CommodityDAO implements ICommodityDAO {
 	@Override
 	public List<CommodityDTO> showAllCommodities() throws DALException
 	{
-		List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
-		ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
-		ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
 		try
 		{
+			List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
+			ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
+			ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
+
 			if(!rsCom.first()) 
 			{
 				throw new DALException("Der findes ikke nogle råvare i systemet.");
@@ -114,7 +115,7 @@ public class CommodityDAO implements ICommodityDAO {
 			while(rsCom.next()) 
 			{
 				comList.add(new CommodityDTO(rsCom.getInt("commodityID"),
-							rsCom.getString("commodityName"), null));
+						rsCom.getString("commodityName"), null));
 			}
 			while (rsCom.next())
 			{
@@ -125,16 +126,22 @@ public class CommodityDAO implements ICommodityDAO {
 						if (comDTO.getSupplier() == null)
 						{
 							List<SupplierDTO> exSupList = new ArrayList<SupplierDTO>();
-							exSupList.add(rsSup.getInt("supplierID"), rsSup.getString("supplierName"));
+							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 							comDTO.setSupplier(exSupList);
 						}else 
 						{
 							List<SupplierDTO> exSupList = comDTO.getSupplier();
-							exSupList.add(rsSup.getInt("supplierID"), rsSup.getString("supplierName"));
+							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 						}
 					}
 				}
 			}
 			return comList;
-		}-
+		}
+		catch(SQLException e)
+		{
+			throw new DALException();	
+		}
+	}
 }
+

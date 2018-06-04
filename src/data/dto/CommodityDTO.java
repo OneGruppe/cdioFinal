@@ -42,12 +42,12 @@ public class CommodityDTO
 		this.commodityName = commodityName;
 	}
 	
-	public List<String> getSupplier()
+	public List<SupplierDTO> getSupplier()
 	{
 		return suppliers;
 	}
 	
-	public void setSupplier(List<String> suppliers)
+	public void setSupplier(List<SupplierDTO> suppliers)
 	{
 		this.suppliers = suppliers;
 	}
