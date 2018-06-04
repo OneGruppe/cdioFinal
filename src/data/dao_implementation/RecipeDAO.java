@@ -3,16 +3,16 @@ package data.dao_implementation;
 import data.connector.Connector;
 import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
-import data.dto.UserDTO;
 import exceptions.DALException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeDAO implements IRecipeDAO {
 	Connector connector;
-	
+
 	public RecipeDAO() {
 		try {
 			connector = new Connector();
@@ -44,18 +44,29 @@ public class RecipeDAO implements IRecipeDAO {
 
 	@Override
 	public RecipeDTO showRecipe(int recipeID) throws DALException {
-		ResultSet rs = connector.doQuery("SELECT * FROM recipe WHERE recipeID = " + recipeID);
-		
-		try 
+		List<Integer> commodityList = new ArrayList<Integer>();
+		double nomNetto = 0, tolerance = 0;
+		String recipeName = null, commodityName = null;
+		ResultSet rs = connector.doQuery("SELECT * FROM recipeView WHERE recipeID = " + recipeID);
+
+		try
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("Recepten med ID " +recipeID+ " findes ikke");
+				throw new DALException("Recepten med ID " + recipeID + " findes ikke");
 			}
-			
-			return new RecipeDTO(rs.getInt("recipeID"), rs.getString("recipeName"), rs.getInt("commodityID"), rs.getDouble("nomNetto"), rs.getDouble("tolerance"));
-		} 
-		catch (SQLException e) {throw new DALException(e.getMessage());}
+
+			while(rs.next()) {
+				recipeName = rs.getString("recipeName");
+				nomNetto = rs.getDouble("nomNetto");
+				tolerance = rs.getDouble("tolerance");
+				commodityList.add(rs.getInt("commodityID"));
+			}
+			return new RecipeDTO(recipeID, recipeName, commodityList, nomNetto, tolerance);
+		}
+		catch (SQLException e) {
+			throw new DALException();
+		}
 	}
 
 	@Override
