@@ -6,16 +6,16 @@ public class RecipeDTO
 {
 	private int recipeID;
 	private String recipeName;
-	private List<RecipeDTO> getCommodityID; 
-	private double recipenomNetto;
+	private List<CommodityDTO> commodityID; 
+	private double nomNetto;
 	private double recipeTolerance;
 	
 	
-	public RecipeDTO(int recipeID, String recipeName, List<RecipeDTO> commodityID, double recipeNetoo, double recipeTolerance) {
+	public RecipeDTO(int recipeID, String recipeName, List<CommodityDTO> commodityID, double nomNetto, double recipeTolerance) {
 		this.recipeID = recipeID;
 		this.recipeName = recipeName;
-		this.getCommodityID = commodityID;
-		this.recipenomNetto = recipenomNetto;
+		this.commodityID = commodityID;
+		this.nomNetto = nomNetto;
 		this.recipeTolerance = recipeTolerance;
 	}
 
@@ -46,17 +46,28 @@ public class RecipeDTO
 
 	public void setRecipeTolerance(double recipeTolerance) {
 		this.recipeTolerance = recipeTolerance;
+	}	
+	
+	public List<CommodityDTO> getCommodityID() {
+		return commodityID;
 	}
 
 
-	public Object getRecipenomNetto() {
-		return recipenomNetto;
+	public void setCommodityID(List<CommodityDTO> commodityID) {
+		this.commodityID = commodityID;
 	}
 
 
-	public void setRecipenomNetto(double recipenomNetto) {
-		this.recipenomNetto = recipenomNetto;
+	public double getNomNetto() {
+		return nomNetto;
 	}
+
+
+	public void setNomNetto(double nomNetto) {
+		this.nomNetto = nomNetto;
+	}
+
+
 	@Override
 	public String toString() {
 		return "RecipeDTO [recipeID=" + recipeID + ", recipeName=" + recipeName + "]";
