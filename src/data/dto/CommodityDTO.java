@@ -1,10 +1,12 @@
 package data.dto;
 
+import java.util.List;
+
 public class CommodityDTO
 {
 	private int commodityID;
 	private String commodityName;
-	private String supplier;
+	private List<String> suppliers;
 	
 	
 	/**
@@ -13,11 +15,11 @@ public class CommodityDTO
 	 * @param CommodityName The name of the commodity
 	 * @param supplier The suppler of the commodity
 	 */
-	public CommodityDTO (int commodityID, String CommodityName, String supplier)
+	public CommodityDTO (int commodityID, String CommodityName, List<String> suppliers)
 	{
 		this.commodityID = commodityID;
 		this.commodityName = CommodityName;
-		this.supplier = supplier;
+		this.suppliers = suppliers;
 	}
 	
 	public int getCommodityID()
@@ -40,19 +42,19 @@ public class CommodityDTO
 		this.commodityName = commodityName;
 	}
 	
-	public String getSupplier()
+	public List<String> getSupplier()
 	{
-		return supplier;
+		return suppliers;
 	}
 	
-	public void setSupplier(String supplier)
+	public void setSupplier(List<String> suppliers)
 	{
-		this.supplier = supplier;
+		this.suppliers = suppliers;
 	}
 
 	@Override
 	public String toString() {
 		return "CommodityDTO [commodityID=" + commodityID + ", commodityName=" + commodityName + ", supplier="
-				+ supplier + "]";
+				+ suppliers + "]";
 	}
 }
