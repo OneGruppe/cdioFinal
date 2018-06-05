@@ -15,13 +15,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 
 	public CommodityBatchDAO() throws DALException
 	{
-		try 
-		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
 	}
 
 	/*

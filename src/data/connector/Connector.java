@@ -16,19 +16,22 @@ public class Connector
 	 * @param username for MySQL user
 	 * @param password for MySQL user
 	 * @return a connection to the database URL
-	 * @throws SQLException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
+	 * @throws DALException 
 	 */
-	public static Connection connectTo(String url, String username, String password) 
-	throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException
+	public static Connection connectTo(String url, String username, String password) throws DALException
 	{
-		// call the driver class' no argument constructor
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		
-		// get Connection-object via DriverManager
-		return (Connection) DriverManager.getConnection(url, username, password);
+		try 
+		{
+			// call the driver class' no argument constructor
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// get Connection-object via DriverManager
+			return (Connection) DriverManager.getConnection(url, username, password);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+			throw new DALException(e.getMessage());
+		}
+		
+		
 	}
 	
 	private static Connection conn;
@@ -41,28 +44,25 @@ public class Connector
 	 * @param database
 	 * @param username
 	 * @param password
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws DALException
 	 */
-	public Connector(String server, int port, String database, String username, String password) 
-	throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	public Connector(String server, int port, String database, String username, String password) throws DALException
 	{
 		conn	= connectTo("jdbc:mysql://"+server+":"+port+"/"+database, username, password);
-		stm		= conn.createStatement();
+		try {
+			stm		= conn.createStatement();
+		} catch (SQLException e) {
+			throw new DALException(e.getMessage());
+		}
 	}
 	
 	/**
 	 * Constructor using the constants from the Constant class 
 	 * and the Constructor from this class with the "this" keyword
 	 * to create connection. 
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws DALException
 	 */
-	public Connector() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	public Connector() throws DALException
 	{
 		this(Constant.server, Constant.port, Constant.database, Constant.username, Constant.password);
 	}

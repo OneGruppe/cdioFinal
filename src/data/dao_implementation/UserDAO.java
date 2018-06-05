@@ -16,13 +16,7 @@ public class UserDAO implements IUserDAO {
 
 	public UserDAO() throws DALException 
 	{
-		try 
-		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
 	}
 
 	/*
