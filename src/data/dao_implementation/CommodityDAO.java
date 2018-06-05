@@ -28,9 +28,15 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void createCommodity(CommodityDTO commodity) throws DALException 
 	{
-		String commodityQuery = "CALL createCommodity (" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ", " + commodity.getSupplier() + ")";
-
+		
+		String commodityQuery = "INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ")";
 		con.doUpdate(commodityQuery);
+		
+		for(SupplierDTO supplier : commodity.getSupplier())
+		{
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
+		}
+		
 	}
 
 	/*
@@ -40,9 +46,15 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void updateCommodity(CommodityDTO commodity) throws DALException 
 	{
-		String commodityQuery = "CALL updateCommodity(" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ", " + commodity.getSupplier() + ")";
-
+		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " +commodity.getCommodityID());
+		
+		String commodityQuery = "UPDATE commodity SET name = " +commodity.getCommodityName()+ "WHERE commodityID = " +commodity.getCommodityID();
 		con.doUpdate(commodityQuery);
+		
+		for(SupplierDTO supplier : commodity.getSupplier())
+		{
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
+		}
 	}
 
 	/*
