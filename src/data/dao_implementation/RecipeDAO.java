@@ -22,15 +22,29 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String RecipeQuery = "CALL createRecipe (" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getCommodityID()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
-		con.doQuery(RecipeQuery);
+		String RecipeQuery = "INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
+		con.doUpdate(RecipeQuery);
+		
+		for(int commodityID : recipe.getCommodityID())
+		{
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getRecipeID()+ ", " +commodityID+")");
+		}
 	}
 
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String recipeQuery = "CALL recipeUpdate (" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getCommodityID()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
-		con.doUpdate(recipeQuery);
+		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " +recipe.getRecipeID());
+		
+		String RecipeQuery = "UPDATE recipe SET recipeName = '" +recipe.getRecipeName()+ "', "
+				           + "nomNetto = " +recipe.getNomNetto()+ ", tolerance = " +recipe.getRecipeTolerance()
+				           + "WHERE recipeID = " +recipe.getRecipeID();
+		con.doUpdate(RecipeQuery);
+		
+		for(int commodityID : recipe.getCommodityID())
+		{
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getRecipeID()+ ", " +commodityID+")");
+		}
 	}
 
 	@Override

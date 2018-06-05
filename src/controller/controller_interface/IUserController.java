@@ -43,7 +43,7 @@ public interface IUserController {
 	
 	/**
 	 * Get all users
-	 * @return a list of all users in database
+	 * @return a list of UserDTO objects
 	 * @throws DALException
 	 */
 	public List<UserDTO> getAllUsers() throws DALException;
