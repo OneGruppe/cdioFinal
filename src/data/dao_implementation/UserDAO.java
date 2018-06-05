@@ -65,7 +65,7 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#showUser(int)
 	 */
 	@Override
-	public UserDTO showUser(int userID) throws DALException 
+	public UserDTO getUser(int userID) throws DALException 
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM users WHERE userID = " + userID);
 
@@ -89,7 +89,7 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#showAllUsers()
 	 */
 	@Override
-	public List<UserDTO> showAllUsers() throws DALException 
+	public List<UserDTO> getAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
 		ResultSet rs = con.doQuery("SELECT * FROM users");

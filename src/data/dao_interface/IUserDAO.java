@@ -34,12 +34,12 @@ public interface IUserDAO
 	 * @return user with id userID in form of UserDTO
 	 * @throws DALException
 	 */
-	public UserDTO showUser(int userID) throws DALException;
+	public UserDTO getUser(int userID) throws DALException;
 	
 	/**
 	 * Returns a list of all users
 	 * @return List of all users in form of UserDTO
 	 * @throws DALException
 	 */
-	public List<UserDTO> showAllUsers() throws DALException;
+	public List<UserDTO> getAllUsers() throws DALException;
 }
