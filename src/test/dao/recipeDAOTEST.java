@@ -14,7 +14,7 @@ import data.dao_implementation.RecipeDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
-public class recipeDAOTEST
+public class RecipeDAOTEST
 {
 	
 	@After

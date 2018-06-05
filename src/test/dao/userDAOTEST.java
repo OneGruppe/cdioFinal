@@ -1,60 +1,108 @@
 package test.dao;
-import java.util.List;
 
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import data.connector.Connector;
 import data.dao_implementation.UserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class userDAOTEST 
+public class UserDAOTest 
 {
+	UserDAO userdao;
 
-	public static void main(String[] args) 
+	@Before
+	public void connect()
 	{
-		UserDAO userdao = null;
-		UserDTO userdto = new UserDTO(5, "Testdata Andersen", "TA", 1);
-		UserDTO userdtochange = new UserDTO(5, "Testdata From Andersen", "TFA", 0);
-
-		try 
-		{	
-			userdao = new UserDAO();
-			
-			/*
-			// Create
-			System.out.println("-- Create user --");
-			System.out.println("Creating user: " + userdto.toString());
-			userdao.createUser(userdto);
-
-			// Show user 5
-			System.out.println("-- Show created user --");
-			System.out.println("User found: " + userdao.showUser(5));
-
-
-			// Update
-			System.out.println("-- Updating user --");
-			System.out.println("Update user to: " + userdtochange.toString());
-			userdao.updateUser(userdtochange);
-
-			// Show user 5
-			System.out.println("-- Show created user --");
-			System.out.println("User found: " + userdao.showUser(5));
-			*/
-
-			// Show all users
-			System.out.println("Showing all users");
-			int i = 1;
-			List<UserDTO> userlist = userdao.getAllUsers();
-			for(UserDTO user : userlist)
-			{
-				System.out.println(i + ". " + user.toString());
-				i++;
-			}
-			
-		} 
-		catch (DALException e)
+		try
 		{
-			System.out.println("Error: " + e.getMessage());
+			userdao = new UserDAO();
 		}
-		
-
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
 	}
+
+	@After
+	public void teardown()
+	{
+		try
+		{
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM users WHERE userID=" + 5);
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
+	}
+
+	@Test
+	public void createAndGetUser() 
+	{
+		UserDTO expected = new UserDTO(5, "Test User", "TU", 0);
+
+		try
+		{
+			userdao.createUser(expected);
+			UserDTO actual = userdao.getUser(5);
+			assertEquals(expected.toString(), actual.toString());
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
+	}
+
+	@Test
+	public void updateAndGetUser() 
+	{
+		UserDTO exUser = new UserDTO(5, "Test User True", "TUT", 0);
+		UserDTO updUser = new UserDTO(5, "Test User Profile", "TUP", 1);
+
+		try
+		{
+			userdao.createUser(exUser);
+			UserDTO before = userdao.getUser(5);
+			assertEquals(exUser.toString(), before.toString());
+
+			// Update user
+			userdao.updateUser(updUser);
+			UserDTO after = userdao.getUser(5);
+			assertEquals(updUser.toString(), after.toString());
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
+	}
+
+	@Test
+	public void getALLUser() 
+	{
+		UserDTO userOne = new UserDTO(5, "Test User Wang", "TUW", 0);
+
+		try
+		{
+			userdao.createUser(userOne);
+			for (UserDTO usr : userdao.getAllUsers())
+			{
+				if (usr.getUserID() == 5)
+				{
+					assertEquals(userOne.toString(), usr.toString());
+					break;
+				}
+			}
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
+	}
+
 }
