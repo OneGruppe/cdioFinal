@@ -11,41 +11,71 @@ import data.dao_implementation.CommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public class CommodityBatchDAOTest {
+public class CommodityBatchDAOTest 
+{
 	CommodityBatchDAO dao;
-	
+
 	@Before
-	public void setUp() throws Exception {
-		dao = new CommodityBatchDAO();
+	public void setUp() 
+	{
+
+		try
+		{
+			dao = new CommodityBatchDAO();
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
 	}
 
 	@After
-	public void tearDown() throws Exception {
-		Connector con = new Connector();
-		try {
+	public void tearDown() 
+	{
+		try 
+		{
+			Connector con = new Connector();
 			con.doQuery("DELETE FROM commodityBatch WHERE commodityBatchID= 10");
 		}
-		catch (DALException e){
+		catch (DALException e)
+		{
 			fail("Error: " + e.getMessage());
 		}
 	}
 
 	@Test
-	public void createCommodityBatch() throws DALException {
+	public void createCommodityBatch()
+	{
 		CommodityBatchDTO expected = new CommodityBatchDTO(10, 10, 10.0);
-		
-		dao.createCommodityBatch(expected);
-		CommodityBatchDTO actual = dao.getCommodityBatch(10);
-		assertEquals(expected.toString(), actual.toString());	
+
+		try
+		{
+			dao.createCommodityBatch(expected);
+			CommodityBatchDTO actual = dao.getCommodityBatch(10);
+			assertEquals(expected.toString(), actual.toString());	
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
 	}
-	
+
 	@Test
-	public void updateCommodityBatch() throws DALException {
+	public void updateCommodityBatch()
+	{
+		CommodityBatchDTO expected = new CommodityBatchDTO(10, 10, 10.0);
 		CommodityBatchDTO updateExpected = new CommodityBatchDTO(10, 10, 15.0);
-		 
-		
-		dao.updateCommodityBatch(updateExpected);
-		CommodityBatchDTO actual = dao.getCommodityBatch(10); 
-		assertEquals(updateExpected.toString(), actual.toString());
+
+		try
+		{
+			dao.createCommodityBatch(expected);
+			dao.updateCommodityBatch(updateExpected);
+			CommodityBatchDTO actual = dao.getCommodityBatch(10); 
+			assertEquals(updateExpected.toString(), actual.toString());
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
 	}
 }
