@@ -46,15 +46,17 @@ public class CommodityController implements ICommodityController{
 	@Override
 	public CommodityDTO getCommodity(int id) throws DALException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		CommodityDTO commodity;
+		commodity = comdao.getCommodity(id);
+		return commodity;
 	}
 
 	@Override
 	public List<CommodityDTO> getAllCommodities() throws DALException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		List<CommodityDTO> commodityList;
+		commodityList = comdao.getAllCommodities();
+		return commodityList;
 	}
 
 }
