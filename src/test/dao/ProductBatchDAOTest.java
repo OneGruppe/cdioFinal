@@ -89,12 +89,12 @@ public class ProductBatchDAOTest
 			commoditydao.createCommodity(comdto);
 
 			//Make commodityBatch
-			CommodityBatchDTO combatdto = new CommodityBatchDTO(4, comdto.getCommodityID(), 20);
+			CommodityBatchDTO combatdto = new CommodityBatchDTO(4, comdto.getId(), 20);
 			commoditybatchdao.createCommodityBatch(combatdto);
 
 			//Make a commodityList
 			List<Integer> comList = new ArrayList<Integer>();
-			comList.add(comdto.getCommodityID());
+			comList.add(comdto.getId());
 
 			//Make a recipe
 			RecipeDTO recipedto = new RecipeDTO(5, "Pizza", comList, 0.5, 0.1);
@@ -105,7 +105,7 @@ public class ProductBatchDAOTest
 			userdao.createUser(userdto);
 
 			//Make a productBatch
-			ProductBatchDTO expected = new ProductBatchDTO(3, 1, recipedto.getRecipeID(), userdto.getUserID(), combatdto.getCbid(), 0.1, 10);
+			ProductBatchDTO expected = new ProductBatchDTO(3, 1, recipedto.getId(), userdto.getId(), combatdto.getId(), 0.1, 10);
 			productbdao.createProductBatch(expected);
 			
 			ProductBatchDTO actual = productbdao.getProductBatch(3);

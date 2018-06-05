@@ -2,41 +2,41 @@ package data.dto;
 
 public class UserDTO
 {
-	private int userID;
-	private String userName;
-	private String userIni;
+	private int id;
+	private String name;
+	private String ini;
 	private int active;
 	
 	/**
 	 * Constuctor for a UserDTO with parameters
-	 * @param userID ID of the user
-	 * @param userName The name of the user
-	 * @param userIni The initials of the user
+	 * @param id ID of the user
+	 * @param name The name of the user
+	 * @param ini The initials of the user
 	 */
-	public UserDTO(int userID, String userName, String userIni, int active) {
-		this.userID = userID;
-		this.userName = userName;
-		this.userIni = userIni;
+	public UserDTO(int id, String name, String ini, int active) {
+		this.id = id;
+		this.name = name;
+		this.ini = ini;
 		this.active = active;
 	}
 	
-	public int getUserID() {
-		return userID;
+	public int getId() {
+		return id;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setId(int userID) {
+		this.id = userID;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String userName) {
+		this.name = userName;
 	}
-	public String getUserIni() {
-		return userIni;
+	public String getIni() {
+		return ini;
 	}
-	public void setUserIni(String userIni) {
-		this.userIni = userIni;
+	public void setIni(String userIni) {
+		this.ini = userIni;
 	}
 	
 	public int getActive() {
@@ -49,9 +49,6 @@ public class UserDTO
 
 	@Override
 	public String toString() {
-		return "UserDTO [userID=" + userID + ", userName=" + userName + ", userIni=" + userIni + "]";
+		return "UserDTO [id=" + id + ", name=" + name + ", ini=" + ini + ", active=" + active + "]";
 	}
-	
-	
-	
 }

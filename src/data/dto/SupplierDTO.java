@@ -1,28 +1,28 @@
 package data.dto;
 
 public class SupplierDTO {
-	private int supID;
-	private String supName;
+	private int id;
+	private String name;
 	
-	public SupplierDTO(int supID, String supName) {
+	public SupplierDTO(int id, String name) {
 		super();
-		this.supID = supID;
-		this.supName = supName;
+		this.id = id;
+		this.name = name;
 	}
 
-	public int getSupID() {
-		return supID;
+	public int getId() {
+		return id;
 	}
 
-	public void setSupID(int supID) {
-		this.supID = supID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getSupName() {
-		return supName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSupName(String supName) {
-		this.supName = supName;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

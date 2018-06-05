@@ -4,48 +4,48 @@ import java.util.List;
 
 public class RecipeDTO
 {
-	private int recipeID;
-	private String recipeName;
+	private int id;
+	private String name;
 	private List<Integer> commodityID; 
-	private double nomNetto;
-	private double recipeTolerance;
+	private double netto;
+	private double tolerance;
 	
 	
-	public RecipeDTO(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto, double recipeTolerance) {
-		this.recipeID = recipeID;
-		this.recipeName = recipeName;
+	public RecipeDTO(int id, String name, List<Integer> commodityID, double netto, double tolerance) {
+		this.id = id;
+		this.name = name;
 		this.commodityID = commodityID;
-		this.nomNetto = nomNetto;
-		this.recipeTolerance = recipeTolerance;
+		this.netto = netto;
+		this.tolerance = tolerance;
 	}
 
 
-	public int getRecipeID() {
-		return recipeID;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setRecipeID(int recipeID) {
-		this.recipeID = recipeID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
-	public String getRecipeName() {
-		return recipeName;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setRecipeName(String recipeName) {
-		this.recipeName = recipeName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public Object getRecipeTolerance() {
-		return recipeTolerance;
+	public Object getTolerance() {
+		return tolerance;
 	}
 
 
-	public void setRecipeTolerance(double recipeTolerance) {
-		this.recipeTolerance = recipeTolerance;
+	public void setTolerance(double tolerance) {
+		this.tolerance = tolerance;
 	}	
 	
 	public List<Integer> getCommodityID() {
@@ -58,19 +58,19 @@ public class RecipeDTO
 	}
 
 
-	public double getNomNetto() {
-		return nomNetto;
+	public double getNetto() {
+		return netto;
 	}
 
 
-	public void setNomNetto(double nomNetto) {
-		this.nomNetto = nomNetto;
+	public void setNetto(double netto) {
+		this.netto = netto;
 	}
 
 
 	@Override
 	public String toString() {
-		return "RecipeDTO [recipeID=" + recipeID + ", recipeName=" + recipeName + "]";
+		return "RecipeDTO [id=" + id + ", name=" + name + "]";
 	}
 
 

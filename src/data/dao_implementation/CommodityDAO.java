@@ -29,12 +29,12 @@ public class CommodityDAO implements ICommodityDAO
 	public void createCommodity(CommodityDTO commodity) throws DALException 
 	{
 		
-		String commodityQuery = "INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ")";
+		String commodityQuery = "INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getId() + ", " + commodity.getName() + ")";
 		con.doUpdate(commodityQuery);
 		
-		for(SupplierDTO supplier : commodity.getSuppliers())
+		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
-			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getId()+ ", " +supplier.getId()+ ")");
 		}
 		
 	}
@@ -46,14 +46,14 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void updateCommodity(CommodityDTO commodity) throws DALException 
 	{
-		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " +commodity.getCommodityID());
+		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " +commodity.getId());
 		
-		String commodityQuery = "UPDATE commodity SET name = " +commodity.getCommodityName()+ "WHERE commodityID = " +commodity.getCommodityID();
+		String commodityQuery = "UPDATE commodity SET name = " +commodity.getName()+ "WHERE commodityID = " +commodity.getId();
 		con.doUpdate(commodityQuery);
 		
-		for(SupplierDTO supplier : commodity.getSuppliers())
+		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
-			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getId()+ ", " +supplier.getId()+ ")");
 		}
 	}
 
@@ -130,16 +130,16 @@ public class CommodityDAO implements ICommodityDAO
 			{
 				for (CommodityDTO comDTO : comList)
 				{
-					if (comDTO.getCommodityID() == rsCom.getInt("comodityID"))
+					if (comDTO.getId() == rsCom.getInt("comodityID"))
 					{
-						if (comDTO.getSuppliers() == null)
+						if (comDTO.getSupplierList() == null)
 						{
 							List<SupplierDTO> exSupList = new ArrayList<SupplierDTO>();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
-							comDTO.setSuppliers(exSupList);
+							comDTO.setSupplierList(exSupList);
 						}else 
 						{
-							List<SupplierDTO> exSupList = comDTO.getSuppliers();
+							List<SupplierDTO> exSupList = comDTO.getSupplierList();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 						}
 					}

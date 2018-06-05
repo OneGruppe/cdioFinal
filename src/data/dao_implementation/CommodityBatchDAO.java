@@ -26,7 +26,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
 		con.doUpdate("INSERT INTO commodityBatch VALUES" +
-				"(" + commodityBatch.getCbid() + 
+				"(" + commodityBatch.getId() + 
 				"," + commodityBatch.getCommodityID() +
 				"," + commodityBatch.getAmount() + ")"
 				);

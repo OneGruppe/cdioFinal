@@ -26,7 +26,7 @@ public class SupplierDAO implements ISupplierDAO
 	@Override
 	public void createSupplier(SupplierDTO supplier) throws DALException
 	{
-		con.doUpdate("INSERT INTO supplier VALUES (" + supplier.getSupID() + ", '" + supplier.getSupName() + "'");
+		con.doUpdate("INSERT INTO supplier VALUES (" + supplier.getId() + ", '" + supplier.getName() + "'");
 	}
 
 	/*
@@ -35,7 +35,7 @@ public class SupplierDAO implements ISupplierDAO
 	 */
 	@Override
 	public void updateSupplier(SupplierDTO supplier) throws DALException {
-		con.doUpdate("UPDATE supplier SET (supplierName = '" + supplier.getSupName() + "') WHERE supplierID = '" + supplier.getSupID() + "'");
+		con.doUpdate("UPDATE supplier SET (supplierName = '" + supplier.getName() + "') WHERE supplierID = '" + supplier.getId() + "'");
 	}
 
 	/*

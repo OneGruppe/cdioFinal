@@ -4,57 +4,57 @@ import java.util.List;
 
 public class CommodityDTO
 {
-	private int commodityID;
-	private String commodityName;
-	private List<SupplierDTO> suppliers;
+	private int id;
+	private String name;
+	private List<SupplierDTO> supplierList;
 	
 	
 	/**
 	 * Constructor for CommodityDTO with parameters
-	 * @param commodityID ID of the commodity
-	 * @param CommodityName The name of the commodity
+	 * @param id ID of the commodity
+	 * @param name The name of the commodity
 	 * @param supplier The supplier of the commodity
 	 */
-	public CommodityDTO (int commodityID, String CommodityName, List<SupplierDTO> supplierList)
+	public CommodityDTO (int id, String name, List<SupplierDTO> supplierList)
 	{
-		this.commodityID = commodityID;
-		this.commodityName = CommodityName;
-		this.suppliers = supplierList;
+		this.id = id;
+		this.name = name;
+		this.supplierList = supplierList;
 	}
 	
-	public int getCommodityID()
+	public int getId()
 	{
-		return commodityID;
+		return id;
 	}
 	
-	public void setCommodityID(int commodityID)
+	public void setId(int id)
 	{
-		this.commodityID = commodityID;
+		this.id = id;
 	}
 	
-	public String getCommodityName()
+	public String getName()
 	{
-		return commodityName;
+		return name;
 	}
 	
-	public void setCommodityName(String commodityName)
+	public void setName(String name)
 	{
-		this.commodityName = commodityName;
+		this.name = name;
 	}
 	
-	public List<SupplierDTO> getSuppliers()
+	public List<SupplierDTO> getSupplierList()
 	{
-		return suppliers;
+		return supplierList;
 	}
 	
-	public void setSuppliers(List<SupplierDTO> suppliers)
+	public void setSupplierList(List<SupplierDTO> supplierList)
 	{
-		this.suppliers = suppliers;
+		this.supplierList = supplierList;
 	}
 
 	@Override
 	public String toString() {
-		return "CommodityDTO [commodityID=" + commodityID + ", commodityName=" + commodityName + ", supplier="
-				+ suppliers + "]";
+		return "CommodityDTO [commodityID=" + id + ", commodityName=" + name + ", supplier="
+				+ supplierList + "]";
 	}
 }

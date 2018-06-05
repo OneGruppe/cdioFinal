@@ -92,7 +92,7 @@ public class UserDAOTest
 			userdao.createUser(userOne);
 			for (UserDTO usr : userdao.getAllUsers())
 			{
-				if (usr.getUserID() == 5)
+				if (usr.getId() == 5)
 				{
 					assertEquals(userOne.toString(), usr.toString());
 					break;

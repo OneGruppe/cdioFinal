@@ -29,9 +29,9 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO productBatch (" + productBatch.getPbID() + ", " 
+		con.doUpdate("INSERT INTO productBatch (" + productBatch.getId() + ", " 
 				+ productBatch.getStatus() + ", " + productBatch.getRecipeID() + "," + productBatch.getUserID() +
-				", " + productBatch.getComBatID() + ", " + productBatch.getTara() + "," + productBatch.getNetto());
+				", " + productBatch.getCommodityBatchID() + ", " + productBatch.getTara() + "," + productBatch.getNetto());
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	{
 		con.doUpdate("UPDATE productBatch SET status=" + productBatch.getStatus() +
 				", userID=" + productBatch.getUserID() + "WHERE productBatchID =" 
-				+ productBatch.getPbID());
+				+ productBatch.getId());
 	}
 
 	/*

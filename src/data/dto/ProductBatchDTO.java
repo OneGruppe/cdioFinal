@@ -2,32 +2,32 @@ package data.dto;
 
 public class ProductBatchDTO
 {
-	private int pbID;
+	private int id;
 	private int recipeID;
 	private int status;
 	private int userID;
-	private int comBatID;
+	private int commodityBatchID;
 	private double tara;
 	private double netto;
 	
-	public ProductBatchDTO (int pbID, int status, int recipeID, int userID,
-							int comBatID, double tara, double netto)
+	public ProductBatchDTO (int id, int status, int recipeID, int userID,
+							int commodityBatchID, double tara, double netto)
 	{
-		this.pbID = pbID;
+		this.id = id;
 		this.status = status;
 		this.recipeID = recipeID;
 		this.userID = userID;
-		this.comBatID = comBatID;
+		this.commodityBatchID = commodityBatchID;
 		this.tara = tara;
 		this.netto = netto;
 	}
 
-	public int getPbID() {
-		return pbID;
+	public int getId() {
+		return id;
 	}
 
-	public void setPbID(int pbID) {
-		this.pbID = pbID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getRecipeID() {
@@ -54,12 +54,12 @@ public class ProductBatchDTO
 		this.userID = userID;
 	}
 
-	public int getComBatID() {
-		return comBatID;
+	public int getCommodityBatchID() {
+		return commodityBatchID;
 	}
 
-	public void setComBatID(int comBatID) {
-		this.comBatID = comBatID;
+	public void setCommodityBatchID(int commodityBatchID) {
+		this.commodityBatchID = commodityBatchID;
 	}
 
 	public double getTara() {
@@ -81,7 +81,7 @@ public class ProductBatchDTO
 
 	@Override
 	public String toString() {
-		return "ProductBatchDTO [pbID=" + pbID + ", recipeID=" + recipeID + ", status=" + status + "]";
+		return "ProductBatchDTO [id=" + id + ", recipeID=" + recipeID + ", status=" + status + "]";
 	}
 	
 	

@@ -22,28 +22,28 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String RecipeQuery = "INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
+		String RecipeQuery = "INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getId()+ ", " +recipe.getName()+ ", " +recipe.getNetto()+ ", " +recipe.getTolerance()+ ")";
 		con.doUpdate(RecipeQuery);
 		
 		for(int commodityID : recipe.getCommodityID())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getRecipeID()+ ", " +commodityID+")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getId()+ ", " +commodityID+")");
 		}
 	}
 
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " +recipe.getRecipeID());
+		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " +recipe.getId());
 		
-		String RecipeQuery = "UPDATE recipe SET recipeName = '" +recipe.getRecipeName()+ "', "
-				           + "nomNetto = " +recipe.getNomNetto()+ ", tolerance = " +recipe.getRecipeTolerance()
-				           + "WHERE recipeID = " +recipe.getRecipeID();
+		String RecipeQuery = "UPDATE recipe SET recipeName = '" +recipe.getName()+ "', "
+				           + "nomNetto = " +recipe.getNetto()+ ", tolerance = " +recipe.getTolerance()
+				           + "WHERE recipeID = " +recipe.getId();
 		con.doUpdate(RecipeQuery);
 		
 		for(int commodityID : recipe.getCommodityID())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getRecipeID()+ ", " +commodityID+")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getId()+ ", " +commodityID+")");
 		}
 	}
 
@@ -114,7 +114,7 @@ public class RecipeDAO implements IRecipeDAO
 			{
 				for (RecipeDTO recipeDTO : recipeList)
 				{
-					if (recipeDTO.getRecipeID() == rsComs.getInt("comodityID"))
+					if (recipeDTO.getId() == rsComs.getInt("comodityID"))
 					{
 						if (recipeDTO.getCommodityID() == null)
 						{
