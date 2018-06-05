@@ -36,14 +36,14 @@ public interface IUserController {
 	/**
 	 * Get a single user
 	 * @param id
-	 * @return
+	 * @return a single user from database
 	 * @throws DALException
 	 */
 	public UserDTO getUser(int id) throws DALException;
 	
 	/**
 	 * Get all users
-	 * @return
+	 * @return a list of all users in database
 	 * @throws DALException
 	 */
 	public List<UserDTO> getAllUsers() throws DALException;
