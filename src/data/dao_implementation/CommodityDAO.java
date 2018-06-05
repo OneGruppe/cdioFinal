@@ -32,7 +32,7 @@ public class CommodityDAO implements ICommodityDAO
 		String commodityQuery = "INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getCommodityID() + ", " + commodity.getCommodityName() + ")";
 		con.doUpdate(commodityQuery);
 		
-		for(SupplierDTO supplier : commodity.getSupplier())
+		for(SupplierDTO supplier : commodity.getSuppliers())
 		{
 			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
 		}
@@ -51,7 +51,7 @@ public class CommodityDAO implements ICommodityDAO
 		String commodityQuery = "UPDATE commodity SET name = " +commodity.getCommodityName()+ "WHERE commodityID = " +commodity.getCommodityID();
 		con.doUpdate(commodityQuery);
 		
-		for(SupplierDTO supplier : commodity.getSupplier())
+		for(SupplierDTO supplier : commodity.getSuppliers())
 		{
 			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getCommodityID()+ ", " +supplier.getSupID()+ ")");
 		}
@@ -132,14 +132,14 @@ public class CommodityDAO implements ICommodityDAO
 				{
 					if (comDTO.getCommodityID() == rsCom.getInt("comodityID"))
 					{
-						if (comDTO.getSupplier() == null)
+						if (comDTO.getSuppliers() == null)
 						{
 							List<SupplierDTO> exSupList = new ArrayList<SupplierDTO>();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
-							comDTO.setSupplier(exSupList);
+							comDTO.setSuppliers(exSupList);
 						}else 
 						{
-							List<SupplierDTO> exSupList = comDTO.getSupplier();
+							List<SupplierDTO> exSupList = comDTO.getSuppliers();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 						}
 					}
