@@ -16,13 +16,7 @@ public class RecipeDAO implements IRecipeDAO
 
 	public RecipeDAO() throws DALException 
 	{
-		try 
-		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
 	}
 
 	@Override

@@ -18,13 +18,7 @@ public class CommodityDAO implements ICommodityDAO
 
 	public CommodityDAO () throws DALException
 	{
-		try 
-		{
 			con = new Connector();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
 	}
 
 	/*
