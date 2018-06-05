@@ -69,7 +69,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	 * @see data.dao_interface.IProductBatchDAO#showProductBatch(int)
 	 */
 	@Override
-	public ProductBatchDTO showProductBatch(int productbatchID) throws DALException
+	public ProductBatchDTO getProductBatch(int productbatchID) throws DALException
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID ="
 				+ productbatchID);
@@ -97,7 +97,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	 * @see data.dao_interface.IProductBatchDAO#showProductBatch()
 	 */
 	@Override
-	public List<ProductBatchDTO> showProductBatch() throws DALException
+	public List<ProductBatchDTO> getProductBatch() throws DALException
 	{
 		List<ProductBatchDTO> PBatches = new ArrayList<ProductBatchDTO>();
 		ResultSet rs = con.doQuery("SELECT * FROM productBatch");

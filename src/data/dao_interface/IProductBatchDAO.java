@@ -33,12 +33,12 @@ public interface IProductBatchDAO
 	 * @return user with id productbatchID in form of ProductBatchDTO
 	 * @throws DALException
 	 */
-	public ProductBatchDTO showProductBatch(int productbatchID) throws DALException;
+	public ProductBatchDTO getProductBatch(int productbatchID) throws DALException;
 	
 	/**
 	 * Returns a list of all product batches
 	 * @return List of all product batches in form of ProductBatchDTO
 	 * @throws DALException
 	 */
-	public List<ProductBatchDTO> showProductBatch() throws DALException;
+	public List<ProductBatchDTO> getProductBatch() throws DALException;
 }

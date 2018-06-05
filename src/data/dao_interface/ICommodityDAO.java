@@ -34,12 +34,12 @@ public interface ICommodityDAO
 	 * @return user with id commodityID in form of CommodityDTO
 	 * @throws DALException
 	 */
-	public CommodityDTO showCommodity(int commodityID) throws DALException;
+	public CommodityDTO getCommodity(int commodityID) throws DALException;
 
 	/**
 	 * Returns a list of all commodities
 	 * @return List of all commodities in form of CommodityDTO
 	 * @throws DALException
 	 */
-	public List<CommodityDTO> showAllCommodities() throws DALException;
+	public List<CommodityDTO> getAllCommodities() throws DALException;
 }

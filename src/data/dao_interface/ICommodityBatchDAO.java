@@ -35,12 +35,12 @@ public interface ICommodityBatchDAO
 	 * @return user with id combatchID in form of CommodityBatchDTO
 	 * @throws DALException
 	 */
-	public CommodityBatchDTO showCommodityBatch(int combatchID) throws DALException;
+	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException;
 
 	/**
 	 * Returns a list of all commodity batches
 	 * @return List of all commodity batches in form of CommodityBatchDTO
 	 * @throws DALException
 	 */
-	public List<CommodityBatchDTO> showAllCommodityBatches() throws DALException;
+	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException;
 }
