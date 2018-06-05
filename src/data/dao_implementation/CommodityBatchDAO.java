@@ -39,11 +39,9 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
-		con.doUpdate("UPDATE commodityBatch WHERE " +
-				"commodityBatchID='" + commodityBatch.getCbid() + "'" + 
-				" SET (commodityID='" + commodityBatch.getCommodityID() + "'" +
-				", amount='" + commodityBatch.getAmount() + "')"
-				);
+		con.doUpdate("UPDATE commodityBatch SET (commodityID='" + commodityBatch.getCommodityID() + "'" 
+					+ ", amount='" + commodityBatch.getAmount() + "'" + "WHERE \" +\n" + "\"commodityBatchID='\""
+					+ "+ commodityBatch.getCbid() + \"'\" )");
 	}
 
 	/*
