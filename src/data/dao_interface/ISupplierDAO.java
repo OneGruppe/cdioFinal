@@ -36,12 +36,12 @@ public interface ISupplierDAO
 	 * @return
 	 * @throws DALException
 	 */
-	public SupplierDTO showSupplier(int supplierID) throws DALException;
+	public SupplierDTO getSupplier(int supplierID) throws DALException;
 
 	/**
 	 * Returns a list of all suppliers
 	 * @return
 	 * @throws DALException
 	 */
-	public List<SupplierDTO> showAllSuppliers() throws DALException;
+	public List<SupplierDTO> getAllSuppliers() throws DALException;
 }

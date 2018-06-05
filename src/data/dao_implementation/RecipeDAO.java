@@ -47,7 +47,7 @@ public class RecipeDAO implements IRecipeDAO
 	}
 
 	@Override
-	public RecipeDTO showRecipe(int recipeID) throws DALException 
+	public RecipeDTO getRecipe(int recipeID) throws DALException 
 	{
 		List<Integer> commodityList = new ArrayList<Integer>();
 		double nomNetto = 0, tolerance = 0;
@@ -77,7 +77,7 @@ public class RecipeDAO implements IRecipeDAO
 	}
 
 	@Override
-	public List<RecipeDTO> showAllRecipes() throws DALException
+	public List<RecipeDTO> getAllRecipes() throws DALException
 	{
 		List<RecipeDTO> recipeList = new ArrayList<RecipeDTO>();
 		String showAllRecipiesRecs = "SELECT * FROM recipe";

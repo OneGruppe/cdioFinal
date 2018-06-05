@@ -33,12 +33,12 @@ public interface IRecipeDAO
 	 * @return user with id recipeID in form of RecipeDTO
 	 * @throws DALException
 	 */
-	public RecipeDTO showRecipe(int recipeID) throws DALException;
+	public RecipeDTO getRecipe(int recipeID) throws DALException;
 	
 	/**
 	 * Returns a list of all recipes
 	 * @return List of all recipes in form of RecipeDTO
 	 * @throws DALException
 	 */
-	public List<RecipeDTO> showAllRecipes() throws DALException;
+	public List<RecipeDTO> getAllRecipes() throws DALException;
 }

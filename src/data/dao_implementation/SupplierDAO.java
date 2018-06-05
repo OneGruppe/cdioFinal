@@ -58,7 +58,7 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#showSupplier(int)
 	 */
 	@Override
-	public SupplierDTO showSupplier(int supplierID) throws DALException {
+	public SupplierDTO getSupplier(int supplierID) throws DALException {
 		String supplierName = null;
 		
 		ResultSet rs = con.doQuery("SELECT * FROM supplier WHERE 'supplierID' = '" + supplierID + "'");
@@ -83,7 +83,7 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#showAllSuppliers()
 	 */
 	@Override
-	public List<SupplierDTO> showAllSuppliers() throws DALException {
+	public List<SupplierDTO> getAllSuppliers() throws DALException {
 		int suppID = 0;
 		String supplierName = null;
 		
