@@ -95,12 +95,18 @@ public class UserDAO implements IUserDAO {
 		ResultSet rs = con.doQuery("SELECT * FROM users");
 		try
 		{
+
 			if(!rs.first())
 			{
 				throw new DALException("Der findes ingen brugere i systemet");
+			} 
+			else 
+			{
+				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
 			}
 			while(rs.next()) 
 			{
+				//System.out.println(rs.getInt("userID") + " " + rs.getString("name") + " " + rs.getString("initial") + " " + rs.getInt("active"));
 				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
 			}
 			return users;

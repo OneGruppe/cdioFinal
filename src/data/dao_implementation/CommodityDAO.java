@@ -68,7 +68,7 @@ public class CommodityDAO implements ICommodityDAO
 	 * @see data.dao_interface.ICommodityDAO#showCommodity(int)
 	 */
 	@Override
-	public CommodityDTO showCommodity(int commodityID) throws DALException
+	public CommodityDTO getCommodity(int commodityID) throws DALException
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
 
@@ -103,7 +103,7 @@ public class CommodityDAO implements ICommodityDAO
 	 * @see data.dao_interface.ICommodityDAO#showAllCommodities()
 	 */
 	@Override
-	public List<CommodityDTO> showAllCommodities() throws DALException
+	public List<CommodityDTO> getAllCommodities() throws DALException
 	{
 		try
 		{

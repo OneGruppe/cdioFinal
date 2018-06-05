@@ -68,7 +68,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	 * @see data.dao_interface.ICommodityBatchDAO#showCommodityBatch(int)
 	 */
 	@Override
-	public CommodityBatchDTO showCommodityBatch(int combatchID) throws DALException 
+	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException 
 	{
 		int cID = 0;
 		double amount = 0;
@@ -99,7 +99,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	 * @see data.dao_interface.ICommodityBatchDAO#showAllCommodityBatches()
 	 */
 	@Override
-	public List<CommodityBatchDTO> showAllCommodityBatches() throws DALException 
+	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException 
 	{
 		int cbID = 0, cID = 0;
 		double amount = 0;

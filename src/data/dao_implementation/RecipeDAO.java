@@ -28,14 +28,14 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String RecipeQuery = "CALL createRecipe (" + recipe.getRecipeID() + recipe.getRecipeName() + recipe.getCommodityID() + recipe.getNomNetto() + recipe.getNomNetto() + ")";
+		String RecipeQuery = "CALL createRecipe (" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getCommodityID()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
 		con.doQuery(RecipeQuery);
 	}
 
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String recipeQuery = "CALL recipeUpdate (" + recipe.getRecipeID() + recipe.getRecipeName() + recipe.getCommodityID() + recipe.getNomNetto() + recipe.getNomNetto() + ")";
+		String recipeQuery = "CALL recipeUpdate (" +recipe.getRecipeID()+ ", " +recipe.getRecipeName()+ ", " +recipe.getCommodityID()+ ", " +recipe.getNomNetto()+ ", " +recipe.getRecipeTolerance()+ ")";
 		con.doUpdate(recipeQuery);
 	}
 
