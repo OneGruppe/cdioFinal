@@ -35,7 +35,7 @@ public class SupplierDAO implements ISupplierDAO
 	 */
 	@Override
 	public void updateSupplier(SupplierDTO supplier) throws DALException {
-		con.doUpdate("UPDATE supplier WHERE supplierID = '" + supplier.getSupID() + "' SET (supplierName = '" + supplier.getSupName() + "')");
+		con.doUpdate("UPDATE supplier SET (supplierName = '" + supplier.getSupName() + "') WHERE supplierID = '" + supplier.getSupID() + "'");
 	}
 
 	/*
