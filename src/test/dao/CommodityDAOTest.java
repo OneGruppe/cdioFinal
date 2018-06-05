@@ -54,6 +54,7 @@ public class CommodityDAOTest
 		}
 	}
 
+	/*
 	@Test
 	public void createCommodity() 
 	{
@@ -89,4 +90,5 @@ public class CommodityDAOTest
 			fail("Error " + e.getMessage());
 		}
 	}
+	*/
 }

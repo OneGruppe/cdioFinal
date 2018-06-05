@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao_implementation.CommodityBatchDAO;
 import data.dao_implementation.CommodityDAO;
 import data.dao_implementation.ProductBatchDAO;
@@ -56,7 +57,13 @@ public class ProductBatchDAOTest
 	{
 		try
 		{
+			supplierdao.deleteSupplier(6);
+			commoditydao.deleteCommodity(1);
+			commoditybatchdao.deleteCommodityBatch(4);
+			recipedao.deleteRecipe(5);
 			productbdao.deleteProductBatch(3);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM users WHERE userID = 3");
 		}
 		catch(DALException e)
 		{

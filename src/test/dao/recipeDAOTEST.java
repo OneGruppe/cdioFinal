@@ -14,9 +14,9 @@ import data.dao_implementation.RecipeDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
-public class RecipeDAOTEST
+public class RecipeDAOTest
 {
-	
+	/*
 	@After
 	public void teardown(int id)
 	{
@@ -28,6 +28,7 @@ public class RecipeDAOTEST
 			System.out.println("ERROR IN: " + e.getMessage());
 		}
 	}
+	*/
 
 	@Test
 	public void testCreateRecipe() throws DALException
