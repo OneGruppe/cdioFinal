@@ -43,7 +43,7 @@ public interface ICommodityController {
 	
 	/**
 	 * Get all commodities
-	 * @return a list of all commodities in database
+	 * @return a list of CommodityDTO objects
 	 * @throws DALException
 	 */
 	public List<CommodityDTO> getAllCommodities() throws DALException;
