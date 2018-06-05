@@ -58,7 +58,7 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void deleteCommodity(int commodityID) throws DALException 
 	{
-		String commodityQuery = "DELETE FROM commoity WHERE commodity ID = " + commodityID + "";
+		String commodityQuery = "DELETE FROM commodity WHERE commodity ID = " + commodityID + "";
 
 		con.doUpdate(commodityQuery);
 	}
