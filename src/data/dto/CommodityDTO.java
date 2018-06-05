@@ -13,7 +13,7 @@ public class CommodityDTO
 	 * Constructor for CommodityDTO with parameters
 	 * @param commodityID ID of the commodity
 	 * @param CommodityName The name of the commodity
-	 * @param supplier The suppler of the commodity
+	 * @param supplier The supplier of the commodity
 	 */
 	public CommodityDTO (int commodityID, String CommodityName, List<SupplierDTO> supplierList)
 	{

@@ -47,7 +47,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	{
 		con.doUpdate("UPDATE commodityBatch WHERE " +
 				"commodityBatchID='" + commodityBatch.getCbid() + "'" + 
-				" SET commodityID='" + commodityBatch.getCommodityID() + "'" +
+				" SET (commodityID='" + commodityBatch.getCommodityID() + "'" +
 				", amount='" + commodityBatch.getAmount() + "')"
 				);
 	}
@@ -76,7 +76,8 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 		ResultSet rs = con.doQuery("SELECT * FROM commodityBatchID "
 				+ "WHERE commodityBatchID='" + combatchID + "'");
 
-		try {
+		try
+		{
 			if(!rs.first()) 
 			{
 				throw new DALException();
