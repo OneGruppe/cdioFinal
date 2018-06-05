@@ -25,7 +25,8 @@ public class userDAOTEST
 		UserDTO userdtochange = new UserDTO(5, "Sebastian Den Store", "SDS", 0);
 
 		try 
-		{
+		{	
+			userdao = new UserDAO();
 			// Create
 			System.out.println("Creating user: " + userdto.toString());
 			userdao.createUser(userdto);
