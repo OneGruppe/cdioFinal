@@ -13,13 +13,13 @@ public class RecipeComponentDTO {
 	 * @param recipeID ID of the given Recipe.
 	 * @param commodityID ID of the given Commodity.
 	 * @param non_netto 
-	 * @param tolerace
+	 * @param tolerance
 	 */
-	public RecipeComponentDTO(int recipeID, int commodityID, double non_netto, double tolerace) {
+	public RecipeComponentDTO(int recipeID, int commodityID, double non_netto, double tolerance) {
 		this.recipeID = recipeID;
 		this.commodityID = commodityID;
 		this.non_netto = non_netto;
-		this.tolerance = tolerace;
+		this.tolerance = tolerance;
 	}
 
 	public int getRecipeID() {

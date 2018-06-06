@@ -17,19 +17,17 @@ public class RecipeController implements IRecipeController{
 	}
 
 	@Override
-	public void createRecipe(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto,
-			double recipeTolerance) throws DALException 
+	public void createRecipe(int recipeID, String recipeName) throws DALException 
 	{		
-		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName, commodityID, nomNetto, recipeTolerance);
+		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName);
 		
 		recipedao.createRecipe(recipe);
 	}
 
 	@Override
-	public void updateRecipe(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto,
-			double recipeTolerance) throws DALException 
+	public void updateRecipe(int recipeID, String recipeName) throws DALException 
 	{
-		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName, commodityID, nomNetto, recipeTolerance);
+		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName);
 		
 		recipedao.updateRecipe(recipe);
 	}

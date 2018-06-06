@@ -55,17 +55,17 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#getRecipeComponent(int)
 	 */
 	@Override
-	public RecipeComponentDTO getRecipeComponent(int componentID) throws DALException {
+	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException {
 		RecipeComponentDTO dto = null;
 		
-		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent WHERE recipeID= " + componentID);
+		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent WHERE recipeID= " + recipeID);
 		
 		try {
 			if(!rs.first()) {
-				throw new DALException("Recipe komponent med recipeID " + componentID + " findes ikke.");
+				throw new DALException("Recipe komponent med recipeID " + recipeID + " findes ikke.");
 			}
 			else {
-				dto = new RecipeComponentDTO(componentID, rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerace"));
+				dto = new RecipeComponentDTO(recipeID, rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerace"));
 			}
 			return dto;
 		} catch (SQLException e) {

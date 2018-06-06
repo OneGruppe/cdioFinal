@@ -11,23 +11,17 @@ public interface IRecipeController {
 	 * Creates a recipe
 	 * @param recipeID
 	 * @param recipeName
-	 * @param commodityID
-	 * @param nomNetto
-	 * @param recipeTolerance
 	 * @throws DALException
 	 */
-	public void createRecipe(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto, double recipeTolerance) throws DALException;
+	public void createRecipe(int recipeID, String recipeName) throws DALException;
 
 	/**
 	 * Updates a recipe
 	 * @param recipeID
 	 * @param recipeName
-	 * @param commodityID
-	 * @param nomNetto
-	 * @param recipeTolerance
 	 * @throws DALException
 	 */
-	public void updateRecipe(int recipeID, String recipeName, List<Integer> commodityID, double nomNetto, double recipeTolerance) throws DALException;
+	public void updateRecipe(int recipeID, String recipeName) throws DALException;
 	
 	/**
 	 * Deletes a recipe

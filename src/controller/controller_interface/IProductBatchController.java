@@ -10,28 +10,20 @@ public interface IProductBatchController {
 	/**
 	 * Creates a productbatch
 	 * @param pbID
-	 * @param status
 	 * @param recipeID
-	 * @param userID
-	 * @param comBatID
-	 * @param tara
-	 * @param netto
+	 * @param status
 	 * @throws DALException
 	 */
-	public void createProductBatch(int pbID, int status, int recipeID, int userID, int comBatID, double tara, double netto) throws DALException;
+	public void createProductBatch(int pbID, int recipeID, int status) throws DALException;
 	
 	/**
 	 * Updates a productbatch
 	 * @param pbID
-	 * @param status
 	 * @param recipeID
-	 * @param userID
-	 * @param comBatID
-	 * @param tara
-	 * @param netto
+	 * @param status
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int status, int recipeID, int userID, int comBatID, double tara, double netto) throws DALException;
+	public void updateProductBatch(int pbID, int recipeID, int status) throws DALException;
 	
 	/**
 	 * Deletes a productbatch
