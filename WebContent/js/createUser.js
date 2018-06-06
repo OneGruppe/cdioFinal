@@ -11,11 +11,13 @@ $(document).ready(function() {
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "PUT",
 			succes: function(data) {
-				if(data == "User succesfully created") 
+				alert(data);
+				
+				/*if(data == "User succesfully created") 
 				{
 					alert(data);
 				}
-				else {alert(data);}
+				else {alert(data);}*/
 			}
 		});
 		return false;
