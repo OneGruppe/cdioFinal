@@ -1,22 +1,28 @@
 package controller.controller_implementation;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import boundary.weight.WeightTranslation;
 import exceptions.DALException;
 
 public class FlowController
 {
-	WeightTranslation weight = new WeightTranslation("169.254.2.3");
-	UserController user = new UserController();
 
 	public void weightFlow() throws DALException
 	{
+		WeightTranslation weight = new WeightTranslation("169.254.2.3");
+
 		int state = 1;
 		int userID = 0;
 		int tara = 0;
 		int productBatchID = 0;
 
 		ProductBatchController pbc = new ProductBatchController();
-
+		UserController user = new UserController();
+		RecipeController recipe = new RecipeController();
+		CommodityController com = new CommodityController();
+		
 		while(true)
 		{
 			switch(state)
@@ -84,7 +90,24 @@ public class FlowController
 			}
 			case 6:
 			{
-				weight.getInputWithMsg("Vej: " + pbc.getProductBatch(productBatchID));
+				int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
+				List<Integer> commodityIDList = recipe.getRecipe(recipeID).getCommodityID();
+				
+				for (int comID : commodityIDList)
+				{
+					weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName());
+					double comWeight = weight.getWeight();
+					
+					double max = recipe.getRecipe(recipeID).getNonNetto() + recipe.getRecipe(recipeID).getTolerance();
+					double min = recipe.getRecipe(recipeID).getNonNetto() - recipe.getRecipe(recipeID).getTolerance();
+					
+					
+					if(comWeight > max)
+						weight.getInputWithMsg("Raavare vejer for meget");
+					if (comWeight < min)
+						weight.getInputWithMsg("Raavare vejer for lidt");
+						
+				}
 			}
 			}
 
