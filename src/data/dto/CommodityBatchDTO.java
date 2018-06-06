@@ -5,8 +5,7 @@ public class CommodityBatchDTO
 	private int id;
 	private int commodityID;
 	private double amount;
-	
-	
+
 	/**
 	 * Contructor for CommodityBatchDTO with parameters
 	 * @param id ID of CommodityBatch
@@ -19,32 +18,32 @@ public class CommodityBatchDTO
 		this.commodityID = commodityID;
 		this.amount = amount;
 	}
-	
+
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;
 	}
-	
+
 	public int getCommodityID()
 	{
 		return commodityID;
 	}
-	
+
 	public void setCommodityID(int commodityID)
 	{
 		this.commodityID = commodityID;
 	}
-	
+
 	public double getAmount()
 	{
 		return amount;
 	}
-	
+
 	public void setAmount(double Amount)
 	{
 		this.amount = Amount;
@@ -54,6 +53,6 @@ public class CommodityBatchDTO
 	public String toString() {
 		return "CommodityBatchDTO [cbid=" + id + ", commodityID=" + commodityID + ", amount=" + amount + "]";
 	}
-	
-	
+
+
 }
