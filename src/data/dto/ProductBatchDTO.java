@@ -9,9 +9,8 @@ public class ProductBatchDTO
 	private int commodityBatchID;
 	private double tara;
 	private double netto;
-	
-	public ProductBatchDTO (int id, int status, int recipeID, int userID,
-							int commodityBatchID, double tara, double netto)
+
+	public ProductBatchDTO (int id, int status, int recipeID, int userID, int commodityBatchID, double tara, double netto)
 	{
 		this.id = id;
 		this.status = status;
@@ -22,43 +21,53 @@ public class ProductBatchDTO
 		this.netto = netto;
 	}
 
-	public int getId() {
+	public int getId() 
+	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id) 
+	{
 		this.id = id;
 	}
 
-	public int getRecipeID() {
+	public int getRecipeID() 
+	{
 		return recipeID;
 	}
 
-	public void setRecipeID(int recipeID) {
+	public void setRecipeID(int recipeID) 
+	{
 		this.recipeID = recipeID;
 	}
 
-	public int getStatus() {
+	public int getStatus() 
+	{
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(int status) 
+	{
 		this.status = status;
 	}
-	
-	public int getUserID() {
+
+	public int getUserID() 
+	{
 		return userID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(int userID) 
+	{
 		this.userID = userID;
 	}
 
-	public int getCommodityBatchID() {
+	public int getCommodityBatchID() 
+	{
 		return commodityBatchID;
 	}
 
-	public void setCommodityBatchID(int commodityBatchID) {
+	public void setCommodityBatchID(int commodityBatchID) 
+	{
 		this.commodityBatchID = commodityBatchID;
 	}
 
@@ -66,23 +75,26 @@ public class ProductBatchDTO
 		return tara;
 	}
 
-	public void setTara(double tara) {
+	public void setTara(double tara) 
+	{
 		this.tara = tara;
 	}
 
-	public double getNetto() {
+	public double getNetto() 
+	{
 		return netto;
 	}
 
-	public void setNetto(double netto) {
+	public void setNetto(double netto) 
+	{
 		this.netto = netto;
 	}
 
-
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "ProductBatchDTO [id=" + id + ", recipeID=" + recipeID + ", status=" + status + "]";
 	}
-	
-	
+
+
 }

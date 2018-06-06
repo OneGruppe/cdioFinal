@@ -18,8 +18,8 @@ public class WeightTranslation {
 	private final int WEIGHT_PORT = 8000; 
 
 	/**
-	 * Konstruktør tager imod IP og forbinder til den ønskede IP
-	 * @param ip IP'en der skal forbindes til
+	 * Constructor that takes in the IP of the weight.
+	 * @param ip 
 	 * @throws DALException 
 	 */
 	public WeightTranslation(String ip) throws DALException {
@@ -39,10 +39,10 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Viser en besked på display
+	 * Shows a message on the display on the weight.
 	 *
-	 * @param message Den besked der vises på UI.
-	 * @throws IOException Hvis der sker en fejl, bruges IOExeption
+	 * @param message
+	 * @throws IOException
 	 */
 	public void showMsg(String message) throws DALException {
 
@@ -51,15 +51,15 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Viser en lang besked på display
-	 * @param message Den besked der vises på vægten.
+	 * Shows a longer message on the display on the weight.
+	 * @param message
 	 */
 	public void showLongMsg(String message) throws DALException {
 			write.println("P111 " + "\"" + message + "\"");
 	}
 
 	/**
-	 * Fjerner beskeden fra display
+	 * Removes the displayed message on the weight.
 	 */
 	public void removeMsg() throws DALException {
 
@@ -68,10 +68,10 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Skriver en besked til vægten og for et input fra brugeren tilbage.
-	 * @param message Den besked der skal vises til brugeren
-	 * @return ID på det som brugeren har tastet ind
-	 * @throws DALException Brugerdefineret Exception
+	 * Shows a message on the display where the weighter must send a message back.
+	 * @param message 
+	 * @return ID
+	 * @throws DALException
 	 */
 	public int getInputWithMsg(String message) throws DALException {
 
@@ -98,9 +98,8 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Trækker information om nuværende vægt-info
-	 *
-	 * @return Vægt i double
+	 * Will take the current weight load of the weight and pull it into a double.
+	 * @return weight
 	 * @throws IOException
 	 */
 	public double getWeight() throws DALException {
@@ -124,9 +123,8 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Trækker information om nuværende Tara-vægt
-	 *
-	 * @return Tara vægt i double
+	 * Will set the tara weight on the weight to what's currently the weights' load.
+	 * @return weight
 	 * @throws InterruptedException 
 	 * @throws IOException
 	 */
@@ -149,38 +147,38 @@ public class WeightTranslation {
 		}
 	}
 
-	/**
-	 * Modtager en besked fra brugeren
-	 * @return Den besked der blev indtastet af brugeren
-	 * @throws DALException
-	 */
-	public String waitForMessage() throws DALException {
-		try {
-			String msgread = read.readLine();
-			return msgread;
-		} catch (IOException e) {
-			throw new DALException("Error trying to get message");
-		}
-	}
+//	/**
+//	 * 
+//	 * @return msgread
+//	 * @throws DALException
+//	 */
+//	public String waitForMessage() throws DALException {
+//		try {
+//			String msgread = read.readLine();
+//			return msgread;
+//		} catch (IOException e) {
+//			throw new DALException("Error trying to get message");
+//		}
+//	}
 
 	/**
-	 * Slukker vægten
-	 * @param i 1 for simulatoren, 2 for den fysiske maskine
+	 * Shuts down the weight remotely with input 1 for the simulator and 2 for the physical weight.
+	 * @param weight
 	 * @throws DALException
 	 * @throws IOException
 	 */
-	public void shutdownWeight(int i) throws DALException{
-		if(i == 1) { // Virtual Shutdown
+	public void shutdownWeight(int weight) throws DALException{
+		if(weight == 1) { // Virtual Shutdown
 			write.println("Q ");
 		}
-		else if(i == 2) {
+		else if(weight == 2) {
 			write.println("PWR 0");
 		}
 	}
 
 	/**
-	 * Sætter vægten i simulatoren.
-	 * @param wantedWeight Den ønskede vægt simlatoren skal stå på.
+	 * Sets the weight in the simulator where the parameter is the wished weight in double format.
+	 * @param wantedWeight
 	 * @throws DALException
 	 */
 	public void setVirtualWeight(double wantedWeight) throws DALException{
@@ -188,7 +186,7 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Lukker alle de objekter vi har åbnet.
+	 * Closes all open objects
 	 * @throws DALException
 	 */
 	public void closeAllLeaks() throws DALException {
