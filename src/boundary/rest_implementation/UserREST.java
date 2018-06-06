@@ -15,6 +15,7 @@ import controller.controller_implementation.UserController;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
+@Path("user")
 public class UserREST implements IUserREST {
 	
 	private UserController uc;
@@ -31,9 +32,12 @@ public class UserREST implements IUserREST {
 	@Override
 	@PUT
 	@Path("createUser")
-	public void createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) throws DALException 
+	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) throws DALException 
 	{
+		String returnMessage = "Fail";
 		uc.createUser(name, ini, active);
+		returnMessage = "User succesfully created";
+		return returnMessage;
 	}
 
 	@Override

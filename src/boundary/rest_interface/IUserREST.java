@@ -15,7 +15,7 @@ public interface IUserREST {
 	 * @param active user state (active(1)/inactive(0))
 	 * @throws DALException
 	 */
-	public void createUser(String name, String ini, int active) throws DALException;
+	public String createUser(String name, String ini, int active) throws DALException;
 	
 	/**
 	 * <h1> <i>updateUser</i> </h1> <br>
