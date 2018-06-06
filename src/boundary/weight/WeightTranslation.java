@@ -55,7 +55,7 @@ public class WeightTranslation {
 	 * @param message
 	 */
 	public void showLongMsg(String message) throws DALException {
-			write.println("P111 " + "\"" + message + "\"");
+			write.println("P " + "\"" + message + "\"");
 	}
 
 	/**
@@ -73,28 +73,69 @@ public class WeightTranslation {
 	 * @return ID
 	 * @throws DALException
 	 */
-	public int getInputWithMsg(String message) throws DALException {
+	public String getInputWithMsg(String message, String overwritten, String unit) throws DALException {
 
 		try {
 			//Sends message to weight with a given message
-			write.println("RM20 8 " + "\"" + message + "\" " + "\" \" " + "\"&3\"");
+			write.println("RM20 8 " + "\"" + message + "\"" + " \"" + overwritten + "\"" + " \"" + unit + "\"");
 
 			//Reads the input the user response with
 			String response = read.readLine();
-
-			// creates a string that only consists of the numbers in response
-			String InputString = response.substring(8, (response.length() - 1));
-
-			if(InputString.equals("")) {
-				return 0;
+			System.out.println("'" + response + "'");
+			/*
+			String responseType = response.substring(0, 5);
+			
+			
+			if(responseType.contentEquals("RM20 B"))
+			{
+				System.out.println("Command executed, user input follows");
 			}
-
-			int resultInt = Integer.parseInt(InputString);
-			return resultInt;
-
-		} catch(IOException e) {
+			
+			else if(responseType.contentEquals("RM20 I"))
+			{
+				removeInputWithMsg();
+				System.out.println("Command understood, but not executable at the\n" + 
+						"moment (e.g. there is already an active RM20). No\n" + 
+						"second response follows.");
+				getInputWithMsg(message, overwritten, unit);
+			}
+			
+			else if(responseType.contentEquals("RM20 L"))
+			{
+				System.out.println("Command understood, parameter wrong. No second response follows.");
+				removeMsg();
+			}
+			
+			else if(responseType.contentEquals("RM20 A"))
+			{
+				// creates a string that only consists of the numbers in response
+				String inputString = response.substring(6, (response.length() - 1));
+				return inputString;
+			}
+			else
+			{
+				System.out.println("Fejl dude: " + );
+			}
+			*/
+		} 
+		catch(IOException e) {
 			throw new DALException("Error getting the input");
 		}
+		return "Error";
+	}
+	
+	/**
+	 * Removes the displayed message on the weight.
+	 */
+	public void removeInputWithMsg() throws DALException {
+
+			// Write commends to the weight (open telnet)
+			write.println("RM20 0");
+			try {
+				String response = read.readLine();
+			} catch (IOException e) {
+				throw new DALException(e.getMessage());
+			}
 	}
 
 	/**

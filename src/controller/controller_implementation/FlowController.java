@@ -6,8 +6,13 @@ import exceptions.DALException;
 
 public class FlowController
 {
-	public static void main(String[] args) throws DALException {
-		weightFlow();
+	public static void main(String[] args)
+	{
+		try {
+			weightFlow();
+		} catch (DALException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public static void weightFlow() throws DALException
@@ -16,16 +21,16 @@ public class FlowController
 
 		int state = 1;
 		int userID = 0;
-		int tara = 0;
+		double tara = 0;
 		int productBatchID = 0;
-		int temp = 12;
+		String temp = "";
 		int temp2 = 0;
 
 		ProductBatchController pbc = new ProductBatchController();
 		UserController user = new UserController();
 		RecipeController recipe = new RecipeController();
 		CommodityController com = new CommodityController();
-		
+
 		while(true)
 		{
 			switch(state)
@@ -33,7 +38,7 @@ public class FlowController
 			case 1:
 			{
 				weight.removeMsg();
-				weight.getInputWithMsg("Tryk 12 for at fortsaette, 0 for at gaa tilbage");
+				weight.getInputWithMsg("Tryk 12 for at fortsaette", "0 for at gaa tilbage", "&3");
 				state +=1;
 				break;
 			}
@@ -41,7 +46,8 @@ public class FlowController
 			{
 				System.out.println("-----------------------");
 				System.out.println("TRIES TO GET USERID");
-				userID = weight.getInputWithMsg("Indtast operatoer nummer");
+				userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "", "&3"));
+				
 				System.out.println("USER ID: " + userID);
 				System.out.println("-----------------------");
 
@@ -54,7 +60,7 @@ public class FlowController
 			}
 			case 3:
 			{
-				int choice = weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName()); 
+				String choice = weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), "", "&3"); 
 
 				System.out.println("-----------------------");
 				System.out.println("Welcome: " + user.getUser(userID).getName());
@@ -69,10 +75,10 @@ public class FlowController
 			{
 				System.out.println("-----------------------");
 				System.out.println("GETS PRODUCTBATCHID");
-				productBatchID = weight.getInputWithMsg("Indtast productBatchID");
+				productBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast productBatchID", "", "&3"));
 				System.out.println("PRODUCTBATCH ID = " + productBatchID);
 				System.out.println("-----------------------");
-				
+
 				pbc.getProductBatch(productBatchID).setStatus(1);
 
 				if (productBatchID != temp2)
@@ -87,7 +93,7 @@ public class FlowController
 			{
 				System.out.println("-----------------------");
 				System.out.println("GETS TARA");
-				tara = weight.getInputWithMsg("Placer beholder på vaegt");
+				tara = Double.parseDouble(weight.getInputWithMsg("Placer beholder paa vaegt", "", "&3"));
 				System.out.println("TARA = " + tara);
 				System.out.println("-----------------------");
 
@@ -99,27 +105,26 @@ public class FlowController
 			case 6:
 			{
 				int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
-				List<Integer> commodityIDList = recipe.getRecipe(recipeID).getCommodityID();
-				
+				List<Integer> commodityIDList = recipe.getRecipe(recipeID).getCommodityList();
+
 				for (int comID : commodityIDList)
 				{
-					weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName());
+					weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName(), "", "&3");
 					double comWeight = weight.getWeight();
-					
+
 					double max = recipe.getRecipe(recipeID).getNonNetto() + recipe.getRecipe(recipeID).getTolerance();
 					double min = recipe.getRecipe(recipeID).getNonNetto() - recipe.getRecipe(recipeID).getTolerance();
-					
-					
+
+
 					if(comWeight > max)
-						weight.getInputWithMsg("Raavare vejer for meget");
+						weight.getInputWithMsg("Raavare vejer for meget", "", "&3");
 					if (comWeight < min)
-						weight.getInputWithMsg("Raavare vejer for lidt");
-					//pbc.getProductBatch(productBatchID).set
-						
+						weight.getInputWithMsg("Raavare vejer for lidt", "", "&3");
+					
+
 				}
 			}
 			}
-
 		}
 	}
 }
