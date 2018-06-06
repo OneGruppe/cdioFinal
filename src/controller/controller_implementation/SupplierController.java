@@ -9,7 +9,7 @@ import exceptions.DALException;
 
 public class SupplierController implements ISupplierController {
 	
-	SupplierDAO supdao;
+	private SupplierDAO supdao;
 	
 	public SupplierController() throws DALException
 	{
