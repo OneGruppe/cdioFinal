@@ -19,7 +19,7 @@ public class UserController implements IUserController{
 	@Override
 	public void createUser(String name, String ini, int active) throws DALException 
 	{
-		UserDTO user = new UserDTO(0, name, ini, active);
+		UserDTO user = new UserDTO(3, name, ini, active);
 		
 		userdao.createUser(user);
 	}

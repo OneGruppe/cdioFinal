@@ -5,12 +5,12 @@
 $(document).ready(function() {
 	
 	$("#creatingUser").click(function() {
-		alert("HEJ DU");
+		console.log("ALERT");
 		$.ajax({
-			url: "rest/user/createUser",
+			url: "/cdio_final/rest/user/createUser",
 			data: $('.createUserForm').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
-			method: "PUT",
+			method: "POST",
 			success: function(data) {
 				console.log(data);
 				

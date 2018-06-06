@@ -2,6 +2,7 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,6 +16,7 @@ import controller.controller_implementation.UserController;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("user")
 public class UserREST implements IUserREST {
 	
@@ -30,7 +32,7 @@ public class UserREST implements IUserREST {
 	}
 
 	@Override
-	@PUT
+	@POST
 	@Path("createUser")
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) throws DALException 
 	{
