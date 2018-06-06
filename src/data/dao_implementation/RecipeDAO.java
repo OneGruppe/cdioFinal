@@ -14,12 +14,12 @@ import java.util.List;
 public class RecipeDAO implements IRecipeDAO 
 {
 	private Connector con;
-
+	
 	public RecipeDAO() throws DALException 
 	{
 		con = new Connector();
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IRecipeDAO#createRecipe(data.dto.RecipeDTO)
@@ -27,14 +27,14 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getId() + ", " + recipe.getName() + ", " + recipe.getNonNetto() + ", " +recipe.getTolerance()+ ")");
+		con.doUpdate("INSERT INTO recipe VALUES(" + recipe.getId() + ", " + recipe.getName() + ", " + recipe.getNonNetto() + ", " + recipe.getTolerance() + ")");
 
-		for(int commodityID : recipe.getCommodityID())
+		for(int commodityID : recipe.getCommodityList())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID +")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID + ")");
 		}
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IRecipeDAO#updateRecipe(data.dto.RecipeDTO)
@@ -45,12 +45,12 @@ public class RecipeDAO implements IRecipeDAO
 		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " + recipe.getId());
 		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + "', nomNetto = " + recipe.getNonNetto() + ", tolerance = " + recipe.getTolerance() + "WHERE recipeID = " + recipe.getId());
 
-		for(int commodityID : recipe.getCommodityID())
+		for(int commodityID : recipe.getCommodityList())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID +")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID + ")");
 		}
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IRecipeDAO#deleteRecipe(int)
@@ -60,7 +60,7 @@ public class RecipeDAO implements IRecipeDAO
 	{
 		con.doUpdate("DELETE FROM recipe WHERE recipeID= " + recipeID);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IRecipeDAO#getRecipe(int)
@@ -128,16 +128,16 @@ public class RecipeDAO implements IRecipeDAO
 				{
 					if (recipeDTO.getId() == rsComs.getInt("comodityID"))
 					{
-						if (recipeDTO.getCommodityID() == null)
+						if (recipeDTO.getCommodityList() == null)
 						{
 							List<Integer> exComList = new ArrayList<Integer>();
 							int comList = rsComs.getInt("commodityID");
 							exComList.add(comList);
-							recipeDTO.setCommodityID(exComList);
+							recipeDTO.setCommodityList(exComList);
 						}
 						else 
 						{
-							List<Integer> exComList = recipeDTO.getCommodityID();
+							List<Integer> exComList = recipeDTO.getCommodityList();
 							exComList.add(rsComs.getInt("commodityID"));
 						}
 					}

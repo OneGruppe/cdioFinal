@@ -6,14 +6,14 @@ public class RecipeDTO
 {
 	private int id;
 	private String name;
-	private List<Integer> commodityID; 
+	private List<Integer> commodityList; 
 	private double nonNetto;
 	private double tolerance;
 
 	public RecipeDTO(int id, String name, List<Integer> commodityID, double nonNetto, double tolerance) {
 		this.id = id;
 		this.name = name;
-		this.commodityID = commodityID;
+		this.commodityList = commodityID;
 		this.nonNetto = nonNetto;
 		this.tolerance = tolerance;
 	}
@@ -42,12 +42,12 @@ public class RecipeDTO
 		this.tolerance = tolerance;
 	}	
 
-	public List<Integer> getCommodityID() {
-		return commodityID;
+	public List<Integer> getCommodityList() {
+		return commodityList;
 	}
 
-	public void setCommodityID(List<Integer> commodityID) {
-		this.commodityID = commodityID;
+	public void setCommodityList(List<Integer> commodityList) {
+		this.commodityList = commodityList;
 	}
 
 	public double getNonNetto() {
