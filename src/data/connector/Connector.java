@@ -11,7 +11,8 @@ import exceptions.DALException;
 public class Connector 
 {
 	/**
-	 * Creates a connection to the given URL
+	 * <h1> <i>connectTo<i> </h1> <br>
+	 * Establishes connection to given URL
 	 * @param url to MySQL Database
 	 * @param username for MySQL user
 	 * @param password for MySQL user
@@ -38,6 +39,7 @@ public class Connector
 	private static Statement stm;
 	
 	/**
+	 * <h1> <i>Connector<i> </h1> <br>
 	 * Constructor for the connector class
 	 * @param server
 	 * @param port
@@ -57,6 +59,7 @@ public class Connector
 	}
 	
 	/**
+	 * <h1> <i>Connector<i> </h1> <br>
 	 * Constructor using the constants from the Constant class 
 	 * and the Constructor from this class with the "this" keyword
 	 * to create connection. 
@@ -68,6 +71,7 @@ public class Connector
 	}
 	
 	/**
+	 * <h1> <i>doQuery<i> </h1> <br>
 	 * Executes a query command to SQL database
 	 * @param command (SQL query command)
 	 * @return a ResultSet object of data produced by the given query command
@@ -83,6 +87,7 @@ public class Connector
 	}
 	
 	/**
+	 * <h1> <i>doUpdate<i> </h1> <br>
 	 * Executes an updating command to SQL database
 	 * @param command (SQL query command for updates)
 	 * @return an Interger. Either row count for SQL DML or 0 for SQL that returns nothing
