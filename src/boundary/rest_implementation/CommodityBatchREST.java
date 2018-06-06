@@ -8,6 +8,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import boundary.rest_interface.ICommodityBatchREST;
 import controller.controller_implementation.CommodityBatchController;
@@ -54,6 +56,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 
 	@Override
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getCommodityBatch")
 	public CommodityBatchDTO getCommodityBatch(@FormParam("combatchID") int combatchID) throws DALException 
 	{
@@ -64,6 +67,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 
 	@Override
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllCommodityBatches")
 	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException 
 	{
