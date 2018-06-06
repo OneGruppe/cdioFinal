@@ -18,7 +18,7 @@ public class CommodityDAO implements ICommodityDAO
 
 	public CommodityDAO () throws DALException
 	{
-			con = new Connector();
+		con = new Connector();
 	}
 
 	/*
@@ -28,15 +28,12 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void createCommodity(CommodityDTO commodity) throws DALException 
 	{
-		
-		String commodityQuery = "INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getId() + ", " + commodity.getName() + ")";
-		con.doUpdate(commodityQuery);
-		
+		con.doUpdate("INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getId() + ", " + commodity.getName() + ")");
+
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
 			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getId()+ ", " +supplier.getId()+ ")");
 		}
-		
 	}
 
 	/*
@@ -46,14 +43,12 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void updateCommodity(CommodityDTO commodity) throws DALException 
 	{
-		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " +commodity.getId());
-		
-		String commodityQuery = "UPDATE commodity SET name = " +commodity.getName()+ "WHERE commodityID = " +commodity.getId();
-		con.doUpdate(commodityQuery);
-		
+		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " + commodity.getId());
+		con.doUpdate("UPDATE commodity SET name = " + commodity.getName() + "WHERE commodityID = " + commodity.getId());
+
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
-			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getId()+ ", " +supplier.getId()+ ")");
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" + commodity.getId() + ", " + supplier.getId() + ")");
 		}
 	}
 
@@ -64,9 +59,7 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void deleteCommodity(int commodityID) throws DALException 
 	{
-		String commodityQuery = "DELETE FROM commodity WHERE commodity ID = " + commodityID + "";
-
-		con.doUpdate(commodityQuery);
+		con.doUpdate("DELETE FROM commodity WHERE commodity ID = " + commodityID + "");
 	}
 
 	/*
@@ -77,20 +70,21 @@ public class CommodityDAO implements ICommodityDAO
 	public CommodityDTO getCommodity(int commodityID) throws DALException
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-
 		String commodityName = null;
 
-		String commodityQuery = "SELECT * FROM commodityView WHERE commodityID = " + commodityID + "";
-
-		ResultSet rs = con.doQuery(commodityQuery);
+		ResultSet rs = con.doQuery("SELECT * FROM commodityView WHERE commodityID = " + commodityID + "");
 
 		try
 		{
 			if (!rs.first())
 			{
-				throw new DALException();
+				throw new DALException("Commodity med ID " + commodityID + " findes ikke");
 			}
-
+			else 
+			{
+				commodityName = rs.getString("commodityName");
+				supplierList.add(new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName")));
+			}
 			while(rs.next())
 			{
 				commodityName = rs.getString("commodityName");
@@ -111,33 +105,32 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public List<CommodityDTO> getAllCommodities() throws DALException
 	{
+		List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
+
+		ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
+		ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
+
 		try
 		{
-			List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
-			ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
-			ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
-
-			if(!rsCom.first()) 
-			{
-				throw new DALException("Der findes ikke nogle r√•vare i systemet.");
-			}
 			while(rsCom.next()) 
 			{
-				comList.add(new CommodityDTO(rsCom.getInt("commodityID"),
-						rsCom.getString("commodityName"), null));
+				CommodityDTO comdto = new CommodityDTO(rsCom.getInt("commodityID"), rsCom.getString("commodityName"), null);
+				comList.add(comdto);
+				if (comdto.getId() == 0) {throw new DALException("RÂvarelistenlisten er tom");}
 			}
-			while (rsCom.next())
+			while (rsSup.next())
 			{
 				for (CommodityDTO comDTO : comList)
 				{
-					if (comDTO.getId() == rsCom.getInt("comodityID"))
+					if (comDTO.getId() == rsSup.getInt("comodityID"))
 					{
 						if (comDTO.getSupplierList() == null)
 						{
 							List<SupplierDTO> exSupList = new ArrayList<SupplierDTO>();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 							comDTO.setSupplierList(exSupList);
-						}else 
+						}
+						else 
 						{
 							List<SupplierDTO> exSupList = comDTO.getSupplierList();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
@@ -152,5 +145,6 @@ public class CommodityDAO implements ICommodityDAO
 			throw new DALException(e.getMessage());	
 		}
 	}
-}
 
+
+}

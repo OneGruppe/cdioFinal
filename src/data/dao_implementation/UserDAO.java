@@ -16,7 +16,7 @@ public class UserDAO implements IUserDAO {
 
 	public UserDAO() throws DALException 
 	{
-			con = new Connector();
+		con = new Connector();
 	}
 
 	/*
@@ -26,9 +26,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users(userID, name, initial, active) "
-				+ "VALUES(" + user.getId() + ", '" + user.getName() + "', '" + user.getIni() + "',"  + user.getActive() + ")");
-
+		con.doUpdate("INSERT INTO users(userID, name, initial, active) VALUES(" + user.getId() + ", '" + user.getName() + "', '" + user.getIni() + "',"  + user.getActive() + ")");
 	}
 
 	/*
@@ -38,9 +36,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initial = '" + user.getIni() + "'"
-				+ " WHERE userID = " + user.getId());
-
+		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initial = '" + user.getIni() + "' WHERE userID = " + user.getId());
 	}
 
 	/*
@@ -51,7 +47,6 @@ public class UserDAO implements IUserDAO {
 	public void setUserState(int userID, int state) throws DALException 
 	{
 		con.doUpdate("UPDATE users SET active = " + state + " WHERE userID = " + userID);
-
 	}
 
 	/*
@@ -69,8 +64,10 @@ public class UserDAO implements IUserDAO {
 			{
 				throw new DALException("Brugeren med ID " + userID + " findes ikke");
 			}
-
-			return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
+			else 
+			{
+				return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
+			}
 		} 
 		catch (SQLException e) 
 		{
@@ -86,22 +83,17 @@ public class UserDAO implements IUserDAO {
 	public List<UserDTO> getAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
+
 		ResultSet rs = con.doQuery("SELECT * FROM users");
+
 		try
 		{
-
-			if(!rs.first())
-			{
-				throw new DALException("Der findes ingen brugere i systemet");
-			} 
-			else 
-			{
-				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
-			}
 			while(rs.next()) 
 			{
-				//System.out.println(rs.getInt("userID") + " " + rs.getString("name") + " " + rs.getString("initial") + " " + rs.getInt("active"));
-				users.add(new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active")));
+				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
+				users.add(userdto);
+				if (userdto.getId() == 0) {throw new DALException("User-listen er tom");}
+				
 			}
 			return users;
 		}
@@ -110,5 +102,6 @@ public class UserDAO implements IUserDAO {
 			throw new DALException(e.getMessage());
 		}
 	}
+
 
 }

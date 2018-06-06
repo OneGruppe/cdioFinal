@@ -12,13 +12,13 @@ import java.util.List;
 
 public class SupplierDAO implements ISupplierDAO
 {
-	Connector con;
-	
+	private Connector con;
+
 	public SupplierDAO()throws DALException
 	{
-			con = new Connector();
+		con = new Connector();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ISupplierDAO#createSupplier(data.dto.SupplierDTO)
@@ -34,7 +34,8 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#updateSupplier(data.dto.SupplierDTO)
 	 */
 	@Override
-	public void updateSupplier(SupplierDTO supplier) throws DALException {
+	public void updateSupplier(SupplierDTO supplier) throws DALException 
+	{
 		con.doUpdate("UPDATE supplier SET (supplierName = '" + supplier.getName() + "') WHERE supplierID = '" + supplier.getId() + "'");
 	}
 
@@ -43,7 +44,8 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#deleteSupplier(int)
 	 */
 	@Override
-	public void deleteSupplier(int supplierID) throws DALException {
+	public void deleteSupplier(int supplierID) throws DALException 
+	{
 		con.doUpdate("DELETE supplier WHERE 'supplierID' = '" + supplierID + "'");		
 	}
 
@@ -52,24 +54,28 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#showSupplier(int)
 	 */
 	@Override
-	public SupplierDTO getSupplier(int supplierID) throws DALException {
-		String supplierName = null;
-		
+	public SupplierDTO getSupplier(int supplierID) throws DALException 
+	{
+		SupplierDTO supplier = null;
+
 		ResultSet rs = con.doQuery("SELECT * FROM supplier WHERE 'supplierID' = '" + supplierID + "'");
+
 		try
 		{
-			if(!rs.first())
-				throw new DALException();
-			while(rs.next())
+			if (!rs.first())
 			{
-				supplierName = rs.getString("supplierName");
+				throw new DALException("Supplier med ID " + supplierID + " findes ikke");
 			}
-		} catch (SQLException e)
+			else
+			{
+				supplier = new SupplierDTO(supplierID, rs.getString("supplierName"));
+			}
+			return supplier;
+		} 
+		catch (SQLException e)
 		{
 			throw new DALException(e.getMessage());
 		}
-		return new SupplierDTO(supplierID, supplierName);
-
 	}
 
 	/*
@@ -77,25 +83,19 @@ public class SupplierDAO implements ISupplierDAO
 	 * @see data.dao_interface.ISupplierDAO#showAllSuppliers()
 	 */
 	@Override
-	public List<SupplierDTO> getAllSuppliers() throws DALException {
-		int suppID = 0;
-		String supplierName = null;
-		
+	public List<SupplierDTO> getAllSuppliers() throws DALException 
+	{
 		List<SupplierDTO> suppList = null;
+
 		ResultSet rs = con.doQuery("SELECT * FROM supplier");
-		
+
 		try
 		{
-			if(!rs.first())
-			{
-				throw new DALException();
-			}
 			while(rs.next())
 			{
-				suppID = rs.getInt("supplierID");
-				supplierName = rs.getString("supplierName");
-				
-				suppList.add(new SupplierDTO(suppID, supplierName));
+				SupplierDTO supdto = new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName"));
+				suppList.add(supdto);
+				if (supdto.getId() == 0) {throw new DALException("Leverandørlisten er tom");}
 			}
 		} catch (SQLException e)
 		{
@@ -103,4 +103,6 @@ public class SupplierDAO implements ISupplierDAO
 		}
 		return suppList;
 	}
+
+
 }
