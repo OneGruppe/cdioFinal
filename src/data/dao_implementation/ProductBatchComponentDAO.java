@@ -27,7 +27,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	{
 		con.doQuery("INSERT INTO productBatchComponent(productBatchID, commodityBatchID, userID, tara, netto) VALUES(" 
 																	+ component.getProductbatchID() + ", "
-																	+ component.getCommodityBatchID() + ", "
+																	+ component.getCommodityBatchList() + ", "
 																	+ component.getUserID() + ", "
 																	+ component.getTara() + ", "
 																	+ component.getNetto() + ")" );
@@ -40,7 +40,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	@Override
 	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
-		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchID() + ", "
+		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchList() + ", "
 														+ "userID= " + component.getUserID() + ", "
 														+ "tara= " + component.getTara() + ", "
 														+ "netto= " + component.getNetto()

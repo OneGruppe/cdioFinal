@@ -1,16 +1,18 @@
 package data.dto;
 
+import java.util.List;
+
 public class ProductBatchComponentDTO {
 	private int productbatchID;
-	private int commodityBatchID;
+	private List<CommodityBatchDTO> commodityBatchList;
 	private int userID;
 	private double tara;
 	private double netto;
 	
-
-	public ProductBatchComponentDTO(int productbatchID, int commodityBatchID, int userID, double tara, double netto) {
+	
+	public ProductBatchComponentDTO(int productbatchID, List<CommodityBatchDTO> commodityBatchList, int userID, double tara, double netto) {
 		this.productbatchID = productbatchID;
-		this.commodityBatchID = commodityBatchID;
+		this.commodityBatchList = commodityBatchList;
 		this.userID = userID;
 		this.tara = tara;
 		this.netto = netto;
@@ -26,13 +28,13 @@ public class ProductBatchComponentDTO {
 	}
 
 
-	public int getCommodityBatchID() {
-		return commodityBatchID;
+	public List<CommodityBatchDTO> getCommodityBatchList() {
+		return commodityBatchList;
 	}
 
 
-	public void setCommodityBatchID(int commodityBatchID) {
-		this.commodityBatchID = commodityBatchID;
+	public void setCommodityBatchID(List<CommodityBatchDTO> commodityBatchList) {
+		this.commodityBatchList = commodityBatchList;
 	}
 
 	public int getUserID() {
@@ -62,11 +64,6 @@ public class ProductBatchComponentDTO {
 	public void setNetto(double netto) {
 		this.netto = netto;
 	}
-
-
-	@Override
-	public String toString() {
-		return "ProductBatchComponentDTO [userID=" + userID + ", productbatchID=" + productbatchID
-				+ ", commodityBatchID=" + commodityBatchID + ", tara=" + tara + ", netto=" + netto + "]";
-	}
+	
+	
 }
