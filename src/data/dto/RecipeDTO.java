@@ -7,15 +7,15 @@ public class RecipeDTO
 	private int id;
 	private String name;
 	private List<Integer> commodityID; 
-	private double netto;
+	private double nonNetto;
 	private double tolerance;
 	
 	
-	public RecipeDTO(int id, String name, List<Integer> commodityID, double netto, double tolerance) {
+	public RecipeDTO(int id, String name, List<Integer> commodityID, double nonNetto, double tolerance) {
 		this.id = id;
 		this.name = name;
 		this.commodityID = commodityID;
-		this.netto = netto;
+		this.nonNetto = nonNetto;
 		this.tolerance = tolerance;
 	}
 
@@ -58,13 +58,13 @@ public class RecipeDTO
 	}
 
 
-	public double getNetto() {
-		return netto;
+	public double getNomNetto() {
+		return nonNetto;
 	}
 
 
-	public void setNetto(double netto) {
-		this.netto = netto;
+	public void setNomNetto(double netto) {
+		this.nonNetto = netto;
 	}
 
 
