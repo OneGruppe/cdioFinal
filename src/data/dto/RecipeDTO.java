@@ -50,7 +50,7 @@ public class RecipeDTO
 		this.commodityID = commodityID;
 	}
 
-	public double getNomNetto() {
+	public double getNonNetto() {
 		return nonNetto;
 	}
 
