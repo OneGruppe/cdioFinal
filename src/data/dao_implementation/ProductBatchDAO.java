@@ -12,13 +12,11 @@ import exceptions.DALException;
 
 public class ProductBatchDAO implements IProductBatchDAO 
 {
-
 	private Connector con;
-
 
 	public ProductBatchDAO() throws DALException
 	{
-			con = new Connector();
+		con = new Connector();
 	}
 
 
@@ -29,9 +27,8 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO productBatch (" + productBatch.getId() + ", " 
-				+ productBatch.getStatus() + ", " + productBatch.getRecipeID() + "," + productBatch.getUserID() +
-				", " + productBatch.getCommodityBatchID() + ", " + productBatch.getTara() + "," + productBatch.getNetto());
+		con.doUpdate("INSERT INTO productBatch (" + productBatch.getId() + ", "	+ productBatch.getStatus() + ", " + productBatch.getRecipeID() 
+			+ "," + productBatch.getUserID() +	", " + productBatch.getCommodityBatchID() + ", " + productBatch.getTara() + "," + productBatch.getNetto());
 	}
 
 	/*
@@ -41,8 +38,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("UPDATE productBatch SET status=" + productBatch.getStatus() +
-				", userID=" + productBatch.getUserID() + "WHERE productBatchID =" 
+		con.doUpdate("UPDATE productBatch SET status=" + productBatch.getStatus() +	", userID=" + productBatch.getUserID() + "WHERE productBatchID =" 
 				+ productBatch.getId());
 	}
 
@@ -54,7 +50,6 @@ public class ProductBatchDAO implements IProductBatchDAO
 	public void deleteProductBatch(int pbID) throws DALException 
 	{
 		con.doUpdate("DELETE FROM productBatch WHERE produktBatchID =" + pbID);
-
 	}
 
 
@@ -65,19 +60,20 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public ProductBatchDTO getProductBatch(int productbatchID) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID ="
-				+ productbatchID);
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID =" + productbatchID);
+
 		try 
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("Produkt batchen med ID " + productbatchID + 
-						" findes ikke");
+				throw new DALException("ProduktBatch med ID " + productbatchID + " findes ikke");
+			}
+			else
+			{
+				return new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"), rs.getInt("commodityBatchID"), 
+						rs.getDouble("tara"), rs.getDouble("netto"));
 			}
 
-			return new ProductBatchDTO(rs.getInt("productBatchID"), 
-					rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"),
-					rs.getInt("commodityBatchID"), rs.getDouble("tara"), rs.getDouble("netto"));
 		} 
 		catch (SQLException e) 
 		{
@@ -94,18 +90,16 @@ public class ProductBatchDAO implements IProductBatchDAO
 	public List<ProductBatchDTO> getAllProductBatches() throws DALException
 	{
 		List<ProductBatchDTO> PBatches = new ArrayList<ProductBatchDTO>();
+
 		ResultSet rs = con.doQuery("SELECT * FROM productBatch");
 
 		try 
 		{
-			if(!rs.first()) 
-			{
-				throw new DALException("Der findes ingen produkt batches i databsen.");
-			}
 			while (rs.next()) {
-				PBatches.add(new ProductBatchDTO(rs.getInt("productBatchID"), 
-						rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"),
-						rs.getInt("commodityBatchID"), rs.getDouble("tara"), rs.getDouble("netto")));
+				ProductBatchDTO prodbatdto = new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"),
+						rs.getInt("commodityBatchID"), rs.getDouble("tara"), rs.getDouble("netto"));
+				PBatches.add(prodbatdto);
+				if (prodbatdto.getId() == 0) {throw new DALException("Produktbatchlisten er tom");}
 			}
 			return PBatches;
 		} 
@@ -114,5 +108,6 @@ public class ProductBatchDAO implements IProductBatchDAO
 			throw new DALException(e.getMessage());
 		}
 	} 
+
 
 }
