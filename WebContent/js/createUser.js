@@ -8,7 +8,7 @@ $(document).ready(function() {
 		console.log("ALERT");
 		$.ajax({
 			url: "/cdio_final/rest/user/createUser",
-			data: $('.createUserForm').serialize(),
+			data: $('#createUserForm').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {
