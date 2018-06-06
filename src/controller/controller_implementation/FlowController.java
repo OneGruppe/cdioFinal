@@ -1,22 +1,25 @@
 package controller.controller_implementation;
 
 import java.util.List;
-import java.util.ArrayList;
-
 import boundary.weight.WeightTranslation;
 import exceptions.DALException;
 
 public class FlowController
 {
+	public static void main(String[] args) throws DALException {
+		weightFlow();
+	}
 
-	public void weightFlow() throws DALException
+	public static void weightFlow() throws DALException
 	{
-		WeightTranslation weight = new WeightTranslation("169.254.2.3");
+		WeightTranslation weight = new WeightTranslation("62.79.16.17");
 
 		int state = 1;
 		int userID = 0;
 		int tara = 0;
 		int productBatchID = 0;
+		int temp = 12;
+		int temp2 = 0;
 
 		ProductBatchController pbc = new ProductBatchController();
 		UserController user = new UserController();
@@ -30,7 +33,7 @@ public class FlowController
 			case 1:
 			{
 				weight.removeMsg();
-				weight.getInputWithMsg("Tryk temp for at fortsaette, temp2 for at gaa tilbage");
+				weight.getInputWithMsg("Tryk 12 for at fortsaette, 0 for at gaa tilbage");
 				state +=1;
 				break;
 			}
@@ -57,7 +60,7 @@ public class FlowController
 				System.out.println("Welcome: " + user.getUser(userID).getName());
 				System.out.println("-----------------------");
 
-				if(choice = temp)
+				if(choice == temp)
 					state += 1;
 				else state -= 1;
 				break;
@@ -69,10 +72,15 @@ public class FlowController
 				productBatchID = weight.getInputWithMsg("Indtast productBatchID");
 				System.out.println("PRODUCTBATCH ID = " + productBatchID);
 				System.out.println("-----------------------");
+				
+				pbc.getProductBatch(productBatchID).setStatus(1);
 
 				if (productBatchID != temp2)
 					state += 1;
-				else state -= 1;
+				else {
+					state -= 1;
+					pbc.getProductBatch(productBatchID).setStatus(0);
+				}
 				break;
 			}
 			case 5:
@@ -106,6 +114,7 @@ public class FlowController
 						weight.getInputWithMsg("Raavare vejer for meget");
 					if (comWeight < min)
 						weight.getInputWithMsg("Raavare vejer for lidt");
+					//pbc.getProductBatch(productBatchID).set
 						
 				}
 			}
