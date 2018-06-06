@@ -9,17 +9,26 @@
 </head>
 <body>
 	<h2>ADMINISTRATOR</h2>
-	<form id = "createUserForm" method = "POST">
-		<label>Navn</label><br>
-		<input type = "text" name = "name" autofocus> <br>
-		
-		<label>Initialer</label><br>
-		<input type = "text" name = "ini"> <br>
-		
-		<label>Status</label><br>
-		<input type = "number" name = "active"> <br>
-	</form> <br>
 	
-	<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger!</button>
+	
+	<table id = "createUserForm" method = "POST">
+		<tr>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name" autofocus> 
+		</td>
+		<td>
+		<label>Initialer</label><br>
+		<input type = "text" name = "ini"> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input type = "number" name = "active"> 
+		</td>
+		<td>
+		<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger!</button>
+		</td>
+		</tr>
+	</table> <br>
 </body>
 </html>
