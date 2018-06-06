@@ -13,42 +13,53 @@ public class UserDTO
 	 * @param name The name of the user
 	 * @param ini The initials of the user
 	 */
-	public UserDTO(int id, String name, String ini, int active) {
+	public UserDTO(int id, String name, String ini, int active) 
+	{
 		this.id = id;
 		this.name = name;
 		this.ini = ini;
 		this.active = active;
 	}
 	
-	public int getId() {
+	public int getId() 
+	{
 		return id;
 	}
-	public void setId(int userID) {
+	public void setId(int userID) 
+	{
 		this.id = userID;
 	}
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
-	public void setName(String userName) {
+	public void setName(String userName) 
+	{
 		this.name = userName;
 	}
-	public String getIni() {
+	public String getIni() 
+	{
 		return ini;
 	}
-	public void setIni(String userIni) {
+	public void setIni(String userIni) 
+	{
 		this.ini = userIni;
 	}
 	
-	public int getActive() {
+	public int getActive() 
+	{
 		return active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(int active) 
+	{
 		this.active = active;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "UserDTO [id=" + id + ", name=" + name + ", ini=" + ini + ", active=" + active + "]";
 	}
+	
 }

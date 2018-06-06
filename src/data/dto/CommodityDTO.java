@@ -51,10 +51,12 @@ public class CommodityDTO
 	{
 		this.supplierList = supplierList;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "CommodityDTO [commodityID=" + id + ", commodityName=" + name + ", supplier="
 				+ supplierList + "]";
 	}
+	
+	
 }

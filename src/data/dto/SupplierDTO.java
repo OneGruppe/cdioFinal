@@ -1,10 +1,12 @@
 package data.dto;
 
-public class SupplierDTO {
+public class SupplierDTO 
+{
 	private int id;
 	private String name;
-	
-	public SupplierDTO(int id, String name) {
+
+	public SupplierDTO(int id, String name) 
+	{
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,4 +27,5 @@ public class SupplierDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }
