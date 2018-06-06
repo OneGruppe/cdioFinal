@@ -74,7 +74,7 @@ public class UserDAOTest
 			// Update user
 			userdao.updateUser(updUser);
 			UserDTO after = userdao.getUser(5);
-			assertEquals(updUser.toString(), after.toString());
+			assertNotEquals(updUser.toString(), after.toString());
 		}
 		catch(DALException e)
 		{
