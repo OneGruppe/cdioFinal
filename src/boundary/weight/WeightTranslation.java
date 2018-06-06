@@ -16,25 +16,22 @@ public class WeightTranslation
 	private PrintWriter write;
 	private BufferedReader read;
 
-	private final int WEIGHT_PORT = 8000; 
-
 	/**
 	 * Constructor that takes in the IP of the weight.
-	 * @param ip 
+	 * @param ip The ip that is used to connect to the weight
+	 * @param port The port that is used to connect to the weight
 	 * @throws DALException 
 	 */
-	public WeightTranslation(String ip) throws DALException 
+	public WeightTranslation(String ip, int port) throws DALException 
 	{
 		try 
 		{
 			// create socket connection with ip and port, delivered from Main
-			socket = new Socket(ip, WEIGHT_PORT);
+			socket = new Socket(ip, port);
 
 			// initialize the writer and the reader with the socket output and input stream
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-			// catch of exceptions
 		} 
 		catch (IOException e) 
 		{
@@ -140,7 +137,7 @@ public class WeightTranslation
 	}
 
 	/**
-	 * removeLongMsg - 
+	 * Removes a long message
 	 * @throws DALException
 	 */
 	public void removeLongMsg() throws DALException
@@ -199,62 +196,92 @@ public class WeightTranslation
 
 	/**
 	 * Shows a message on the display where the weighter must send a message back.
-	 * @param message 
-	 * @return ID
+	 * @param promtMessage Promt string (max. 24 characters)
+	 * @param message2 Text/Value to be displayed as default, and to be overwritten by user input. (max. 24 characters)
+	 * @param unit Unit (max. 7 characters)
+	 * @return
 	 * @throws DALException
 	 */
-	public String getInputWithMsg(String message) throws DALException 
+	public String getInputWithMsg(String promtMessage, String message2, String unit) throws DALException 
 	{
 		try
 		{
-			write.println("RM20 8 " + "\"" + message + "\" " + "\" \" " + "\"&3\"");
+			write.println("RM20 8 " + "\"" + promtMessage + "\" \"" + message2 + "\" \"" + unit + "\"");
 
 			read.readLine();
 			String response = read.readLine();
 
 			switch (response) 
 			{
-			case "RM20 A":
+			case "RM20 B":
 				System.out.println("Command to getInputWithMsg returned success");
 				break;
 			case "RM20 I":
 				System.out.println("Command to getInputWithMsg returned an error");
+				break;
+			case "RM20 C":
+				clearDisplayAndShowWeight();
+				getInputWithMsg(promtMessage, message2, unit);
+			case "DW":
+				clearDisplayAndShowWeight();
+				getInputWithMsg(promtMessage, message2, unit);
+				break;
 			default:
-				throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+				if(response.subSequence(0, 5).equals("RM20 A"))
+				{
+					return response.substring(6, response.length()-1);
+				}
+				else
+				{
+					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+				}
 			}
-			
-			return resultInt;
-
+			return null;
 		} 
 		catch(IOException e) 
 		{
 			throw new DALException("Error getting the input");
 		}
-		return "Error";
 	}
-	
+
+
 	/**
 	 * Removes the displayed message on the weight.
+	 * @throws DALException
 	 */
-	public void removeInputWithMsg() throws DALException {
+	public void removeInputWithMsg() throws DALException 
+	{
 
-			// Write commends to the weight (open telnet)
-			write.println("RM20 0");
-			try {
-				String response = read.readLine();
-			} catch (IOException e) {
-				throw new DALException(e.getMessage());
+		// Write commends to the weight (open telnet)
+		write.println("RM20 0");
+		try 
+		{
+			String response = read.readLine();
+			switch (response) 
+			{
+			case "RM20 A":
+				System.out.println("Command to removeInputWithMsg returned success");
+				break;
+			case "RM20 I":
+				System.out.println("Command to removeInputWithMsg returned an error");
+			default:
+				throw new DALException("Error in removeInputWithMsg - weight returns: " + response);
 			}
+		} 
+		catch (IOException e) 
+		{
+			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+		}
+
 	}
 
 	/**
 	 * Will take the current weight load of the weight and pull it into a double.
-	 * @return weight
-	 * @throws IOException
+	 * @return weight Weight in the form of a double
+	 * @throws DALException
 	 */
 	public double getWeight() throws DALException 
 	{
-
 		try 
 		{
 			// S command retrieves weight
@@ -278,11 +305,10 @@ public class WeightTranslation
 
 	/**
 	 * Will set the tara weight on the weight to what's currently the weights' load.
-	 * @return weight
-	 * @throws InterruptedException 
-	 * @throws IOException
+	 * @return weight Weight in the form of a double
+	 * @throws DALException
 	 */
-	public double setTaraWeight() throws DALException, InterruptedException 
+	public double setTaraWeight() throws DALException
 	{
 		try
 		{
@@ -290,12 +316,31 @@ public class WeightTranslation
 			write.println("T");
 			String response = read.readLine();
 
-			// extracts only the numbers from response to a string
-			String weightString = response.substring(9, (response.length() - 2));
-
-			// convert from string to double.
-			double weight = Double.parseDouble(weightString);
-			return weight;
+			switch (response) 
+			{
+			case "T I":
+				clearDisplayAndShowWeight();
+				setTaraWeight();
+				break;
+			case "T +":
+				throw new DALException("Upper limit of taring range exceeded.");
+			case "T -":
+				throw new DALException("Lower limit of taring range exceeded.");
+			case "DW":
+				clearDisplayAndShowWeight();
+				setTaraWeight();
+				break;
+			default:
+				if(response.subSequence(0, 3).equals("T S"))
+				{
+					return Double.parseDouble(response.substring(9, (response.length() - 2)));
+				}
+				else
+				{
+					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+				}
+			}
+			return 0;
 		} 
 		catch (IOException e) 
 		{
@@ -307,36 +352,26 @@ public class WeightTranslation
 	{
 		removeMsg();
 		removeLongMsg();
+		removeInputWithMsg();
 		showWeightDisplay();
 	}
 
 	/**
-	 * Shuts down the weight remotely with input 1 for the simulator and 2 for the physical weight.
-	 * @param weight
+	 * Shuts down the weight remotely, but only with the physical weight
 	 * @throws DALException
-	 * @throws IOException
 	 */
-	public void shutdownWeight(int i) throws DALException
+	public void shutdownWeight() throws DALException
 	{
-		// Virtual Shutdown
-		if(i == 1) 
-		{ 
-			write.println("Q ");
-		}
-		else if(i == 2) 
+		try 
 		{
+			clearDisplayAndShowWeight();
 			write.println("PWR 0");
+			read.readLine();
 		}
-	}
-
-	/**
-	 * Sets the weight in the simulator where the parameter is the wished weight in double format.
-	 * @param wantedWeight
-	 * @throws DALException
-	 */
-	public void setVirtualWeight(double wantedWeight) throws DALException
-	{
-		write.println("B " + wantedWeight);
+		catch (IOException e) 
+		{
+			throw new DALException(e.getMessage());
+		}
 	}
 
 	/**
@@ -350,11 +385,10 @@ public class WeightTranslation
 			socket.close();
 			write.close();
 			read.close();
-
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException();
+			throw new DALException(e.getMessage());
 		}
 	}
 
