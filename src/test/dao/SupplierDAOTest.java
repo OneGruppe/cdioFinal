@@ -30,6 +30,7 @@ public class SupplierDAOTest {
 			con.doQuery("DELETE FROM commodityBatch WHERE supplier= 10");
 		} catch(DALException e) {
 			fail("Error: " + e.getMessage());
+			System.getenv("DATABASE_URL")
 		}
 	}
 

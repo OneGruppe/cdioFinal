@@ -27,8 +27,9 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO productBatch (" + productBatch.getId() + ", "	+ productBatch.getStatus() + ", " + productBatch.getRecipeID() 
-			+ "," + productBatch.getUserID() +	", " + productBatch.getCommodityBatchID() + ", " + productBatch.getTara() + "," + productBatch.getNetto());
+		con.doUpdate("INSERT INTO productBatch (" + productBatch.getID() + ", "	
+													+ productBatch.getRecipeID() + ", " 
+													+ productBatch.getStatus() + ")" );
 	}
 
 	/*
@@ -38,8 +39,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("UPDATE productBatch SET status=" + productBatch.getStatus() +	", userID=" + productBatch.getUserID() + "WHERE productBatchID =" 
-				+ productBatch.getId());
+		con.doUpdate("UPDATE productBatch SET Status= " + productBatch.getStatus() + "WHERE productBatchID= " + productBatch.getID());
 	}
 
 	/*
@@ -47,9 +47,9 @@ public class ProductBatchDAO implements IProductBatchDAO
 	 * @see data.dao_interface.IProductBatchDAO#deleteProductBatch(int)
 	 */
 	@Override
-	public void deleteProductBatch(int pbID) throws DALException 
+	public void deleteProductBatch(int productBatchID) throws DALException 
 	{
-		con.doUpdate("DELETE FROM productBatch WHERE produktBatchID =" + pbID);
+		con.doUpdate("DELETE FROM productBatch WHERE produktBatchID= " + productBatchID);
 	}
 
 
@@ -60,7 +60,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public ProductBatchDTO getProductBatch(int productbatchID) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID =" + productbatchID);
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID= " + productbatchID);
 
 		try 
 		{
@@ -70,8 +70,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 			}
 			else
 			{
-				return new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"), rs.getInt("commodityBatchID"), 
-						rs.getDouble("tara"), rs.getDouble("netto"));
+				return new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("recipeID"), rs.getInt("status"));
 			}
 
 		} 
@@ -96,10 +95,9 @@ public class ProductBatchDAO implements IProductBatchDAO
 		try 
 		{
 			while (rs.next()) {
-				ProductBatchDTO prodbatdto = new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("status"), rs.getInt("recipeID"), rs.getInt("userID"),
-						rs.getInt("commodityBatchID"), rs.getDouble("tara"), rs.getDouble("netto"));
+				ProductBatchDTO prodbatdto = new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("recipeID"), rs.getInt("status"));
 				PBatches.add(prodbatdto);
-				if (prodbatdto.getId() == 0) {throw new DALException("Produktbatchlisten er tom");}
+				if (prodbatdto.getID() == 0) {throw new DALException("Produktbatchlisten er tom");}
 			}
 			return PBatches;
 		} 

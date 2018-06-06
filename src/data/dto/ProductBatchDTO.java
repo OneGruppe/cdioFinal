@@ -5,96 +5,47 @@ public class ProductBatchDTO
 	private int id;
 	private int recipeID;
 	private int status;
-	private int userID;
-	private int commodityBatchID;
-	private double tara;
-	private double netto;
 
-	public ProductBatchDTO (int id, int status, int recipeID, int userID, int commodityBatchID, double tara, double netto)
+	/**
+	 * Constructor for a ProductBatchDTO with parameters
+	 * @param id ID of the Product batch.
+	 * @param recipeID ID of the Recipe.
+	 * @param status Status of the product.
+	 */
+	public ProductBatchDTO (int id, int recipeID, int status)
 	{
 		this.id = id;
-		this.status = status;
 		this.recipeID = recipeID;
-		this.userID = userID;
-		this.commodityBatchID = commodityBatchID;
-		this.tara = tara;
-		this.netto = netto;
+		this.status = status;
 	}
 
-	public int getId() 
-	{
+	public int getID() {
 		return id;
 	}
 
-	public void setId(int id) 
-	{
-		this.id = id;
+	public void setID(int ID) {
+		this.id = ID;
 	}
 
-	public int getRecipeID() 
-	{
+	public int getRecipeID() {
 		return recipeID;
 	}
 
-	public void setRecipeID(int recipeID) 
-	{
+	public void setRecipeID(int recipeID) {
 		this.recipeID = recipeID;
 	}
 
-	public int getStatus() 
-	{
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) 
-	{
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public int getUserID() 
-	{
-		return userID;
-	}
-
-	public void setUserID(int userID) 
-	{
-		this.userID = userID;
-	}
-
-	public int getCommodityBatchID() 
-	{
-		return commodityBatchID;
-	}
-
-	public void setCommodityBatchID(int commodityBatchID) 
-	{
-		this.commodityBatchID = commodityBatchID;
-	}
-
-	public double getTara() {
-		return tara;
-	}
-
-	public void setTara(double tara) 
-	{
-		this.tara = tara;
-	}
-
-	public double getNetto() 
-	{
-		return netto;
-	}
-
-	public void setNetto(double netto) 
-	{
-		this.netto = netto;
-	}
-
 	@Override
-	public String toString() 
-	{
-		return "ProductBatchDTO [id=" + id + ", recipeID=" + recipeID + ", status=" + status + "]";
+	public String toString() {
+		return "ProductBatchDTO [productBatchid=" + id + ", recipeID=" + recipeID + ", status=" + status
+				+ "]";
 	}
-
-
 }

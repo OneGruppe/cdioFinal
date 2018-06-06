@@ -27,12 +27,7 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("INSERT INTO recipe VALUES(" + recipe.getId() + ", " + recipe.getName() + ", " + recipe.getNonNetto() + ", " + recipe.getTolerance() + ")");
-
-		for(int commodityID : recipe.getCommodityList())
-		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID + ")");
-		}
+		con.doUpdate("INSERT INTO recipe(recipeID, recipeName) VALUES(" +recipe.getId() + ", " + recipe.getName() +")");
 	}
 	
 	/*
@@ -42,13 +37,7 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " + recipe.getId());
-		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + "', nomNetto = " + recipe.getNonNetto() + ", tolerance = " + recipe.getTolerance() + "WHERE recipeID = " + recipe.getId());
-
-		for(int commodityID : recipe.getCommodityList())
-		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID + ")");
-		}
+		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + " WHERE recipeID= " + recipe.getId());
 	}
 	
 	/*
@@ -68,33 +57,21 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public RecipeDTO getRecipe(int recipeID) throws DALException 
 	{
-		List<Integer> commodityList = new ArrayList<Integer>();
-		double nomNetto = 0, tolerance = 0;
-		String recipeName = null;
+		RecipeDTO dto = null;
 
-		ResultSet rs = con.doQuery("SELECT * FROM recipeView WHERE recipeID = " + recipeID);
+		ResultSet rs = con.doQuery("SELECT * FROM recipeView WHERE recipeID= " + recipeID);
 
 		try
 		{
 			if (!rs.first())
 			{
-				throw new DALException("Recipe med ID " + recipeID + " findes ikke");
+				throw new DALException("Recipe med ID " + recipeID + " findes ikke.");
 			}
 			else
 			{
-				recipeName = rs.getString("recipeName");
-				nomNetto = rs.getDouble("nomNetto");
-				tolerance = rs.getDouble("tolerance");
-				commodityList.add(rs.getInt("commodityID"));
+				dto = new RecipeDTO(recipeID, rs.getString("recipeName"));
 			}
-			while(rs.next()) 
-			{
-				recipeName = rs.getString("recipeName");
-				nomNetto = rs.getDouble("nomNetto");
-				tolerance = rs.getDouble("tolerance");
-				commodityList.add(rs.getInt("commodityID"));
-			}
-			return new RecipeDTO(recipeID, recipeName, commodityList, nomNetto, tolerance);
+			return new RecipeDTO(recipeID, rs.getString("recipeName"));
 		}
 		catch (SQLException e) 
 		{
@@ -111,46 +88,23 @@ public class RecipeDAO implements IRecipeDAO
 	{
 		List<RecipeDTO> recipeList = new ArrayList<RecipeDTO>();
 
-		ResultSet rsRecs = con.doQuery("SELECT * FROM recipe");
-		ResultSet rsComs = con.doQuery("SELECT * FROM recipe_commodity");
+		ResultSet rs = con.doQuery("SELECT * FROM recipe");
 
 		try
 		{
-			while(rsRecs.next())
+			while(rs.next())
 			{
-				RecipeDTO recipeDTO = new RecipeDTO(rsRecs.getInt("recipeID"), rsRecs.getString("recipeName"), null, rsRecs.getDouble("nomNetto"), rsRecs.getDouble("tolerance"));
-				recipeList.add(recipeDTO);
-				if (recipeDTO.getId() == 0) {throw new DALException("Receptlisten er tom");}
-			}
-			while (rsComs.next())
-			{
-				for (RecipeDTO recipeDTO : recipeList)
-				{
-					if (recipeDTO.getId() == rsComs.getInt("comodityID"))
-					{
-						if (recipeDTO.getCommodityList() == null)
-						{
-							List<Integer> exComList = new ArrayList<Integer>();
-							int comList = rsComs.getInt("commodityID");
-							exComList.add(comList);
-							recipeDTO.setCommodityList(exComList);
-						}
-						else 
-						{
-							List<Integer> exComList = recipeDTO.getCommodityList();
-							exComList.add(rsComs.getInt("commodityID"));
-						}
-					}
+				RecipeDTO dto = new RecipeDTO(rs.getInt("recipeID"), rs.getString("recipeName"));
+				recipeList.add(dto);
+				
+				if (dto.getId() == 0) {
+					throw new DALException("Receptlisten er tom");
 				}
 			}
-			return recipeList;
-
-		} 
-		catch (SQLException e) 
-		{
+		}
+		catch(SQLException e) {
 			throw new DALException(e.getMessage());
 		}
+		return recipeList;
 	}
-
-
 }

@@ -5,6 +5,11 @@ public class SupplierDTO
 	private int id;
 	private String name;
 
+	/**
+	 * Constructor for a SupplierDTO with parameters
+	 * @param id ID of the Supplier.
+	 * @param name Name of the Supplier.
+	 */
 	public SupplierDTO(int id, String name) 
 	{
 		super();
