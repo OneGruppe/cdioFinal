@@ -2,9 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/UserAdmin.css">
 <title>CDIOFINAL</title>
+<script src = "js/jquery-3.3.1.js"></script>
+<script src = "js/createUser.js"></script>
 </head>
 <body>
 	<h2>ADMINISTRATOR</h2>
+	<form class = "createUserForm" method = "PUT">
+		<label>Navn</label><br>
+		<input type = "text" name = "name" autofocus> <br>
+		
+		<label>Initialer</label><br>
+		<input type = "text" name = "ini"> <br>
+		
+		<label>Status</label><br>
+		<input type = "number" name = "active"> <br>
+	</form> <br>
+	
+	<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger!</button>
 </body>
 </html>

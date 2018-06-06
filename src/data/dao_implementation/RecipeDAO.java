@@ -2,6 +2,7 @@ package data.dao_implementation;
 
 import data.connector.Connector;
 import data.dao_interface.IRecipeDAO;
+import data.dto.CommodityBatchDTO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
@@ -12,63 +13,80 @@ import java.util.List;
 
 public class RecipeDAO implements IRecipeDAO 
 {
-	Connector con;
+	private Connector con;
 
 	public RecipeDAO() throws DALException 
 	{
-			con = new Connector();
+		con = new Connector();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#createRecipe(data.dto.RecipeDTO)
+	 */
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		String RecipeQuery = "INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getId()+ ", " +recipe.getName()+ ", " +recipe.getNetto()+ ", " +recipe.getTolerance()+ ")";
-		con.doUpdate(RecipeQuery);
-		
+		con.doUpdate("INSERT INTO recipe(recipeID, recipeName, nomNetto, tolerance) VALUES(" +recipe.getId() + ", " + recipe.getName() + ", " + recipe.getNonNetto() + ", " +recipe.getTolerance()+ ")");
+
 		for(int commodityID : recipe.getCommodityID())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getId()+ ", " +commodityID+")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID +")");
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#updateRecipe(data.dto.RecipeDTO)
+	 */
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " +recipe.getId());
-		
-		String RecipeQuery = "UPDATE recipe SET recipeName = '" +recipe.getName()+ "', "
-				           + "nomNetto = " +recipe.getNetto()+ ", tolerance = " +recipe.getTolerance()
-				           + "WHERE recipeID = " +recipe.getId();
-		con.doUpdate(RecipeQuery);
-		
+		con.doUpdate("DELETE FROM recipe_commodity WHERE recipeID = " + recipe.getId());
+		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + "', nomNetto = " + recipe.getNonNetto() + ", tolerance = " + recipe.getTolerance() + "WHERE recipeID = " + recipe.getId());
+
 		for(int commodityID : recipe.getCommodityID())
 		{
-			con.doUpdate("INSERT INTO recipe_commodity VALUES(" +recipe.getId()+ ", " +commodityID+")");
+			con.doUpdate("INSERT INTO recipe_commodity VALUES(" + recipe.getId() + ", " + commodityID +")");
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#deleteRecipe(int)
+	 */
 	@Override
 	public void deleteRecipe(int recipeID) throws DALException 
 	{
-		String RecipeQuery = "DELETE FROM recipe WHERE recipeID= " + recipeID;
-		con.doUpdate(RecipeQuery);
+		con.doUpdate("DELETE FROM recipe WHERE recipeID= " + recipeID);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#getRecipe(int)
+	 */
 	@Override
 	public RecipeDTO getRecipe(int recipeID) throws DALException 
 	{
 		List<Integer> commodityList = new ArrayList<Integer>();
 		double nomNetto = 0, tolerance = 0;
 		String recipeName = null;
+
 		ResultSet rs = con.doQuery("SELECT * FROM recipeView WHERE recipeID = " + recipeID);
 
 		try
 		{
-			if(!rs.first()) 
+			if (!rs.first())
 			{
-				throw new DALException("Recepten med ID " + recipeID + " findes ikke");
+				throw new DALException("Recipe med ID " + recipeID + " findes ikke");
 			}
-
+			else
+			{
+				recipeName = rs.getString("recipeName");
+				nomNetto = rs.getDouble("nomNetto");
+				tolerance = rs.getDouble("tolerance");
+				commodityList.add(rs.getInt("commodityID"));
+			}
 			while(rs.next()) 
 			{
 				recipeName = rs.getString("recipeName");
@@ -84,31 +102,25 @@ public class RecipeDAO implements IRecipeDAO
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#getAllRecipes()
+	 */
 	@Override
 	public List<RecipeDTO> getAllRecipes() throws DALException
 	{
 		List<RecipeDTO> recipeList = new ArrayList<RecipeDTO>();
-		String showAllRecipiesRecs = "SELECT * FROM recipe";
-		String showAllRecipiesComs = "SELECT * FROM recipe_commodity";
 
-		int recipeID = 0;
-		String recipeName = null;
-		double nonNetto = 0.0;
-		double tolerance = 0.0;
+		ResultSet rsRecs = con.doQuery("SELECT * FROM recipe");
+		ResultSet rsComs = con.doQuery("SELECT * FROM recipe_commodity");
 
-		ResultSet rsRecs = con.doQuery(showAllRecipiesRecs);
-		ResultSet rsComs = con.doQuery(showAllRecipiesComs);
 		try
 		{
 			while(rsRecs.next())
 			{
-				recipeID = rsRecs.getInt("recipeID");
-				recipeName = rsRecs.getString("recipeName");
-				nonNetto = rsRecs.getDouble("nomNetto");
-				tolerance = rsRecs.getDouble("tolerance");
-
-				RecipeDTO recipeDTO = new RecipeDTO(recipeID, recipeName, null, nonNetto, tolerance);
+				RecipeDTO recipeDTO = new RecipeDTO(rsRecs.getInt("recipeID"), rsRecs.getString("recipeName"), null, rsRecs.getDouble("nomNetto"), rsRecs.getDouble("tolerance"));
 				recipeList.add(recipeDTO);
+				if (recipeDTO.getId() == 0) {throw new DALException("Receptlisten er tom");}
 			}
 			while (rsComs.next())
 			{
@@ -122,7 +134,8 @@ public class RecipeDAO implements IRecipeDAO
 							int comList = rsComs.getInt("commodityID");
 							exComList.add(comList);
 							recipeDTO.setCommodityID(exComList);
-						}else 
+						}
+						else 
 						{
 							List<Integer> exComList = recipeDTO.getCommodityID();
 							exComList.add(rsComs.getInt("commodityID"));
@@ -132,11 +145,12 @@ public class RecipeDAO implements IRecipeDAO
 			}
 			return recipeList;
 
-		} catch (SQLException e) 
+		} 
+		catch (SQLException e) 
 		{
 			throw new DALException(e.getMessage());
 		}
-
 	}
+
 
 }
