@@ -26,7 +26,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users(userID, name, initial, active) VALUES(" + user.getId() + ", '" + user.getName() + "', '" + user.getIni() + "',"  + user.getActive() + ")");
+		con.doUpdate("INSERT INTO users(userID, name, initials, active) VALUES(" + user.getId() + ", '" + user.getName() + "', '" + user.getIni() + "',"  + user.getActive() + ")");
 	}
 
 	/*
@@ -36,7 +36,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initial = '" + user.getIni() + "' WHERE userID = " + user.getId());
+		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initials = '" + user.getIni() + "' WHERE userID = " + user.getId());
 	}
 
 	/*
@@ -66,7 +66,7 @@ public class UserDAO implements IUserDAO {
 			}
 			else 
 			{
-				return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
+				return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
 			}
 		} 
 		catch (SQLException e) 
@@ -90,7 +90,7 @@ public class UserDAO implements IUserDAO {
 		{
 			while(rs.next()) 
 			{
-				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initial"), rs.getInt("active"));
+				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
 				users.add(userdto);
 				if (userdto.getId() == 0) {throw new DALException("User-listen er tom");}
 				
