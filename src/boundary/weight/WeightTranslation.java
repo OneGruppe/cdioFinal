@@ -308,7 +308,7 @@ public class WeightTranslation
 	 * @return weight Weight in the form of a double
 	 * @throws DALException
 	 */
-	public double setTaraWeight() throws DALException
+	public double setAndGetTaraWeight() throws DALException
 	{
 		try
 		{
@@ -320,7 +320,7 @@ public class WeightTranslation
 			{
 			case "T I":
 				clearDisplayAndShowWeight();
-				setTaraWeight();
+				setAndGetTaraWeight();
 				break;
 			case "T +":
 				throw new DALException("Upper limit of taring range exceeded.");
@@ -328,7 +328,7 @@ public class WeightTranslation
 				throw new DALException("Lower limit of taring range exceeded.");
 			case "DW":
 				clearDisplayAndShowWeight();
-				setTaraWeight();
+				setAndGetTaraWeight();
 				break;
 			default:
 				if(response.subSequence(0, 3).equals("T S"))
@@ -348,6 +348,38 @@ public class WeightTranslation
 		}
 	}
 
+	/**
+	 * Remove the tara weight from the weight.
+	 * @throws DALException
+	 */
+	public void removeTaraWeight() throws DALException
+	{
+		try
+		{
+			write.println("TAC");
+			String response = read.readLine();
+
+			switch (response)
+			{
+			case "TAC A":
+				System.out.println("Command to removeTaraWeight returned success");
+				break;
+			case "TAC I":
+				System.out.println("Command to removeTaraWeight returned an error");
+			default:
+				throw new DALException("Error in removeTaraWeight - weight returns: " + response);
+			}
+		}
+		catch (IOException e) 
+		{
+			throw new DALException("Error showing Tara weight");
+		}
+	}
+
+	/**
+	 * Clearing all that can be cleared, removeMsg() + removeLongMsg() + removeInputWithMsg() + showWeightDisplay()
+	 * @throws DALException
+	 */
 	private void clearDisplayAndShowWeight() throws DALException
 	{
 		removeMsg();
