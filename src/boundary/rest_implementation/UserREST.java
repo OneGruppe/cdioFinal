@@ -34,9 +34,11 @@ public class UserREST implements IUserREST {
 	@Path("createUser")
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) throws DALException 
 	{
-		String returnMessage = "Fail";
+		String returnMessage;
 		uc.createUser(name, ini, active);
+		System.out.println(name + ini + active);
 		returnMessage = "User succesfully created";
+		System.out.println(returnMessage);
 		return returnMessage;
 	}
 

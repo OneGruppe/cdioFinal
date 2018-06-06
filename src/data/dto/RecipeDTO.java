@@ -34,7 +34,7 @@ public class RecipeDTO
 		this.name = name;
 	}
 
-	public Object getTolerance() {
+	public double getTolerance() {
 		return tolerance;
 	}
 
