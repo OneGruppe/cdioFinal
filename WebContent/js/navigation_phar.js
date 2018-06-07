@@ -63,15 +63,23 @@ $(document).ready(function() {
 		$('#findCommodityBatchForm').fadeOut(200);
 		$('#findSupplierForm').delay(300).fadeIn(200);
 	})
-})
-
-/*************************************************************************
- * 																		 *
- *  					Drop down menu								 *
- *************************************************************************/
-
-	$('#dropDownCreate').click(function() {
+	-
+	/*****************
+	 * dropdown menu *
+	 *****************/
+		$('#dropDownCreate').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentShow').hide();
 		$('#dropDownContentCreate').toggle(500);
 	})
+	$('#dropDownFind').click(function() {
+		$('#dropDownContentCreate').hide();
+		$('#dropDownContentShow').hide();
+		$('#dropDownContentFind').toggle(500);
+	})
+	$('#dropdownShow').click(function() {
+		$('#dropDownContentFind').hide();
+		$('#dropDownContentCreate').hide();
+		$('#dropDownContentShow').toggle(500);
+	})
+})
