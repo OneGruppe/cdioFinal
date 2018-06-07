@@ -3,10 +3,12 @@
  */
 $(document).ready(function() {
 	$('#createCommodityForm').hide();
-	$('#createCommodityBatchForm').hide();
+	$('#createRecipeForm').hide();
+	$('#createRecipeComponentForm').hide();
 	$('#createSupplierForm').hide();
 	$('#findCommodityForm').hide();
-	$('#findCommodityBatchForm').hide();
+	$('#findRecipeComponentForm').hide();
+	$('#findRecipeForm').hide();
 	$('#findSupplierForm').hide();
 	$('#dropDownContentCreate').hide();
 	$('#dropDownContentShow').hide();
@@ -15,59 +17,90 @@ $(document).ready(function() {
 	
 	$('#navigateToCreateCommodity').click(function() {
 		$('#findCommodityForm').fadeOut(200);
-		$('#createCommodityBatchForm').fadeOut(200);
+		$('#createRecipeForm').fadeout(200);
+		$('#createRecipeComponentForm').fadeout(200);
 		$('#createSupplierForm').fadeOut(200);
-		$('#findCommodityBatchForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeout(200);
+		$('#findRecipeForm').fadeout(200);
 		$('#findSupplierForm').fadeOut(200);
 		$('#createCommodityForm').delay(300).fadeIn(200);
 	})
-	$('#navigateToCreateCommodityBatch').click(function() {
+	$('#navigateToCreateRecipeComponent').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createSupplierForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
-		$('#findCommodityBatchForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeOut(200);
+		$('#findRecipeForm').fadeout(200);
 		$('#findSupplierForm').fadeOut(200);
-		$('#createCommodityBatchForm').delay(300).fadeIn(200);
+		$('#createRecipeComponentForm').delay(300).fadeIn(200);	
+	})
+		$('#navigateToCreateRecipe').click(function() {
+		$('#createCommodityForm').fadeOut(200);
+		$('#createSupplierForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#findCommodityForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeOut(200);
+		$('#findRecipeForm').fadeout(200);
+		$('#findSupplierForm').fadeOut(200);
+		$('#createRecipeForm').delay(300).fadeIn(200);	
 	})
 	$('#navigateToCreateSupplier').click(function() {
-		$('#findSupplierForm').fadeOut(200);
-		$('#createCommodityBatchForm').fadeOut(200);
-		$('#findCommodityForm').fadeOut(200);
-		$('#findCommodityBatchForm').fadeOut(200);
 		$('#createCommodityForm').fadeOut(200);
+		$('#findSupplierForm').fadeOut(200);
+		$('#createRecipeForm').fadeout(200);
+		$('#createRecipeComponentForm').fadeout(200);
+		$('#findCommodityForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeout(200);
+		$('#findRecipeForm').fadeout(200);
 		$('#createSupplierForm').delay(300).fadeIn(200);
 	})
 	
 	
 	$('#navigateToFindCommodity').click(function() {
 		$('#createCommodityForm').fadeOut(200);
-		$('#createCommodityBatchForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200)
 		$('#createSupplierForm').fadeOut(200);
-		$('#findCommodityBatchForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200)
+		$('#findRecipeComponentForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
 		$('#findCommodityForm').delay(300).fadeIn(200);
 	})
-	$('#navigateToFindCommodityBatch').click(function() {
+	$('#navigateToFindRecipeComponent').click(function() {
 		$('#createCommodityForm').fadeOut(200);
-		$('#createCommodityBatchForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200)
 		$('#createSupplierForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
-		$('#findCommodityBatchForm').delay(300).fadeIn(200);
+		$('#findCommodityRecipeComponent').delay(300).fadeIn(200);
 	})
 	$('#navigateToFindSupplier').click(function() {
 		$('#createCommodityForm').fadeOut(200);
-		$('#createCommodityBatchForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200)
 		$('#createSupplierForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
-		$('#findCommodityBatchForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200)
+		$('#findRecipeComponentForm').fadeOut(200)
 		$('#findSupplierForm').delay(300).fadeIn(200);
 	})
-	-
+	$('#navigateToFindRecipe').click(function() {
+		$('#createCommodityForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200)
+		$('#createSupplierForm').fadeOut(200);
+		$('#findCommodityForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeOut(200)
+		$('#findSupplierForm').fadeOut(200);
+		$('#findCommodityRecipe').delay(300).fadeIn(200);
+	})
 	/*****************
 	 * dropdown menu *
 	 *****************/
-		$('#dropDownCreate').click(function() {
+	$('#dropDownCreate').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentShow').hide();
 		$('#dropDownContentCreate').toggle(500);

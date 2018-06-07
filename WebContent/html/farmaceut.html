@@ -6,6 +6,7 @@
 <title>CDIOFINAL</title>
 <script src = "../js/jquery-3.3.1.js"></script>
 <script src = "../js/navigation_phar.js"></script>
+<script src = "../js/createsForPharmacist"></script>
 </head>
 <body>
 	<div id = "headerDiv">
@@ -18,7 +19,8 @@
 		<div id="dropDownContentCreate">
 			<ul>
 				<li><a id = "navigateToCreateCommodity" href="#" >Råvare</a></li>
-				<li><a id = "navigateToCreateCommodityBatch" href="#" >Råvarebatch</a></li>
+				<li><a id = "navigateToCreateRecipe" href="#" >Recept</a></li>
+				<li><a id = "navigateToCreateRecipeComponent"></a>Recept komponent</li>
 				<li><a id = "navigateToCreateSupplier" href="#" >Leverandør</a></li>
 			</ul>
 		</div>
@@ -27,7 +29,8 @@
 		<div id="dropDownContentFind">
 			<ul>
 				<li><a id = "navigateToFindCommodity" href="#" >Råvare</a></li>
-				<li><a id = "navigateToFindCommodityBatch" href="#" >Råvarebatch</a></li>
+				<li><a id = "navigateToFindRecipe" href="#" >Recept</a></li>
+				<li><a id = "navigateToFindRecipeComponent" href="#" >Recept komponent</a></li>
 				<li><a id = "navigateToFindSupplier" href="#" >Leverandør</a></li>
 			</ul>
 		</div>
@@ -36,7 +39,8 @@
 		<div id ="dropDownContentShow">
 			<ul>
 				<li><a id ="navigateToShowCommodity" href="#">Råvare</a></li>
-				<li><a id ="navigateToShowCommodityBatch" href="#">RåvareBatch</a></li>
+				<li><a id ="navigateToShowRecipe" href="#">Recept</a></li>
+				<li><a id ="navigateToShowRecipeComponent" href="#">Recept komponent</a></li>
 				<li><a id ="navigateToShowSupplier" href="#">Leverandør</a></li>
 			</ul>
 		</div>
@@ -84,7 +88,7 @@
 	<table>
 		<tr>
 		<td>
-		<label>ComBatch_ID</label><br>
+		<label>RecID</label><br>
 		<input type = "number" name = "id" autofocus> 
 		</td>
 		<td>
@@ -92,21 +96,21 @@
 		<input type = "number" name = "com_id" autofocus> 
 		</td>
 		<td>
-		<label>Sup_ID</label><br>
-		<input type = "number" name = "sup_id"> 
+		<label>Non_netto</label><br>
+		<input type = "number" name = "non_netto"> 
 		</td>
 		<td>
-		<label>Amount</label><br>
+		<label>Tolerance</label><br>
 		<input type = "number" name = "amount" autofocus> 
 		</td>
 		<td>
-		<button id="creatingCommodityBatch" form="createCommodityBatchForm" type="submit">Opret råvare batch</button>
+		<button id="creatingRecipeComponent" form="createRecipeComponentForm" type="submit">Opret recept komponent</button>
 		</td>
 		</tr>
 	</table>
 </form>
 
-<form id = "findCommodityBatchForm" method = "POST">
+<form id = "findRecipeComponentForm" method = "POST">
 	<table>
 		<tr>
 		<td>
@@ -115,7 +119,7 @@
 		</td>
 		<tr>
 		<td>
-		<button id="findCommodityBatch" form="findCommodityBatchForm" type="submit">Find råvare batch</button>
+		<button id="findRecipeComponent" form="findRecipeComponentForm" type="submit">Find recept komponent</button>
 		</td>
 		</tr>
 	</table>
@@ -152,6 +156,38 @@
 		</td>
 		</tr>
 	</table> 
+</form>
+<form id = "createRecipeForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "ID" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<button id="creatingRecipe" form="createRecipeForm" type="submit">Opret recept</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "findRecipeForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findRecipe" form="findRecipeForm" type="submit">Find recept</button>
+		</td>
+		</tr>
+	</table>
 </form>
 </body>
 </html>

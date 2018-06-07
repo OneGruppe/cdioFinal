@@ -2,6 +2,7 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -17,6 +18,9 @@ import data.dto.CommodityDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("commodity")
 public class CommodityREST implements ICommodityREST {
 	
 	private CommodityController cc;
@@ -36,8 +40,9 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) throws DALException 
+	public String createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) throws DALException 
 	{
+		String returnMessage;
 		cc.createCommodity(id, name, suppliers);
 		
 	}

@@ -27,11 +27,12 @@ a {
 }
 
 
-#navigateToCreateCommodityBatch, #navigateToFindCommodityBatch,
-#navigateToShowCommodityBatch, #navigateToCreateCommodity, 
+#navigateToCreateRecipe, #navigateToFindRecipe,
+#navigateToShowRecipe, #navigateToCreateCommodity, 
 #navigateToFindCommodity, #navigateToShowCommodity,
 #navigateToCreateSupplier, #navigateToFindSupplier,
-#navigateToShowSupplier  {
+#navigateToShowSupplier, #navigateToCreateRecipeComponent, 
+#navigateToFindRecipeComponent, #navigateToShowRecipeComponent  {
 	color: #323232;
 }
 
