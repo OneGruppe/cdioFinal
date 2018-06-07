@@ -5,6 +5,46 @@
 <title>CDIOFINAL</title>
 </head>
 <body>
-	<h2>FARMACEUT</h2>
+	<div id = "headerDiv">
+		<h2>FARMARCEUT</h2>
+			<div id = "adminContainer">
+				<a id = "navigateToCreateUser" href="#" >Opret råvare</a>
+				<a id = "navigateToFindUser" href="#" >Find en råvare</a>
+		</div>
+	</div>
+	
+	<form id = "createCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "text" name = "name" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "number" name = "active"> 
+		</td>
+		<td>
+		<button id="creatingUser" form="createUserForm" type="submit">Opret råvare</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+
+<form id = "findCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findCommodity" form="findCommodityForm" type="submit">Find råvare</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+	
 </body>
 </html>
