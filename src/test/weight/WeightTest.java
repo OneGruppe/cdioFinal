@@ -15,14 +15,18 @@ public class WeightTest {
 
 	WeightTranslation weight;
 
-	@Before
-	public void startUp() {
+	public void doConnect() {
 		try {
 			//weight = new WeightTranslation("169.254.2.3", 8000);
 			 weight = new WeightTranslation("62.79.16.17", 8001);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	@Before
+	public void startUp() {
+		doConnect();
 	}
 
 	@After
@@ -34,7 +38,7 @@ public class WeightTest {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
 	/**
 	 * Shows a message that is possible to show.
 	 */
@@ -95,15 +99,31 @@ public class WeightTest {
 		}
 	}
 	
+	/**
+	 * Returns the weight
+	 */
 	@Test
 	public void getWeightTest()
 	{
 		try {
 			double value = weight.getWeight();
-			TimeUnit.MILLISECONDS.sleep(200);
-			weight.removeLongMsg();
-		} catch (DALException | InterruptedException e) {
-			fail("showTooLongLongM - Error: " + e.getMessage());
+			System.out.println("Weight:" + value);
+		} catch (DALException e) {
+			fail("getWeightTest - Error: " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * Returns the Tara, and set the tara value
+	 */
+	@Test
+	public void getTaraWeightTest() 
+	{
+		try {
+			double value = weight.getTaraWeight();
+			System.out.println("Weight tara:" + value);
+		} catch (DALException e) {
+			fail("getWeightTest - Error: " + e.getMessage());
 		}
 	}
 

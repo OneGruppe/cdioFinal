@@ -28,7 +28,6 @@ public class WeightTranslation
 		{
 			// create socket connection with ip and port, delivered from Main
 			socket = new Socket(ip, port);
-
 			// initialize the writer and the reader with the socket output and input stream
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -182,37 +181,6 @@ public class WeightTranslation
 	}
 
 	/**
-	 * Shows the normal weight-mode on the display
-	 * @throws DALException
-	 */
-	public void showWeightDisplay() throws DALException 
-	{
-		try 
-		{
-			write.println("DW");
-			read.readLine();
-			String response = read.readLine();
-
-			switch (response) 
-			{
-			case "DW A":
-				// success
-				break;
-			case "DW I":
-				System.out.println("Command to showWeightDisplay returned an error");
-			case "ES":
-				break;
-			default:
-				throw new DALException("Error showing weight-display - weight returns: " + response);
-			}
-		} 
-		catch (IOException e) 
-		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
-		}
-	}
-
-	/**
 	 * Shows a message on the display where the weighter must send a message back.
 	 * @param promtMessage Promt string (max. 24 characters)
 	 * @param message2 Text/Value to be displayed as default, and to be overwritten by user input. (max. 24 characters)
@@ -224,8 +192,13 @@ public class WeightTranslation
 	{
 		try
 		{
-			write.println("RM20 8 " + "\"" + promtMessage + "\" \"" + message2 + "\" \"&3" + unit + "\"");
-
+			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
+			if((promtMessage.length() > 24) && (message2.length() > 24) && (message2.length() > 7) ) {
+				correctedPromtMessage = promtMessage.substring(0, 23);
+				correctedMessage2 = message2.substring(0, 23);
+				correctedUnit = unit.substring(0, 6);
+			}
+			write.println("RM20 8 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
 			read.readLine();
 			String response = read.readLine();
 
@@ -239,13 +212,21 @@ public class WeightTranslation
 				break;
 			case "RM20 C":
 				clearDisplayAndShowWeight();
-				getInputWithMsg(promtMessage, message2, unit);
+				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
 			case "ES":
 				break;
 			default:
 				if(response.subSequence(0, 5).equals("RM20 A"))
 				{
-					return response.substring(6, response.length()-1);
+					String subResponse = response.substring(6, response.length()-1);
+
+					if(subResponse.equals(correctedMessage2)) {
+						return "";
+					}
+					else
+					{
+						return subResponse;
+					}
 				}
 				else
 				{
@@ -285,7 +266,6 @@ public class WeightTranslation
 			default:
 				throw new DALException("Error in removeInputWithMsg - weight returns: " + response);
 			}
-			showWeightDisplay();
 		} 
 		catch (IOException e) 
 		{
@@ -396,15 +376,46 @@ public class WeightTranslation
 	}
 
 	/**
+	 * Shows the normal weight-mode on the display
+	 * @throws DALException
+	 */
+	public void showWeight() throws DALException 
+	{
+		try 
+		{
+			write.println("DW");
+			read.readLine();
+			String response = read.readLine();
+
+			switch (response) 
+			{
+			case "DW A":
+				// success
+				break;
+			case "DW I":
+				System.out.println("Command to showWeightDisplay returned an error");
+			case "ES":
+				break;
+			default:
+				throw new DALException("Error showing weight-display - weight returns: " + response);
+			}
+		} 
+		catch (IOException e) 
+		{
+			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+		}
+	}
+
+	/**
 	 * Clearing all that can be cleared, removeMsg() + removeLongMsg() + removeInputWithMsg() + showWeightDisplay()
 	 * @throws DALException
 	 */
 	public void clearDisplayAndShowWeight() throws DALException
 	{
-			removeMsg();
-			removeLongMsg();
-			removeInputWithMsg();
-			showWeightDisplay();
+		removeMsg();
+		removeLongMsg();
+		removeInputWithMsg();
+		showWeight();
 	}
 
 	/**
