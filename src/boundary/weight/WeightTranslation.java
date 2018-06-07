@@ -223,8 +223,7 @@ public class WeightTranslation
 				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
 				break;
 			default:
-				System.out.println(response);
-				if(response.subSequence(0, 5).equals("RM20 A"))
+				if(response.subSequence(0, 6).equals("RM20 A"))
 				{
 					String subResponse = response.substring(8, response.length()-1);
 
