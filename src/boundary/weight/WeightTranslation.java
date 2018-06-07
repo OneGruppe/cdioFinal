@@ -199,9 +199,16 @@ public class WeightTranslation
 		try
 		{
 			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
-			if((promtMessage.length() > 25) && (message2.length() > 25) && (message2.length() > 8) ) {
+			if(promtMessage.length() > 24)
+			{
 				correctedPromtMessage = promtMessage.substring(0, 24);
+			}
+			if(message2.length() > 24)
+			{
 				correctedMessage2 = message2.substring(0, 24);
+			}
+			if(unit.length() > 8)
+			{
 				correctedUnit = unit.substring(0, 7);
 			}
 			write.println("RM20 8 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
@@ -223,8 +230,7 @@ public class WeightTranslation
 				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
 				break;
 			default:
-				System.out.println(response);
-				if(response.subSequence(0, 5).equals("RM20 A"))
+				if(response.subSequence(0, 6).equals("RM20 A"))
 				{
 					String subResponse = response.substring(8, response.length()-1);
 
@@ -270,6 +276,7 @@ public class WeightTranslation
 			case "RM20 I":
 				System.out.println("Command to removeInputWithMsg returned an error");
 			case "ES":
+				removeInputWithMsg();
 				break;
 			default:
 				throw new DALException("Error in removeInputWithMsg - weight returns: " + response);
