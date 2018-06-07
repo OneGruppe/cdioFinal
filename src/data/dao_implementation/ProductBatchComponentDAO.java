@@ -27,7 +27,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	{
 		con.doQuery("INSERT INTO productBatchComponent(productBatchID, commodityBatchID, userID, tara, netto) VALUES(" 
 																	+ component.getProductbatchID() + ", "
-																	+ component.getCommodityBatchList() + ", "
+																	+ component.getCommodityBatchID() + ", "
 																	+ component.getUserID() + ", "
 																	+ component.getTara() + ", "
 																	+ component.getNetto() + ")" );
@@ -40,7 +40,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	@Override
 	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
-		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchList() + ", "
+		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchID() + ", "
 														+ "userID= " + component.getUserID() + ", "
 														+ "tara= " + component.getTara() + ", "
 														+ "netto= " + component.getNetto()
@@ -52,18 +52,22 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
 	 */
 	@Override
-	public ProductBatchComponentDTO getProductBatchComponent(int productBatchID) throws DALException {
-		ProductBatchComponentDTO dto = null;
+	public List<ProductBatchComponentDTO> getProductBatchComponent(int productBatchID) throws DALException {
 		
 		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE productBatchID= " + productBatchID);
+		
+		List<ProductBatchComponentDTO> componentList = null;
 		
 		try {
 			if(!rs.first()) {
 				throw new DALException("Produkt batch komponenten med productBatchID'et " + productBatchID + " findes ikke");
 			} else {
-				dto = new ProductBatchComponentDTO(productBatchID, rs.getInt("commodityID"),rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
+				while(rs.next()) {
+					componentList.add(new ProductBatchComponentDTO(productBatchID, rs.getInt("commodityID"),rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto")));
+					
+				}
 			}
-			return dto;
+			return componentList;
 		}
 		catch(SQLException e) {
 			throw new DALException(e.getMessage());
