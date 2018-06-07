@@ -18,19 +18,20 @@ public class FlowController
 	int goBack = 0;
 	int commodityBatchID = 0;
 	
-	public void initializeObjects(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
+	public void initializeObjectsAndStartFlow(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
 	{
 		this.pbc = pbc;
 		this.user = user;
 		this.rcc = rcc;
 		this.cbc = cbc;
 		this.weight = new WeightTranslation("", 8001);
+		
+		weightFlow();
 	}
 	
 	
 	public void weightFlow() throws DALException
 	{
-		
 		while(state < 9)
 		{
 			switch(state)
@@ -51,7 +52,7 @@ public class FlowController
 				taraWeight();
 				break;
 			case 6:
-				enterPBID();
+				enterCBID();
 				break;
 			case 7:
 				weightCommodities();
