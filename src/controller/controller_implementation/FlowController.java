@@ -5,6 +5,7 @@ import exceptions.DALException;
 
 public class FlowController
 {
+	
 	ProductBatchController pbc;
 	UserController user;
 	RecipeComponentController rcc;
@@ -18,17 +19,14 @@ public class FlowController
 	int goBack = 0;
 	int commodityBatchID = 0;
 	
-	public void initializeObjectsAndStartFlow(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
+	public FlowController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
 	{
 		this.pbc = pbc;
 		this.user = user;
 		this.rcc = rcc;
 		this.cbc = cbc;
-		this.weight = new WeightTranslation("", 8001);
-		
-		weightFlow();
+		this.weight = weight;
 	}
-	
 	
 	public void weightFlow() throws DALException
 	{
@@ -40,7 +38,7 @@ public class FlowController
 				welcome();
 				break;
 			case 2:
-				enterOprID();
+				enterOprID(0);
 				break;
 			case 3:
 				welcomeAnswer();
@@ -70,39 +68,57 @@ public class FlowController
 	public void welcome() throws DALException
 	{
 		System.out.println("State: " + state);
-		weight.removeMsg();
-		weight.getInputWithMsg("Tryk -> for at fortsaette", "0 for at gaa tilbage", "&3");
+		weight.getInputWithMsg("Tryk ok for fortsaet", "0 for at gaa tilbage", "");
 		state += 1;
 	}
 	
-	public void enterOprID() throws NumberFormatException, DALException
+	public void enterOprID(int user) throws DALException
 	{		
 		System.out.println("State: " + state);
-		userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "", "&3"));
-		
-		System.out.println("USER ID: " + userID);
-		
-		if(userID == goBack)
-			state -= 1;
-		else state += 1;
+		try {
+			if (user==0) {
+				userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "", ""));
+			}
+			else
+			{
+				userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "Bruger-id " + user + "findes ikke", ""));
+			}
+			
+			System.out.println("USER ID: " + userID);
+			
+			if(userID == goBack)
+				state -= 1;
+			else state += 1;
+		} catch (NumberFormatException e) {
+			throw new DALException(e.getMessage());
+		} catch (DALException e) {
+			String eMsg = e.getMessage();
+			System.out.println(eMsg);
+			int a = Integer.parseInt(eMsg);
+			enterOprID(a);
+		}
 	}
 	
 	public void welcomeAnswer() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
-		int choice = Integer.parseInt(weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), "", "&3")); 
-		
-		System.out.println("Welcome: " + user.getUser(userID).getName());
-		
-		if(choice == goBack)
-			state -= 1;
-		else state += 1;		
+		String choiceString = weight.getInputWithMsg("Velkommen", user.getUser(userID).getName(), "");
+		if (choiceString == "")
+			System.out.println("Welcome: " + user.getUser(userID).getName());
+		else
+		{
+			int choiceInt = Integer.parseInt(choiceString);
+			if(choiceInt == goBack)
+				state -= 1;
+			
+		}
+		state += 1;		
 	}
 	
 	public void enterPBID() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
-		productBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast productBatchID", "", "&3"));
+		productBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast productBatchID", "", ""));
 		System.out.println("PRODUCTBATCH ID = " + productBatchID);
 		
 		pbc.getProductBatch(productBatchID).setStatus(1);
@@ -119,7 +135,7 @@ public class FlowController
 	public void taraWeight() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
-		tara = Double.parseDouble(weight.getInputWithMsg("Placer beholder paa vaegt", "", "&3"));
+		tara = Double.parseDouble(weight.getInputWithMsg("Placer beholder paa vaegt", "", ""));
 		System.out.println("TARA = " + tara);
 		
 		if((int) tara == goBack)
@@ -129,7 +145,7 @@ public class FlowController
 	
 	public void enterCBID() throws NumberFormatException, DALException
 	{
-		commodityBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast raavare batch ID", "", "&3"));
+		commodityBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast raavare batch ID", "", ""));
 		System.out.println("CommodityBatch ID: " + commodityBatchID);
 		
 		if (commodityBatchID == goBack)
@@ -171,7 +187,7 @@ public class FlowController
 	public void finish() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
-		int choice = Integer.parseInt(weight.getInputWithMsg("Faerdig?", "", "&3"));
+		int choice = Integer.parseInt(weight.getInputWithMsg("Faerdig?", "", ""));
 		if(choice == goBack)
 			state -= 1;
 		else
