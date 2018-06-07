@@ -1,0 +1,62 @@
+body {
+	background-color: #e0e0e0;
+}
+
+#headerDiv {
+	background-color: #b50404;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-size: .85em;
+}
+
+#headerContainer {
+	position: absolute;
+	top: 30%;
+	left: 60%;
+}
+
+#dropDownCreateProd {
+	position: fixed;
+	left: 63%;
+}
+
+#dropDownFindProd {
+	position: fixed;
+	left: 66%;
+}
+
+ul {
+	list-style: none;
+	background-color: #cecccc;
+	padding: 0;
+}
+
+li {
+	padding-bottom: 10px;
+}
+
+#navigateToHome, #navigateToCreateOptions {
+	padding-right: 8px;
+	margin-right: 8px;
+	border-right: white 2px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #fff;
+	margin-left: 1%;
+	font-size: 20px;
+}
+
+html {
+  font-family: sans-serif;
+}
+

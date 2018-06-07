@@ -18,8 +18,8 @@ public class WeightTranslation
 
 	/**
 	 * Constructor that takes in the IP of the weight.
-	 * @param ip The ip that is used to connect to the weight
-	 * @param port The port that is used to connect to the weight
+	 * @param ip The ip that is used to connect to the weight (62.79.16.17)
+	 * @param port The port that is used to connect to the weight (port is 2.2=8000 and 2.3=8001)
 	 * @throws DALException 
 	 */
 	public WeightTranslation(String ip, int port) throws DALException 
@@ -206,7 +206,7 @@ public class WeightTranslation
 	{
 		try
 		{
-			write.println("RM20 8 " + "\"" + promtMessage + "\" \"" + message2 + "\" \"" + unit + "\"");
+			write.println("RM20 8 " + "\"" + promtMessage + "\" \"" + message2 + "\" \"&3" + unit + "\"");
 
 			read.readLine();
 			String response = read.readLine();
