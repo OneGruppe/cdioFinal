@@ -1,7 +1,5 @@
 package data.dto;
 
-import java.util.List;
-
 public class RecipeDTO
 {
 	private int id;

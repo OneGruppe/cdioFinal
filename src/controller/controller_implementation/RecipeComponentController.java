@@ -44,8 +44,8 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#getRecipeComponent(int)
 	 */
 	@Override
-	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException {
-		RecipeComponentDTO component = dao.getRecipeComponent(recipeID);
+	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException {
+		List<RecipeComponentDTO> component = dao.getRecipeComponent(recipeID);
 		return component;
 	}
 

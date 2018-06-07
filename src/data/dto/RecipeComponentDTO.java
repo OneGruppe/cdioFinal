@@ -5,7 +5,7 @@ import java.util.List;
 public class RecipeComponentDTO {
 
 	private int recipeID;
-	private List<Integer> commodityIDList;
+	private int commodityID;
 	private double non_netto;
 	private double tolerance;
 	/**
@@ -15,9 +15,9 @@ public class RecipeComponentDTO {
 	 * @param non_netto 
 	 * @param tolerance
 	 */
-	public RecipeComponentDTO(int recipeID, List<Integer> commodityIDList, double non_netto, double tolerance) {
+	public RecipeComponentDTO(int recipeID, int commodityID, double non_netto, double tolerance) {
 		this.recipeID = recipeID;
-		this.commodityIDList = commodityIDList;
+		this.commodityID = commodityID;
 		this.non_netto = non_netto;
 		this.tolerance = tolerance;
 	}
@@ -30,12 +30,12 @@ public class RecipeComponentDTO {
 		this.recipeID = recipeID;
 	}
 
-	public List<Integer> getCommodityIDList() {
-		return commodityIDList;
+	public int getCommodityID() {
+		return commodityID;
 	}
 
-	public void setCommodityID(List<Integer> commodityIDList) {
-		this.commodityIDList = commodityIDList; 
+	public void setCommodityID(int commodityID) {
+		this.commodityID = commodityID; 
 	}
 
 	public double getNon_netto() {
@@ -56,7 +56,7 @@ public class RecipeComponentDTO {
 
 	@Override
 	public String toString() {
-		return "RecipeComponentDTO [recipeID=" + recipeID + ", commodityID=" + commodityIDList + ", non_netto=" + non_netto
+		return "RecipeComponentDTO [recipeID=" + recipeID + ", commodityID=" + commodityID + ", non_netto=" + non_netto
 				+ ", tolerance=" + tolerance + "]";
 	}
 }

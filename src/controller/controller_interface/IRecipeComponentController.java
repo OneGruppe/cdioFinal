@@ -33,7 +33,7 @@ public interface IRecipeComponentController {
 	 * @return a single RecipeComponentDTO object
 	 * @throws DALException
 	 */
-	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException;
+	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException;
 	
 	/**
 	 * Returns a list of all Recipe components

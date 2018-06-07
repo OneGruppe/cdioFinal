@@ -33,7 +33,7 @@ public interface IRecipeComponentDAO {
 	 * @return A specific Recipe component in form of RecipeComponentDTO
 	 * @throws DALException
 	 */
-	public RecipeComponentDTO getRecipeComponent(int componentID) throws DALException;
+	public List<RecipeComponentDTO> getRecipeComponent(int componentID) throws DALException;
 	
 	/**
 	 * Returns a list of all Recipe components
