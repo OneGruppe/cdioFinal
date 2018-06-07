@@ -36,7 +36,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initials = '" + user.getIni() + "' WHERE userID = " + user.getId());
+		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initials = '" + user.getIni() + "', active= " + user.getActive() + " WHERE userID = " + user.getId());
 	}
 
 	/*

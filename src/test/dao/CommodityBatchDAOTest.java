@@ -14,11 +14,13 @@ import exceptions.DALException;
 public class CommodityBatchDAOTest 
 {
 	CommodityBatchDAO dao;
+	int counter; //Counts the number of objects created
 
 	@Before
 	public void setUp() 
 	{
-
+		counter = 1;
+		
 		try
 		{
 			dao = new CommodityBatchDAO();
@@ -35,7 +37,9 @@ public class CommodityBatchDAOTest
 		try 
 		{
 			Connector con = new Connector();
-			con.doQuery("DELETE FROM commodityBatch WHERE commodityBatchID= 10");
+			for(int i=1; i < counter; i++) {
+			con.doQuery("DELETE FROM commodityBatch WHERE commodityBatchID= " + i);
+			}
 		}
 		catch (DALException e)
 		{

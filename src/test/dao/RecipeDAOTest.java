@@ -7,107 +7,144 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import data.connector.Connector;
 import data.dao_implementation.RecipeDAO;
+import data.dao_implementation.UserDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
 public class RecipeDAOTest
 {
-	/*
+	RecipeDAO dao;
+	int tempID; //Used to get multiple ID's
+	
+	@Before
+	public void setUp()
+	{
+		tempID = 0;
+		
+		try
+		{
+			dao = new RecipeDAO();
+		}
+		catch(DALException e)
+		{
+			fail("Error " + e.getMessage());
+		}
+	}
+	
 	@After
-	public void teardown(int id)
+	public void teardown()
 	{
 		try {
 			Connector con = new Connector();
-			con.doUpdate("DELETE FROM recipe WHERE ID =" + id);
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException | DALException e)
-		{
-			System.out.println("ERROR IN: " + e.getMessage());
+			
+			for (int i = 1; i <= tempID; i++) {
+				con.doUpdate("DELETE FROM recipe WHERE recipeID = " + i);
+				
+			}
+		} 
+		catch(DALException e) {
+			fail("Error " + e.getMessage());
 		}
 	}
-	*/
 
 	@Test
 	public void testCreateRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
-		
-		List<Integer> commodityIDList = new ArrayList<Integer>();
-		commodityIDList.add(1);
-		commodityIDList.add(3);
-		commodityIDList.add(5);
-		RecipeDTO expected = new RecipeDTO(1, "Pensilin", commodityIDList, 10.5, 0.1);
-		
-		recipe.createRecipe(expected);
-		
-		RecipeDTO actual = recipe.getRecipe(1);
+		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
+		tempID++;
+
+		try {
+		dao.createRecipe(expected);
+
+		RecipeDTO actual = dao.getRecipe(1);
 		assertEquals(expected.toString(), actual.toString());
+		} 
+		catch(DALException e) {
+		fail("Error " + e.getMessage());
+		}
 	}
 
 	@Test
 	public void testUpdateRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
-		
-		List<Integer> commodityIDList = new ArrayList<Integer>();
-		commodityIDList.add(1);
-		commodityIDList.add(3);
-		commodityIDList.add(5);
-		RecipeDTO expected = new RecipeDTO(1, "Pensilin", commodityIDList, 10.5, 0.1);
-		commodityIDList.add(7);
-		RecipeDTO actual = new RecipeDTO(1, "Pensilin", commodityIDList, 10.6, 0.15);
-		
-		recipe.updateRecipe(actual);
-		
-		assertEquals(expected.toString(), actual.toString());
+		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
+		RecipeDTO updateExpected = new RecipeDTO(1, "Not Pensilin");
+		tempID++;
+
+		try {
+			dao.createRecipe(dto);
+			dao.updateRecipe(updateExpected);
+	
+			RecipeDTO actual = dao.getRecipe(1);
+	
+			assertEquals(updateExpected.toString(), actual.toString());
+		}
+		catch(DALException e) {
+			fail("Error " + e.getMessage());
+		}
 	}
 
 	@Test
 	public void testDeleteRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
-		
-		List<Integer> commodityIDList = new ArrayList<Integer>();
-		commodityIDList.add(1);
-		commodityIDList.add(3);
-		commodityIDList.add(5);
-		RecipeDTO expected = new RecipeDTO(1, "Pensilin", commodityIDList, 10.5, 0.1);
-		
-		recipe.deleteRecipe(1);
-		
-		System.out.println(expected.toString());
-		assertEquals(expected.toString(), null);
+		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
+		tempID++;
+
+		try {
+			dao.createRecipe(dto);
+			dao.deleteRecipe(1);
+	
+			assertTrue(dao.getRecipe(1).toString() == null);
+			fail("Error in testDeleteRecipe");
+		}
+		catch(DALException e) {
+			// Success
+		}
 	}
 
 	@Test
 	public void testGetRecipe() throws DALException {
-		RecipeDAO recipe = new RecipeDAO();
+		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
+		tempID++;
 		
-		List<Integer> commodityIDList = new ArrayList<Integer>();
-		commodityIDList.add(1);
-		commodityIDList.add(3);
-		commodityIDList.add(5);
-		RecipeDTO expected = new RecipeDTO(1, "Pensilin", commodityIDList, 10.5, 0.1);
-		
-		System.out.println(recipe.getRecipe(1));
+		try {
+			dao.createRecipe(expected);
+			RecipeDTO actual = dao.getRecipe(1);
+	
+			assertEquals(expected.toString(), actual.toString());
+		}
+		catch(DALException e) {
+			fail("Error " + e.getMessage());
+		}
 	}
 
 	@Test
 	public void testGetAllRecipes() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
+		RecipeDTO expected1 = new RecipeDTO(1, "Pensilin");
+		tempID++;
+		RecipeDTO expected2 = new RecipeDTO(2, "Panodil");
+		tempID++;
 		
-		List<Integer> commodityIDList = new ArrayList<Integer>();
-		commodityIDList.add(1);
-		commodityIDList.add(3);
-		commodityIDList.add(5);
-		RecipeDTO expected = new RecipeDTO(1, "Pensilin", commodityIDList, 10.5, 0.1);
-		RecipeDTO expected2 = new RecipeDTO(2, "Panodil", commodityIDList, 11, 0.2);
-		System.out.println(recipe.getAllRecipes());
+		List<RecipeDTO> expectedList = new ArrayList<RecipeDTO>();
+		expectedList.add(expected1);
+		expectedList.add(expected2);
 		
-	}
+		try {
+			dao.createRecipe(expected1);
+			dao.createRecipe(expected2);
 
+			List<RecipeDTO> actualList = dao.getAllRecipes();
+	
+			assertEquals(expectedList.toString(), actualList.toString());
+		}
+		catch(DALException e) {
+			fail("Error " + e.getMessage());
+		}
+	}
 }
