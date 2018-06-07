@@ -55,14 +55,13 @@ public class RecipeDAOTest
 	@Test
 	public void testCreateRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
 		tempID++;
 
 		try {
-		recipe.createRecipe(expected);
+		dao.createRecipe(expected);
 
-		RecipeDTO actual = recipe.getRecipe(1);
+		RecipeDTO actual = dao.getRecipe(1);
 		assertEquals(expected.toString(), actual.toString());
 		} 
 		catch(DALException e) {
@@ -73,17 +72,15 @@ public class RecipeDAOTest
 	@Test
 	public void testUpdateRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
-
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
 		RecipeDTO updateExpected = new RecipeDTO(1, "Not Pensilin");
 		tempID++;
 
 		try {
-			recipe.createRecipe(dto);
-			recipe.updateRecipe(updateExpected);
+			dao.createRecipe(dto);
+			dao.updateRecipe(updateExpected);
 	
-			RecipeDTO actual = recipe.getRecipe(1);
+			RecipeDTO actual = dao.getRecipe(1);
 	
 			assertEquals(updateExpected.toString(), actual.toString());
 		}
@@ -95,15 +92,14 @@ public class RecipeDAOTest
 	@Test
 	public void testDeleteRecipe() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
 		tempID++;
 
 		try {
-			recipe.createRecipe(dto);
-			recipe.deleteRecipe(1);
+			dao.createRecipe(dto);
+			dao.deleteRecipe(1);
 	
-			assertTrue(recipe.getRecipe(1).toString() == null);
+			assertTrue(dao.getRecipe(1).toString() == null);
 			fail("Error in testDeleteRecipe");
 		}
 		catch(DALException e) {
@@ -113,13 +109,12 @@ public class RecipeDAOTest
 
 	@Test
 	public void testGetRecipe() throws DALException {
-		RecipeDAO recipe = new RecipeDAO();
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
 		tempID++;
 		
 		try {
-			recipe.createRecipe(expected);
-			RecipeDTO actual = recipe.getRecipe(1);
+			dao.createRecipe(expected);
+			RecipeDTO actual = dao.getRecipe(1);
 	
 			assertEquals(expected.toString(), actual.toString());
 		}
@@ -131,8 +126,6 @@ public class RecipeDAOTest
 	@Test
 	public void testGetAllRecipes() throws DALException
 	{
-		RecipeDAO recipe = new RecipeDAO();
-
 		RecipeDTO expected1 = new RecipeDTO(1, "Pensilin");
 		tempID++;
 		RecipeDTO expected2 = new RecipeDTO(2, "Panodil");
@@ -143,10 +136,10 @@ public class RecipeDAOTest
 		expectedList.add(expected2);
 		
 		try {
-			recipe.createRecipe(expected1);
-			recipe.createRecipe(expected2);
+			dao.createRecipe(expected1);
+			dao.createRecipe(expected2);
 
-			List<RecipeDTO> actualList = recipe.getAllRecipes();
+			List<RecipeDTO> actualList = dao.getAllRecipes();
 	
 			assertEquals(expectedList.toString(), actualList.toString());
 		}
