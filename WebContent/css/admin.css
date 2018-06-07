@@ -24,7 +24,7 @@ a {
 	left: 60%;
 }
 
-#navigateToHome, #navigateToCreateUser {
+#navigateToHome, #navigateToCreateUser, #navigateToFindUser {
 	padding-right: 8px;
 	margin-right: 8px;
 	border-right: white 2px solid;
