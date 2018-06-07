@@ -390,18 +390,18 @@ public class WeightTranslation
 	{
 		try
 		{
-			write.println("TA 0");
+			write.println("TAC");
 			String response = read.readLine();
 
 			switch (response)
 			{
-			case "TA A":
+			case "TAC A":
 				// success
 				break;
-			case "TA I":
-				System.out.println("Command to removeTaraWeight returned an error");
-			case "TA L":
-				System.out.println("Command to removeTaraWeight returned an error");
+			case "TAC I":
+				System.out.println("Command to removeTaraWeight returned an error - I");
+			case "TAC L":
+				System.out.println("Command to removeTaraWeight returned an error - L");
 			case "ES":
 				break;
 			default:

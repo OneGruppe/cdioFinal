@@ -100,12 +100,15 @@ public class WeightTest {
 		}
 	}
 	
+	/*
+	 * uses the inputWithMsg and prints out the response
+	 */
 	@Test
 	public void getInputWithMsgTest()
 	{
 		try {
-			String response = weight.getInputWithMsg("Hej med dig", "jeg har lavet en test", "der er for lang");
-			System.out.println("Response: " + response);
+			String response = weight.getInputWithMsg("Hello you", "I have made a message that", " is too long");
+			System.out.println("Response from weight: '" + response + "'");
 		} catch (DALException e) {
 			fail("getInputWithMsgTest - Error: " + e.getMessage());
 		}
