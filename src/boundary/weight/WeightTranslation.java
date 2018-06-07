@@ -31,6 +31,8 @@ public class WeightTranslation
 			// initialize the writer and the reader with the socket output and input stream
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			showMsg("Init");
+			removeMsg();
 		}
 		catch (IOException e) 
 		{
@@ -69,6 +71,7 @@ public class WeightTranslation
 				clearDisplayAndShowWeight();
 				showMsg(message);
 			case "ES":
+				showMsg(message);
 				break;
 			default:
 				throw new DALException("Error showing message on weight - weight returns: " + response);
@@ -99,6 +102,7 @@ public class WeightTranslation
 			case "D I":
 				System.out.println("Command to removeMsg returned an error");
 			case "ES":
+				removeMsg();
 				break;
 			default:
 				throw new DALException("Error showing message on weight - weight returns: " + response);
@@ -138,6 +142,7 @@ public class WeightTranslation
 			case "P111 L":
 				throw new DALException("Error showing message in weight");
 			case "ES":
+				showLongMsg(message);
 				break;
 			default:
 				throw new DALException("Error showing long message on weight - weight returns: " + response);
@@ -169,6 +174,7 @@ public class WeightTranslation
 			case "P111 L":
 				throw new DALException("Error in removing message on weight");
 			case "ES":
+				removeLongMsg();
 				break;
 			default:
 				throw new DALException("Error in removing long message in weight - weight returns: " + response);
@@ -193,7 +199,7 @@ public class WeightTranslation
 		try
 		{
 			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
-			if((promtMessage.length() > 24) && (message2.length() > 24) && (message2.length() > 7) ) {
+			if((promtMessage.length() > 25) && (message2.length() > 25) && (message2.length() > 8) ) {
 				correctedPromtMessage = promtMessage.substring(0, 24);
 				correctedMessage2 = message2.substring(0, 24);
 				correctedUnit = unit.substring(0, 7);
@@ -214,11 +220,13 @@ public class WeightTranslation
 				clearDisplayAndShowWeight();
 				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
 			case "ES":
+				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
 				break;
 			default:
+				System.out.println(response);
 				if(response.subSequence(0, 5).equals("RM20 A"))
 				{
-					String subResponse = response.substring(9, response.length()-1);
+					String subResponse = response.substring(8, response.length()-1);
 
 					if(subResponse.equals(correctedMessage2)) {
 						return "";
@@ -287,7 +295,6 @@ public class WeightTranslation
 			write.println("S");
 
 			String response = read.readLine();
-			
 			switch (response) 
 			{
 			case "S I":
@@ -301,9 +308,9 @@ public class WeightTranslation
 			case "ES":
 				break;
 			default:
-				if((response.subSequence(0, 4).equals("S S")))
+				if((response.subSequence(0, 3).equals("S S")))
 				{
-					return Double.parseDouble(response.substring(9, (response.length() - 2)));
+					return Double.parseDouble(response.substring(9, (response.length() - 3)));
 				}
 				else
 				{
