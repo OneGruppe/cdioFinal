@@ -10,18 +10,40 @@
 <body>
 	<div id = "headerDiv">
 		<h2>FARMARCEUT</h2>
-			<div id = "adminContainer">
-				<div class="dropdown">
-				<a onclick="dropdown()" class="dropbtn">Opret</a>
-				<div class="dropdowncontent">
-				<a id = "navigateToCreateCommodity" href="#" >Opret råvare</a>
-				<a id = "navigateToCreateCommodityBatch" href="#" >Opret råvare batch</a>
-				<a id = "navigateToCreateSupplier" href="#" >Opret leverandør</a>
-				</div>
-			</div>
-				<a id = "navigateToFindCommodity" href="#" >Find råvare</a>
+		
+		<div id = "headerContainer">
+		<a id="Home" href="index.html">Home</a>		
+		
+		<a id="dropDownCreate" href='#'>Opret</a>
+		<div id="dropDownContentCreate">
+			<ul>
+				<li><a id = "navigateToCreateCommodity" href="#" >Opret råvare</a></li>
+				<li><a id = "navigateToCreateCommodityBatch" href="#" >Opret råvare batch</a></li>
+				<li><a id = "navigateToCreateSupplier" href="#" >Opret leverandør</a></li>
+			</ul>
+		</div>
+
+	<a id="dropDownFind" href='#'>Find</a>
+		<div id="dropDownContentFind">
+			<ul>
+				<li><a id = "navigateToFindCommodity" href="#" >Find råvare</a></li>
+				<li><a id = "navigateToFindCommodityBatch" href="#" >Find råvare batch</a></li>
+				<li><a id = "navigateToFindSupplier" href="#" >Find leverandør</a></li>
+			</ul>
+		</div>
+		
+	<a id = "dropdownShow" href='#'>Vis</a>
+		<div id ="dropDownContentShow">
+			<ul>
+				<li><a id ="navigateToShowCommodity"> </a></li>
+				<li><a id ="navigateToShowCommodityBatch"></a></li>
+				<li><a id ="navigateToShowSupplier"></a></li>
+			</ul>
 		</div>
 	</div>
+</div>
+	
+	
 	
 	<form id = "createCommodityForm" method = "POST">
 	<table>
