@@ -17,62 +17,66 @@ public class FlowController
 
 	public static void weightFlow() throws DALException
 	{
-		WeightTranslation weight = new WeightTranslation("62.79.16.17");
+		WeightTranslation weight = new WeightTranslation("62.79.16.17", 0);
 
 		int state = 1;
 		int userID = 0;
 		double tara = 0;
 		int productBatchID = 0;
-		String temp = "";
-		int temp2 = 0;
+		int goBack = 0;
+		int commodityBatchID = 0;
 
 		ProductBatchController pbc = new ProductBatchController();
 		UserController user = new UserController();
-		RecipeController recipe = new RecipeController();
 		CommodityController com = new CommodityController();
+		RecipeComponentController rcc = new RecipeComponentController();
+		CommodityBatchController cbc = new CommodityBatchController();
 
-		while(true)
+
+		while(state < 9)
 		{
 			switch(state)
 			{
 			case 1:
 			{
+				System.out.println("State: " + state);
 				weight.removeMsg();
-				weight.getInputWithMsg("Tryk 12 for at fortsaette", "0 for at gaa tilbage", "&3");
+				weight.getInputWithMsg("Tryk -> for at fortsaette", "0 for at gaa tilbage", "&3");
 				state +=1;
 				break;
 			}
 			case 2:
 			{
+				System.out.println("State: " + state);
 				System.out.println("-----------------------");
 				System.out.println("TRIES TO GET USERID");
 				userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "", "&3"));
-				
+
 				System.out.println("USER ID: " + userID);
 				System.out.println("-----------------------");
 
-				if(userID != temp2)
-				{
-					state += 1;
-				}
-				else state -= 1;
+				if(userID == goBack)
+					state -= 1;
+				else state += 1;
 				break;
 			}
 			case 3:
 			{
-				String choice = weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), "", "&3"); 
+				System.out.println("State: " + state);
+				int choice = Integer.parseInt(weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), "", "&3")); 
 
 				System.out.println("-----------------------");
 				System.out.println("Welcome: " + user.getUser(userID).getName());
 				System.out.println("-----------------------");
 
-				if(choice == temp)
-					state += 1;
-				else state -= 1;
+				if(choice == goBack)
+					state -= 1;
+				else state += 1;
 				break;
 			}
 			case 4:
 			{
+				System.out.println("State: " + state);
 				System.out.println("-----------------------");
 				System.out.println("GETS PRODUCTBATCHID");
 				productBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast productBatchID", "", "&3"));
@@ -81,47 +85,85 @@ public class FlowController
 
 				pbc.getProductBatch(productBatchID).setStatus(1);
 
-				if (productBatchID != temp2)
-					state += 1;
-				else {
+				if (productBatchID == goBack)
+				{
 					state -= 1;
 					pbc.getProductBatch(productBatchID).setStatus(0);
 				}
+
+				else state += 1;
 				break;
 			}
 			case 5:
 			{
+				System.out.println("State: " + state);
 				System.out.println("-----------------------");
 				System.out.println("GETS TARA");
 				tara = Double.parseDouble(weight.getInputWithMsg("Placer beholder paa vaegt", "", "&3"));
 				System.out.println("TARA = " + tara);
 				System.out.println("-----------------------");
 
-				if(tara != temp2)
-					state += 1;
-				else state -= 1;
+				if((int) tara == goBack)
+					state -= 1;
+				else state += 1;
 				break;
 			}
 			case 6:
 			{
+				commodityBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast raavare batch ID", "", "&3"));
+				System.out.println("RåvareBatch ID: " + commodityBatchID);
+
+				if (commodityBatchID == goBack)
+					state -= 1;
+				else state += 1;
+			}
+			case 7:
+			{
+				System.out.println("State: " + state);
 				int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
-				List<Integer> commodityIDList = recipe.getRecipe(recipeID).getCommodityList();
+				System.out.println("RecipeID: " + recipeID);
+				List<Integer> commodityIDList = rcc.getRecipeComponent(recipeID).getCommodityIDList();
+				System.out.println("RåvareIDList: " + commodityIDList);
+				double comWeight = 0;
 
 				for (int comID : commodityIDList)
 				{
-					weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName(), "", "&3");
-					double comWeight = weight.getWeight();
+					int choice = Integer.parseInt(weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName(), "", rcc.getRecipeComponent(recipeID).getNon_netto() + " g"));
+					System.out.println("comID: " + comID + " Vej: " + com.getCommodity(comID).getName() + " Med vægt: " + rcc.getRecipeComponent(recipeID).getNon_netto());
+					if (choice == goBack)
+						break;
 
-					double max = recipe.getRecipe(recipeID).getNonNetto() + recipe.getRecipe(recipeID).getTolerance();
-					double min = recipe.getRecipe(recipeID).getNonNetto() - recipe.getRecipe(recipeID).getTolerance();
+					double max = rcc.getRecipeComponent(recipeID).getNon_netto() + rcc.getRecipeComponent(recipeID).getTolerance();
+					double min = rcc.getRecipeComponent(recipeID).getNon_netto() - rcc.getRecipeComponent(recipeID).getTolerance();
+					System.out.println("Max: " + max + " min: " + min);
 
+					while(weight.getWeight() > min && weight.getWeight() < max)
+					{
+						comWeight = weight.getWeight();
+						System.out.println("comWeight: " + comWeight);
+						cbc.getCommodityBatch(commodityBatchID).setAmount(comWeight);
+					}
 
-					if(comWeight > max)
-						weight.getInputWithMsg("Raavare vejer for meget", "", "&3");
-					if (comWeight < min)
-						weight.getInputWithMsg("Raavare vejer for lidt", "", "&3");
-					
+					double temp = tara + comWeight;
+					double temp2 = tara + rcc.getRecipeComponent(recipeID).getNon_netto();
+					System.out.println("Temp: " + temp + " temp2: " + temp2);
 
+					//if(temp < (temp2 + rcc.getRecipeComponent(recipeID).getTolerance()) && temp > (temp2 - rcc.getRecipeComponent(recipeID).getTolerance()))
+
+				}
+				state += 1;
+				break;
+			}
+			case 8:
+			{
+				System.out.println("State: " + state);
+				int choice = Integer.parseInt(weight.getInputWithMsg("Faerdig?", "", "&3"));
+				if(choice == goBack)
+					state -= 1;
+				else
+				{
+					pbc.getProductBatch(productBatchID).setStatus(2);
+					state += 1;
 				}
 			}
 			}
