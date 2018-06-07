@@ -2,6 +2,9 @@ package test.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,54 +16,110 @@ import exceptions.DALException;
 
 public class SupplierDAOTest {
 	SupplierDAO dao;
+	int tempID; //Used to get multiple ID's
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
+		tempID = 0;
+
 		try {
 			dao = new SupplierDAO();
-		} catch(DALException e) {
+		} 
+		catch(DALException e) {
 			fail("Error: " + e.getMessage());
 		}
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		try {
 			Connector con = new Connector();
-			con.doQuery("DELETE FROM commodityBatch WHERE supplier= 10");
-		} catch(DALException e) {
+
+			for(int i = 1; i <= tempID; i++) {
+				con.doUpdate("DELETE FROM supplier WHERE supplierID = " + i);
+			}
+		} 
+		catch(DALException e) {
 			fail("Error: " + e.getMessage());
-			System.getenv("DATABASE_URL")
 		}
 	}
 
 	@Test
-	public void createSupplier() {
-		SupplierDTO expected = new SupplierDTO(10, "Test");
-		
+	public void testCreateAndGetSupplier() {
+		SupplierDTO expected = new SupplierDTO(1, "Test");
+		tempID++;
+
 		try {
 			dao.createSupplier(expected);
-			SupplierDTO actual = dao.getSupplier(10);
+
+			SupplierDTO actual = dao.getSupplier(1);
 			assertEquals(expected.toString(), actual.toString());
-		} catch(DALException e) {
+		} 
+		catch(DALException e) {
 			fail("Error: " + e.getMessage());
 		}
 	}
-	
-	
+
+
 	@Test
-	public void updateSupplier() {
-		SupplierDTO expected = new SupplierDTO(10, "Test");
-		SupplierDTO updateExpected = new SupplierDTO(10, "Superman");
-		
+	public void testUpdateSupplier() {
+		SupplierDTO dto = new SupplierDTO(1, "Test");
+		SupplierDTO updateExpected = new SupplierDTO(1, "Bongo Bob");
+		tempID++;
+
 		try {
-			dao.createSupplier(expected);
+			dao.createSupplier(dto);
 			dao.updateSupplier(updateExpected);
-			SupplierDTO actual = dao.getSupplier(10);
-			assertEquals(expected.toString(), actual.toString());
+
+			SupplierDTO actual = dao.getSupplier(1);
+
+			assertEquals(updateExpected.toString(), actual.toString());
 		} catch(DALException e) {
 			fail("Error: " + e.getMessage());
 		}
 	}
+
+
+	@Test
+	public void testDeleteSupplier() {
+		SupplierDTO dto = new SupplierDTO(1, "Test");
+		tempID++;
+
+		try {
+			dao.createSupplier(dto);
+			dao.deleteSupplier(1);
+
+			assertTrue(dao.getSupplier(1).toString() == null);
+			fail("Error in testDeleteRecipe");
+		}
+		catch(DALException e) {
+			// Success
+		}
+	}
+
+	@Test
+	public void testGetAllSuppliers() {
+		SupplierDTO expected1 = new SupplierDTO(1, "Bongo");
+		tempID++;
+		SupplierDTO expected2 = new SupplierDTO(2, "Brain");
+		tempID++;
+
+		List<SupplierDTO> expectedList = new ArrayList<SupplierDTO>();
+		expectedList.add(expected1);
+		expectedList.add(expected2);
+
+		try {
+			dao.createSupplier(expected1);
+			dao.createSupplier(expected2);
+
+			List<SupplierDTO> actualList = dao.getAllSuppliers();
+
+			assertEquals(expectedList.toString(), actualList.toString());
+		}
+		catch(DALException e) {
+			fail("Error " + e.getMessage());
+		}
+	}
+
 
 }

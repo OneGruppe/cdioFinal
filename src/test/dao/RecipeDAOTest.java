@@ -42,7 +42,6 @@ public class RecipeDAOTest
 			
 			for (int i = 1; i <= tempID; i++) {
 				con.doUpdate("DELETE FROM recipe WHERE recipeID = " + i);
-				
 			}
 		} 
 		catch(DALException e) {

@@ -44,7 +44,7 @@ public class SupplierDAO implements ISupplierDAO
 	@Override
 	public void createSupplier(SupplierDTO supplier) throws DALException
 	{
-		con.doUpdate("INSERT INTO supplier VALUES (" + supplier.getId() + ", '" + supplier.getName() + "'");
+		con.doUpdate("INSERT INTO supplier VALUES (" + supplier.getId() + ", '" + supplier.getName() + "')");
 	}
 
 	/*
@@ -54,7 +54,7 @@ public class SupplierDAO implements ISupplierDAO
 	@Override
 	public void updateSupplier(SupplierDTO supplier) throws DALException 
 	{
-		con.doUpdate("UPDATE supplier SET (supplierName = '" + supplier.getName() + "') WHERE supplierID = '" + supplier.getId() + "'");
+		con.doUpdate("UPDATE supplier SET supplierName = '" + supplier.getName() + "' WHERE supplierID = " + supplier.getId());
 	}
 
 	/*
@@ -64,7 +64,7 @@ public class SupplierDAO implements ISupplierDAO
 	@Override
 	public void deleteSupplier(int supplierID) throws DALException 
 	{
-		con.doUpdate("DELETE supplier WHERE 'supplierID' = '" + supplierID + "'");		
+		con.doUpdate("DELETE supplier WHERE supplierID= " + supplierID);		
 	}
 
 	/*
@@ -76,7 +76,7 @@ public class SupplierDAO implements ISupplierDAO
 	{
 		SupplierDTO supplier = null;
 
-		ResultSet rs = con.doQuery("SELECT * FROM supplier WHERE 'supplierID' = '" + supplierID + "'");
+		ResultSet rs = con.doQuery("SELECT * FROM supplier WHERE supplierID= " + supplierID);
 
 		try
 		{
@@ -103,7 +103,7 @@ public class SupplierDAO implements ISupplierDAO
 	@Override
 	public List<SupplierDTO> getAllSuppliers() throws DALException 
 	{
-		List<SupplierDTO> suppList = null;
+		List<SupplierDTO> suppList = new ArrayList<SupplierDTO>();
 
 		ResultSet rs = con.doQuery("SELECT * FROM supplier");
 
@@ -113,9 +113,13 @@ public class SupplierDAO implements ISupplierDAO
 			{
 				SupplierDTO supdto = new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName"));
 				suppList.add(supdto);
-				if (supdto.getId() == 0) {throw new DALException("Leverandørlisten er tom");}
+				
+				if (supdto.getId() == 0) {
+					throw new DALException("Leverandorlisten er tom");
+				}
 			}
-		} catch (SQLException e)
+		} 
+		catch (SQLException e)
 		{
 			throw new DALException(e.getMessage());
 		}

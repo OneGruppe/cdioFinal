@@ -33,4 +33,8 @@ public class SupplierDTO
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "SupplierDTO [id=" + id + ", name=" + name + "]";
+	}
 }

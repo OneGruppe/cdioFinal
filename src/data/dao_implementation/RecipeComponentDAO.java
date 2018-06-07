@@ -2,6 +2,7 @@ package data.dao_implementation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import data.connector.Connector;
@@ -102,7 +103,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	@Override
 	public List<RecipeComponentDTO> getAllRecipeComponents() throws DALException
 	{
-		List<RecipeComponentDTO> recipeComponentList = null;
+		List<RecipeComponentDTO> recipeComponentList = new ArrayList<RecipeComponentDTO>();
 
 		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent");
 
@@ -114,7 +115,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 
 				if(dto.getRecipeID() == 0)
 				{
-					throw new DALException("Recipe komponenten listen er tom");
+					throw new DALException("Recipe komponent listen er tom");
 				}
 			}
 		}
