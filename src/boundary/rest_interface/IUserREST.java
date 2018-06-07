@@ -1,7 +1,5 @@
 package boundary.rest_interface;
 
-import java.util.List;
-
 import data.dto.UserDTO;
 import exceptions.DALException;
 
@@ -43,7 +41,7 @@ public interface IUserREST {
 	 * @return a single user from database
 	 * @throws DALException
 	 */
-	public UserDTO getUser(int id) throws DALException;
+	public String getUser(int id) throws DALException;
 	
 	/**
 	 * <h1> <i>getAllUser</i> </h1> <br>
@@ -51,5 +49,5 @@ public interface IUserREST {
 	 * @return a list of UserDTO objects
 	 * @throws DALException
 	 */
-	public List<UserDTO> getAllUsers() throws DALException;
+	public String getAllUsers() throws DALException;
 }

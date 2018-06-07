@@ -24,6 +24,14 @@ a {
 	left: 60%;
 }
 
+#watermark {
+	position: fixed;
+ 	bottom: 26%;
+ 	left: 35%;
+ 	opacity: 0.15;
+ 	z-index: -1;
+}
+
 #navigateToHome, #navigateToCreateUser, #navigateToFindUser {
 	padding-right: 8px;
 	margin-right: 8px;
