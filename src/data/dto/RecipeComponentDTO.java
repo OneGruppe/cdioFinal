@@ -1,23 +1,23 @@
 package data.dto;
 
+import java.util.List;
+
 public class RecipeComponentDTO {
 
 	private int recipeID;
-	private int commodityID;
+	private List<Integer> commodityIDList;
 	private double non_netto;
 	private double tolerance;
-	
-	
 	/**
 	 * Constructor for a RecipeComponentDTO with parameters
 	 * @param recipeID ID of the given Recipe.
-	 * @param commodityID ID of the given Commodity.
+	 * @param commodityIDList ID of the given Commodity.
 	 * @param non_netto 
 	 * @param tolerance
 	 */
-	public RecipeComponentDTO(int recipeID, int commodityID, double non_netto, double tolerance) {
+	public RecipeComponentDTO(int recipeID, List<Integer> commodityIDList, double non_netto, double tolerance) {
 		this.recipeID = recipeID;
-		this.commodityID = commodityID;
+		this.commodityIDList = commodityIDList;
 		this.non_netto = non_netto;
 		this.tolerance = tolerance;
 	}
@@ -30,12 +30,12 @@ public class RecipeComponentDTO {
 		this.recipeID = recipeID;
 	}
 
-	public int getCommodityID() {
-		return commodityID;
+	public List<Integer> getCommodityIDList() {
+		return commodityIDList;
 	}
 
-	public void setCommodityID(int commodityID) {
-		this.commodityID = commodityID;
+	public void setCommodityID(List<Integer> commodityIDList) {
+		this.commodityIDList = commodityIDList; 
 	}
 
 	public double getNon_netto() {
@@ -56,7 +56,7 @@ public class RecipeComponentDTO {
 
 	@Override
 	public String toString() {
-		return "RecipeComponentDTO [recipeID=" + recipeID + ", commodityID=" + commodityID + ", non_netto=" + non_netto
+		return "RecipeComponentDTO [recipeID=" + recipeID + ", commodityID=" + commodityIDList + ", non_netto=" + non_netto
 				+ ", tolerance=" + tolerance + "]";
 	}
 }
