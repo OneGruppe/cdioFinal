@@ -43,7 +43,7 @@ public class WeightTest {
 	{
 		try {
 			weight.showMsg("Short");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showMsgTest - Error: " + e.getMessage());
@@ -58,7 +58,7 @@ public class WeightTest {
 	{
 		try {
 			weight.showMsg("Msg too long");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showMsgTooLongTest - Error: " + e.getMessage());
@@ -73,7 +73,7 @@ public class WeightTest {
 	{
 		try {
 			weight.showLongMsg("This msg can contain 30 chars");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeLongMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showLongMsgTest - Error: " + e.getMessage());
@@ -88,7 +88,7 @@ public class WeightTest {
 	{
 		try {
 			weight.showLongMsg("This msg is too long to be shown");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeLongMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showTooLongLongM - Error: " + e.getMessage());
@@ -100,7 +100,7 @@ public class WeightTest {
 	{
 		try {
 			double value = weight.getWeight();
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeLongMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showTooLongLongM - Error: " + e.getMessage());
