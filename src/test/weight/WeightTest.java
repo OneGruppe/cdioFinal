@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import boundary.weight.WeightTranslation;
 import exceptions.DALException;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 public class WeightTest {
 
@@ -88,7 +89,7 @@ public class WeightTest {
 	 * Shows a long message, that is too long
 	 */
 	@Test
-	public void showTooLongLongMsg()
+	public void showTooLongLongMsgTest()
 	{
 		try {
 			weight.showLongMsg("This msg is too long to be shown");
@@ -96,6 +97,20 @@ public class WeightTest {
 			weight.removeLongMsg();
 		} catch (DALException | InterruptedException e) {
 			fail("showTooLongLongM - Error: " + e.getMessage());
+		}
+	}
+	
+	/*
+	 * uses the inputWithMsg and prints out the response
+	 */
+	@Test
+	public void getInputWithMsgTest()
+	{
+		try {
+			String response = weight.getInputWithMsg("Hello you", "I have made a message that", " is too long");
+			System.out.println("Response from weight: '" + response + "'");
+		} catch (DALException e) {
+			fail("getInputWithMsgTest - Error: " + e.getMessage());
 		}
 	}
 	

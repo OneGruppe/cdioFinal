@@ -199,9 +199,16 @@ public class WeightTranslation
 		try
 		{
 			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
-			if((promtMessage.length() > 25) && (message2.length() > 25) && (message2.length() > 8) ) {
+			if(promtMessage.length() > 24)
+			{
 				correctedPromtMessage = promtMessage.substring(0, 24);
+			}
+			if(message2.length() > 24)
+			{
 				correctedMessage2 = message2.substring(0, 24);
+			}
+			if(unit.length() > 8)
+			{
 				correctedUnit = unit.substring(0, 7);
 			}
 			write.println("RM20 8 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
@@ -269,6 +276,7 @@ public class WeightTranslation
 			case "RM20 I":
 				System.out.println("Command to removeInputWithMsg returned an error");
 			case "ES":
+				removeInputWithMsg();
 				break;
 			default:
 				throw new DALException("Error in removeInputWithMsg - weight returns: " + response);
@@ -382,18 +390,18 @@ public class WeightTranslation
 	{
 		try
 		{
-			write.println("TA 0");
+			write.println("TAC");
 			String response = read.readLine();
 
 			switch (response)
 			{
-			case "TA A":
+			case "TAC A":
 				// success
 				break;
-			case "TA I":
-				System.out.println("Command to removeTaraWeight returned an error");
-			case "TA L":
-				System.out.println("Command to removeTaraWeight returned an error");
+			case "TAC I":
+				System.out.println("Command to removeTaraWeight returned an error - I");
+			case "TAC L":
+				System.out.println("Command to removeTaraWeight returned an error - L");
 			case "ES":
 				break;
 			default:

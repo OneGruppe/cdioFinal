@@ -9,6 +9,7 @@
 <script src = "../js/createUser.js"></script>
 <script src = "../js/showUser.js"></script>
 <script src = "../js/showAllUsers.js"></script>
+<script src = "../js/editUser.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -19,8 +20,6 @@
 			<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
 			<a id = "navigateToFindUser" href="#" >Find en bruger</a>
 			<a id = "navigateToShowUsers" href="#" >Vis alle brugere</a>
-			<a id = "navigateToUpdateUser" href="#" >Rediger bruger</a>
-			<a id = "navigateToSetUser" href="#" >Deaktiver/aktiver bruger</a>
 		</div>
 	</div>
 <!------- HEADER DIV END -------->
@@ -66,10 +65,60 @@
 		<td>
 		<button id="findUser" form="findUserForm" type="submit">Find bruger</button>
 		</td>
+		<td>
+		<button id ="navigateToEditUser" form = "findUserForm" type = "button"> Rediger bruger </button>
+		</td>
+		<td>
+		<button id ="navigateToSetUser" form = "findUserForm" type = "submit"> Ændre bruger status</button>
+		</td>
 		</tr>
 	</table> <br>
 </form>
 <!------- FIND USER FORM END -------->
+
+<!------- EDIT USER FORM START -------->
+<form id = "editUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "text" name = "id" id = "lockedID" readonly> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name" id = "setName"> 
+		</td>
+		<td>
+		<label>Initialer</label><br>
+		<input type = "text" name = "ini" id = "setIni"> 
+		</td>
+		<td>
+		<button id="editUser" form="editUserForm" type="submit">Rediger bruger</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- EDIT USER FORM END -------->
+
+<!------- SET USER FORM START -------->
+<form id = "setUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="setUser" form="setUserForm" type="submit">Ændre bruger status</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- SET USER FORM END -------->
 
 <!------- SHOW USER DIV START -------->
 <div id = "showUser"></div>

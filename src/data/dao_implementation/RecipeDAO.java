@@ -27,7 +27,7 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("INSERT INTO recipe(recipeID, recipeName) VALUES(" +recipe.getId() + ", " + recipe.getName() +")");
+		con.doUpdate("INSERT INTO recipe VALUES(" +recipe.getId() + ", '" +recipe.getName() +"')");
 	}
 	
 	/*
@@ -37,7 +37,7 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + " WHERE recipeID= " + recipe.getId());
+		con.doUpdate("UPDATE recipe SET recipeName = '" + recipe.getName() + "' WHERE recipeID= " + recipe.getId());
 	}
 	
 	/*
@@ -59,7 +59,7 @@ public class RecipeDAO implements IRecipeDAO
 	{
 		RecipeDTO dto = null;
 
-		ResultSet rs = con.doQuery("SELECT * FROM recipeView WHERE recipeID= " + recipeID);
+		ResultSet rs = con.doQuery("SELECT * FROM recipe WHERE recipeID= " + recipeID);
 
 		try
 		{
