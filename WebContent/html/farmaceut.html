@@ -2,9 +2,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
 <title>CDIOFINAL</title>
+<script src = "../js/jquery-3.3.1.js"></script>
+<script src = "../js/navigation_phar.js"></script>
 </head>
 <body>
-	<h2>FARMACEUT</h2>
+	<div id = "headerDiv">
+		<h2>FARMARCEUT</h2>
+			<div id = "adminContainer">
+				<div class="dropdown">
+				<a onclick="dropdown()" class="dropbtn">Opret</a>
+				<div class="dropdowncontent">
+				<a id = "navigateToCreateCommodity" href="#" >Opret råvare</a>
+				<a id = "navigateToCreateCommodityBatch" href="#" >Opret råvare batch</a>
+				<a id = "navigateToCreateSupplier" href="#" >Opret leverandør</a>
+				</div>
+			</div>
+				<a id = "navigateToFindCommodity" href="#" >Find råvare</a>
+		</div>
+	</div>
+	
+	<form id = "createCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "text" name = "name" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "number" name = "active"> 
+		</td>
+		<td>
+		<button id="creatingUser" form="createUserForm" type="submit">Opret råvare</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+
+<form id = "findCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findCommodity" form="findCommodityForm" type="submit">Find råvare</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+	
 </body>
 </html>

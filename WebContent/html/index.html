@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
 <meta charset="UTF-8">
 <title>CDIOFINAL.com</title>
 </head>
 <body>
-<h2>FORSIDE</h2>
-<h4>Vælg din rolle:</h4>
-<button onclick = "location.href = 'admin.html';">ADMINISTRATOR</button>
-<button onclick = "location.href = 'farmaceut.html';">FARMACEUT</button>
-<button onclick = "location.href = 'prodLeder.html';">PRODUKTIONSLEDER</button>
+<div id = "headerDiv">
+	<h2>FORSIDE</h2>
+	<div id = "adminContainer">
+	<a id = "navigateToHome" href="admin.html">ADMINISTRARTOR</a>
+	<a id = "navigateToCreateUser" href="farmaceut.html" >FARMACEUT</a>
+	<a id = "navigateToFindUser" href="prodLeder.html" >PRODUKTIONSLEDER</a>
+	</div>
+</div>
+<div>
+<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
+</div>
 </body>
 </html>

@@ -2,16 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/UserAdmin.css">
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
 <title>CDIOFINAL</title>
 <script src = "../js/jquery-3.3.1.js"></script>
+<script src = "../js/navigation.js"></script>
 <script src = "../js/createUser.js"></script>
 </head>
 <body>
+	<div id = "headerDiv">
 	<h2>ADMINISTRATOR</h2>
+	<div id = "adminContainer">
+	<a id = "navigateToHome" href="index.html">Home</a>
+	<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
+	<a id = "navigateToFindUser" href="#" >Find en bruger</a>
+	</div>
+	</div>
 	
 <form id = "createUserForm" method = "POST">
-	<table id = "createUserForm">
+	<table>
 		<tr>
 		<td>
 		<label>Navn</label><br>
@@ -26,10 +34,27 @@
 		<input type = "number" name = "active"> 
 		</td>
 		<td>
-		<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger!</button>
+		<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger</button>
 		</td>
 		</tr>
 	</table> <br>
 </form>
+
+<form id = "findUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findUser" form="findUserForm" type="submit">Find bruger</button>
+		</td>
+		</tr>
+	</table> <br>
+
+</form>
+
 </body>
 </html>
