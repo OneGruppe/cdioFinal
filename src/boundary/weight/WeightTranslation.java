@@ -33,6 +33,7 @@ public class WeightTranslation
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			showMsg("Hello");
+			showWeightDisplay();
 		}
 		catch (IOException e) 
 		{
@@ -59,7 +60,7 @@ public class WeightTranslation
 			switch (response)
 			{
 			case "D A":
-				System.out.println("Command to showMsg returned success");
+				System.out.println("showMsg returned success");
 				break;
 			case "D I":
 				System.out.println("showMsg - another thing blocks the display, removing and trying again.");
@@ -96,7 +97,7 @@ public class WeightTranslation
 			switch (response)
 			{
 			case "D A":
-				System.out.println("Command to removeMsg returned success");
+				System.out.println("removeMsg returned success");
 				break;
 			case "D I":
 				System.out.println("Command to removeMsg returned an error");
@@ -131,10 +132,10 @@ public class WeightTranslation
 			switch (response) 
 			{
 			case "P111 A":
-				System.out.println("Command to showMsg returned success");
+				System.out.println("showLongMsg returned success");
 				break;
 			case "P111 I":
-				System.out.println("showLongMsg - another thing blocks the display, removing and trying again.");
+				System.out.println("Command to showLongMsg - another thing blocks the display, removing and trying again.");
 				clearDisplayAndShowWeight();
 				showLongMsg(message);
 			case "P111 L":
@@ -164,10 +165,10 @@ public class WeightTranslation
 			switch (response) 
 			{
 			case "P111 A":
-				System.out.println("Command to showMsg returned success");
+				System.out.println("removeLongMsg returned success");
 				break;
 			case "P111 I":
-				System.out.println("Command to removeMsg returned an error");
+				System.out.println("Command to removeLongMsg returned an error");
 			case "P111 L":
 				throw new DALException("Error in removing message on weight");
 			case "ES":
@@ -197,7 +198,7 @@ public class WeightTranslation
 			switch (response) 
 			{
 			case "DW A":
-				System.out.println("Command to showWeightDisplay returned success");
+				System.out.println("showWeightDisplay returned success");
 				break;
 			case "DW I":
 				System.out.println("Command to showWeightDisplay returned an error");
@@ -233,7 +234,7 @@ public class WeightTranslation
 			switch (response) 
 			{
 			case "RM20 B":
-				System.out.println("Command to getInputWithMsg returned success");
+				System.out.println("getInputWithMsg returned success");
 				break;
 			case "RM20 I":
 				System.out.println("Command to getInputWithMsg returned an error");
@@ -277,7 +278,7 @@ public class WeightTranslation
 			switch (response) 
 			{
 			case "RM20 A":
-				System.out.println("Command to removeInputWithMsg returned success");
+				System.out.println("removeInputWithMsg returned success");
 				break;
 			case "RM20 I":
 				System.out.println("Command to removeInputWithMsg returned an error");
@@ -379,7 +380,7 @@ public class WeightTranslation
 			switch (response)
 			{
 			case "TAC A":
-				System.out.println("Command to removeTaraWeight returned success");
+				System.out.println("removeTaraWeight returned success");
 				break;
 			case "TAC I":
 				System.out.println("Command to removeTaraWeight returned an error");
@@ -403,8 +404,8 @@ public class WeightTranslation
 	{
 			removeMsg();
 			removeLongMsg();
-			showWeightDisplay();
 			removeInputWithMsg();
+			showWeightDisplay();
 	}
 
 	/**

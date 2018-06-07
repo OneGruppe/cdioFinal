@@ -18,8 +18,8 @@ public class WeightTest {
 	@Before
 	public void startUp() {
 		try {
-			weight = new WeightTranslation("169.254.2.3", 8000);
-			// weight = new WeightTranslation("62.79.16.17", 8001);
+			//weight = new WeightTranslation("169.254.2.3", 8000);
+			 weight = new WeightTranslation("62.79.16.17", 8001);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
@@ -29,24 +29,11 @@ public class WeightTest {
 	public void wrapUp()
 	{
 		try {
-			weight.clearDisplayAndShowWeight();
 			weight.closeAllLeaks();
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
-
-	/*
-	@Test
-	public void showsmessages()
-	{
-		showMsgTest();
-		showMsgTooLongTest();
-		showLongMsgTest();
-		showTooLongLongMsg();
-	}
-	 */
 
 	/**
 	 * Shows a message that is possible to show.
@@ -56,8 +43,9 @@ public class WeightTest {
 	{
 		try {
 			weight.showMsg("Short");
-			//weight.removeMsg();
-		} catch (DALException e) {
+			TimeUnit.SECONDS.sleep(1);
+			weight.removeMsg();
+		} catch (DALException | InterruptedException e) {
 			fail("showMsgTest - Error: " + e.getMessage());
 		}
 	}
@@ -70,9 +58,9 @@ public class WeightTest {
 	{
 		try {
 			weight.showMsg("Msg too long");
-			//TimeUnit.SECONDS.sleep(2);
-			//weight.removeMsg();
-		} catch (DALException e) {
+			TimeUnit.SECONDS.sleep(1);
+			weight.removeMsg();
+		} catch (DALException | InterruptedException e) {
 			fail("showMsgTooLongTest - Error: " + e.getMessage());
 		}
 	}
@@ -85,9 +73,9 @@ public class WeightTest {
 	{
 		try {
 			weight.showLongMsg("This msg can contain 30 chars");
-			//TimeUnit.SECONDS.sleep(2);
-			//weight.removeLongMsg();
-		} catch (DALException e) {
+			TimeUnit.SECONDS.sleep(1);
+			weight.removeLongMsg();
+		} catch (DALException | InterruptedException e) {
 			fail("showLongMsgTest - Error: " + e.getMessage());
 		}
 	}
@@ -100,11 +88,24 @@ public class WeightTest {
 	{
 		try {
 			weight.showLongMsg("This msg is too long to be shown");
-			//TimeUnit.SECONDS.sleep(2);
-			//weight.removeLongMsg();
-		} catch (DALException e) {
+			TimeUnit.SECONDS.sleep(1);
+			weight.removeLongMsg();
+		} catch (DALException | InterruptedException e) {
 			fail("showTooLongLongM - Error: " + e.getMessage());
 		}
 	}
+	
+	@Test
+	public void getWeightTest()
+	{
+		try {
+			double value = weight.getWeight();
+			TimeUnit.SECONDS.sleep(1);
+			weight.removeLongMsg();
+		} catch (DALException | InterruptedException e) {
+			fail("showTooLongLongM - Error: " + e.getMessage());
+		}
+	}
+
 
 }
