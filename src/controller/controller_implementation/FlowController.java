@@ -111,34 +111,28 @@ public class FlowController
 				System.out.println("State: " + state);
 				int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 				System.out.println("RecipeID: " + recipeID);
-				List<Integer> commodityIDList = rcc.getRecipeComponent(recipeID).getCommodityIDList();
-				System.out.println("CommodityIDList: " + commodityIDList);
 				double comWeight = 0;
 
-				for (int comID : commodityIDList)
+				for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
 				{
-					int choice = Integer.parseInt(weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName(), "", rcc.getRecipeComponent(recipeID).getNon_netto() + " g"));
-					System.out.println("comID: " + comID + " Weight: " + com.getCommodity(comID).getName() + " Amount: " + rcc.getRecipeComponent(recipeID).getNon_netto());
-					if (choice == goBack)
-						break;
+					int choice = Integer.parseInt(weight.getInputWithMsg("Vej: " + rcc.getRecipeComponent(recipeID).get(i), "", rcc.getRecipeComponent(recipeID).get(i).getNon_netto() + "g"));
+					System.out.println("Weight: " + rcc.getRecipeComponent(recipeID).get(i) + " netto: " + rcc.getRecipeComponent(recipeID).get(i).getNon_netto());
 
-					double max = rcc.getRecipeComponent(recipeID).getNon_netto() + rcc.getRecipeComponent(recipeID).getTolerance();
-					double min = rcc.getRecipeComponent(recipeID).getNon_netto() - rcc.getRecipeComponent(recipeID).getTolerance();
-					System.out.println("Max: " + max + " min: " + min);
+					if(choice == goBack)
+						break;
+					double max = rcc.getRecipeComponent(recipeID).get(i).getNon_netto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+					double min = rcc.getRecipeComponent(recipeID).get(i).getNon_netto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
 
 					while(weight.getWeight() > min && weight.getWeight() < max)
 					{
 						comWeight = weight.getWeight();
 						System.out.println("comWeight: " + comWeight);
 						cbc.getCommodityBatch(commodityBatchID).setAmount(comWeight);
+
+						double temp = tara + comWeight;
+						double temp2 = tara + rcc.getRecipeComponent(recipeID).get(i).getNon_netto();
+						System.out.println("Temp: " + temp + " temp2: " + temp2);
 					}
-
-					double temp = tara + comWeight;
-					double temp2 = tara + rcc.getRecipeComponent(recipeID).getNon_netto();
-					System.out.println("Temp: " + temp + " temp2: " + temp2);
-
-					//if(temp < (temp2 + rcc.getRecipeComponent(recipeID).getTolerance()) && temp > (temp2 - rcc.getRecipeComponent(recipeID).getTolerance()))
-
 				}
 				state += 1;
 				break;
