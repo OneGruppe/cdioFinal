@@ -12,13 +12,13 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
-				alert(data);
-				console.log(data.ini);
+				console.log(data.name);
 				
 				if(document.contains(document.getElementById("showUserTable")))
 				{
 					document.getElementById("showUserTable").remove();
 					var t, r, c;
+					
 					
 					t = document.createElement("table");
 					t.setAttribute("id", "showUserTable");
@@ -36,6 +36,7 @@ $(document).ready(function() {
 					
 					c = r.insertCell(3);
 					c.innerHTML = "Status";
+					
 
 					
 					r = t.insertRow(1);
@@ -51,6 +52,7 @@ $(document).ready(function() {
 					
 					c = r.insertCell(3);
 					c.innerHTML = data.active;
+					
 					
 					document.getElementById("showUser").appendChild(t);
 						
@@ -91,6 +93,7 @@ $(document).ready(function() {
 					
 					c = r.insertCell(3);
 					c.innerHTML = data.active;
+
 					
 					document.getElementById("showUser").appendChild(t);
 				}
