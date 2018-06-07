@@ -4,15 +4,15 @@ import java.util.List;
 
 public class ProductBatchComponentDTO {
 	private int productbatchID;
-	private List<CommodityBatchDTO> commodityBatchList;
+	private int commodityBatchID;
 	private int userID;
 	private double tara;
 	private double netto;
 	
 	
-	public ProductBatchComponentDTO(int productbatchID, List<CommodityBatchDTO> commodityBatchList, int userID, double tara, double netto) {
+	public ProductBatchComponentDTO(int productbatchID, int commodityBatchID, int userID, double tara, double netto) {
 		this.productbatchID = productbatchID;
-		this.commodityBatchList = commodityBatchList;
+		this.commodityBatchID = commodityBatchID;
 		this.userID = userID;
 		this.tara = tara;
 		this.netto = netto;
@@ -28,13 +28,13 @@ public class ProductBatchComponentDTO {
 	}
 
 
-	public List<CommodityBatchDTO> getCommodityBatchList() {
-		return commodityBatchList;
+	public int getCommodityBatchID() {
+		return commodityBatchID;
 	}
 
 
-	public void setCommodityBatchID(List<CommodityBatchDTO> commodityBatchList) {
-		this.commodityBatchList = commodityBatchList;
+	public void setCommodityBatchID(int commodityBatchID) {
+		this.commodityBatchID = commodityBatchID;
 	}
 
 	public int getUserID() {
@@ -50,20 +50,24 @@ public class ProductBatchComponentDTO {
 		return tara;
 	}
 
-
 	public void setTara(double tara) {
 		this.tara = tara;
 	}
-
-
+	
+	
 	public double getNetto() {
 		return netto;
 	}
-
-
+	
+	
 	public void setNetto(double netto) {
 		this.netto = netto;
 	}
 	
-	
+
+	@Override
+	public String toString() {
+		return "ProductBatchComponentDTO [productbatchID=" + productbatchID + ", commodityBatchID=" + commodityBatchID
+				+ ", userID=" + userID + ", tara=" + tara + ", netto=" + netto + "]";
+	}
 }
