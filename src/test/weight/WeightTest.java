@@ -122,6 +122,7 @@ public class WeightTest {
 		try {
 			double value = weight.getTaraWeight();
 			System.out.println("Weight tara:" + value);
+			weight.removeTaraWeight();
 		} catch (DALException e) {
 			fail("getWeightTest - Error: " + e.getMessage());
 		}

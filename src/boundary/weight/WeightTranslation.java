@@ -353,15 +353,17 @@ public class WeightTranslation
 	{
 		try
 		{
-			write.println("TAC");
+			write.println("TA 0");
 			String response = read.readLine();
 
 			switch (response)
 			{
-			case "TAC A":
+			case "TA A":
 				// success
 				break;
-			case "TAC I":
+			case "TA I":
+				System.out.println("Command to removeTaraWeight returned an error");
+			case "TA L":
 				System.out.println("Command to removeTaraWeight returned an error");
 			case "ES":
 				break;
@@ -395,6 +397,7 @@ public class WeightTranslation
 			case "DW I":
 				System.out.println("Command to showWeightDisplay returned an error");
 			case "ES":
+				showWeight();
 				break;
 			default:
 				throw new DALException("Error showing weight-display - weight returns: " + response);
