@@ -48,7 +48,7 @@ public class WeightTranslation
 		String message = recvMessage;
 		if (message.length() > 5)
 		{
-			message = message.substring(0, 5);
+			message = message.substring(0, 6);
 		}
 		write.println("D "+ "\"" + message + "\"");
 		try 
@@ -120,7 +120,7 @@ public class WeightTranslation
 		String message = recvMessage;
 		if (message.length() > 30)
 		{
-			message = message.substring(0, 29);
+			message = message.substring(0, 30);
 		}
 		write.println("P111 " + "\"" + message + "\"");
 		try 
@@ -194,9 +194,9 @@ public class WeightTranslation
 		{
 			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
 			if((promtMessage.length() > 24) && (message2.length() > 24) && (message2.length() > 7) ) {
-				correctedPromtMessage = promtMessage.substring(0, 23);
-				correctedMessage2 = message2.substring(0, 23);
-				correctedUnit = unit.substring(0, 6);
+				correctedPromtMessage = promtMessage.substring(0, 24);
+				correctedMessage2 = message2.substring(0, 24);
+				correctedUnit = unit.substring(0, 7);
 			}
 			write.println("RM20 8 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
 			read.readLine();
@@ -218,7 +218,7 @@ public class WeightTranslation
 			default:
 				if(response.subSequence(0, 5).equals("RM20 A"))
 				{
-					String subResponse = response.substring(6, response.length()-1);
+					String subResponse = response.substring(9, response.length()-1);
 
 					if(subResponse.equals(correctedMessage2)) {
 						return "";
@@ -287,13 +287,36 @@ public class WeightTranslation
 			write.println("S");
 
 			String response = read.readLine();
+			
+			switch (response) 
+			{
+			case "S I":
+				clearDisplayAndShowWeight();
+				getTaraWeight();
+				break;
+			case "S +":
+				throw new DALException("Upper limit of taring range exceeded.");
+			case "S -":
+				throw new DALException("Lower limit of taring range exceeded.");
+			case "ES":
+				break;
+			default:
+				if((response.subSequence(0, 4).equals("S S")))
+				{
+					return Double.parseDouble(response.substring(9, (response.length() - 2)));
+				}
+				else
+				{
+					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+				}
+			}
 
 			// extracts only the numbers from response to a string
-			String weightString = response.substring(9, (response.length() - 2));
+			String weightString = response.substring(3, (response.length() - 2));
 
 			// convert from string to double.
 			double weight = Double.parseDouble(weightString);
-			return weight;
+			return 0;
 
 		} 
 		catch(IOException e) 
