@@ -8,6 +8,7 @@
 <script src = "../js/navigation.js"></script>
 <script src = "../js/createUser.js"></script>
 <script src = "../js/showUser.js"></script>
+<script src = "../js/showAllUsers.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -18,6 +19,8 @@
 			<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
 			<a id = "navigateToFindUser" href="#" >Find en bruger</a>
 			<a id = "navigateToShowUsers" href="#" >Vis alle brugere</a>
+			<a id = "navigateToUpdateUser" href="#" >Rediger bruger</a>
+			<a id = "navigateToSetUser" href="#" >Deaktiver/aktiver bruger</a>
 		</div>
 	</div>
 <!------- HEADER DIV END -------->
@@ -72,24 +75,9 @@
 <div id = "showUser"></div>
 <!------- SHOW USER DIV END -------->
 
-<!------- SHOW USERS TABLE START -------->
-<table id = "showUsersTable">
-	<tr>
-		<th>ID</th>
-		<th>Navn</th>
-		<th>Initialer</th>
-		<th>Status</th>
-		<th><button>Rediger</button></th>
-		<th><button>Aktiver/Deaktiver</button></th>	
-	</tr>
-	<tr>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>	
-	</tr>	
-</table>
-<!------- SHOW USERS TABLE END -------->
+<!------- SHOW USERS DIV START -------->
+<div id = "showUsers"></div>
+<!------- SHOW USERS DIV END -------->
 
 </body>
 </html>

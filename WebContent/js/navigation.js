@@ -10,12 +10,14 @@ $(document).ready(function() {
 		$('#showUsersTable').fadeOut(200);
 		$('#findUserForm').fadeOut(200);
 		$('#showUserTable').remove();
+		$('#showUsersTable').remove();
 		$('#createUserForm').delay(300).fadeIn(200);
 	})
 	
 	$('#navigateToFindUser').click(function() {
 		$('#showUsersTable').fadeOut(200);
 		$('#createUserForm').fadeOut(200);
+		$('#showUsersTable').remove();
 		$('#findUserForm').delay(300).fadeIn(200);
 	})
 	

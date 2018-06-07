@@ -17,11 +17,11 @@ $(document).ready(function() {
 	
 	$('#navigateToCreateCommodity').click(function() {
 		$('#findCommodityForm').fadeOut(200);
-		$('#createRecipeForm').fadeout(200);
-		$('#createRecipeComponentForm').fadeout(200);
+		$('#createRecipeForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
 		$('#createSupplierForm').fadeOut(200);
-		$('#findRecipeComponentForm').fadeout(200);
-		$('#findRecipeForm').fadeout(200);
+		$('#findRecipeComponentForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200);
 		$('#findSupplierForm').fadeOut(200);
 		$('#createCommodityForm').delay(300).fadeIn(200);
 	})
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$('#createRecipeForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
 		$('#findRecipeComponentForm').fadeOut(200);
-		$('#findRecipeForm').fadeout(200);
+		$('#findRecipeForm').fadeOut(200);
 		$('#findSupplierForm').fadeOut(200);
 		$('#createRecipeComponentForm').delay(300).fadeIn(200);	
 	})
@@ -41,18 +41,18 @@ $(document).ready(function() {
 		$('#createRecipeComponentForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
 		$('#findRecipeComponentForm').fadeOut(200);
-		$('#findRecipeForm').fadeout(200);
+		$('#findRecipeForm').fadeOut(200);
 		$('#findSupplierForm').fadeOut(200);
 		$('#createRecipeForm').delay(300).fadeIn(200);	
 	})
 	$('#navigateToCreateSupplier').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#findSupplierForm').fadeOut(200);
-		$('#createRecipeForm').fadeout(200);
-		$('#createRecipeComponentForm').fadeout(200);
+		$('#createRecipeForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
 		$('#findCommodityForm').fadeOut(200);
-		$('#findRecipeComponentForm').fadeout(200);
-		$('#findRecipeForm').fadeout(200);
+		$('#findRecipeComponentForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200);
 		$('#createSupplierForm').delay(300).fadeIn(200);
 	})
 	
@@ -75,7 +75,7 @@ $(document).ready(function() {
 		$('#findCommodityForm').fadeOut(200);
 		$('#findRecipeForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
-		$('#findCommodityRecipeComponent').delay(300).fadeIn(200);
+		$('#findRecipeComponentForm').delay(300).fadeIn(200);
 	})
 	$('#navigateToFindSupplier').click(function() {
 		$('#createCommodityForm').fadeOut(200);
@@ -95,7 +95,7 @@ $(document).ready(function() {
 		$('#findCommodityForm').fadeOut(200);
 		$('#findRecipeComponentForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
-		$('#findCommodityRecipe').delay(300).fadeIn(200);
+		$('#findRecipeForm').delay(300).fadeIn(200);
 	})
 	/*****************
 	 * dropdown menu *
