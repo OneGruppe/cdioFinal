@@ -22,8 +22,7 @@ public class RecipeDAOTest
 	int tempID; //Used to get multiple ID's
 	
 	@Before
-	public void setUp()
-	{
+	public void setUp() {
 		tempID = 0;
 		
 		try
@@ -37,8 +36,7 @@ public class RecipeDAOTest
 	}
 	
 	@After
-	public void teardown()
-	{
+	public void teardown() {
 		try {
 			Connector con = new Connector();
 			
@@ -53,8 +51,7 @@ public class RecipeDAOTest
 	}
 
 	@Test
-	public void testCreateRecipe() throws DALException
-	{
+	public void testCreateRecipe() {
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
 		tempID++;
 
@@ -70,8 +67,7 @@ public class RecipeDAOTest
 	}
 
 	@Test
-	public void testUpdateRecipe() throws DALException
-	{
+	public void testUpdateRecipe() {
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
 		RecipeDTO updateExpected = new RecipeDTO(1, "Not Pensilin");
 		tempID++;
@@ -90,8 +86,7 @@ public class RecipeDAOTest
 	}
 
 	@Test
-	public void testDeleteRecipe() throws DALException
-	{
+	public void testDeleteRecipe() {
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
 		tempID++;
 
@@ -108,7 +103,7 @@ public class RecipeDAOTest
 	}
 
 	@Test
-	public void testGetRecipe() throws DALException {
+	public void testGetRecipe() {
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
 		tempID++;
 		
@@ -124,8 +119,7 @@ public class RecipeDAOTest
 	}
 
 	@Test
-	public void testGetAllRecipes() throws DALException
-	{
+	public void testGetAllRecipes() {
 		RecipeDTO expected1 = new RecipeDTO(1, "Pensilin");
 		tempID++;
 		RecipeDTO expected2 = new RecipeDTO(2, "Panodil");
