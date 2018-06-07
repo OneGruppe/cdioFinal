@@ -25,13 +25,121 @@
 	<a id = "navigateToFindOptions" href="#" >Find</a>
 		<div id = "dropDownFindProd">
 			<ul>
-				<li><a id = "navigateToFindComBatch">Råvarebatch</a>
-				<li><a id = "navigateToFindProdBatch">Produktbatch</a>
+				<li><a id = "navigateToFindComBatch" href = "#">Råvarebatch</a>
+				<li><a id = "navigateToFindProdBatch" href = "#">Produktbatch</a>
+			</ul>
+		</div>
+		
+	<a id = "navigateToShowOptions" href="#" >Vis</a>
+		<div id = "dropDownVisProd">
+			<ul>
+				<li><a id = "navigateToShowComBatch" href = "#">Råvarebatches</a>
+				<li><a id = "navigateToShowProdBatch" href = "#">Produktbatches</a>
 			</ul>
 		</div>
 		
 	</div>
 </div>
+
+<form id = "createProdForm">
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch ID</label><br>
+		<input type = "number" name = "pbID"> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input type = "number" name = "status"> 
+		</td>
+		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" name = "receptID"> 
+		</td>
+		<td>
+		<button id="creatingProductBatch" form="createProdForm" type="submit">Opret Produktbatch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "createComForm">
+	<table>
+		<tr>
+		<td>
+		<label>Råvarebatch ID</label><br>
+		<input type = "number" name = "cbID"> 
+		</td>
+		<td>
+		<label>Råvare ID</label><br>
+		<input type = "number" name = "commodityID"> 
+		</td>
+		<td>
+		<label>Mængde</label><br>
+		<input type = "number" name = "amount"> 
+		</td>
+		<td>
+		<button id="creatingCommodityBatch" form="createComForm" type="submit">Opret Råvarebatch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "findComForm">
+	<table>
+		<tr>
+		<td>
+		<label>Råvarebatch ID</label><br>
+		<input type = "number" name = "cbID"> 
+		</td>
+		<td>
+		<button id="findCommodityBatch" form="findComForm" type="submit">Find Råvarebatch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "findProdForm">
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch ID</label><br>
+		<input type = "number" name = "pbID"> 
+		</td>
+		<td>
+		<button id="findProductBatch" form="findProdForm" type="submit">Find Produktbatch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<table id = "showProdTable">
+	<tr>
+		<th>ID</th>
+		<th>Status</th>
+		<th>Recept ID</th>
+	</tr>
+	<tr>
+		<td>HARDCODE</td>
+		<td>HARDCODE</td>
+		<td>HARDCODE</td>
+	</tr>
+	
+</table>
+
+<table id = "showComTable">
+	<tr>
+		<th>ID</th>
+		<th>Råvare ID</th>
+		<th>Mængde</th>
+	</tr>
+	<tr>
+		<td>HARDCODE</td>
+		<td>HARDCODE</td>
+		<td>HARDCODE</td>
+	</tr>
+	
+</table>
 
 </body>
 </html>

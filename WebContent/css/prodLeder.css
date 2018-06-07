@@ -18,6 +18,10 @@ a {
 	font-size: .85em;
 }
 
+#navigateToCreateComBatch, #navigateToCreateProdBatch, #navigateToFindComBatch, #navigateToFindProdBatch, #navigateToShowComBatch, #navigateToShowProdBatch  {
+	color: #323232;
+}
+
 #headerContainer {
 	position: absolute;
 	top: 30%;
@@ -26,17 +30,24 @@ a {
 
 #dropDownCreateProd {
 	position: fixed;
-	left: 63%;
+	top: 4%;
+	left: 62.5%;
 }
 
 #dropDownFindProd {
 	position: fixed;
-	left: 66%;
+	top: 4%;
+	left: 65.5%;
+}
+
+#dropDownVisProd {
+	position: fixed;
+	top: 4%;
+	left: 67.5%;
 }
 
 ul {
 	list-style: none;
-	background-color: #cecccc;
 	padding: 0;
 }
 
@@ -44,7 +55,7 @@ li {
 	padding-bottom: 10px;
 }
 
-#navigateToHome, #navigateToCreateOptions {
+#navigateToHome, #navigateToCreateOptions, #navigateToFindOptions {
 	padding-right: 8px;
 	margin-right: 8px;
 	border-right: white 2px solid;
@@ -58,5 +69,39 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
   font-family: sans-serif;
+}
+
+table {
+	margin-top: 100px;
+  	border-collapse: collapse;
+  	border: 2px solid rgb(200,200,200);
+  	letter-spacing: 1px;
+  	font-size: 0.8rem;
+  	margin-left: .5%;
+}
+
+td, th {
+  border: 1px solid rgb(190,190,190);
+  padding: 10px 20px;
+}
+
+th {
+  background-color: rgb(235,235,235);
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+  background-color: rgb(245,245,245);
+}
+
+caption {
+  padding: 10px;
 }
 
