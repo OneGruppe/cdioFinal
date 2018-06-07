@@ -20,63 +20,90 @@ public class WeightTest {
 		try {
 			weight = new WeightTranslation("62.79.16.17", 8001);
 		} catch (DALException e) {
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	@After
 	public void wrapUp()
 	{
 		try {
-			weight.closeAllLeaks();
+			weight.clearDisplayAndShowWeight();
+			//weight.closeAllLeaks();
 		} catch (DALException e) {
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	@Test
-	public void showShortMsgTest()
-	{
-		try {
-			showMsgTest();
-			TimeUnit.SECONDS.sleep(2);
-			removeMsgTest();
-			showTooLongMsg();
-		} catch (InterruptedException e) {
-			fail("Error: " + e.getMessage());
-		}
-	}
 
-	
+	/*
+	@Test
+	public void showsmessages()
+	{
+		showMsgTest();
+		showMsgTooLongTest();
+		showLongMsgTest();
+		showTooLongLongMsg();
+	}
+	*/
+
+	/**
+	 * Shows a message that is possible to show.
+	 */
+	@Test
 	public void showMsgTest()
 	{
 		try {
-			weight.showMsg("Hello");
+			weight.showMsg("Short");
+			//weight.removeMsg();
 		} catch (DALException e) {
-			fail("Error: " + e.getMessage());
+			fail("showMsgTest - Error: " + e.getMessage());
 		}
 	}
-	
-	public void removeMsgTest()
-	{
-		try {
-			weight.removeMsg();
-		} catch (DALException e)
-		{
-			fail("Error: " + e.getMessage());
-		}
-	}
-	
-	public void showTooLongMsg()
-	{
-		try {
-			weight.showMsg("Hello with youuuuuuuu");
-			fail("Somehow the message was sent");
-		} catch (DALException e) {
-			System.out.println("showTooLongMsg made error correctly");
-		}
-	}
-	
 
-	
+	/**
+	 * Shows a message that is too long, and therefore shows
+	 */
+	@Test
+	public void showMsgTooLongTest()
+	{
+		try {
+			weight.showMsg("Msg too long");
+			//TimeUnit.SECONDS.sleep(2);
+			//weight.removeMsg();
+		} catch (DALException e) {
+			fail("showMsgTooLongTest - Error: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Shows a long message
+	 */
+	@Test
+	public void showLongMsgTest()
+	{
+		try {
+			weight.showLongMsg("This msg can contain 30 chars");
+			//TimeUnit.SECONDS.sleep(2);
+			//weight.removeLongMsg();
+		} catch (DALException e) {
+			fail("showLongMsgTest - Error: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Shows a long message, that is too long
+	 */
+	@Test
+	public void showTooLongLongMsg()
+	{
+		try {
+			weight.showLongMsg("This msg is too long to be shown");
+			//TimeUnit.SECONDS.sleep(2);
+			//weight.removeLongMsg();
+		} catch (DALException e) {
+			fail("showTooLongLongM - Error: " + e.getMessage());
+		}
+	}
+
 }
