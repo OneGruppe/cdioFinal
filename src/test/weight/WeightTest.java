@@ -18,7 +18,8 @@ public class WeightTest {
 	@Before
 	public void startUp() {
 		try {
-			weight = new WeightTranslation("62.79.16.17", 8001);
+			weight = new WeightTranslation("169.254.2.3", 8000);
+			// weight = new WeightTranslation("62.79.16.17", 8001);
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
@@ -29,12 +30,12 @@ public class WeightTest {
 	{
 		try {
 			weight.clearDisplayAndShowWeight();
-			//weight.closeAllLeaks();
+			weight.closeAllLeaks();
 		} catch (DALException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 
 	/*
 	@Test
@@ -45,7 +46,7 @@ public class WeightTest {
 		showLongMsgTest();
 		showTooLongLongMsg();
 	}
-	*/
+	 */
 
 	/**
 	 * Shows a message that is possible to show.
