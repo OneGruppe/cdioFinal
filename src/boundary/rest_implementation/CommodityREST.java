@@ -40,9 +40,8 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public String createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) throws DALException 
+	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) throws DALException 
 	{
-		String returnMessage;
 		cc.createCommodity(id, name, suppliers);
 		
 	}
