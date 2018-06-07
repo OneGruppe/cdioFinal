@@ -1,5 +1,5 @@
 /**
- * 
+ * Shows a single user
  */
 
 $(document).ready(function() {
@@ -36,6 +36,7 @@ $(document).ready(function() {
 					
 					c = r.insertCell(3);
 					c.innerHTML = "Status";
+
 					
 					r = t.insertRow(1);
 					
@@ -74,6 +75,8 @@ $(document).ready(function() {
 					
 					c = r.insertCell(3);
 					c.innerHTML = "Status";
+					
+					
 					
 					r = t.insertRow(1);
 					

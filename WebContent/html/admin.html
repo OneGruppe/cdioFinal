@@ -10,19 +10,25 @@
 <script src = "../js/showUser.js"></script>
 </head>
 <body>
+<!------- HEADER DIV START -------->
 	<div id = "headerDiv">
-	<h2>ADMINISTRATOR</h2>
-	<div id = "headerContainer">
-	<a id = "navigateToHome" href="index.html">Home</a>
-	<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
-	<a id = "navigateToFindUser" href="#" >Find en bruger</a>
-	<a id = "navigateToShowUsers" href="#" >Vis alle brugere</a>
+		<h2>ADMINISTRATOR</h2>
+		<div id = "headerContainer">
+			<a id = "navigateToHome" href="index.html">Home</a>
+			<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
+			<a id = "navigateToFindUser" href="#" >Find en bruger</a>
+			<a id = "navigateToShowUsers" href="#" >Vis alle brugere</a>
+		</div>
 	</div>
-	</div>
+<!------- HEADER DIV END -------->
+
+<!------- WATERMARK DIV START -------->
 	<div id = "watermark">
-	<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
+		<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
 	</div>
-	
+<!------- WATERMARK DIV END -------->
+
+<!------- CREATE USER FORM START -------->
 <form id = "createUserForm" method = "POST">
 	<table>
 		<tr>
@@ -44,7 +50,9 @@
 		</tr>
 	</table> <br>
 </form>
+<!------- CREATE USER FORM END -------->
 
+<!------- FIND USER FORM START -------->
 <form id = "findUserForm" method = "POST">
 	<table>
 		<tr>
@@ -58,11 +66,13 @@
 		</tr>
 	</table> <br>
 </form>
+<!------- FIND USER FORM END -------->
 
-<div id = "showUser">
+<!------- SHOW USER DIV START -------->
+<div id = "showUser"></div>
+<!------- SHOW USER DIV END -------->
 
-</div>
-
+<!------- SHOW USERS TABLE START -------->
 <table id = "showUsersTable">
 	<tr>
 		<th>ID</th>
@@ -77,9 +87,9 @@
 		<td>HARDCODE</td>
 		<td>HARDCODE</td>
 		<td>HARDCODE</td>	
-	</tr>
-	
+	</tr>	
 </table>
+<!------- SHOW USERS TABLE END -------->
 
 </body>
 </html>
