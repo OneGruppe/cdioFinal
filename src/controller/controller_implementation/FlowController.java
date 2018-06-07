@@ -48,12 +48,9 @@ public class FlowController
 			case 2:
 			{
 				System.out.println("State: " + state);
-				System.out.println("-----------------------");
-				System.out.println("TRIES TO GET USERID");
 				userID = Integer.parseInt(weight.getInputWithMsg("Indtast operatoer nummer", "", "&3"));
 
 				System.out.println("USER ID: " + userID);
-				System.out.println("-----------------------");
 
 				if(userID == goBack)
 					state -= 1;
@@ -65,9 +62,7 @@ public class FlowController
 				System.out.println("State: " + state);
 				int choice = Integer.parseInt(weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), "", "&3")); 
 
-				System.out.println("-----------------------");
 				System.out.println("Welcome: " + user.getUser(userID).getName());
-				System.out.println("-----------------------");
 
 				if(choice == goBack)
 					state -= 1;
@@ -77,11 +72,8 @@ public class FlowController
 			case 4:
 			{
 				System.out.println("State: " + state);
-				System.out.println("-----------------------");
-				System.out.println("GETS PRODUCTBATCHID");
 				productBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast productBatchID", "", "&3"));
 				System.out.println("PRODUCTBATCH ID = " + productBatchID);
-				System.out.println("-----------------------");
 
 				pbc.getProductBatch(productBatchID).setStatus(1);
 
@@ -97,11 +89,8 @@ public class FlowController
 			case 5:
 			{
 				System.out.println("State: " + state);
-				System.out.println("-----------------------");
-				System.out.println("GETS TARA");
 				tara = Double.parseDouble(weight.getInputWithMsg("Placer beholder paa vaegt", "", "&3"));
 				System.out.println("TARA = " + tara);
-				System.out.println("-----------------------");
 
 				if((int) tara == goBack)
 					state -= 1;
@@ -111,7 +100,7 @@ public class FlowController
 			case 6:
 			{
 				commodityBatchID = Integer.parseInt(weight.getInputWithMsg("Indtast raavare batch ID", "", "&3"));
-				System.out.println("RåvareBatch ID: " + commodityBatchID);
+				System.out.println("CommodityBatch ID: " + commodityBatchID);
 
 				if (commodityBatchID == goBack)
 					state -= 1;
@@ -123,13 +112,13 @@ public class FlowController
 				int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 				System.out.println("RecipeID: " + recipeID);
 				List<Integer> commodityIDList = rcc.getRecipeComponent(recipeID).getCommodityIDList();
-				System.out.println("RåvareIDList: " + commodityIDList);
+				System.out.println("CommodityIDList: " + commodityIDList);
 				double comWeight = 0;
 
 				for (int comID : commodityIDList)
 				{
 					int choice = Integer.parseInt(weight.getInputWithMsg("Vej: " + com.getCommodity(comID).getName(), "", rcc.getRecipeComponent(recipeID).getNon_netto() + " g"));
-					System.out.println("comID: " + comID + " Vej: " + com.getCommodity(comID).getName() + " Med vægt: " + rcc.getRecipeComponent(recipeID).getNon_netto());
+					System.out.println("comID: " + comID + " Weight: " + com.getCommodity(comID).getName() + " Amount: " + rcc.getRecipeComponent(recipeID).getNon_netto());
 					if (choice == goBack)
 						break;
 
