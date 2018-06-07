@@ -85,7 +85,6 @@ public class UserREST implements IUserREST {
 	{
 		JSONArray users = new JSONArray();
 		users.put(uc.getAllUsers());
-		System.out.println(users.toString());
 		return users.toString();
 	}
 
