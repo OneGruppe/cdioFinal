@@ -32,7 +32,7 @@
 			</ul>
 		</div>
 		
-	<a id = "dropdownShow" href='#'>Vis</a>
+	<a id ="dropdownShow" href='#'>Vis</a>
 		<div id ="dropDownContentShow">
 			<ul>
 				<li><a id ="navigateToShowCommodity" href="#">Råvare</a></li>
@@ -45,22 +45,22 @@
 	
 	
 	
-	<form id = "createCommodityForm" method = "POST">
+<form id = "createCommodityForm" method = "POST">
 	<table>
 		<tr>
 		<td>
 		<label>ID</label><br>
-		<input type = "text" name = "name" autofocus> 
+		<input type = "number" name = "ID" autofocus> 
 		</td>
 		<td>
 		<label>Navn</label><br>
-		<input type = "number" name = "active"> 
+		<input type = "text" name = "name"> 
 		</td>
 		<td>
-		<button id="creatingUser" form="createUserForm" type="submit">Opret råvare</button>
+		<button id="creatingCommodity" form="createCommodityForm" type="submit">Opret råvare</button>
 		</td>
 		</tr>
-	</table> <br>
+	</table>
 </form>
 
 <form id = "findCommodityForm" method = "POST">
@@ -75,8 +75,81 @@
 		<button id="findCommodity" form="findCommodityForm" type="submit">Find råvare</button>
 		</td>
 		</tr>
-	</table> <br>
+	</table>
 </form>
 	
+<form id = "createCommodityBatchForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ComBatch_ID</label><br>
+		<input type = "number" name = "id" autofocus> 
+		</td>
+		<td>
+		<label>Com_ID</label><br>
+		<input type = "number" name = "com_id" autofocus> 
+		</td>
+		<td>
+		<label>Sup_ID</label><br>
+		<input type = "number" name = "sup_id"> 
+		</td>
+		<td>
+		<label>Amount</label><br>
+		<input type = "number" name = "amount" autofocus> 
+		</td>
+		<td>
+		<button id="creatingCommodityBatch" form="createCommodityBatchForm" type="submit">Opret råvare batch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "findCommodityBatchForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findCommodityBatch" form="findCommodityBatchForm" type="submit">Find råvare batch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+
+<form id = "createSupplierForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "ID" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<button id="creatingSupplier" form="createSupplierForm" type="submit">Opret leverandør</button>
+		</td>
+		</tr>
+	</table> 
+</form>
+
+<form id = "findSupplierForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<tr>
+		<td>
+		<button id="findSupplier" form="findSupplierForm" type="submit">Find levarondør</button>
+		</td>
+		</tr>
+	</table> 
+</form>
 </body>
 </html>
