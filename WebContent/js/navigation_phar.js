@@ -8,6 +8,9 @@ $(document).ready(function() {
 	$('#findCommodityForm').hide();
 	$('#findCommodityBatchForm').hide();
 	$('#findSupplierForm').hide();
+	$('#dropDownContentCreate').hide();
+	$('#dropDownContentShow').hide();
+	$('#dropDownContentFind').hide();
 	
 	
 	$('#navigateToCreateCommodity').click(function() {
@@ -61,3 +64,14 @@ $(document).ready(function() {
 		$('#findSupplierForm').delay(300).fadeIn(200);
 	})
 })
+
+/*************************************************************************
+ * 																		 *
+ *  					Drop down menu								 *
+ *************************************************************************/
+
+	$('#dropDownCreate').click(function() {
+		$('#dropDownContentFind').hide();
+		$('#dropDownContentShow').hide();
+		$('#dropDownContentCreate').toggle(500);
+	})
