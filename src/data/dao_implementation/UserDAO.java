@@ -14,9 +14,27 @@ public class UserDAO implements IUserDAO {
 
 	private Connector con;
 
+	/**
+	 * Constructor that uses Constant-class 
+	 * @throws DALException
+	 */
 	public UserDAO() throws DALException 
 	{
 		con = new Connector();
+	}
+	
+	/**
+	 * Constructor that uses the parameters from 
+	 * @param server
+	 * @param port
+	 * @param database
+	 * @param username
+	 * @param password
+	 * @throws DALException
+	 */
+	public UserDAO(String server, int port, String database, String username, String password) throws DALException 
+	{
+		con = new Connector(server, port, database, username, password);
 	}
 
 	/*
