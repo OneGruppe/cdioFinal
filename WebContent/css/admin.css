@@ -24,10 +24,16 @@ a {
 	left: 60%;
 }
 
-#navigateToCreateUser {
+#navigateToHome, #navigateToCreateUser {
 	padding-right: 8px;
 	margin-right: 8px;
 	border-right: white 2px solid;
+}
+
+#dtuLogo {
+	position: fixed;
+	top: 38%;
+	left: 35%;
 }
 
 h1, h2, h3, h4, h5, h6 {
