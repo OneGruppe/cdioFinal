@@ -2,39 +2,49 @@ package data.dto;
 
 public class SupplierDTO 
 {
-	private int id;
-	private String name;
+
+	private int supplierID;
+	private String supplierName;
 
 	/**
-	 * Constructor for a SupplierDTO with parameters
-	 * @param id ID of the Supplier.
-	 * @param name Name of the Supplier.
+	 * Constructor for a SupplierDTO
+	 * @param supplierID
+	 * @param supplierName
 	 */
-	public SupplierDTO(int id, String name) 
+	public SupplierDTO(int supplierID, String supplierName) 
 	{
-		super();
-		this.id = id;
-		this.name = name;
+		this.supplierID = supplierID;
+		this.supplierName = supplierName;
 	}
 
-	public int getId() {
-		return id;
+	public int getSupplierID() 
+	{
+		return supplierID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSupplierID(int supplierID) 
+	{
+		this.supplierID = supplierID;
 	}
 
-	public String getName() {
-		return name;
+	public String getSupplierName() 
+	{
+		return supplierName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSupplierName(String supplierName) 
+	{
+		this.supplierName = supplierName;
 	}
 
+	/**
+	 * toString overwritten to show all variables
+	 */
 	@Override
-	public String toString() {
-		return "SupplierDTO [id=" + id + ", name=" + name + "]";
+	public String toString() 
+	{
+		return "SupplierDTO [supplierID=" + supplierID + ", supplierName=" + supplierName + "]";
 	}
+
+
 }

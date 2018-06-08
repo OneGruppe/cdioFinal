@@ -1,73 +1,116 @@
 package data.dto;
 
-import java.util.List;
+public class ProductBatchComponentDTO 
+{
 
-public class ProductBatchComponentDTO {
-	private int productbatchID;
+	private int productBatchComponentID;
+	private int productBatchID;
 	private int commodityBatchID;
 	private int userID;
 	private double tara;
 	private double netto;
-	
-	
-	public ProductBatchComponentDTO(int productbatchID, int commodityBatchID, int userID, double tara, double netto) {
-		this.productbatchID = productbatchID;
+
+	/**
+	 * Contructor for ProductBatchComponentDTO
+	 * @param productBatchComponentID (int)
+	 * @param productBatchID (int)
+	 * @param commodityBatchID (int)
+	 * @param userID (int)
+	 * @param tara (double)
+	 * @param netto (double)
+	 */
+	public ProductBatchComponentDTO(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) 
+	{
+		this.productBatchComponentID = productBatchComponentID;
+		this.productBatchID = productBatchID;
 		this.commodityBatchID = commodityBatchID;
 		this.userID = userID;
 		this.tara = tara;
 		this.netto = netto;
 	}
 
-	public int getProductbatchID() {
-		return productbatchID;
+
+	public int getProductBatchComponentID() 
+	{
+		return productBatchComponentID;
 	}
 
 
-	public void setProductbatchID(int productbatchID) {
-		this.productbatchID = productbatchID;
+	public void setProductBatchComponentID(int productBatchComponentID) 
+	{
+		this.productBatchComponentID = productBatchComponentID;
 	}
 
 
-	public int getCommodityBatchID() {
+	public int getProductBatchID() 
+	{
+		return productBatchID;
+	}
+
+
+	public void setProductBatchID(int productBatchID) 
+	{
+		this.productBatchID = productBatchID;
+	}
+
+
+	public int getCommodityBatchID() 
+	{
 		return commodityBatchID;
 	}
 
 
-	public void setCommodityBatchID(int commodityBatchID) {
+	public void setCommodityBatchID(int commodityBatchID) 
+	{
 		this.commodityBatchID = commodityBatchID;
 	}
 
-	public int getUserID() {
+
+	public int getUserID() 
+	{
 		return userID;
 	}
-	
-	
-	public void setUserID(int userID) {
+
+
+	public void setUserID(int userID) 
+	{
 		this.userID = userID;
 	}
 
-	public double getTara() {
+
+	public double getTara() 
+	{
 		return tara;
 	}
 
-	public void setTara(double tara) {
+
+	public void setTara(double tara) 
+	{
 		this.tara = tara;
 	}
-	
-	
-	public double getNetto() {
+
+
+	public double getNetto() 
+	{
 		return netto;
 	}
-	
-	
-	public void setNetto(double netto) {
+
+
+	public void setNetto(double netto) 
+	{
 		this.netto = netto;
 	}
-	
 
+	/**
+	 * toString overwritten to show all variables
+	 */
 	@Override
-	public String toString() {
-		return "ProductBatchComponentDTO [productbatchID=" + productbatchID + ", commodityBatchID=" + commodityBatchID
-				+ ", userID=" + userID + ", tara=" + tara + ", netto=" + netto + "]";
+	public String toString() 
+	{
+		return "ProductBatchComponentDTO [productBatchComponentID=" + productBatchComponentID + ", productBatchID="
+				+ productBatchID + ", commodityBatchID=" + commodityBatchID + ", userID=" + userID + ", tara=" + tara
+				+ ", netto=" + netto + "]";
 	}
+
+
 }

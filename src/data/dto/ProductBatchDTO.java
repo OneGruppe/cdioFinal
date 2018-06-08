@@ -2,15 +2,16 @@ package data.dto;
 
 public class ProductBatchDTO
 {
+
 	private int id;
 	private int recipeID;
 	private int status;
 
 	/**
-	 * Constructor for a ProductBatchDTO with parameters
-	 * @param id ID of the Product batch.
-	 * @param recipeID ID of the Recipe.
-	 * @param status Status of the product.
+	 * Constructor for a ProductBatchDTO
+	 * @param id (int)
+	 * @param recipeID (int)
+	 * @param status (int)
 	 */
 	public ProductBatchDTO (int id, int recipeID, int status)
 	{
@@ -19,33 +20,44 @@ public class ProductBatchDTO
 		this.status = status;
 	}
 
-	public int getID() {
+	public int getId() 
+	{
 		return id;
 	}
 
-	public void setID(int ID) {
-		this.id = ID;
+	public void setId(int id) 
+	{
+		this.id = id;
 	}
 
-	public int getRecipeID() {
+	public int getRecipeID() 
+	{
 		return recipeID;
 	}
 
-	public void setRecipeID(int recipeID) {
+	public void setRecipeID(int recipeID) 
+	{
 		this.recipeID = recipeID;
 	}
 
-	public int getStatus() {
+	public int getStatus() 
+	{
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(int status) 
+	{
 		this.status = status;
 	}
 
+	/**
+	 * toString overwritten to show all variables
+	 */
 	@Override
-	public String toString() {
-		return "ProductBatchDTO [productBatchid=" + id + ", recipeID=" + recipeID + ", status=" + status
-				+ "]";
+	public String toString() 
+	{
+		return "ProductBatchDTO [id=" + id + ", recipeID=" + recipeID + ", status=" + status + "]";
 	}
+
+
 }

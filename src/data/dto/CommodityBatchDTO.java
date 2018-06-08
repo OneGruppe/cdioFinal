@@ -2,56 +2,75 @@ package data.dto;
 
 public class CommodityBatchDTO
 {
-	private int id;
+
+	private int commodityBatchID;
 	private int commodityID;
+	private int supplierID;
 	private double amount;
 
 	/**
-	 * Contructor for CommodityBatchDTO with parameters
-	 * @param id ID of CommodityBatch
-	 * @param commodityID ID of the commodity
-	 * @param amount Amount that is stored..?
+	 * Contructor for CommodityBatchDTO
+	 * @param commodityBatchID (int)
+	 * @param commodityID (int)
+	 * @param supplierID (int)
+	 * @param amount (double)
 	 */
-	public CommodityBatchDTO (int id, int commodityID, double amount)
+	public CommodityBatchDTO (int commodityBatchID, int commodityID, int supplierID, double amount)
 	{
-		this.id = id;
+		this.commodityBatchID = commodityBatchID;
 		this.commodityID = commodityID;
+		this.supplierID = supplierID;
 		this.amount = amount;
 	}
 
-	public int getId()
+	public int getCommodityBatchID() 
 	{
-		return id;
+		return commodityBatchID;
 	}
 
-	public void setId(int id)
+	public void setCommodityBatchID(int commodityBatchID) 
 	{
-		this.id = id;
+		this.commodityBatchID = commodityBatchID;
 	}
 
-	public int getCommodityID()
+	public int getCommodityID() 
 	{
 		return commodityID;
 	}
 
-	public void setCommodityID(int commodityID)
+	public void setCommodityID(int commodityID) 
 	{
 		this.commodityID = commodityID;
 	}
 
-	public double getAmount()
+	public int getSupplierID() 
+	{
+		return supplierID;
+	}
+
+	public void setSupplierID(int supplierID) 
+	{
+		this.supplierID = supplierID;
+	}
+
+	public double getAmount() 
 	{
 		return amount;
 	}
 
-	public void setAmount(double Amount)
+	public void setAmount(double amount) 
 	{
-		this.amount = Amount;
+		this.amount = amount;
 	}
 
+	/**
+	 * toString overwritten to show all variables
+	 */
 	@Override
-	public String toString() {
-		return "CommodityBatchDTO [cbid=" + id + ", commodityID=" + commodityID + ", amount=" + amount + "]";
+	public String toString() 
+	{
+		return "CommodityBatchDTO [commodityBatchID=" + commodityBatchID + ", commodityID=" + commodityID
+				+ ", supplierID=" + supplierID + ", amount=" + amount + "]";
 	}
 
 
