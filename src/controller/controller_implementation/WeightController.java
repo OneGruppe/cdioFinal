@@ -1,5 +1,7 @@
 package controller.controller_implementation;
 
+import java.util.concurrent.TimeUnit;
+
 import boundary.weight.WeightTranslation;
 import controller.controller_interface.ICommodityBatchController;
 import controller.controller_interface.IProductBatchController;
@@ -274,8 +276,20 @@ public class WeightController implements IWeightController
 			System.out.println("Failure in finish(): " + e.getMessage());
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 			state--;
-		}	
+		}
 	}
 
+	public void restart()
+	{
+		try {
+			weight.showLongMsg("Erorr has occured, restarting");
+			TimeUnit.SECONDS.sleep(2);
+			weight.removeLongMsg();
+			weightFlow();
+		} catch (DALException | InterruptedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
 }
