@@ -8,26 +8,31 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import data.dao_implementation.CommodityBatchDAO;
+import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 public class CommodityBatchDAOTest 
 {
-	CommodityBatchDAO dao;
 
+	private ICommodityBatchDAO dao;
+
+	//TODO - virker ikke, måske DAO-problem
 	@Before
 	public void setUp() 
 	{
 		try
 		{
-			dao = new CommodityBatchDAO();
+			dao = new CommodityBatchDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
 		}
 		catch(DALException e)
 		{
+			System.out.println("Error connecting" + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
-
+	
+	//TODO - virker ikke, måske DAO-problem
 	@After
 	public void tearDown() 
 	{
@@ -41,8 +46,9 @@ public class CommodityBatchDAOTest
 		}
 	}
 
+	//TODO - virker ikke, måske DAO-problem
 	@Test
-	public void createCommodityBatchTest()
+	public void createCommodityBatchTEST()
 	{
 		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
 
@@ -58,8 +64,9 @@ public class CommodityBatchDAOTest
 		}
 	}
 
-	@Ignore
-	public void updateCommodityBatchTest()
+	//TODO - virker ikke, måske DAO-problem
+	@Test
+	public void updateCommodityBatchTEST()
 	{
 		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
 		CommodityBatchDTO updateExpected = new CommodityBatchDTO(10, 2, 2, 15.0);
@@ -76,16 +83,20 @@ public class CommodityBatchDAOTest
 			fail("Error " + e.getMessage());
 		}
 	}
-	
-	@Ignore
-	public void getCommodityBatchTest()
+
+	//TODO - virker ikke, måske DAO-problem
+	@Test
+	public void getCommodityBatchTEST()
 	{
-		
+		//TODO
 	}
-	
-	@Ignore
-	public void getAllCommodityBatchesTest()
+
+	//TODO - virker ikke, måske DAO-problem
+	@Test
+	public void getAllCommodityBatchesTEST()
 	{
-		
+		//TODO
 	}
+
+
 }
