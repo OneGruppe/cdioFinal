@@ -42,4 +42,11 @@ $(document).ready(function() {
 		$('#showUsersTable').fadeOut(200);
 		$('#editUserForm').delay(300).fadeIn(200);
 	})
+	
+	$('#navigateToSetUser').click(function() {
+		$('#createUserForm').fadeOut(200);
+		$('#showUsersTable').fadeOut(200);
+		$('#editUserForm').fadeOut(200);
+		$('#setUserForm').delay(300).fadeIn(200);
+	})
 })

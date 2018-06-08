@@ -10,6 +10,7 @@
 <script src = "../js/showUser.js"></script>
 <script src = "../js/showAllUsers.js"></script>
 <script src = "../js/editUser.js"></script>
+<script src = "../js/setUserState.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -69,7 +70,7 @@
 		<button id ="navigateToEditUser" form = "findUserForm" type = "button"> Rediger bruger </button>
 		</td>
 		<td>
-		<button id ="navigateToSetUser" form = "findUserForm" type = "submit"> Ændre bruger status</button>
+		<button id ="navigateToSetUser" form = "findUserForm" type = "button"> Ændre bruger status</button>
 		</td>
 		</tr>
 	</table> <br>
@@ -106,11 +107,11 @@
 		<tr>
 		<td>
 		<label>ID</label><br>
-		<input type = "number" name = "id"> 
+		<input type = "number" id = "setID" name = "id" readonly> 
 		</td>
 		<td>
 		<label>Status</label><br>
-		<input type = "number" name = "id"> 
+		<input type = "number" id = "setStatus" name = "status"> 
 		</td>
 		<td>
 		<button id="setUser" form="setUserForm" type="submit">Ændre bruger status</button>
