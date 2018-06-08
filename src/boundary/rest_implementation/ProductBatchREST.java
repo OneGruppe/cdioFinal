@@ -1,7 +1,5 @@
 package boundary.rest_implementation;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -11,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
@@ -59,12 +58,12 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Override
 	@POST
 	@Path("updateProductBatch")
-	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
+	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("status") int status)
 	{
-		System.out.println(recipeID);
+		System.out.println(pbID +" "+status);
 		try 
 		{
-			pbc.updateProductBatch(pbID, recipeID, status);
+			pbc.updateProductBatch(pbID, status);
 		} 
 		catch (DALException e) 
 		{
@@ -84,8 +83,7 @@ public class ProductBatchREST implements IProductBatchREST {
 		} 
 		catch (DALException e) 
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
 	}
@@ -132,17 +130,18 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Path("getAllProductBatches")
 	public String getAllProductBatches() 
 	{
-		List<ProductBatchDTO> productbatch = null;
+		JSONArray prodList = new JSONArray();
+		
 		try 
 		{
-			productbatch = pbc.getAllProductBatches();
+			prodList.put(pbc.getAllProductBatches());
 		} 
 		catch (DALException e) 
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
-		return productbatch.toString();
+		
+		return prodList.toString();
 	}
 
 }

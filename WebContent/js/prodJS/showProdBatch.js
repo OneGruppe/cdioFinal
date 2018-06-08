@@ -12,6 +12,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
+				console.log(data);
 				if(data.pbID != undefined)
 				{
 					if(document.contains(document.getElementById("showProdTable")))
@@ -27,7 +28,7 @@ $(document).ready(function() {
 						r = t.insertRow(0);
 						
 						c = r.insertCell(0);
-						c.innerHTML = "ID";
+						c.innerHTML = "Produktbatch ID";
 						
 						c = r.insertCell(1);
 						c.innerHTML = "Recept ID";
@@ -63,7 +64,7 @@ $(document).ready(function() {
 						r = t.insertRow(0);
 						
 						c = r.insertCell(0);
-						c.innerHTML = "ID";
+						c.innerHTML = "Produktbatch ID";
 						
 						c = r.insertCell(1);
 						c.innerHTML = "Recept ID";
