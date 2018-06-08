@@ -5,9 +5,12 @@
 <meta charset="UTF-8">
 <title>CDIOFINAL</title>
 <script src = "../js/jquery-3.3.1.js"></script>
-<script src = "../js/navigationProd.js"></script>
+<script src = "../js/prodJS/navigationProd.js"></script>
+<script src = "../js/prodJS/createProdBatch.js"></script>
+<script src = "../js/prodJS/showProdBatch.js"></script>
 </head>
 <body>
+<!------- HEADER DIV START -------->
 <div id = "headerDiv">
 	<h2>PRODUKTIONSLEDER</h2>
 	
@@ -40,12 +43,16 @@
 		
 	</div>
 </div>
+<!------- HEADER DIV END -------->
 
+<!------- WATERMARK START -------->
 <div id = "watermark">
 	<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
 </div>
+<!------- WATERMARK END -------->
 
-<form id = "createProdForm">
+<!------- CREATE PROD FORM START -------->
+<form id = "createProdForm" method = "POST">
 	<table>
 		<tr>
 		<td>
@@ -53,20 +60,22 @@
 		<input type = "number" name = "pbID"> 
 		</td>
 		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" name = "recipeID"> 
+		</td>
+		<td>
 		<label>Status</label><br>
 		<input type = "number" name = "status"> 
 		</td>
 		<td>
-		<label>Recept ID</label><br>
-		<input type = "number" name = "receptID"> 
-		</td>
-		<td>
-		<button id="creatingProductBatch" form="createProdForm" type="submit">Opret Produktbatch</button>
+		<button id="creatingProductBatch" form="createProdForm" type="button">Opret Produktbatch</button>
 		</td>
 		</tr>
 	</table>
 </form>
+<!------- CREATE PROD FORM END -------->
 
+<!------- CREATE COM FORM START -------->
 <form id = "createComForm">
 	<table>
 		<tr>
@@ -88,7 +97,9 @@
 		</tr>
 	</table>
 </form>
+<!------- CREATE COM FORM END -------->
 
+<!------- FIND COM FORM START -------->
 <form id = "findComForm">
 	<table>
 		<tr>
@@ -97,12 +108,20 @@
 		<input type = "number" name = "cbID"> 
 		</td>
 		<td>
-		<button id="findCommodityBatch" form="findComForm" type="submit">Find Råvarebatch</button>
+		<button id="findCommodityBatch" form="findComForm" type="button">Find batch</button>
+		</td>
+		<td>
+		<button id ="navigateToEditCom" form = "findComForm" type = "button"> Rediger batch </button>
+		</td>
+		<td>
+		<button id ="navigateToDeleteCom" form = "findComForm" type = "button">Slet batch</button>
 		</td>
 		</tr>
 	</table>
 </form>
+<!------- FIND COM FORM END -------->
 
+<!------- FIND PROD FORM START -------->
 <form id = "findProdForm">
 	<table>
 		<tr>
@@ -111,43 +130,34 @@
 		<input type = "number" name = "pbID"> 
 		</td>
 		<td>
-		<button id="findProductBatch" form="findProdForm" type="submit">Find Produktbatch</button>
+		<button id="findProductBatch" form="findProdForm" type="button">Find batch</button>
+		</td>
+		<td>
+		<button id ="navigateToEditProd" form = "findProdForm" type = "button"> Rediger batch </button>
+		</td>
+		<td>
+		<button id ="navigateToDeleteProd" form = "findProdForm" type = "button">Slet batch</button>
 		</td>
 		</tr>
 	</table>
 </form>
+<!------- FIND PROD FORM END -------->
 
-<table id = "showProdTable">
-	<tr>
-		<th>ID</th>
-		<th>Status</th>
-		<th>Recept ID</th>
-		<th><button id = "deleteProdBatch">Slet et batch</button></th>
-		<th><button id = "updateProdBatch">Rediger et batch</button></th>
-	</tr>
-	<tr>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-	</tr>
-	
-</table>
+<!------- SHOW PROD TABLE START -------->
+<div id = "showProd"></div>
+<!------- SHOW PROD TABLE END -------->
 
-<table id = "showComTable">
-	<tr>
-		<th>ID</th>
-		<th>Råvare ID</th>
-		<th>Mængde</th>
-		<th><button id = "deleteComBatch">Slet et batch</button></th>
-		<th><button id = "updateComBatch">Rediger et batch</button></th>
-	</tr>
-	<tr>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-		<td>HARDCODE</td>
-	</tr>
-	
-</table>
+<!------- SHOW PRODS TABLE START -------->
+<div id = "showProds"></div>
+<!------- SHOW PRODS TABLE END -------->
+
+<!------- SHOW COM TABLE START -------->
+<div id = "showCom"></div>
+<!------- SHOW COM TABLE END -------->
+
+<!------- SHOW COMS TABLE START -------->
+<div id = "showComs"></div>
+<!------- SHOW COMS TABLE END -------->
 
 </body>
 </html>

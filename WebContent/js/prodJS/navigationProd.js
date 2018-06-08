@@ -14,8 +14,6 @@ $(document).ready(function() {
 	$('#createComForm').hide();
 	$('#findComForm').hide();
 	$('#findProdForm').hide();
-	$('#showComTable').hide();
-	$('#showProdTable').hide();
 	
 	$('#navigateToCreateOptions').click(function() {
 		$('#dropDownCreateProd').toggle(500);
