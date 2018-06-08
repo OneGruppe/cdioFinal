@@ -25,12 +25,10 @@ public class RecipeDAOTest
 	public void setUp() {
 		tempID = 0;
 		
-		try
-		{
+		try {
 			dao = new RecipeDAO();
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
@@ -40,7 +38,7 @@ public class RecipeDAOTest
 		try {
 			Connector con = new Connector();
 			
-			for (int i = 1; i <= tempID; i++) {
+			for (int i = 1; i <= tempID; i++) { //i is equivalent to id therefor i starts at 1
 				con.doUpdate("DELETE FROM recipe WHERE recipeID = " + i);
 			}
 		} 
@@ -52,10 +50,10 @@ public class RecipeDAOTest
 	@Test
 	public void testCreateRecipe() {
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
-		tempID++;
 
 		try {
 		dao.createRecipe(expected);
+		tempID++;
 
 		RecipeDTO actual = dao.getRecipe(1);
 		assertEquals(expected.toString(), actual.toString());
@@ -69,10 +67,11 @@ public class RecipeDAOTest
 	public void testUpdateRecipe() {
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
 		RecipeDTO updateExpected = new RecipeDTO(1, "Not Pensilin");
-		tempID++;
 
 		try {
 			dao.createRecipe(dto);
+			tempID++;
+
 			dao.updateRecipe(updateExpected);
 	
 			RecipeDTO actual = dao.getRecipe(1);
@@ -87,10 +86,11 @@ public class RecipeDAOTest
 	@Test
 	public void testDeleteRecipe() {
 		RecipeDTO dto = new RecipeDTO(1, "Pensilin");
-		tempID++;
 
 		try {
 			dao.createRecipe(dto);
+			tempID++;
+			
 			dao.deleteRecipe(1);
 	
 			assertTrue(dao.getRecipe(1).toString() == null);
@@ -104,10 +104,11 @@ public class RecipeDAOTest
 	@Test
 	public void testGetRecipe() {
 		RecipeDTO expected = new RecipeDTO(1, "Pensilin");
-		tempID++;
 		
 		try {
 			dao.createRecipe(expected);
+			tempID++;
+
 			RecipeDTO actual = dao.getRecipe(1);
 	
 			assertEquals(expected.toString(), actual.toString());
@@ -120,9 +121,7 @@ public class RecipeDAOTest
 	@Test
 	public void testGetAllRecipes() {
 		RecipeDTO expected1 = new RecipeDTO(1, "Pensilin");
-		tempID++;
 		RecipeDTO expected2 = new RecipeDTO(2, "Panodil");
-		tempID++;
 		
 		List<RecipeDTO> expectedList = new ArrayList<RecipeDTO>();
 		expectedList.add(expected1);
@@ -130,7 +129,10 @@ public class RecipeDAOTest
 		
 		try {
 			dao.createRecipe(expected1);
+			tempID++;
+			
 			dao.createRecipe(expected2);
+			tempID++;
 
 			List<RecipeDTO> actualList = dao.getAllRecipes();
 	

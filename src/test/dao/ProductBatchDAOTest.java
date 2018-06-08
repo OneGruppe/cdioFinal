@@ -27,143 +27,105 @@ import exceptions.DALException;
 
 public class ProductBatchDAOTest
 {
-	ProductBatchDAO productbdao;
-	RecipeDAO recipedao;
-	CommodityDAO commoditydao;
-	SupplierDAO supplierdao;
-	UserDAO userdao;
-	CommodityBatchDAO commoditybatchdao;
+	ProductBatchDAO productBatchDAO;
+	RecipeDAO recipeDAO; //Needed because ProductBatch has foreign key
+	int tempID; //Used to get multiple ID's
 
 	@Before
-	public void connect()
-	{
-		try
-		{
-			commoditydao = new CommodityDAO();
-			commoditybatchdao = new CommodityBatchDAO();
-			productbdao = new ProductBatchDAO();
-			recipedao = new RecipeDAO();
-			supplierdao = new SupplierDAO();
-			userdao = new UserDAO();
+	public void setUp(){
+		tempID = 0;
+		
+		try {
+			recipeDAO = new RecipeDAO();
+			productBatchDAO = new ProductBatchDAO();
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
 
 	@After
-	public void teardown()
-	{
-		try
-		{
-			supplierdao.deleteSupplier(6);
-			commoditydao.deleteCommodity(1);
-			commoditybatchdao.deleteCommodityBatch(4);
-			recipedao.deleteRecipe(5);
-			productbdao.deleteProductBatch(3);
+	public void teardown() {
+		try {
 			Connector con = new Connector();
-			con.doUpdate("DELETE FROM users WHERE userID = 3");
+			
+			for(int i = 1; i <= tempID; i++) {
+				con.doUpdate("DELETE FROM productBatch WHERE productBatchID = " + i);
+				con.doUpdate("DELETE FROM recipe WHERE recipeID = " + i);
+			}
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
 
 	@Test
-	public void createProductBatch() 
-	{
-		try
-		{
-			//Make a supplier
-			SupplierDTO suppdto = new SupplierDTO(6, "Simons Lager");
-			supplierdao.createSupplier(suppdto);
-
-			//Make a supplierList
-			List<SupplierDTO> suppList = new ArrayList<SupplierDTO>();
-			suppList.add(suppdto);
-
-			//Make a commodity
-			CommodityDTO comdto = new CommodityDTO(1, "Tomat", suppList);
-			commoditydao.createCommodity(comdto);
-
-			//Make commodityBatch
-			CommodityBatchDTO combatdto = new CommodityBatchDTO(4, comdto.getId(), 20);
-			commoditybatchdao.createCommodityBatch(combatdto);
-
-			//Make a commodityList
-			List<Integer> comList = new ArrayList<Integer>();
-			comList.add(comdto.getId());
-
-			//Make a recipe
-			RecipeDTO recipedto = new RecipeDTO(5, "Pizza", comList, 0.5, 0.1);
-			recipedao.createRecipe(recipedto);
-
-			//Make a user
-			UserDTO userdto = new UserDTO(3, "Thomas Nielsen", "TN", 1);
-			userdao.createUser(userdto);
-
-			//Make a productBatch
-			ProductBatchDTO expected = new ProductBatchDTO(3, 1, recipedto.getId(), userdto.getId(), combatdto.getId(), 0.1, 10);
-			productbdao.createProductBatch(expected);
+	public void testCreateAndGetProductBatch() {
+		RecipeDTO recipeDTO = new RecipeDTO(1, "Test");
+		ProductBatchDTO expected = new ProductBatchDTO(1, 1, 1);
+				
+		try {
+			recipeDAO.createRecipe(recipeDTO);
 			
-			ProductBatchDTO actual = productbdao.getProductBatch(3);
+			productBatchDAO.createProductBatch(expected);
+			tempID++;
+			
+			ProductBatchDTO actual = productBatchDAO.getProductBatch(1);
 			assertEquals(expected.toString(), actual.toString());
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	/*
-	@Ignore
-	public void updateAndGetUser() 
-	{
-		ProductBatchDTO exPBatch = new ProductBatchDTO(3, 1, recipeID, userID, comBatID, tara, netto);
-		ProductBatchDTO updPBatch = new ProductBatchDTO(3, 2, recipeID, userID, comBatID, tara, netto);
-
-		/*
-		try
-		{
-			userdao.createUser(exUser);
-			ProductBatchDAO before = userdao.getUser(5);
-			assertEquals(exUser.toString(), before.toString());
-
-			// Update ProductBatch
-			userdao.updateUser(updUser);
-			ProductBatchDAO after = userdao.getUser(5);
-			assertEquals(updUser.toString(), after.toString());
+	@Test
+	public void testUpdateProductBacth() {
+		RecipeDTO recipeDTO = new RecipeDTO(1, "Test");
+		ProductBatchDTO productBatchDTO = new ProductBatchDTO(1, 1, 1);
+		ProductBatchDTO updateExpected = new ProductBatchDTO(1, 1, 0);
+		
+		try {
+			recipeDAO.createRecipe(recipeDTO);
+			
+			productBatchDAO.createProductBatch(productBatchDTO);
+			productBatchDAO.updateProductBatch(updateExpected);
+			tempID++;
+			
+			ProductBatchDTO actual = productBatchDAO.getProductBatch(1);
+			
+			assertEquals(updateExpected.toString(), actual.toString());
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	@Ignore
-	public void getALLUser() 
-	{
-		ProductBatchDTO userPBatch = new ProductBatchDTO(3, status, recipeID, userID, comBatID, tara, netto);
-
-		try
-		{
-			userdao.createUser(userOne);
-			for (ProductBatchDAO usr : userdao.getAllUsers())
-			{
-				if (usr.getUserID() == 5)
-				{
-					assertEquals(userOne.toString(), usr.toString());
-					break;
-				}
-			}
+	@Test
+	public void testGetALLUser() {
+		RecipeDTO recipeDTO1 = new RecipeDTO(1, "Test1");
+		RecipeDTO recipeDTO2 = new RecipeDTO(2, "Test2");
+		ProductBatchDTO expected1 = new ProductBatchDTO(1, 1, 1);
+		ProductBatchDTO expected2 = new ProductBatchDTO(2, 2, 1);
+		
+		List<ProductBatchDTO> expectedList = new ArrayList<ProductBatchDTO>();
+		expectedList.add(expected1);
+		expectedList.add(expected2);
+		
+		try {
+			recipeDAO.createRecipe(recipeDTO1);
+			productBatchDAO.createProductBatch(expected1);
+			tempID++;
+			
+			recipeDAO.createRecipe(recipeDTO2);
+			productBatchDAO.createProductBatch(expected2);
+			tempID++;
+			
+			List<ProductBatchDTO> actualList = productBatchDAO.getAllProductBatches();
+			
+			assertEquals(expectedList.toString(), actualList.toString());
 		}
-		catch(DALException e)
-		{
+		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
-	*/
-
 }

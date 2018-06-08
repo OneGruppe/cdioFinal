@@ -105,7 +105,6 @@ public class CommodityDAO implements ICommodityDAO
 			}
 			while(rs.next())
 			{
-				commodityName = rs.getString("commodityName");
 				supplierList.add(new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName")));
 			}
 			return new CommodityDTO(commodityID, commodityName, supplierList);
@@ -134,7 +133,7 @@ public class CommodityDAO implements ICommodityDAO
 			{
 				CommodityDTO comdto = new CommodityDTO(rsCom.getInt("commodityID"), rsCom.getString("commodityName"), null);
 				comList.add(comdto);
-				if (comdto.getId() == 0) {throw new DALException("Råvarelistenlisten er tom");}
+				if (comdto.getId() == 0) {throw new DALException("Rï¿½varelistenlisten er tom");}
 			}
 			while (rsSup.next())
 			{
