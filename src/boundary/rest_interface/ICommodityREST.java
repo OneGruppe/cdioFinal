@@ -32,9 +32,10 @@ public interface ICommodityREST {
 	 * <h1> <i>deleteCommodity</i> </h1> <br>
 	 * Deletes a commodity
 	 * @param id
+	 * @return 
 	 * @throws DALException
 	 */
-	public void deleteCommodity(int id) throws DALException;
+	public String deleteCommodity(int id) throws DALException;
 	
 	/**
 	 * <h1> <i>getCommodity</i> </h1> <br>
@@ -43,7 +44,7 @@ public interface ICommodityREST {
 	 * @return a single commodity from database
 	 * @throws DALException
 	 */
-	public CommodityDTO getCommodity(int id) throws DALException;
+	public String getCommodity(int id) throws DALException;
 	
 	/**
 	 * <h1> <i>getAllCommodities</i> </h1> <br>
@@ -51,6 +52,6 @@ public interface ICommodityREST {
 	 * @return a list of CommodityDTO objects
 	 * @throws DALException
 	 */
-	public List<CommodityDTO> getAllCommodities() throws DALException;
+	public String getAllCommodities() throws DALException;
 
 }

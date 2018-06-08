@@ -74,8 +74,9 @@ public class SupplierREST implements ISupplierREST{
 				}
 			}
 			else {
+				String oldName = sc.getSupplier(id).getName();
 				sc.createSupplier(id, name);
-				message = "Leverandøren er opdateret til " + name + " - " + id;
+				message = "Leverandøren " + oldName + " er opdateret til " + name + " - " + id;
 			}
 		}
 		catch(DALException e) {
@@ -92,12 +93,13 @@ public class SupplierREST implements ISupplierREST{
 		String message;
 
 		try {
-			if(id < 0 || id == 0) {
+			if(id < 1) {
 				message = "Fejl, ugyldigt input!";
 			}
 			else {
+				String oldName = sc.getSupplier(id).getName();
 				sc.deleteSupplier(id);
-				message = "Levenrandøren med ID " + id + " er slettet";
+				message = "Levenrandøren " + oldName + " er blevet fjernet";
 			}
 		}
 		catch(DALException e) {
@@ -125,7 +127,7 @@ public class SupplierREST implements ISupplierREST{
 				message = "Leverandøren " + supplier.getName() + " blev fundet";
 			}
 			else {
-				message = "Fejl, ugyldig ID";
+				message = "Fejl, der eksiterer ingen leverandøre med dette ID";
 			}
 		}
 		catch(DALException e) {
