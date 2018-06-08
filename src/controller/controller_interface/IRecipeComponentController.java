@@ -9,23 +9,25 @@ import exceptions.DALException;
 public interface IRecipeComponentController {
 	/**
 	 * Creates Recipe component
+	 * @param recipeComponentID
 	 * @param recipeID
 	 * @param commodityID
 	 * @param non_netto
 	 * @param tolerance
 	 * @throws DALException
 	 */
-	public void createRecipeComponent(int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
+	public void createRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
 	
 	/**
-	 * Updates Recipe component 
+	 * Updates Recipe component
+	 * @param recipeComponentID
 	 * @param recipeID
 	 * @param commodityID
 	 * @param non_netto
 	 * @param tolerance
 	 * @throws DALException
 	 */
-	public void updateRecipeComponent(int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
+	public void updateRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
 	
 	/**
 	 * Returns a single Recipe component
@@ -33,7 +35,7 @@ public interface IRecipeComponentController {
 	 * @return a single RecipeComponentDTO object
 	 * @throws DALException
 	 */
-	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException;
+	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException;
 	
 	/**
 	 * Returns a list of all Recipe components

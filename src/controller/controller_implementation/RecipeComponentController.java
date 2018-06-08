@@ -20,9 +20,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#createRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void createRecipeComponent(int recipeID, int commodityID, double non_netto, double tolerance)
+	public void createRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance)
 			throws DALException {
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, commodityID, non_netto, tolerance);
+		RecipeComponentDTO component = new RecipeComponentDTO(recipeComponentID, recipeID, commodityID, non_netto, tolerance);
 		
 		dao.createRecipeComponent(component);
 	}
@@ -32,9 +32,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#updateRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void updateRecipeComponent(int recipeID, int commodityID, double non_netto, double tolerance)
+	public void updateRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance)
 			throws DALException {
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, commodityID, non_netto, tolerance);
+		RecipeComponentDTO component = new RecipeComponentDTO(recipeComponentID, recipeID, commodityID, non_netto, tolerance);
 				
 		dao.updateRecipeComponent(component);
 	}
@@ -44,8 +44,8 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#getRecipeComponent(int)
 	 */
 	@Override
-	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException {
-		List<RecipeComponentDTO> component = dao.getRecipeComponent(recipeID);
+	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException {
+		RecipeComponentDTO component = dao.getRecipeComponent(recipeID);
 		return component;
 	}
 
