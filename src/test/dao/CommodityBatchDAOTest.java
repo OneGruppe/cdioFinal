@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import data.connector.Connector;
 import data.dao_implementation.CommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
@@ -14,13 +14,10 @@ import exceptions.DALException;
 public class CommodityBatchDAOTest 
 {
 	CommodityBatchDAO dao;
-	int counter; //Counts the number of objects created
 
 	@Before
 	public void setUp() 
 	{
-		counter = 1;
-		
 		try
 		{
 			dao = new CommodityBatchDAO();
@@ -36,10 +33,7 @@ public class CommodityBatchDAOTest
 	{
 		try 
 		{
-			Connector con = new Connector();
-			for(int i=1; i < counter; i++) {
-			con.doQuery("DELETE FROM commodityBatch WHERE commodityBatchID= " + i);
-			}
+			dao.deleteCommodityBatch(10);
 		}
 		catch (DALException e)
 		{
@@ -48,9 +42,9 @@ public class CommodityBatchDAOTest
 	}
 
 	@Test
-	public void createCommodityBatch()
+	public void createCommodityBatchTest()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(10, 10, 10.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
 
 		try
 		{
@@ -64,11 +58,11 @@ public class CommodityBatchDAOTest
 		}
 	}
 
-	@Test
-	public void updateCommodityBatch()
+	@Ignore
+	public void updateCommodityBatchTest()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(10, 10, 10.0);
-		CommodityBatchDTO updateExpected = new CommodityBatchDTO(10, 10, 15.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
+		CommodityBatchDTO updateExpected = new CommodityBatchDTO(10, 2, 2, 15.0);
 
 		try
 		{
@@ -81,5 +75,17 @@ public class CommodityBatchDAOTest
 		{
 			fail("Error " + e.getMessage());
 		}
+	}
+	
+	@Ignore
+	public void getCommodityBatchTest()
+	{
+		
+	}
+	
+	@Ignore
+	public void getAllCommodityBatchesTest()
+	{
+		
 	}
 }
