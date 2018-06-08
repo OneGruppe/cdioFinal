@@ -32,9 +32,16 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@PUT
 	@Path("createCommodityBatch")
-	public void createCommodityBatch(@FormParam("cbID")int cbID, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) throws DALException 
+	public void createCommodityBatch(@FormParam("cbID")int cbID, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
-		cbc.createCommodityBatch(cbID, commodityID, amount);		
+		try 
+		{
+			cbc.createCommodityBatch(cbID, commodityID, amount);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+		}		
 	}
 
 	@Override

@@ -1,8 +1,5 @@
 package boundary.rest_interface;
 
-import java.util.List;
-
-import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
 public interface IProductBatchREST {
@@ -19,7 +16,7 @@ public interface IProductBatchREST {
 	 * @param netto
 	 * @throws DALException
 	 */
-	public void createProductBatch(int pbID, int status, int recipeID, int userID, int comBatID, double tara, double netto) throws DALException;
+	public String createProductBatch(int pbID, int recipeID, int status);
 	
 	/**
 	 * <h1> <i>updateProductBatch</i> </h1> <br>
@@ -33,7 +30,7 @@ public interface IProductBatchREST {
 	 * @param netto
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int status, int recipeID, int userID, int comBatID, double tara, double netto) throws DALException;
+	public void updateProductBatch(int pbID, int recipeID, int status);
 	
 	/**
 	 * <h1> <i>deleteProductBatch</i> </h1> <br>
@@ -41,7 +38,7 @@ public interface IProductBatchREST {
 	 * @param pbID
 	 * @throws DALException
 	 */
-	public void deleteProductBatch(int pbID) throws DALException;
+	public void deleteProductBatch(int pbID);
 	
 	/**
 	 * <h1> <i>getProductBatch</i> </h1> <br>
@@ -50,7 +47,7 @@ public interface IProductBatchREST {
 	 * @return a single productbatch
 	 * @throws DALException
 	 */
-	public ProductBatchDTO getProductBatch(int pbID) throws DALException;
+	public String getProductBatch(int pbID);
 	
 	/**
 	 * <h1> <i>getAllProductBatches</i> </h1> <br>
@@ -58,6 +55,6 @@ public interface IProductBatchREST {
 	 * @return a list of ProductBatchDTO objects
 	 * @throws DALException
 	 */
-	public List<ProductBatchDTO> getAllProductBatches() throws DALException;
+	public String getAllProductBatches();
 
 }
