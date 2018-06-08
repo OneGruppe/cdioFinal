@@ -14,7 +14,7 @@ import exceptions.DALException;
 public class CommodityDAO implements ICommodityDAO 
 {
 	private Connector con;
-	
+
 	/**
 	 * Constructor that uses Constant-class 
 	 * @throws DALException
@@ -23,7 +23,7 @@ public class CommodityDAO implements ICommodityDAO
 	{
 		con = new Connector();
 	}
-	
+
 	/**
 	 * Constructor that uses the parameters from 
 	 * @param server
@@ -49,7 +49,7 @@ public class CommodityDAO implements ICommodityDAO
 
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
-			con.doUpdate("INSERT INTO commodity_supplier VALUES (" +commodity.getId()+ ", " +supplier.getId()+ ")");
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" + commodity.getId() + ", " + supplier.getSupplierID()+ ")");
 		}
 	}
 
@@ -65,7 +65,7 @@ public class CommodityDAO implements ICommodityDAO
 
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
-			con.doUpdate("INSERT INTO commodity_supplier VALUES (" + commodity.getId() + ", " + supplier.getId() + ")");
+			con.doUpdate("INSERT INTO commodity_supplier VALUES (" + commodity.getId() + ", " + supplier.getSupplierID() + ")");
 		}
 	}
 
@@ -124,7 +124,7 @@ public class CommodityDAO implements ICommodityDAO
 		List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
 
 		ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
-		ResultSet rsSup = con.doQuery("SELECT * FROM commoditySupplier");
+		ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
 
 		try
 		{
@@ -132,7 +132,9 @@ public class CommodityDAO implements ICommodityDAO
 			{
 				CommodityDTO comdto = new CommodityDTO(rsCom.getInt("commodityID"), rsCom.getString("commodityName"), null);
 				comList.add(comdto);
-				if (comdto.getId() == 0) {throw new DALException("R�varelistenlisten er tom");}
+				if (comdto.getId() == 0) {
+					throw new DALException("Raavarelistenlisten er tom");
+				}
 			}
 			while (rsSup.next())
 			{

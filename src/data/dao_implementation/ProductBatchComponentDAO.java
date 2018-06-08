@@ -12,7 +12,7 @@ import exceptions.DALException;
 public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 {
 	private Connector con;
-	
+
 	/**
 	 * Constructor that uses Constant-class 
 	 * @throws DALException
@@ -21,7 +21,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	{
 		con = new Connector();
 	}
-	
+
 	/**
 	 * Constructor that uses the parameters from 
 	 * @param server
@@ -35,7 +35,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	{
 		con = new Connector(server, port, database, username, password);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IProductBatchComponentDAO#createProductBatchComponent(data.dto.ProductBatchComponentDTO)
@@ -44,11 +44,11 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
 		con.doQuery("INSERT INTO productBatchComponent(productBatchID, commodityBatchID, userID, tara, netto) VALUES(" 
-																	+ component.getProductbatchID() + ", "
-																	+ component.getCommodityBatchID() + ", "
-																	+ component.getUserID() + ", "
-																	+ component.getTara() + ", "
-																	+ component.getNetto() + ")" );
+				+ component.getProductBatchID() + ", "
+				+ component.getCommodityBatchID() + ", "
+				+ component.getUserID() + ", "
+				+ component.getTara() + ", "
+				+ component.getNetto() + ")" );
 	}
 
 	/*
@@ -59,10 +59,10 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
 		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchID() + ", "
-														+ "userID= " + component.getUserID() + ", "
-														+ "tara= " + component.getTara() + ", "
-														+ "netto= " + component.getNetto()
-					+ "WHERE productBatchID= " + component.getProductbatchID());
+				+ "userID= " + component.getUserID() + ", "
+				+ "tara= " + component.getTara() + ", "
+				+ "netto= " + component.getNetto()
+				+ "WHERE productBatchID= " + component.getProductBatchID());
 	}
 
 	/*
@@ -70,22 +70,16 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
 	 */
 	@Override
-	public List<ProductBatchComponentDTO> getProductBatchComponent(int productBatchID) throws DALException {
-		
+	public ProductBatchComponentDTO getProductBatchComponent(int productBatchID) throws DALException {
+
 		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE productBatchID= " + productBatchID);
-		
-		List<ProductBatchComponentDTO> componentList = null;
-		
+
 		try {
 			if(!rs.first()) {
 				throw new DALException("Produkt batch komponenten med productBatchID'et " + productBatchID + " findes ikke");
 			} else {
-				while(rs.next()) {
-					componentList.add(new ProductBatchComponentDTO(productBatchID, rs.getInt("commodityID"),rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto")));
-					
-				}
+				return new ProductBatchComponentDTO(rs.getInt("productBatchComponentID"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
 			}
-			return componentList;
 		}
 		catch(SQLException e) {
 			throw new DALException(e.getMessage());
@@ -99,15 +93,15 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO
 	@Override
 	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException {
 		List<ProductBatchComponentDTO> productBatchList = null;
-		
+
 		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent");
-		
+
 		try {
 			while(rs.next()) {
-				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
+				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("productBatchComponentID"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
 				productBatchList.add(dto);
-				
-				if(dto.getProductbatchID() == 0) {
+
+				if(dto.getProductBatchID() == 0) {
 					throw new DALException("Produkt batch listen er tom");
 				}
 			}

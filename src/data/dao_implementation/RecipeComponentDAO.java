@@ -7,7 +7,6 @@ import java.util.List;
 
 import data.connector.Connector;
 import data.dao_interface.IRecipeComponentDAO;
-import data.dto.CommodityDTO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
@@ -45,13 +44,13 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	public void createRecipeComponent(RecipeComponentDTO component) throws DALException {
 		if(component.getRecipeComponentID() == 0) {
 			con.doUpdate("INSERT INTO recipeComponent(recipeID, commodityID, non_netto, tolerance) VALUES (" +
-					component.getRecipeID() + ", " + component.getcommodityID() + ", "
+					component.getRecipeID() + ", " + component.getCommodityID() + ", "
 					+ component.getNon_netto() + ", " + component.getTolerance() + ")" );
 		}
 		else
 		{
 			con.doUpdate("INSERT INTO recipeComponent(recipeComponentID, recipeID, commodityID, non_netto, tolerance) VALUES (" +
-					component.getRecipeComponentID() + ", " + component.getRecipeID() + ", " + component.getcommodityID() + ", "
+					component.getRecipeComponentID() + ", " + component.getRecipeID() + ", " + component.getCommodityID() + ", "
 					+ component.getNon_netto() + ", " + component.getTolerance() + ")" );
 		}
 	}
@@ -63,7 +62,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	@Override
 	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException {
 		con.doUpdate("UPDATE recipeComponent SET recipeID= " + component.getRecipeID() + 
-				", commodityID= " + component.getcommodityID() + ", non_netto= '" + component.getNon_netto() + 
+				", commodityID= " + component.getCommodityID() + ", non_netto= '" + component.getNon_netto() + 
 				"', tolerance= '" + component.getTolerance()
 				+ "' WHERE recipeComponentID= " + component.getRecipeComponentID());
 	}

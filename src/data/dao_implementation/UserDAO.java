@@ -10,7 +10,8 @@ import data.dao_interface.IUserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class UserDAO implements IUserDAO {
+public class UserDAO implements IUserDAO 
+{
 
 	private Connector con;
 
@@ -22,7 +23,7 @@ public class UserDAO implements IUserDAO {
 	{
 		con = new Connector();
 	}
-	
+
 	/**
 	 * Constructor that uses the parameters from 
 	 * @param server
@@ -111,7 +112,7 @@ public class UserDAO implements IUserDAO {
 				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
 				users.add(userdto);
 				if (userdto.getId() == 0) {throw new DALException("User-listen er tom");}
-				
+
 			}
 			return users;
 		}
