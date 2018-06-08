@@ -15,7 +15,7 @@ public interface IProductbatchComponentController {
 	 * @param netto
 	 * @throws DALException
 	 */
-	public void createProductBatchComponent(int pbID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
+	public void createProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
 	
 	/**
 	 * Updates a Product batch component
@@ -26,7 +26,7 @@ public interface IProductbatchComponentController {
 	 * @param netto
 	 * @throws DALException
 	 */
-	public void updateProductBatchComponent(int pbID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
+	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
 	
 	/**
 	 * Returns a single Product batch component

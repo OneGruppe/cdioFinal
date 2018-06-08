@@ -1,24 +1,28 @@
 package controller.controller_implementation;
 
 import boundary.weight.WeightTranslation;
+import controller.controller_interface.ICommodityBatchController;
+import controller.controller_interface.IProductBatchController;
+import controller.controller_interface.IRecipeComponentController;
+import controller.controller_interface.IUserController;
 import controller.controller_interface.IWeightController;
 import exceptions.DALException;
 
 public class WeightController implements IWeightController
 {
 
-	ProductBatchController pbc;
-	UserController user;
-	RecipeComponentController rcc;
-	CommodityBatchController cbc;
-	WeightTranslation weight;
+	private IProductBatchController pbc;
+	private IUserController user;
+	private IRecipeComponentController rcc;
+	private ICommodityBatchController cbc;
+	private WeightTranslation weight;
 
-	int state = 1;
-	int userID = -10;
-	double tara = 0;
-	int productBatchID = -100;
-	int goBack = 0;
-	int commodityBatchID = -1000;
+	private int state = 1;
+	private int userID = -10;
+	private double tara = 0;
+	private int productBatchID = -100;
+	private int goBack = 0;
+	private int commodityBatchID = -1000;
 
 	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
 	{
@@ -146,7 +150,7 @@ public class WeightController implements IWeightController
 				state--;
 			else
 			{
-				pbc.getProductBatch(productBatchID).setID(1);
+				pbc.getProductBatch(productBatchID).setId(1);
 				state++;
 			}
 		}
@@ -272,5 +276,6 @@ public class WeightController implements IWeightController
 			state--;
 		}	
 	}
+
 
 }

@@ -14,7 +14,7 @@ public interface ICommodityBatchController {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int cbID, int commodityID, double amount) throws DALException;
+	public void createCommodityBatch(int cbID, int commodityID, int supplierID, double amount) throws DALException;
 	
 	/**
 	 * Updates a commoditybatch
@@ -23,7 +23,7 @@ public interface ICommodityBatchController {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void updateCommodityBatch(int cbID, int commodityID, double amount) throws DALException;
+	public void updateCommodityBatch(int cbID, int commodityID, int supplierID, double amount) throws DALException;
 	
 	/**
 	 * Deletes a commoditybatch
