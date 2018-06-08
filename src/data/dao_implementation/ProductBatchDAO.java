@@ -66,7 +66,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void deleteProductBatch(int productBatchID) throws DALException 
 	{
-		con.doUpdate("DELETE FROM productBatch WHERE produktBatchID= " + productBatchID);
+		con.doUpdate("DELETE FROM productBatch WHERE productBatchID= " + productBatchID);
 	}
 
 

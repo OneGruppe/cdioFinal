@@ -23,7 +23,7 @@ public interface IProductBatchController {
 	 * @param status
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int recipeID, int status) throws DALException;
+	public void updateProductBatch(int pbID, int status) throws DALException;
 	
 	/**
 	 * Deletes a productbatch

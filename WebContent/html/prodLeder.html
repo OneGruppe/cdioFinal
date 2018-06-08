@@ -8,6 +8,9 @@
 <script src = "../js/prodJS/navigationProd.js"></script>
 <script src = "../js/prodJS/createProdBatch.js"></script>
 <script src = "../js/prodJS/showProdBatch.js"></script>
+<script src = "../js/prodJS/showAllProds.js"></script>
+<script src = "../js/prodJS/editProdBatch.js"></script>
+<script src = "../js/prodJS/deleteProdBatch.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -143,6 +146,30 @@
 </form>
 <!------- FIND PROD FORM END -------->
 
+<!------- EDIT PROD FORM START -------->
+<form id = "editProdForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch ID</label><br>
+		<input type = "number" id = "setID" name = "pbID" readonly> 
+		</td>
+		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" id = "setReceptID" name = "recpetID" readonly> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input type = "number" id = "setStatus" name = "status"> 
+		</td>
+		<td>
+		<button id="editProd" form="editProdForm" type="submit">Rediger batch</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- EDIT PROD FORM END -------->
+
 <!------- SHOW PROD TABLE START -------->
 <div id = "showProd"></div>
 <!------- SHOW PROD TABLE END -------->
@@ -160,4 +187,4 @@
 <!------- SHOW COMS TABLE END -------->
 
 </body>
-</html>
+</html> 

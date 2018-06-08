@@ -30,7 +30,7 @@ public interface IProductBatchREST {
 	 * @param netto
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int recipeID, int status);
+	public void updateProductBatch(int pbID, int status);
 	
 	/**
 	 * <h1> <i>deleteProductBatch</i> </h1> <br>
