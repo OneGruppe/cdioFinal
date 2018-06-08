@@ -8,7 +8,6 @@ import java.util.List;
 import data.connector.Connector;
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
-import data.dto.RecipeDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
@@ -46,7 +45,7 @@ public class CommodityDAO implements ICommodityDAO
 	@Override
 	public void createCommodity(CommodityDTO commodity) throws DALException 
 	{
-		con.doUpdate("INSERT INTO commodity (commodityID, commodityName) VALUES (" + commodity.getId() + ", " + commodity.getName() + ")");
+		con.doUpdate("INSERT INTO commodity VALUES (" + commodity.getId() + ", '" + commodity.getName() + "')");
 
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
@@ -62,7 +61,7 @@ public class CommodityDAO implements ICommodityDAO
 	public void updateCommodity(CommodityDTO commodity) throws DALException 
 	{
 		con.doUpdate("DELETE FROM commodity_supplier WHERE commodityID = " + commodity.getId());
-		con.doUpdate("UPDATE commodity SET name = " + commodity.getName() + "WHERE commodityID = " + commodity.getId());
+		con.doUpdate("UPDATE commodity SET name = '" + commodity.getName() + "' WHERE commodityID = " + commodity.getId());
 
 		for(SupplierDTO supplier : commodity.getSupplierList())
 		{
@@ -90,7 +89,7 @@ public class CommodityDAO implements ICommodityDAO
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
 		String commodityName = null;
 
-		ResultSet rs = con.doQuery("SELECT * FROM commodityView WHERE commodityID = " + commodityID + "");
+		ResultSet rs = con.doQuery("SELECT * FROM CommodityView WHERE commodityID = " + commodityID + "");
 
 		try
 		{
@@ -105,7 +104,6 @@ public class CommodityDAO implements ICommodityDAO
 			}
 			while(rs.next())
 			{
-				commodityName = rs.getString("commodityName");
 				supplierList.add(new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName")));
 			}
 			return new CommodityDTO(commodityID, commodityName, supplierList);
@@ -134,7 +132,7 @@ public class CommodityDAO implements ICommodityDAO
 			{
 				CommodityDTO comdto = new CommodityDTO(rsCom.getInt("commodityID"), rsCom.getString("commodityName"), null);
 				comList.add(comdto);
-				if (comdto.getId() == 0) {throw new DALException("Råvarelistenlisten er tom");}
+				if (comdto.getId() == 0) {throw new DALException("Rï¿½varelistenlisten er tom");}
 			}
 			while (rsSup.next())
 			{

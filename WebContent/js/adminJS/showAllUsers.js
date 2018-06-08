@@ -13,7 +13,6 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "GET",
 			success:function(data) {
-				console.log(data);
 				
 				if(document.contains(document.getElementById("showUsersTable")))
 				{

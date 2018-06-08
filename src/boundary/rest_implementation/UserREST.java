@@ -20,7 +20,7 @@ import exceptions.DALException;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("user")
 public class UserREST implements IUserREST {
-	
+
 	private UserController uc;
 	
 	public UserREST() 
@@ -35,45 +35,120 @@ public class UserREST implements IUserREST {
 	@Override
 	@POST
 	@Path("createUser")
-	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) throws DALException 
+	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
-		String returnMessage;
-		uc.createUser(name, ini, active);
-		System.out.println(name + ini + active);
-		returnMessage = "User succesfully created";
-		System.out.println(returnMessage);
-		return returnMessage;
+		String message;
+		
+		try 
+		{
+			if(name.equals("") || ini.equals("") || active < 0 && active > 1)
+			{
+				message = "Fejl i inputtet!";
+			}
+			else
+			{
+				uc.createUser(name, ini, active);
+				message = "Brugeren " + name + " er oprettet.";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();		
+		}
+		System.out.println(message);
+		return message;
 	}
 
 	@Override
 	@POST
 	@Path("updateUser")
-	public void updateUser(@FormParam("id") int id, @FormParam("name") String name, @FormParam("ini") String ini) throws DALException 
+	public String updateUser(@FormParam("id") int id, @FormParam("name") String name, @FormParam("ini") String ini) 
 	{
-		uc.updateUser(id, name, ini);
+		String message;
+		
+		try 
+		{
+			if(name.equals("") || ini.equals(""))
+			{
+				message = "Fejl i inputtet!";
+			}
+			else
+			{
+				uc.updateUser(id, name, ini);
+				message = "Brugeren " + name + " er opdateret!";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+		System.out.println(message);
+		return message;
 	}
 
 	@Override
 	@POST
 	@Path("setUserState")
-	public void setUserState(@FormParam("id") int id, @FormParam("state") int state) throws DALException 
+	public String setUserState(@FormParam("id") int id, @FormParam("state") int state) 
 	{
-		uc.setUserState(id, state);
+		String message;
+		
+		try 
+		{
+			if(state == 0 || state == 1)
+			{
+				uc.setUserState(id, state);
+				message = "Brugerens aktivitetsstatus er ændret til " + state;
+			}
+			else
+			{
+				message = "Brugerens aktivitetsstatus kan kun være 0 eller 1.";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+		
+		System.out.println(message);
+		return message;
 	}
 
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getUser")
-	public String getUser(@FormParam("id") int id) throws DALException
+	public String getUser(@FormParam("id") int id)
 	{
+		String message;
+		
 		JSONObject userJSON = new JSONObject();
 		UserDTO user;
-		user = uc.getUser(id);
-		userJSON.put("ID", user.getId());
-		userJSON.put("name", user.getName());
-		userJSON.put("ini", user.getIni());
-		userJSON.put("active", user.getActive());
+		
+		try 
+		{
+			if(id != 0)
+			{
+				user = uc.getUser(id);
+				userJSON.put("ID", user.getId());
+				userJSON.put("name", user.getName());
+				userJSON.put("ini", user.getIni());
+				userJSON.put("active", user.getActive());
+				
+				message = "Brugeren " + user.getName() + " blev fundet";
+			}
+			else
+			{
+				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+		
+		System.out.println(message);
+		
 		return userJSON.toString();
 	}
 
@@ -81,10 +156,23 @@ public class UserREST implements IUserREST {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllUsers")
-	public String getAllUsers() throws DALException 
+	public String getAllUsers() 
 	{
+		String message;
+		
 		JSONArray users = new JSONArray();
-		users.put(uc.getAllUsers());
+		
+		try 
+		{
+			users.put(uc.getAllUsers());
+			message = "Alle brugeren er fundet!";
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+		
+		System.out.println(message);
 		return users.toString();
 	}
 

@@ -2,20 +2,26 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
 import controller.controller_implementation.ProductBatchController;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
+
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("prodBatch")
 public class ProductBatchREST implements IProductBatchREST {
 	
 	private ProductBatchController pbc;
@@ -30,31 +36,57 @@ public class ProductBatchREST implements IProductBatchREST {
 	}
 
 	@Override
-	@PUT
+	@POST
 	@Path("createProductBatch")
-	public void createProductBatch(@FormParam("pbID") int pbID, @FormParam("status") int status, @FormParam("recipeID") int recipeID, @FormParam("userID") int userID, @FormParam("comBatID") int comBatID, @FormParam("tara") double tara,
-			@FormParam("netto") double netto) throws DALException 
+	public String createProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status) 
 	{
-		pbc.createProductBatch(pbID, status, recipeID, userID, comBatID, tara, netto);
+		String message;
+
+		try 
+		{
+			pbc.createProductBatch(pbID, recipeID, status);
+			message = "Batchet blev oprettet";
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			message = "Batchet blev ikke oprettet pga. " + e.getMessage();
+		}
 		
+		return message;
 	}
 
 	@Override
 	@POST
 	@Path("updateProductBatch")
-	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("status") int status, @FormParam("recipeID") int recipeID, @FormParam("userID") int userID, @FormParam("comBatID") int comBatID, @FormParam("tara") double tara,
-			@FormParam("netto") double netto) throws DALException 
+	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
 	{
-		pbc.updateProductBatch(pbID, status, recipeID, userID, comBatID, tara, netto);
+		System.out.println(recipeID);
+		try 
+		{
+			pbc.updateProductBatch(pbID, recipeID, status);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
 	@Override
 	@DELETE
 	@Path("deleteProductBatch")
-	public void deleteProductBatch(@FormParam("pbID") int pbID) throws DALException 
+	public void deleteProductBatch(@FormParam("pbID") int pbID)
 	{
-		pbc.deleteProductBatch(pbID);
+		try 
+		{
+			pbc.deleteProductBatch(pbID);
+		} 
+		catch (DALException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -62,22 +94,55 @@ public class ProductBatchREST implements IProductBatchREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getProductBatch")
-	public ProductBatchDTO getProductBatch(@FormParam("pbID") int pbID) throws DALException 
+	public String getProductBatch(@FormParam("pbID") int pbID)
 	{
-		ProductBatchDTO productbatch;
-		productbatch = pbc.getProductBatch(pbID);
-		return productbatch;
+		System.out.println(pbID);
+		
+		JSONObject prodJSON = new JSONObject();
+		ProductBatchDTO prodbatch;
+		
+		try 
+		{
+			
+			if(pbID != 0)
+			{
+				prodbatch = pbc.getProductBatch(pbID);
+				
+				prodJSON.put("pbID", prodbatch.getID());
+				prodJSON.put("recipeID", prodbatch.getRecipeID());
+				prodJSON.put("status",  prodbatch.getStatus());
+				
+			}
+			else
+			{
+				System.out.println("FEJL i ID input");
+			}
+		}
+		catch(DALException e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		return prodJSON.toString();
 	}
 
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllProductBatches")
-	public List<ProductBatchDTO> getAllProductBatches() throws DALException 
+	public String getAllProductBatches() 
 	{
-		List<ProductBatchDTO> productbatch;
-		productbatch = pbc.getAllProductBatches();
-		return productbatch;
+		List<ProductBatchDTO> productbatch = null;
+		try 
+		{
+			productbatch = pbc.getAllProductBatches();
+		} 
+		catch (DALException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productbatch.toString();
 	}
 
 }

@@ -8,9 +8,9 @@ import test.dao.*;
 
 @RunWith(Suite.class)
 
-@SuiteClasses({SupplierDAOTest.class})
+@SuiteClasses({CommodityDAOTest.class})
 public class AllTests {
 	
-	//RecipeDAOTest.class, UserDAOTest.class
+	//RecipeDAOTest.class, UserDAOTest.class, SupplierDAOTest.class, ProductBatchDAOTest.class
 	
 }

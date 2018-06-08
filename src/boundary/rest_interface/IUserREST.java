@@ -1,6 +1,5 @@
 package boundary.rest_interface;
 
-import data.dto.UserDTO;
 import exceptions.DALException;
 
 public interface IUserREST {
@@ -13,7 +12,7 @@ public interface IUserREST {
 	 * @param active user state (active(1)/inactive(0))
 	 * @throws DALException
 	 */
-	public String createUser(String name, String ini, int active) throws DALException;
+	public String createUser(String name, String ini, int active);
 	
 	/**
 	 * <h1> <i>updateUser</i> </h1> <br>
@@ -23,7 +22,7 @@ public interface IUserREST {
 	 * @param ini
 	 * @throws DALException
 	 */
-	public void updateUser(int id, String name, String ini) throws DALException;
+	public String updateUser(int id, String name, String ini);
 	
 	/**
 	 * <h1> <i>setUserState</i> </h1> <br>
@@ -32,7 +31,7 @@ public interface IUserREST {
 	 * @param state
 	 * @throws DALException
 	 */
-	public void setUserState(int id, int state) throws DALException;
+	public String setUserState(int id, int state);
 	
 	/**
 	 * <h1> <i>getUser</i> </h1> <br>
@@ -41,7 +40,7 @@ public interface IUserREST {
 	 * @return a single user from database
 	 * @throws DALException
 	 */
-	public String getUser(int id) throws DALException;
+	public String getUser(int id);
 	
 	/**
 	 * <h1> <i>getAllUser</i> </h1> <br>
@@ -49,5 +48,5 @@ public interface IUserREST {
 	 * @return a list of UserDTO objects
 	 * @throws DALException
 	 */
-	public String getAllUsers() throws DALException;
+	public String getAllUsers();
 }

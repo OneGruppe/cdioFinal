@@ -2,9 +2,7 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -12,18 +10,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import boundary.rest_interface.ISupplierREST;
 import controller.controller_implementation.SupplierController;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-/*@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-@Path("commodity")*/
-public class SupplierREST {
 
+public class SupplierREST implements ISupplierREST{
+	
 	private SupplierController sc;
 	
-	public SupplierREST() 
+	public SupplierREST()
 	{
 		try {
 			
@@ -35,22 +32,23 @@ public class SupplierREST {
 		}
 	}
 
+	@Override
 	@PUT
 	@Path("createSupplier")
-	public void createSupplier(@FormParam("id") int id, @FormParam("name") String name) throws DALException 
+	public void createSupplier(int id, String name) throws DALException 
 	{
-		
-		sc.createSupplier(id, name);
-		
+		sc.createSupplier(id, name);	
 	}
 
+	@Override
 	@POST
 	@Path("updateSupplier")
-	public void updateSupplier(@FormParam("id") int id, @FormParam("name") String name) throws DALException 
+	public void updateSupplier(int id, String name) throws DALException 
 	{
 		sc.updateSupplier(id, name);
 	}
 
+	@Override
 	@DELETE
 	@Path("deleteSupplier")
 	public void deleteSupplier(int id) throws DALException 
@@ -58,24 +56,26 @@ public class SupplierREST {
 		sc.deleteSupplier(id);
 	}
 
+	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getSupplier")
-	public SupplierDTO getSupplier(@FormParam("id") int id) throws DALException 
-	{
-		SupplierDTO Supplier;
-		Supplier = sc.getSupplier(id);
-		return Supplier;
+	public SupplierDTO getSupplier(int id) throws DALException 
+	{	
+		SupplierDTO sup;
+		sup = sc.getSupplier(id);
+		return sup;
 	}
 
+	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllSuppliers")
-	public List<SupplierDTO> getAllSuppliers() throws DALException 
+	public List<SupplierDTO> getAllSupplier() throws DALException 
 	{
-		List<SupplierDTO> Suppliers;
-		Suppliers = sc.getAllSuppliers();
-		return Suppliers;
+		List<SupplierDTO> sups;
+		sups= sc.getAllSuppliers();
+		return sups;
 	}
-	
+
 }
