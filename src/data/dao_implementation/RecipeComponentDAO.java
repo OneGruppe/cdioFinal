@@ -81,13 +81,13 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 
 		try {
 			if(!rs.first()) {
-				throw new DALException("Recipe komponent med recipeID " + recipeID + " findes ikke.");
+				throw new DALException("" + recipeID);
 			}
 			else
 			{
 				while(rs.next())
 				{
-					rCompList.add(new RecipeComponentDTO(recipeID, rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));					
+					rCompList.add(new RecipeComponentDTO(rs.getInt("recipeComponentID"), recipeID, rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));					
 				}
 			}
 			return rCompList;

@@ -83,7 +83,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("ProduktBatch med ID " + productbatchID + " findes ikke");
+				throw new DALException("" + productbatchID);
 			}
 			else
 			{

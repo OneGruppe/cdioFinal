@@ -194,7 +194,7 @@ public class WeightTranslation
 	 * @return
 	 * @throws DALException
 	 */
-	public String getInputWithMsg(String promtMessage, String message2, String unit) throws DALException 
+	public int getInputWithMsg(String promtMessage, String message2, String unit) throws DALException 
 	{
 		try
 		{
@@ -211,7 +211,7 @@ public class WeightTranslation
 			{
 				correctedUnit = unit.substring(0, 7);
 			}
-			write.println("RM20 8 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
+			write.println("RM20 1 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
 			read.readLine();
 			String response = read.readLine();
 
@@ -233,21 +233,16 @@ public class WeightTranslation
 				if(response.subSequence(0, 6).equals("RM20 A"))
 				{
 					String subResponse = response.substring(8, response.length()-1);
-
-					if(subResponse.equals(correctedMessage2)) {
-						return "";
-					}
-					else
-					{
-						return subResponse;
-					}
+					if(subResponse.equals(""))
+						return -1;
+					else return Integer.parseInt(subResponse);
 				}
 				else
 				{
 					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
 				}
 			}
-			return null;
+			return -9999;
 		} 
 		catch(IOException e) 
 		{
