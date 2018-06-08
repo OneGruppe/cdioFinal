@@ -3,7 +3,9 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,6 +18,9 @@ import controller.controller_implementation.RecipeController;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("recipe")
 public class RecipeREST implements IRecipeREST {
 	
 	private RecipeController rc;
@@ -35,7 +40,7 @@ public class RecipeREST implements IRecipeREST {
 	@Override
 	@PUT
 	@Path("createRecipe")
-	public void createRecipe(int id, String name) throws DALException 
+	public void createRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
 		rc.createRecipe(id, name);
 	}
@@ -43,7 +48,7 @@ public class RecipeREST implements IRecipeREST {
 	@Override
 	@POST
 	@Path("updateRecipe")
-	public void updateRecipe(int id, String name) throws DALException 
+	public void updateRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
 		rc.updateRecipe(id, name);
 	}
@@ -51,7 +56,7 @@ public class RecipeREST implements IRecipeREST {
 	@Override
 	@DELETE
 	@Path("deleteRecipe")
-	public void deleteRecipe(int id) throws DALException
+	public void deleteRecipe(@FormParam("id")int id) throws DALException
 	{
 		rc.deleteRecipe(id);
 	}
@@ -60,7 +65,7 @@ public class RecipeREST implements IRecipeREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getRecipe")
-	public RecipeDTO getRecipe(int id) throws DALException 
+	public RecipeDTO getRecipe(@FormParam("id")int id) throws DALException 
 	{
 		RecipeDTO rec;
 		rec = rc.getRecipe(id);
