@@ -63,9 +63,9 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	@Override
 	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException {
 		con.doUpdate("UPDATE recipeComponent SET recipeID= " + component.getRecipeID() + 
-				", commodityID= " + component.getcommodityID() + ", non_netto= " + component.getNon_netto() + 
-				", tolerance= " + component.getTolerance()
-				+ "WHERE recipeComponentID= " + component.getRecipeComponentID());
+				", commodityID= " + component.getcommodityID() + ", non_netto= '" + component.getNon_netto() + 
+				"', tolerance= '" + component.getTolerance()
+				+ "' WHERE recipeComponentID= " + component.getRecipeComponentID());
 	}
 
 	/*

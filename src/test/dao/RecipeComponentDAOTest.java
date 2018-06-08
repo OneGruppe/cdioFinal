@@ -12,20 +12,28 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import data.dao_implementation.CommodityDAO;
 import data.dao_implementation.RecipeComponentDAO;
+import data.dao_implementation.RecipeDAO;
+import data.dao_implementation.SupplierDAO;
+import data.dao_interface.ICommodityDAO;
 import data.dao_interface.IRecipeComponentDAO;
+import data.dao_interface.IRecipeDAO;
+import data.dao_interface.ISupplierDAO;
+import data.dto.CommodityDTO;
 import data.dto.RecipeComponentDTO;
+import data.dto.RecipeDTO;
+import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public class RecipeComponentDAOTest {
 
-	IRecipeComponentDAO dao;
+	IRecipeComponentDAO reccomdao;
 
 	@Before
 	public void setUp() {
-
 		try {
-			dao = new RecipeComponentDAO();
+			reccomdao = new RecipeComponentDAO();
 		}
 		catch(DALException e) {
 			fail("Error " + e.getMessage());
@@ -35,22 +43,23 @@ public class RecipeComponentDAOTest {
 	@After
 	public void teardown() {
 		try {
-			dao.deleteRecipeComponent(1);
-			dao.deleteRecipeComponent(2);
+			// Delete all test-data in recipecomponent-table
+			reccomdao.deleteRecipeComponent(50);
+			reccomdao.deleteRecipeComponent(51);
 		} 
 		catch(DALException e) {
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	@Ignore
-	public void testCreateRecipe() {
-		RecipeComponentDTO expected = new RecipeComponentDTO(1, 1, 1, 0.9, 0.1);
+	@Test
+	public void testCreateRecipeComponentTest() {
+		RecipeComponentDTO expected = new RecipeComponentDTO(50, 1, 1, 0.9, 0.1);
 
 		try {
-			dao.createRecipeComponent(expected);
+			reccomdao.createRecipeComponent(expected);
 
-			RecipeComponentDTO actual = dao.getRecipeComponent(1);
+			RecipeComponentDTO actual = reccomdao.getRecipeComponent(expected.getRecipeComponentID());
 			assertEquals(expected.toString(), actual.toString());
 		} 
 		catch(DALException e) {
@@ -58,17 +67,17 @@ public class RecipeComponentDAOTest {
 		}
 	}
 
-	@Ignore
-	public void testUpdateRecipe() {
-		RecipeComponentDTO dto = new RecipeComponentDTO(1, 1, 1, 0.9, 0.1);
-		RecipeComponentDTO updateExpected = new RecipeComponentDTO(1, 2, 2, 1.9, 0.2);
+	@Test
+	public void testUpdateRecipeComponentTest() {
+		RecipeComponentDTO dto = new RecipeComponentDTO(50, 1, 1, 0.9, 0.1);
+		RecipeComponentDTO updateExpected = new RecipeComponentDTO(50, 2, 2, 1.9, 0.2);
 
 		try {
-			dao.createRecipeComponent(dto);
+			reccomdao.createRecipeComponent(dto);
 
-			dao.updateRecipeComponent(updateExpected);
+			reccomdao.updateRecipeComponent(updateExpected);
 
-			RecipeComponentDTO actual = dao.getRecipeComponent(1);
+			RecipeComponentDTO actual = reccomdao.getRecipeComponent(dto.getRecipeComponentID());
 
 			assertEquals(updateExpected.toString(), actual.toString());
 		}
@@ -78,14 +87,14 @@ public class RecipeComponentDAOTest {
 	}
 
 	@Test
-	public void testDeleteRecipe() {
-		RecipeComponentDTO dto = new RecipeComponentDTO(1, 1, 1, 0.9, 0.1);
+	public void testDeleteRecipeComponentTest() {
+		RecipeComponentDTO dto = new RecipeComponentDTO(50, 1, 1, 0.9, 0.1);
 
 		try {
-			dao.createRecipeComponent(dto);
-			dao.deleteRecipeComponent(dto.getRecipeComponentID());
+			reccomdao.createRecipeComponent(dto);
+			reccomdao.deleteRecipeComponent(dto.getRecipeComponentID());
 
-			assertTrue(dao.getRecipeComponent(1).toString() == null);
+			assertTrue(reccomdao.getRecipeComponent(dto.getRecipeComponentID()).toString() == null);
 			fail("Error in testDeleteRecipe");
 		}
 		catch(DALException e) {
@@ -93,14 +102,14 @@ public class RecipeComponentDAOTest {
 		}
 	}
 
-	@Ignore
-	public void testGetRecipe() {
-		RecipeComponentDTO expected = new RecipeComponentDTO(1, 1, 1, 0.9, 0.1);
+	@Test
+	public void testGetRecipeComponentTest() {
+		RecipeComponentDTO expected = new RecipeComponentDTO(50, 1, 1, 0.9, 0.1);
 
 		try {
-			dao.createRecipeComponent(expected);
+			reccomdao.createRecipeComponent(expected);
 
-			RecipeComponentDTO actual = dao.getRecipeComponent(1);
+			RecipeComponentDTO actual = reccomdao.getRecipeComponent(expected.getRecipeComponentID());
 
 			assertEquals(expected.toString(), actual.toString());
 		}
@@ -109,20 +118,30 @@ public class RecipeComponentDAOTest {
 		}
 	}
 
-	@Ignore
-	public void testGetAllRecipes() {
-		RecipeComponentDTO expected1 = new RecipeComponentDTO(1, 1, 1, 0.9, 0.1);
-		RecipeComponentDTO expected2 = new RecipeComponentDTO(2, 2, 2, 1.9, 0.2);
+	@Test
+	public void testGetAllRecipeComponentsTest() {
+		RecipeComponentDTO expected1 = new RecipeComponentDTO(50, 1, 1, 0.9, 0.1);
+		RecipeComponentDTO expected2 = new RecipeComponentDTO(51, 2, 2, 1.9, 0.2);
 
 		List<RecipeComponentDTO> expectedList = new ArrayList<RecipeComponentDTO>();
 		expectedList.add(expected1);
 		expectedList.add(expected2);
 
 		try {
-			dao.createRecipeComponent(expected1);
-			dao.createRecipeComponent(expected2);
+			reccomdao.createRecipeComponent(expected1);
+			reccomdao.createRecipeComponent(expected2);
 
-			List<RecipeComponentDTO> actualList = dao.getAllRecipeComponents();
+			List<RecipeComponentDTO> actualList = new ArrayList<RecipeComponentDTO>();
+			
+			for (RecipeComponentDTO reccomdto : reccomdao.getAllRecipeComponents())
+			{
+				if (reccomdto.toString().equals(expected1.toString())) {
+					actualList.add(reccomdto);
+				}
+				else if (reccomdto.toString().equals(expected2.toString())) {
+					actualList.add(reccomdto);
+				}
+			}
 
 			assertEquals(expectedList.toString(), actualList.toString());
 		}
