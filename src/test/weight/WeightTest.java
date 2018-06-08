@@ -107,7 +107,7 @@ public class WeightTest {
 	public void getInputWithMsgTest()
 	{
 		try {
-			String response = weight.getInputWithMsg("Hello you", "I have made a message that", " is too long");
+			int response = weight.getInputWithMsg("Enter kilo", 0, " kg");
 			System.out.println("Response from weight: '" + response + "'");
 		} catch (DALException e) {
 			fail("getInputWithMsgTest - Error: " + e.getMessage());
