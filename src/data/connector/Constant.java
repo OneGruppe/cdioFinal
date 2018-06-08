@@ -5,7 +5,7 @@ public class Constant
 	
 	protected static final String
 	server					= "91.100.3.26", 
-	database				=  "CDIOFinal",
+	database				=  "CDIOFinal_test",
 	username				= "Eclipse-bruger", 
 	password				= "ySmTL37uDjYZmzyn";
 
