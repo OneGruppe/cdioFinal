@@ -189,29 +189,29 @@ public class WeightTranslation
 	/**
 	 * Shows a message on the display where the weighter must send a message back.
 	 * @param promtMessage Promt string (max. 24 characters)
-	 * @param message2 Text/Value to be displayed as default, and to be overwritten by user input. (max. 24 characters)
+	 * @param defaultNumber Text/Value to be displayed as default, and to be overwritten by user input. (max. 24 characters)
 	 * @param unit Unit (max. 7 characters)
 	 * @return
 	 * @throws DALException
 	 */
-	public int getInputWithMsg(String promtMessage, String message2, String unit) throws DALException 
+	public int getInputWithMsg(String promtMessage, int defaultNumber, String unit) throws DALException 
 	{
 		try
 		{
-			String correctedPromtMessage = promtMessage, correctedMessage2 = message2, correctedUnit = unit;
+			String correctedPromtMessage = promtMessage, correctedDefaultNumber = "", correctedUnit = unit;
 			if(promtMessage.length() > 24)
 			{
 				correctedPromtMessage = promtMessage.substring(0, 24);
 			}
-			if(message2.length() > 24)
+			if(defaultNumber != 0)
 			{
-				correctedMessage2 = message2.substring(0, 24);
+				correctedDefaultNumber = defaultNumber + "";
 			}
 			if(unit.length() > 8)
 			{
 				correctedUnit = unit.substring(0, 7);
 			}
-			write.println("RM20 1 " + "\"" + correctedPromtMessage + "\" \"" + correctedMessage2 + "\" \"&3" + correctedUnit + "\"");
+			write.println("RM20 1 " + "\"" + correctedPromtMessage + "\" \"" + correctedDefaultNumber + "\" \"" + correctedUnit + "\"");
 			read.readLine();
 			String response = read.readLine();
 
@@ -225,9 +225,9 @@ public class WeightTranslation
 				break;
 			case "RM20 C":
 				clearDisplayAndShowWeight();
-				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
+				getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
 			case "ES":
-				getInputWithMsg(correctedPromtMessage, correctedMessage2, correctedUnit);
+				getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
 				break;
 			default:
 				if(response.subSequence(0, 6).equals("RM20 A"))

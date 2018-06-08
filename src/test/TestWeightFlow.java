@@ -22,7 +22,7 @@ public class TestWeightFlow
 			fc.weightFlow();
 			
 		} catch (DALException e) {
-			System.out.println("WHO DAT BOIIII " + e.getMessage());
+			System.out.println("Main " + e.getMessage());
 		}
 		
 		
