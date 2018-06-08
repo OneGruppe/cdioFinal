@@ -34,7 +34,7 @@ public interface IProductbatchComponentController {
 	 * @return a list of a given id as ProductBatchComponentDTO objects
 	 * @throws DALException
 	 */
-	public List<ProductBatchComponentDTO> getProductBatchComponent(int componentID) throws DALException;
+	public ProductBatchComponentDTO getProductBatchComponent(int componentID) throws DALException;
 	
 	/**
 	 * Returns a list of all Product batch components
