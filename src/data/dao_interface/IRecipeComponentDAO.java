@@ -8,6 +8,7 @@ import exceptions.DALException;
 public interface IRecipeComponentDAO {
 	/**
 	 * Creates a Recipe component and saves it to the database
+	 * IF recipeComponentID=0, the id will be auto-generated.
 	 * @param component
 	 * @throws DALException
 	 */
