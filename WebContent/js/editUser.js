@@ -29,7 +29,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success: function(data) {
-				alert("User succesfully created");
+				alert("Brugerens information er blevet ændret!");
 			}
 		});
 		return false;

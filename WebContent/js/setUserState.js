@@ -30,7 +30,7 @@ $(document).ready(function() {
 			contenttype : "application/json",
 			method : "POST",
 			success : function(data) {
-				alert("User succesfully created");
+				alert("Brugerens status er blevet ændret!");
 			}
 		});
 		return false;
