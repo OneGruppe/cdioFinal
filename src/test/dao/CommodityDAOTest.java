@@ -12,7 +12,6 @@ import org.junit.Test;
 import data.connector.Connector;
 import data.dao_implementation.CommodityDAO;
 import data.dao_implementation.SupplierDAO;
-import data.dto.CommodityBatchDTO;
 import data.dto.CommodityDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
@@ -26,6 +25,7 @@ public class CommodityDAOTest {
 	@Before
 	public void setUp() {
 		tempComID = 0;
+		tempSupID = 0;
 		
 		try {
 			comDAO = new CommodityDAO();
@@ -36,16 +36,17 @@ public class CommodityDAOTest {
 		}
 	}
 
+	//TODO why no work
 	@After
 	public void teardown() {
 		try {
 			Connector con = new Connector();
 			
 			for(int i = 1; i <= tempComID; i++) { //i is equivalent to id therefor i starts at 1
-				con.doUpdate("DELETE FROM commodity WHERE commodityID=" + i);
+				con.doUpdate("DELETE FROM commodity WHERE commodityID = " + i);
 			}
 			for(int i = 1; i <= tempSupID; i++) { 
-				con.doUpdate("DELETE FROM supplier WHERE supplierID=" + i);
+				con.doUpdate("DELETE FROM supplier WHERE supplierID = " + i);
 			}
 		}
 		catch(DALException e) {
@@ -116,16 +117,15 @@ public class CommodityDAOTest {
 		}
 	}
 	
-	
 	@Test
 	public void getAllCommodity() {
 		SupplierDTO supplier1 = new SupplierDTO(1, "Test1");
 		SupplierDTO supplier2 = new SupplierDTO(2, "Test2");
 		
 		
-		List<SupplierDTO> supplierList1 = new ArrayList<SupplierDTO>();
-		supplierList1.add(supplier1);
-		supplierList1.add(supplier2);
+		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
+		supplierList.add(supplier1);
+		supplierList.add(supplier2);
 		
 		try {
 			supDAO.createSupplier(supplier1);
