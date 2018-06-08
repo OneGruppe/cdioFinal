@@ -15,8 +15,7 @@ public interface ICommodityBatchREST {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int cbID, int commodityID, double amount) throws DALException;
-	
+	public void createCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException;
 	/**
 	 * <h1> <i>updateCommodityBatch</i> </h1> <br>
 	 * Updates a commoditybatch
@@ -25,7 +24,7 @@ public interface ICommodityBatchREST {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void updateCommodityBatch(int cbID, int commodityID, double amount) throws DALException;
+	public void updateCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException;
 	
 	/**
 	 * <h1> <i>deleteCommodityBatch</i> </h1> <br>
@@ -33,7 +32,7 @@ public interface ICommodityBatchREST {
 	 * @param combatchID
 	 * @throws DALException
 	 */
-	public void deleteCommodityBatch(int combatchID) throws DALException;
+	public void deleteCommodityBatch(int commodityBatchID) throws DALException;
 	
 	/**
 	 * <h1> <i>getCommodityBatch</i> </h1> <br>
@@ -42,7 +41,7 @@ public interface ICommodityBatchREST {
 	 * @return a signle CommodityBatchDTO object
 	 * @throws DALException
 	 */
-	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException;
+	public CommodityBatchDTO getCommodityBatch(int commodityBatchID) throws DALException;
 	
 	/**
 	 * <h1> <i>getAllCommodityBatches</i> </h1> <br>

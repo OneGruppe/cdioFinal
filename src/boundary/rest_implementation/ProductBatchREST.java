@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
 import controller.controller_implementation.ProductBatchController;
+import controller.controller_interface.IProductBatchController;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
@@ -22,9 +23,9 @@ import exceptions.DALException;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("prodBatch")
 public class ProductBatchREST implements IProductBatchREST {
-	
-	private ProductBatchController pbc;
-	
+
+	private IProductBatchController pbc;
+
 	public ProductBatchREST() 
 	{
 		try {
@@ -51,7 +52,7 @@ public class ProductBatchREST implements IProductBatchREST {
 			System.out.println(e.getMessage());
 			message = "Batchet blev ikke oprettet pga. " + e.getMessage();
 		}
-		
+
 		return message;
 	}
 
@@ -69,7 +70,7 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 	@Override
@@ -85,7 +86,7 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 	@Override
@@ -95,21 +96,21 @@ public class ProductBatchREST implements IProductBatchREST {
 	public String getProductBatch(@FormParam("pbID") int pbID)
 	{
 		System.out.println(pbID);
-		
+
 		JSONObject prodJSON = new JSONObject();
 		ProductBatchDTO prodbatch;
-		
+
 		try 
 		{
-			
+
 			if(pbID != 0)
 			{
 				prodbatch = pbc.getProductBatch(pbID);
-				
-				prodJSON.put("pbID", prodbatch.getID());
+
+				prodJSON.put("pbID", prodbatch.getId());
 				prodJSON.put("recipeID", prodbatch.getRecipeID());
 				prodJSON.put("status",  prodbatch.getStatus());
-				
+
 			}
 			else
 			{
@@ -120,7 +121,7 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 		return prodJSON.toString();
 	}
 
@@ -131,7 +132,7 @@ public class ProductBatchREST implements IProductBatchREST {
 	public String getAllProductBatches() 
 	{
 		JSONArray prodList = new JSONArray();
-		
+
 		try 
 		{
 			prodList.put(pbc.getAllProductBatches());
@@ -140,7 +141,7 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 		return prodList.toString();
 	}
 

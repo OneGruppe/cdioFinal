@@ -13,13 +13,14 @@ import javax.ws.rs.core.MediaType;
 
 import boundary.rest_interface.ICommodityBatchREST;
 import controller.controller_implementation.CommodityBatchController;
+import controller.controller_interface.ICommodityBatchController;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 public class CommodityBatchREST implements ICommodityBatchREST {
-	
-	private CommodityBatchController cbc;
-	
+
+	private ICommodityBatchController cbc;
+
 	public CommodityBatchREST() 
 	{
 		try {
@@ -28,15 +29,15 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	@Override
 	@PUT
 	@Path("createCommodityBatch")
-	public void createCommodityBatch(@FormParam("cbID")int cbID, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
+	public void createCommodityBatch(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("commodityID") int commodityID, @FormParam("supplierID") int supplierID, @FormParam("amount") double amount) 
 	{
 		try 
 		{
-			cbc.createCommodityBatch(cbID, commodityID, amount);
+			cbc.createCommodityBatch(commodityBatchID, commodityID, supplierID, amount);
 		} 
 		catch (DALException e) 
 		{
@@ -47,25 +48,25 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@POST
 	@Path("updateCommodityBatch")
-	public void updateCommodityBatch(@FormParam("cbID")int cbID, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) throws DALException 
+	public void updateCommodityBatch(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("commodityID") int commodityID, @FormParam("supplierID") int supplierID, @FormParam("amount") double amount) throws DALException 
 	{
-		cbc.updateCommodityBatch(cbID, commodityID, amount);	
+		cbc.updateCommodityBatch(commodityBatchID, commodityID, supplierID, amount);	
 	}
 
 	@Override
 	@DELETE
 	@Path("deleteCommodityBatch")
-	public void deleteCommodityBatch(@FormParam("combatchID") int combatchID) throws DALException 
+	public void deleteCommodityBatch(@FormParam("commodityBatchID") int combatchID) throws DALException 
 	{
 		cbc.deleteCommodityBatch(combatchID);
-		
+
 	}
 
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getCommodityBatch")
-	public CommodityBatchDTO getCommodityBatch(@FormParam("combatchID") int combatchID) throws DALException 
+	public CommodityBatchDTO getCommodityBatch(@FormParam("commodityBatchID") int combatchID) throws DALException 
 	{
 		CommodityBatchDTO commoditybatch;
 		commoditybatch = cbc.getCommodityBatch(combatchID);

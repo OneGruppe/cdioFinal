@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import boundary.rest_interface.IUserREST;
 import controller.controller_implementation.UserController;
+import controller.controller_interface.IUserController;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
@@ -21,8 +22,8 @@ import exceptions.DALException;
 @Path("user")
 public class UserREST implements IUserREST {
 
-	private UserController uc;
-	
+	private IUserController uc;
+
 	public UserREST() 
 	{
 		try {
@@ -38,7 +39,7 @@ public class UserREST implements IUserREST {
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
 		String message;
-		
+
 		try 
 		{
 			if(name.equals("") || ini.equals("") || active < 0 && active > 1)
@@ -65,7 +66,7 @@ public class UserREST implements IUserREST {
 	public String updateUser(@FormParam("id") int id, @FormParam("name") String name, @FormParam("ini") String ini) 
 	{
 		String message;
-		
+
 		try 
 		{
 			if(name.equals("") || ini.equals(""))
@@ -92,7 +93,7 @@ public class UserREST implements IUserREST {
 	public String setUserState(@FormParam("id") int id, @FormParam("state") int state) 
 	{
 		String message;
-		
+
 		try 
 		{
 			if(state == 0 || state == 1)
@@ -109,7 +110,7 @@ public class UserREST implements IUserREST {
 		{
 			message = e.getMessage();
 		}
-		
+
 		System.out.println(message);
 		return message;
 	}
@@ -121,10 +122,10 @@ public class UserREST implements IUserREST {
 	public String getUser(@FormParam("id") int id)
 	{
 		String message;
-		
+
 		JSONObject userJSON = new JSONObject();
 		UserDTO user;
-		
+
 		try 
 		{
 			if(id != 0)
@@ -134,7 +135,7 @@ public class UserREST implements IUserREST {
 				userJSON.put("name", user.getName());
 				userJSON.put("ini", user.getIni());
 				userJSON.put("active", user.getActive());
-				
+
 				message = "Brugeren " + user.getName() + " blev fundet";
 			}
 			else
@@ -146,9 +147,9 @@ public class UserREST implements IUserREST {
 		{
 			message = e.getMessage();
 		}
-		
+
 		System.out.println(message);
-		
+
 		return userJSON.toString();
 	}
 
@@ -159,9 +160,9 @@ public class UserREST implements IUserREST {
 	public String getAllUsers() 
 	{
 		String message;
-		
+
 		JSONArray users = new JSONArray();
-		
+
 		try 
 		{
 			users.put(uc.getAllUsers());
@@ -171,7 +172,7 @@ public class UserREST implements IUserREST {
 		{
 			message = e.getMessage();
 		}
-		
+
 		System.out.println(message);
 		return users.toString();
 	}

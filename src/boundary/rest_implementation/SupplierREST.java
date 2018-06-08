@@ -1,7 +1,5 @@
 package boundary.rest_implementation;
 
-import java.util.List;
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -16,13 +14,13 @@ import org.json.JSONObject;
 
 import boundary.rest_interface.ISupplierREST;
 import controller.controller_implementation.SupplierController;
+import controller.controller_interface.ISupplierController;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-
 public class SupplierREST implements ISupplierREST{
 
-	private SupplierController sc;
+	private ISupplierController sc;
 
 	public SupplierREST()
 	{
@@ -74,7 +72,7 @@ public class SupplierREST implements ISupplierREST{
 				}
 			}
 			else {
-				String oldName = sc.getSupplier(id).getName();
+				String oldName = sc.getSupplier(id).getSupplierName();
 				sc.createSupplier(id, name);
 				message = "Leverandøren " + oldName + " er opdateret til " + name + " - " + id;
 			}
@@ -97,7 +95,7 @@ public class SupplierREST implements ISupplierREST{
 				message = "Fejl, ugyldigt input!";
 			}
 			else {
-				String oldName = sc.getSupplier(id).getName();
+				String oldName = sc.getSupplier(id).getSupplierName();
 				sc.deleteSupplier(id);
 				message = "Levenrandøren " + oldName + " er blevet fjernet";
 			}
@@ -121,10 +119,10 @@ public class SupplierREST implements ISupplierREST{
 		try {
 			if(id > 0) {
 				supplier = sc.getSupplier(id);
-				supplierJSON.put("id", supplier.getId());
-				supplierJSON.put("name", supplier.getName());
+				supplierJSON.put("id", supplier.getSupplierID());
+				supplierJSON.put("name", supplier.getSupplierName());
 
-				message = "Leverandøren " + supplier.getName() + " blev fundet";
+				message = "Leverandøren " + supplier.getSupplierName() + " blev fundet";
 			}
 			else {
 				message = "Fejl, der eksiterer ingen leverandøre med dette ID";

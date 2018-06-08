@@ -1,6 +1,5 @@
 package boundary.rest_implementation;
 
-
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import boundary.rest_interface.IRecipeREST;
 import controller.controller_implementation.RecipeController;
+import controller.controller_interface.IRecipeController;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
@@ -22,17 +22,17 @@ import exceptions.DALException;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("recipe")
 public class RecipeREST implements IRecipeREST {
-	
-	private RecipeController rc;
-	
+
+	private IRecipeController rc;
+
 	public RecipeREST()  
 	{	
 		try {
-			
+
 			rc = new RecipeController();
-			
+
 		} catch (DALException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 	}

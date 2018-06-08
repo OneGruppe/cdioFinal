@@ -17,6 +17,8 @@ import org.json.JSONObject;
 import boundary.rest_interface.ICommodityREST;
 import controller.controller_implementation.CommodityController;
 import controller.controller_implementation.SupplierController;
+import controller.controller_interface.ICommodityController;
+import controller.controller_interface.ISupplierController;
 import data.dto.CommodityDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
@@ -25,19 +27,19 @@ import exceptions.DALException;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("commodity")*/
 public class CommodityREST implements ICommodityREST {
-	
-	private CommodityController cc;
-	private SupplierController sc;
-	
+
+	private ICommodityController cc;
+	private ISupplierController sc;
+
 	public CommodityREST() 
 	{
 		try {
-			
+
 			cc = new CommodityController();
 			sc = new SupplierController();
-			
+
 		} catch (DALException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 	}
@@ -47,7 +49,7 @@ public class CommodityREST implements ICommodityREST {
 	@Path("createCommodity")
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
 		String message;
-		
+
 		try {
 			if(id < 1 || name.equals("")) {
 				if(id < 1) {
@@ -83,10 +85,10 @@ public class CommodityREST implements ICommodityREST {
 			}
 			else {
 				String oldName = cc.getCommodity(id).getName();
-				
+
 				suppliers = sc.getAllSuppliers();
 				cc.updateCommodity(id, name, suppliers);
-				
+
 				message = "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
 			}
 		}
@@ -124,18 +126,18 @@ public class CommodityREST implements ICommodityREST {
 	@Path("getCommodity")
 	public String getCommodity(@FormParam("id") int id) {
 		String message;
-		
+
 		JSONObject commodityJSON = new JSONObject();
 		CommodityDTO commodity;
-		
+
 		try {
 			if(id > 1) {
 				commodity = cc.getCommodity(id);
 				commodityJSON.put("id", commodity.getId());
 				commodityJSON.put("name", commodity.getName());
-				
+
 				message = "Råvaren " + commodity.getName() + " blev fundet";
-				
+
 			}
 			else {
 				message = "Fejl, der eksiterer ingen råvare med dette ID";
@@ -154,9 +156,9 @@ public class CommodityREST implements ICommodityREST {
 	@Path("getAllCommodities")
 	public String getAllCommodities() {
 		String message;
-		
+
 		JSONArray commodities = new JSONArray();
-		
+
 		try {
 			commodities.put(cc.getAllCommodities());
 			message = "Råvarene blev fundet";
