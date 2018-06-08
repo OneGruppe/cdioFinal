@@ -29,6 +29,10 @@ public class WeightController implements IWeightController
 		this.weight = weight;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#weightFlow()
+	 */
 	public void weightFlow() throws DALException
 	{
 		while(state < 9)
@@ -66,6 +70,10 @@ public class WeightController implements IWeightController
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#welcome()
+	 */
 	public void welcome() throws DALException
 	{
 		try
@@ -81,6 +89,10 @@ public class WeightController implements IWeightController
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#enterOprID()
+	 */
 	public void enterOprID() throws DALException
 	{		
 		System.out.println("State: " + state);
@@ -97,6 +109,10 @@ public class WeightController implements IWeightController
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#welcomeAnswer()
+	 */
 	public void welcomeAnswer() throws DALException
 	{
 		System.out.println("State: " + state);
@@ -116,6 +132,10 @@ public class WeightController implements IWeightController
 		}
 	}	
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#enterPBID()
+	 */
 	public void enterPBID() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
@@ -137,6 +157,10 @@ public class WeightController implements IWeightController
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#taraWeight()
+	 */
 	public void taraWeight() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
@@ -158,8 +182,10 @@ public class WeightController implements IWeightController
 		}
 	}
 
-
-
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#enterCBID()
+	 */
 	public void enterCBID() throws NumberFormatException, DALException
 	{
 		System.out.println("State: " + state);
@@ -178,6 +204,10 @@ public class WeightController implements IWeightController
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#weightCommodities()
+	 */
 	public void weightCommodities() throws DALException
 	{
 		System.out.println("State: " + state);
@@ -216,26 +246,31 @@ public class WeightController implements IWeightController
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 		}
 	}
-		public void finish() throws NumberFormatException, DALException
-		{
-			System.out.println("State: " + state);
-			try
-			{
-				int response =weight.getInputWithMsg("Faerdig?", 0, "");
-				if(response == goBack)
-					state--;
-				else
-					{
-						state++;
-						pbc.getProductBatch(productBatchID).setStatus(2);
-					}
-			}
-			catch (DALException e)
-			{
-				System.out.println("Failure in finish(): " + e.getMessage());
-				weight.getInputWithMsg("Forkert input, proov igen", 0, "");
-				state--;
-			}	
-		}
 
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#finish()
+	 */
+	public void finish() throws NumberFormatException, DALException
+	{
+		System.out.println("State: " + state);
+		try
+		{
+			int response =weight.getInputWithMsg("Faerdig?", 0, "");
+			if(response == goBack)
+				state--;
+			else
+			{
+				state++;
+				pbc.getProductBatch(productBatchID).setStatus(2);
+			}
+		}
+		catch (DALException e)
+		{
+			System.out.println("Failure in finish(): " + e.getMessage());
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			state--;
+		}	
 	}
+
+}
