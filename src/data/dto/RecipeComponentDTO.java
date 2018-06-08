@@ -3,7 +3,8 @@ package data.dto;
 import java.util.List;
 
 public class RecipeComponentDTO {
-
+	
+	private int recipeComponentID;
 	private int recipeID;
 	private int commodityID;
 	private double non_netto;
@@ -20,6 +21,16 @@ public class RecipeComponentDTO {
 		this.commodityID = commodityID;
 		this.non_netto = non_netto;
 		this.tolerance = tolerance;
+	}
+
+	
+	
+	public int getRecipeComponentID() {
+		return recipeComponentID;
+	}
+
+	public void setRecipeComponentID(int recipeComponentID) {
+		this.recipeComponentID = recipeComponentID;
 	}
 
 	public int getRecipeID() {
@@ -56,7 +67,8 @@ public class RecipeComponentDTO {
 
 	@Override
 	public String toString() {
-		return "RecipeComponentDTO [recipeID=" + recipeID + ", commodityID=" + commodityID + ", non_netto=" + non_netto
-				+ ", tolerance=" + tolerance + "]";
+		return "RecipeComponentDTO [recipeComponentID=" + recipeComponentID + ", recipeID=" + recipeID
+				+ ", commodityID=" + commodityID + ", non_netto=" + non_netto + ", tolerance=" + tolerance + "]";
 	}
+
 }

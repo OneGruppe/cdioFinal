@@ -80,7 +80,7 @@ public class UserDAO implements IUserDAO {
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("Brugeren med ID " + userID + " findes ikke");
+				throw new DALException("" + userID);
 			}
 			else 
 			{

@@ -1,40 +1,71 @@
 package boundary.rest_implementation;
 
+
 import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import boundary.rest_interface.IRecipeREST;
 import controller.controller_implementation.RecipeController;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("recipe")
 public class RecipeREST implements IRecipeREST {
 	
 	private RecipeController rc;
 	
-	public RecipeREST() throws DALException {
-		rc = new RecipeController();
+	public RecipeREST()  
+	{	
+		try {
+			
+			rc = new RecipeController();
+			
+		} catch (DALException e) {
+			
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override
-	public void createRecipe(int id, String name) throws DALException 
+	@PUT
+	@Path("createRecipe")
+	public void createRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
 		rc.createRecipe(id, name);
 	}
 
 	@Override
-	public void updateRecipe(int id, String name) throws DALException 
+	@POST
+	@Path("updateRecipe")
+	public void updateRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
 		rc.updateRecipe(id, name);
 	}
 
 	@Override
-	public void deleteRecipe(int id) throws DALException
+	@DELETE
+	@Path("deleteRecipe")
+	public void deleteRecipe(@FormParam("id")int id) throws DALException
 	{
 		rc.deleteRecipe(id);
 	}
 
 	@Override
-	public RecipeDTO getRecipe(int id) throws DALException 
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getRecipe")
+	public RecipeDTO getRecipe(@FormParam("id")int id) throws DALException 
 	{
 		RecipeDTO rec;
 		rec = rc.getRecipe(id);
@@ -42,6 +73,9 @@ public class RecipeREST implements IRecipeREST {
 	}
 
 	@Override
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getAllRecipes")
 	public List<RecipeDTO> getAllRecipe() throws DALException 
 	{
 		List<RecipeDTO> recs;
