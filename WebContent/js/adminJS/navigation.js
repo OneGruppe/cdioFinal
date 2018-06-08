@@ -40,6 +40,7 @@ $(document).ready(function() {
 		$('#createUserForm').fadeOut(200);
 		$('#setUserForm').fadeOut(200);
 		$('#showUsersTable').fadeOut(200);
+		$('#showUserTable').fadeOut(200);
 		$('#editUserForm').delay(300).fadeIn(200);
 	})
 	
@@ -47,6 +48,12 @@ $(document).ready(function() {
 		$('#createUserForm').fadeOut(200);
 		$('#showUsersTable').fadeOut(200);
 		$('#editUserForm').fadeOut(200);
+		$('#showUserTable').fadeOut(200);
 		$('#setUserForm').delay(300).fadeIn(200);
+	})
+	
+	$('#findUser').click(function() {
+		$('#editUserForm').fadeOut(200);
+		$('#setUserForm').fadeOut(200);
 	})
 })
