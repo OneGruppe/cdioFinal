@@ -44,7 +44,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	@Override
 	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
-		con.doQuery("INSERT INTO productBatchComponent VALUES ("
+		con.doUpdate("INSERT INTO productBatchComponent VALUES ("
 				+ component.getProductBatchComponentID() + ", "
 				+ component.getProductBatchID() + ", "
 				+ component.getCommodityBatchID() + ", "
@@ -66,7 +66,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 				+ "userID=" + component.getUserID() + ", "
 				+ "tara=" + component.getTara() + ", "
 				+ "netto=" + component.getNetto() + " "
-				+ "WHERE productBatchComponent=" + component.getProductBatchComponentID());
+				+ "WHERE productBatchComponentID=" + component.getProductBatchComponentID());
 	}
 
 	/*
@@ -74,10 +74,10 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
 	 */
 	@Override
-	public void deleteProductBatchComponent(int prodbatcomID) throws DALException 
+	public void deleteProductBatchComponent(int productBatchComponentID) throws DALException 
 	{
 		con.doUpdate("DELETE FROM productBatchComponent "
-				+ "WHERE commodityBatchID=" + prodbatcomID);
+				+ "WHERE productBatchComponentID=" + productBatchComponentID);
 	}
 
 	/*
@@ -85,15 +85,15 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
 	 */
 	@Override
-	public ProductBatchComponentDTO getProductBatchComponent(int productBatchID) throws DALException 
+	public ProductBatchComponentDTO getProductBatchComponent(int productBatchComponentID) throws DALException 
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent "
-				+ "WHERE productBatchID= " + productBatchID);
+				+ "WHERE productBatchComponentID= " + productBatchComponentID);
 
 		try {
 			if(!rs.first()) 
 			{
-				throw new DALException("Produkt batch komponenten med productBatchID'et " + productBatchID + " findes ikke");
+				throw new DALException("Produkt batch komponenten med productBatchID'et " + productBatchComponentID + " findes ikke");
 			} 
 			else 
 			{

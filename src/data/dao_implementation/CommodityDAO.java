@@ -150,7 +150,7 @@ public class CommodityDAO implements ICommodityDAO {
 				}
 			}
 
-			ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
+			ResultSet rsSup = con.doQuery("SELECT * FROM CommodityView");
 			while (rsSup.next())
 			{
 				for (CommodityDTO comDTO : comList)
