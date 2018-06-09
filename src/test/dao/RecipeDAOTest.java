@@ -114,11 +114,11 @@ public class RecipeDAOTest {
 			
 			for (RecipeDTO dto : dao.getAllRecipes())
 			{
-				if (dto.toString().equals(testID1)) 
+				if (dto.getRecipeID() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.toString().equals(testID2)) 
+				else if (dto.getRecipeID() == testID2) 
 				{
 					actualList.add(dto);
 				}

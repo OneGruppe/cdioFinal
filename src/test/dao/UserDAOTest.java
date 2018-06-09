@@ -114,11 +114,11 @@ public class UserDAOTest {
 
 			for (UserDTO dto : dao.getAllUsers())
 			{
-				if (dto.toString().equals(testID1)) 
+				if (dto.getId() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.toString().equals(testID2)) 
+				else if (dto.getId() == testID2) 
 				{
 					actualList.add(dto);
 				}

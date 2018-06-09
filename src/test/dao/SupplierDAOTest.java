@@ -114,11 +114,11 @@ public class SupplierDAOTest {
 			
 			for (SupplierDTO dto : dao.getAllSuppliers())
 			{
-				if (dto.toString().equals(testID1)) 
+				if (dto.getSupplierID() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.toString().equals(testID2)) 
+				else if (dto.getSupplierID() == testID2) 
 				{
 					actualList.add(dto);
 				}

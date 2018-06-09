@@ -126,11 +126,11 @@ public class CommodityDAOTest {
 			
 			for (CommodityDTO dto : dao.getAllCommodities())
 			{
-				if (dto.toString().equals(testID1)) 
+				if (dto.getId() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.toString().equals(testID2)) 
+				else if (dto.getId() == testID2) 
 				{
 					actualList.add(dto);
 				}
