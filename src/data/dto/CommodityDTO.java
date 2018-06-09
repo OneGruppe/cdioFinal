@@ -2,8 +2,7 @@ package data.dto;
 
 import java.util.List;
 
-public class CommodityDTO
-{
+public class CommodityDTO {
 
 	private int id;
 	private String name;
@@ -22,44 +21,40 @@ public class CommodityDTO
 		this.supplierList = supplierList;
 	}
 
-	public int getId()
+	public int getId() 
 	{
 		return id;
 	}
 
-	public void setId(int id)
+	public void setId(int id) 
 	{
 		this.id = id;
 	}
 
-	public String getName()
+	public String getName() 
 	{
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(String name) 
 	{
 		this.name = name;
 	}
 
-	public List<SupplierDTO> getSupplierList()
+	public List<SupplierDTO> getSupplierList() 
 	{
 		return supplierList;
 	}
 
-	public void setSupplierList(List<SupplierDTO> supplierList)
+	public void setSupplierList(List<SupplierDTO> supplierList) 
 	{
 		this.supplierList = supplierList;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{
-		return "CommodityDTO [commodityID=" + id + ", commodityName=" + name + ", supplier="
-				+ supplierList + "]";
+		return "CommodityDTO [id=" + id + ", name=" + name + ", supplierList=" + supplierList + "]";
 	}
 
 

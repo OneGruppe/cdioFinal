@@ -1,7 +1,6 @@
 package data.dto;
 
-public class UserDTO
-{
+public class UserDTO {
 
 	private int id;
 	private String name;
@@ -63,13 +62,11 @@ public class UserDTO
 		this.active = active;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{
 		return "UserDTO [id=" + id + ", name=" + name + ", ini=" + ini + ", active=" + active + "]";
 	}
+
 
 }

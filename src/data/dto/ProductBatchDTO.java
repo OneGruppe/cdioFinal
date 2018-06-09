@@ -1,7 +1,6 @@
 package data.dto;
 
-public class ProductBatchDTO
-{
+public class ProductBatchDTO {
 
 	private int id;
 	private int recipeID;
@@ -50,9 +49,6 @@ public class ProductBatchDTO
 		this.status = status;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{

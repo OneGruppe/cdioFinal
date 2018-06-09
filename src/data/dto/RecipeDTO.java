@@ -1,53 +1,45 @@
 package data.dto;
 
-public class RecipeDTO
-{
+public class RecipeDTO {
 
-	private int recipeID;
-	private String recipeName;
+	private int id;
+	private String name;
 
 	/**
 	 * Constructor for a RecipeDTO
-	 * @param recipeID (int)
-	 * @param recipeName (String)
+	 * @param id (int)
+	 * @param name (String)
 	 */
-	public RecipeDTO(int recipeID, String recipeName) 
+	public RecipeDTO(int id, String name) 
 	{
-		this.recipeID = recipeID;
-		this.recipeName = recipeName;
+		this.id = id;
+		this.name = name;
 	}
 
-
-	public int getRecipeID() 
+	public int getId() 
 	{
-		return recipeID;
+		return id;
 	}
 
-
-	public void setRecipeID(int recipeID) 
+	public void setId(int id) 
 	{
-		this.recipeID = recipeID;
+		this.id = id;
 	}
 
-
-	public String getRecipeName() 
+	public String getName() 
 	{
-		return recipeName;
+		return name;
 	}
 
-
-	public void setRecipeName(String recipeName) 
+	public void setName(String name) 
 	{
-		this.recipeName = recipeName;
+		this.name = name;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{
-		return "RecipeDTO [recipeID=" + recipeID + ", recipeName=" + recipeName + "]";
+		return "RecipeDTO [id=" + id + ", name=" + name + "]";
 	}
 
 

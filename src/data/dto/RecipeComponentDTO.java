@@ -1,9 +1,8 @@
 package data.dto;
 
-public class RecipeComponentDTO
-{
+public class RecipeComponentDTO {
 
-	private int recipeComponentID;
+	private int id;
 	private int recipeID;
 	private int commodityID;
 	private double non_netto;
@@ -11,29 +10,29 @@ public class RecipeComponentDTO
 
 	/**
 	 * Constructor for a RecipeComponentDTO
-	 * @param recipeComponentID (int)
+	 * @param id (int)
 	 * @param recipeID (int)
 	 * @param commodityID (int)
 	 * @param non_netto (double)
 	 * @param tolerance (double)
 	 */
-	public RecipeComponentDTO(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance) 
+	public RecipeComponentDTO(int id, int recipeID, int commodityID, double non_netto, double tolerance) 
 	{
-		this.recipeComponentID = recipeComponentID;
+		this.id = id;
 		this.recipeID = recipeID;
 		this.commodityID = commodityID;
 		this.non_netto = non_netto;
 		this.tolerance = tolerance;
 	}
 
-	public int getRecipeComponentID() 
+	public int getId() 
 	{
-		return recipeComponentID;
+		return id;
 	}
 
-	public void setRecipeComponentID(int recipeComponentID) 
+	public void setId(int id) 
 	{
-		this.recipeComponentID = recipeComponentID;
+		this.id = id;
 	}
 
 	public int getRecipeID() 
@@ -76,14 +75,11 @@ public class RecipeComponentDTO
 		this.tolerance = tolerance;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{
-		return "RecipeComponentDTO [recipeComponentID=" + recipeComponentID + ", recipeID=" + recipeID
-				+ ", commodityID=" + commodityID + ", non_netto=" + non_netto + ", tolerance=" + tolerance + "]";
+		return "RecipeComponentDTO [id=" + id + ", recipeID=" + recipeID + ", commodityID=" + commodityID
+				+ ", non_netto=" + non_netto + ", tolerance=" + tolerance + "]";
 	}
 
 

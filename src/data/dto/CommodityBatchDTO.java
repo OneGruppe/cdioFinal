@@ -1,36 +1,35 @@
 package data.dto;
 
-public class CommodityBatchDTO
-{
+public class CommodityBatchDTO {
 
-	private int commodityBatchID;
+	private int id;
 	private int commodityID;
 	private int supplierID;
 	private double amount;
 
 	/**
 	 * Contructor for CommodityBatchDTO
-	 * @param commodityBatchID (int)
+	 * @param id (int)
 	 * @param commodityID (int)
 	 * @param supplierID (int)
 	 * @param amount (double)
 	 */
-	public CommodityBatchDTO (int commodityBatchID, int commodityID, int supplierID, double amount)
+	public CommodityBatchDTO (int id, int commodityID, int supplierID, double amount)
 	{
-		this.commodityBatchID = commodityBatchID;
+		this.id = id;
 		this.commodityID = commodityID;
 		this.supplierID = supplierID;
 		this.amount = amount;
 	}
 
-	public int getCommodityBatchID() 
+	public int getId() 
 	{
-		return commodityBatchID;
+		return id;
 	}
 
-	public void setCommodityBatchID(int commodityBatchID) 
+	public void setId(int id) 
 	{
-		this.commodityBatchID = commodityBatchID;
+		this.id = id;
 	}
 
 	public int getCommodityID() 
@@ -63,14 +62,11 @@ public class CommodityBatchDTO
 		this.amount = amount;
 	}
 
-	/**
-	 * toString overwritten to show all variables
-	 */
 	@Override
 	public String toString() 
 	{
-		return "CommodityBatchDTO [commodityBatchID=" + commodityBatchID + ", commodityID=" + commodityID
-				+ ", supplierID=" + supplierID + ", amount=" + amount + "]";
+		return "CommodityBatchDTO [id=" + id + ", commodityID=" + commodityID + ", supplierID=" + supplierID
+				+ ", amount=" + amount + "]";
 	}
 
 
