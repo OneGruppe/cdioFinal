@@ -1,8 +1,5 @@
 package boundary.rest_interface;
 
-import java.util.List;
-
-import data.dto.RecipeDTO;
 import exceptions.DALException;
 
 public interface IRecipeREST {
@@ -13,7 +10,7 @@ public interface IRecipeREST {
 	 * @param name
 	 * @throws DALException
 	 */
-	public void createRecipe(int id, String name) throws DALException;
+	public String createRecipe(int id, String name) throws DALException;
 	
 	/**
 	 * Updates a Recipe
@@ -35,13 +32,13 @@ public interface IRecipeREST {
 	 * @return
 	 * @throws DALException
 	 */
-	public RecipeDTO getRecipe(int id) throws DALException;
+	public String getRecipe(int id) throws DALException;
 	
 	/**
 	 * Gets a list of all Recipes
 	 * @return
 	 * @throws DALException
 	 */
-	public List<RecipeDTO> getAllRecipe() throws DALException;
+	public String getAllRecipe() throws DALException;
 }
 
