@@ -17,19 +17,19 @@ $(document).ready(function() {
 	$('#editProdForm').hide();
 
 	$('#navigateToCreateOptions').click(function() {
-		$('#dropDownCreateProd').toggle(500);
+		$('#dropDownCreateProd').slideToggle(500);
 		$('#dropDownFindProd').hide();
 		$('#dropDownVisProd').hide();
 	})
 	
 	$('#navigateToFindOptions').click(function() {
-		$('#dropDownFindProd').toggle(500);
+		$('#dropDownFindProd').slideToggle(500);
 		$('#dropDownCreateProd').hide();
 		$('#dropDownVisProd').hide();
 	})
 	
 	$('#navigateToShowOptions').click(function() {
-		$('#dropDownVisProd').toggle(500);
+		$('#dropDownVisProd').slideToggle(500);
 		$('#dropDownCreateProd').hide();
 		$('#dropDownFindProd').hide();
 	})
