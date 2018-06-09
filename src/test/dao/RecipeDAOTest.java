@@ -102,8 +102,8 @@ public class RecipeDAOTest {
 		RecipeDTO expected2 = new RecipeDTO(testID2, "Panodil");
 
 		List<RecipeDTO> expectedList = new ArrayList<RecipeDTO>();
-		expectedList.add(expected1);
 		expectedList.add(expected2);
+		expectedList.add(expected1);
 
 		try 
 		{
@@ -114,11 +114,11 @@ public class RecipeDAOTest {
 			
 			for (RecipeDTO dto : dao.getAllRecipes())
 			{
-				if (dto.getRecipeID() == testID1) 
+				if (dto.getRecipeID() == testID2) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.getRecipeID() == testID2) 
+				else if (dto.getRecipeID() == testID1) 
 				{
 					actualList.add(dto);
 				}
