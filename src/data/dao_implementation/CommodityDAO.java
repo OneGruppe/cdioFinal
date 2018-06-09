@@ -137,8 +137,7 @@ public class CommodityDAO implements ICommodityDAO {
 
 		try
 		{
-			ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
-			ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
+			ResultSet rsCom = con.doQuery("SELECT * FROM commodity");	
 
 			while(rsCom.next()) 
 			{
@@ -150,6 +149,8 @@ public class CommodityDAO implements ICommodityDAO {
 					throw new DALException("Råvarelistenlisten er tom");
 				}
 			}
+
+			ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
 			while (rsSup.next())
 			{
 				for (CommodityDTO comDTO : comList)
