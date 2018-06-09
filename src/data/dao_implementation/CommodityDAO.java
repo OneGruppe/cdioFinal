@@ -68,7 +68,7 @@ public class CommodityDAO implements ICommodityDAO {
 				+ "WHERE commodityID=" + commodity.getId());
 
 		con.doUpdate("UPDATE commodity SET "
-				+ "name='" + commodity.getName() + "' "
+				+ "commodityName='" + commodity.getName() + "' "
 				+ "WHERE commodityID=" + commodity.getId());
 
 		for(SupplierDTO supplier : commodity.getSupplierList())
@@ -87,7 +87,7 @@ public class CommodityDAO implements ICommodityDAO {
 	public void deleteCommodity(int commodityID) throws DALException 
 	{
 		con.doUpdate("DELETE FROM commodity "
-				+ "WHERE commodity ID = " + commodityID + "");
+				+ "WHERE commodityID = " + commodityID + "");
 	}
 
 	/*
@@ -134,11 +134,12 @@ public class CommodityDAO implements ICommodityDAO {
 	public List<CommodityDTO> getAllCommodities() throws DALException
 	{
 		List<CommodityDTO> comList = new ArrayList<CommodityDTO>();
-		ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
-		ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
 
 		try
 		{
+			ResultSet rsCom = con.doQuery("SELECT * FROM commodity");
+			ResultSet rsSup = con.doQuery("SELECT * FROM commodity_supplier");
+
 			while(rsCom.next()) 
 			{
 				CommodityDTO comdto = new CommodityDTO(rsCom.getInt("commodityID"), rsCom.getString("commodityName"), null);
@@ -153,7 +154,7 @@ public class CommodityDAO implements ICommodityDAO {
 			{
 				for (CommodityDTO comDTO : comList)
 				{
-					if (comDTO.getId() == rsSup.getInt("comodityID"))
+					if (comDTO.getId() == rsSup.getInt("commodityID"))
 					{
 						if (comDTO.getSupplierList() == null)
 						{

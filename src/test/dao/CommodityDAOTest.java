@@ -57,8 +57,8 @@ public class CommodityDAOTest {
 	public void createCommodityTEST() 
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Test1"));
-		supplierList.add(new SupplierDTO(2, "Test2"));
+		supplierList.add(new SupplierDTO(1, "Supplier 1"));
+		supplierList.add(new SupplierDTO(2, "Supplier 2"));
 
 		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
 
@@ -81,11 +81,11 @@ public class CommodityDAOTest {
 	public void updateCommodityTEST() 
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Test1"));
-		supplierList.add(new SupplierDTO(2, "Test2"));
+		supplierList.add(new SupplierDTO(1, "Supplier 1"));
+		supplierList.add(new SupplierDTO(2, "Supplier 2"));
 
 		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
-		CommodityDTO updated = new CommodityDTO(testID1, "Bongo Bob", supplierList);
+		CommodityDTO updated = new CommodityDTO(testID1, "Test2", supplierList);
 
 		try 
 		{
@@ -107,11 +107,11 @@ public class CommodityDAOTest {
 	public void getAllCommodityTEST() 
 	{
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Test1"));
-		supplierList.add(new SupplierDTO(2, "Test2"));
+		supplierList.add(new SupplierDTO(1, "Supplier 1"));
+		supplierList.add(new SupplierDTO(2, "Supplier 2"));
 
 		CommodityDTO expected1 = new CommodityDTO(testID1, "Test", supplierList);
-		CommodityDTO expected2 = new CommodityDTO(testID2, "Bongo Bob", supplierList);
+		CommodityDTO expected2 = new CommodityDTO(testID2, "Test2", supplierList);
 
 		List<CommodityDTO> expectedList = new ArrayList<CommodityDTO>();
 		expectedList.add(expected1);
@@ -120,7 +120,7 @@ public class CommodityDAOTest {
 		try 
 		{
 			dao.createCommodity(expected1);
-			dao.updateCommodity(expected2);
+			dao.createCommodity(expected2);
 
 			List<CommodityDTO> actualList = new ArrayList<CommodityDTO>();
 			
