@@ -118,14 +118,16 @@
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat8-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<server>localhost</server>
-					<path>/${project.build.cdio_final}/html</path>
+					<path>/html/</path>
 				</configuration>
 			</plugin>
 
