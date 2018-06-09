@@ -2,6 +2,7 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -17,6 +18,9 @@ import controller.controller_interface.ICommodityBatchController;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("comBatch")
 public class CommodityBatchREST implements ICommodityBatchREST {
 
 	private ICommodityBatchController cbc;

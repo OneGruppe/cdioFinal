@@ -37,9 +37,10 @@ a {
 }
 
 #headerContainer {
-	position: absolute;
-	top: 30%;
-	left: 60%;
+	float: right;
+	position: relative;
+	top: -80%;
+	right: 5%;
 }
 
 #dropDownContentCreate {
@@ -70,7 +71,8 @@ li {
 }
 
 #Home, #dropDownCreate, #dropDownShow, #dropDownFind {
-	padding-right: 8px;
+	padding-left: 15px;
+	padding-right: 30px;
 	margin-right: 8px;
 	border-right: white 2px solid;
 }

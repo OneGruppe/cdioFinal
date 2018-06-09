@@ -19,9 +19,10 @@ a {
 }
 
 #headerContainer {
-	position: absolute;
-	top: 30%;
-	left: 60%;
+	float: right;
+	position: relative;
+	top: -80%;
+	right: 2%;
 }
 
 #watermark {

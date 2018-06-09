@@ -32,41 +32,48 @@ a {
 }
 
 #headerContainer {
+	float: right;
 	position: relative;
 	top: -80%;
-	left: 60%;
+	right: 5%;
 }
 
 #dropDownCreateProd {
 	position: absolute;
 	top: 165%;
-	left: 4.1%;
+	left: 26.2%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 8px;
 	padding-right: 8px;
 	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
 	text-align: center;
 }
 
 #dropDownFindProd {
 	position: absolute;
 	top: 165%;
-	left: 9.4%;
+	left: 58.4%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 2px;
 	padding-right: 2px;
 	border: 1px solid black;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 5px;
 	text-align: center;
 }
 
 #dropDownVisProd {
 	position: absolute;
 	top: 165%;
-	left: 14.15%;
+	left: 88.3%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 8px;
 	padding-right: 8px;
 	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
 	text-align: center;
 }
 
