@@ -113,11 +113,11 @@ public class ProductBatchComponentDAOTest {
 
 			for (ProductBatchComponentDTO dto : dao.getAllProductBatchComponents())
 			{
-				if (dto.getProductBatchComponentID() == testID1) 
+				if (dto.getId() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.getProductBatchComponentID() == testID2) 
+				else if (dto.getId() == testID2) 
 				{
 					actualList.add(dto);
 				}

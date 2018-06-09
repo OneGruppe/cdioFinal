@@ -114,11 +114,11 @@ public class CommodityBatchDAOTest {
 			
 			for (CommodityBatchDTO dto : dao.getAllCommodityBatches())
 			{
-				if (dto.getCommodityBatchID() == testID1) 
+				if (dto.getId() == testID1) 
 				{
 					actualList.add(dto);
 				}
-				else if (dto.getCommodityBatchID() == testID2) 
+				else if (dto.getId() == testID2) 
 				{
 					actualList.add(dto);
 				}
