@@ -119,16 +119,13 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warSourceDirectory>WebContent/html</warSourceDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat8-maven-plugin</artifactId>
 				<version>2.2</version>
-				<configuration>
-					<path>/html/</path>
-				</configuration>
 			</plugin>
 
 		</plugins>
