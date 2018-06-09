@@ -45,7 +45,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
 		con.doUpdate("INSERT INTO commodityBatch VALUES ("
-				+ commodityBatch.getCommodityBatchID() + ", "
+				+ commodityBatch.getId() + ", "
 				+ commodityBatch.getCommodityID() + ", "
 				+ commodityBatch.getSupplierID() + ", "
 				+ commodityBatch.getAmount() + ")" );
@@ -62,7 +62,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 				+ "commodityID=" + commodityBatch.getCommodityID() + ", "
 				+ "supplierID=" + commodityBatch.getSupplierID() + ", "
 				+ "amount=" + commodityBatch.getAmount() + " "
-				+ "WHERE commodityBatchID=" + commodityBatch.getCommodityBatchID());
+				+ "WHERE commodityBatchID=" + commodityBatch.getId());
 	}
 
 	/*
@@ -120,7 +120,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("commodityBatchID"), rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
 				comBatchList.add(combatdto);
 
-				if (combatdto.getCommodityBatchID() == 0) 
+				if (combatdto.getId() == 0) 
 				{
 					throw new DALException("R�varebatchlisten er tom");
 				}

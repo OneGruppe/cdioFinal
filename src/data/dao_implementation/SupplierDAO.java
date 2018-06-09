@@ -45,8 +45,8 @@ public class SupplierDAO implements ISupplierDAO {
 	public void createSupplier(SupplierDTO supplier) throws DALException
 	{
 		con.doUpdate("INSERT INTO supplier VALUES ("
-				+ supplier.getSupplierID() + ", "
-				+ "'" + supplier.getSupplierName() + "')");
+				+ supplier.getId() + ", "
+				+ "'" + supplier.getName() + "')");
 	}
 
 	/*
@@ -57,8 +57,8 @@ public class SupplierDAO implements ISupplierDAO {
 	public void updateSupplier(SupplierDTO supplier) throws DALException 
 	{
 		con.doUpdate("UPDATE supplier SET "
-				+ "supplierName='" + supplier.getSupplierName() + "' "
-				+ "WHERE supplierID=" + supplier.getSupplierID());
+				+ "supplierName='" + supplier.getName() + "' "
+				+ "WHERE supplierID=" + supplier.getId());
 	}
 
 	/*
@@ -116,7 +116,7 @@ public class SupplierDAO implements ISupplierDAO {
 				SupplierDTO supdto = new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName"));
 				suppList.add(supdto);
 
-				if (supdto.getSupplierID() == 0) 
+				if (supdto.getId() == 0) 
 				{
 					throw new DALException("Leverandorlisten er tom");
 				}

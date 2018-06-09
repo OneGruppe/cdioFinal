@@ -45,7 +45,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	public void createRecipeComponent(RecipeComponentDTO component) throws DALException 
 	{
 		con.doUpdate("INSERT INTO recipeComponent VALUES ("
-				+ component.getRecipeComponentID() + ", "
+				+ component.getId() + ", "
 				+ component.getRecipeID() + ", "
 				+ component.getCommodityID() + ", "
 				+ component.getNon_netto() + ", "
@@ -64,7 +64,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 				+ "commodityID=" + component.getCommodityID() + ", "
 				+ "non_netto=" + component.getNon_netto() + ", "
 				+ "tolerance=" + component.getTolerance() + " "
-				+ "WHERE recipeComponentID=" + component.getRecipeComponentID());
+				+ "WHERE recipeComponentID=" + component.getId());
 	}
 
 	/*

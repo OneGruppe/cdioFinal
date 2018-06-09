@@ -53,7 +53,7 @@ public class CommodityDAO implements ICommodityDAO {
 		{
 			con.doUpdate("INSERT INTO commodity_supplier VALUES (" 
 					+ commodity.getId() + ", " 
-					+ supplier.getSupplierID()+ ")");
+					+ supplier.getId() + ")");
 		}
 	}
 
@@ -75,7 +75,7 @@ public class CommodityDAO implements ICommodityDAO {
 		{
 			con.doUpdate("INSERT INTO commodity_supplier VALUES (" 
 					+ commodity.getId() + ", " 
-					+ supplier.getSupplierID() + ")");
+					+ supplier.getId() + ")");
 		}
 	}
 

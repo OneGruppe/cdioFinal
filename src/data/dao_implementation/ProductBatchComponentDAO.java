@@ -45,7 +45,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
 		con.doUpdate("INSERT INTO productBatchComponent VALUES ("
-				+ component.getProductBatchComponentID() + ", "
+				+ component.getId() + ", "
 				+ component.getProductBatchID() + ", "
 				+ component.getCommodityBatchID() + ", "
 				+ component.getUserID() + ", "
@@ -66,7 +66,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 				+ "userID=" + component.getUserID() + ", "
 				+ "tara=" + component.getTara() + ", "
 				+ "netto=" + component.getNetto() + " "
-				+ "WHERE productBatchComponentID=" + component.getProductBatchComponentID());
+				+ "WHERE productBatchComponentID=" + component.getId());
 	}
 
 	/*

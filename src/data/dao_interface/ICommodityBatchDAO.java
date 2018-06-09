@@ -5,8 +5,7 @@ import java.util.List;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public interface ICommodityBatchDAO 
-{
+public interface ICommodityBatchDAO {
 
 	/**
 	 * Creates a commodity batch and saves it to the database.
@@ -43,4 +42,6 @@ public interface ICommodityBatchDAO
 	 * @throws DALException
 	 */
 	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException;
+
+
 }

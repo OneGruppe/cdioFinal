@@ -45,8 +45,8 @@ public class RecipeDAO implements IRecipeDAO {
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
 		con.doUpdate("INSERT INTO recipe VALUES ("
-				+ recipe.getRecipeID() + ", "
-				+ "'" + recipe.getRecipeName() +"')");
+				+ recipe.getId() + ", "
+				+ "'" + recipe.getName() +"')");
 	}
 
 	/*
@@ -57,8 +57,8 @@ public class RecipeDAO implements IRecipeDAO {
 	public void updateRecipe(RecipeDTO recipe) throws DALException 
 	{
 		con.doUpdate("UPDATE recipe SET "
-				+ "recipeName='" + recipe.getRecipeName() + "' "
-				+ "WHERE recipeID=" + recipe.getRecipeID());
+				+ "recipeName='" + recipe.getName() + "' "
+				+ "WHERE recipeID=" + recipe.getId());
 	}
 
 	/*
@@ -116,7 +116,7 @@ public class RecipeDAO implements IRecipeDAO {
 				RecipeDTO dto = new RecipeDTO(rs.getInt("recipeID"), rs.getString("recipeName"));
 				recipeList.add(dto);
 
-				if (dto.getRecipeID() == 0) 
+				if (dto.getId() == 0) 
 				{
 					throw new DALException("Receptlisten er tom");
 				}

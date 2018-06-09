@@ -6,6 +6,7 @@ import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
 public interface IProductBatchComponentDAO {
+
 	/**
 	 * Creates a Product batch component and saves it to the database.
 	 * @param productBatchComponent

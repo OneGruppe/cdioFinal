@@ -4,8 +4,7 @@ import java.util.List;
 import data.dto.CommodityDTO;
 import exceptions.DALException;
 
-public interface ICommodityDAO 
-{
+public interface ICommodityDAO {
 
 	/**
 	 * Creates a commodity and saves it to the database.
@@ -42,4 +41,6 @@ public interface ICommodityDAO
 	 * @throws DALException
 	 */
 	public List<CommodityDTO> getAllCommodities() throws DALException;
+
+
 }
