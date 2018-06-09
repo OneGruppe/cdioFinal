@@ -44,7 +44,7 @@ public class SupplierDAO implements ISupplierDAO {
 	@Override
 	public void createSupplier(SupplierDTO supplier) throws DALException
 	{
-		con.doUpdate("INSERT INTO supplier VALUES (" 
+		con.doUpdate("INSERT INTO supplier VALUES ("
 				+ supplier.getSupplierID() + ", "
 				+ "'" + supplier.getSupplierName() + "')");
 	}

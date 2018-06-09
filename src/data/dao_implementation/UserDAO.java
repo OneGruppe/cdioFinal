@@ -44,10 +44,10 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users VALUES (" 
+		con.doUpdate("INSERT INTO users VALUES ("
 				+ user.getId() + ", "
 				+ "'" + user.getName() + "', "
-				+ "'" + user.getIni() + "', "  
+				+ "'" + user.getIni() + "', "
 				+ user.getActive() + ")");
 	}
 

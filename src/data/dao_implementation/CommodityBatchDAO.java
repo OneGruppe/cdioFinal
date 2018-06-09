@@ -44,10 +44,10 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	@Override
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO commodityBatch VALUES (" 
-				+ commodityBatch.getCommodityBatchID() + ", " 
-				+ commodityBatch.getCommodityID() + ", " 
-				+ commodityBatch.getSupplierID() + ", " 
+		con.doUpdate("INSERT INTO commodityBatch VALUES ("
+				+ commodityBatch.getCommodityBatchID() + ", "
+				+ commodityBatch.getCommodityID() + ", "
+				+ commodityBatch.getSupplierID() + ", "
 				+ commodityBatch.getAmount() + ")" );
 	}
 

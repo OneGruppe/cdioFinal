@@ -7,7 +7,6 @@ import java.util.List;
 
 import data.connector.Connector;
 import data.dao_interface.IProductBatchComponentDAO;
-import data.dto.CommodityBatchDTO;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 

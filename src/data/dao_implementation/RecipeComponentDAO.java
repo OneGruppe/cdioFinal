@@ -44,11 +44,11 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	@Override
 	public void createRecipeComponent(RecipeComponentDTO component) throws DALException 
 	{
-		con.doUpdate("INSERT INTO recipeComponent VALUES (" 
-				+ component.getRecipeComponentID() + ", " 
-				+ component.getRecipeID() + ", " 
+		con.doUpdate("INSERT INTO recipeComponent VALUES ("
+				+ component.getRecipeComponentID() + ", "
+				+ component.getRecipeID() + ", "
 				+ component.getCommodityID() + ", "
-				+ component.getNon_netto() + ", " 
+				+ component.getNon_netto() + ", "
 				+ component.getTolerance() + ")" );
 	}
 

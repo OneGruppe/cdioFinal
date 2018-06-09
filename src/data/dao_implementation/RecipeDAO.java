@@ -44,7 +44,7 @@ public class RecipeDAO implements IRecipeDAO {
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException 
 	{
-		con.doUpdate("INSERT INTO recipe VALUES (" 
+		con.doUpdate("INSERT INTO recipe VALUES ("
 				+ recipe.getRecipeID() + ", "
 				+ "'" + recipe.getRecipeName() +"')");
 	}

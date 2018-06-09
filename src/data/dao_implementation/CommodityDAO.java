@@ -146,7 +146,7 @@ public class CommodityDAO implements ICommodityDAO {
 
 				if (comdto.getId() == 0) 
 				{
-					throw new DALException("Raavarelistenlisten er tom");
+					throw new DALException("Råvarelistenlisten er tom");
 				}
 			}
 			while (rsSup.next())
@@ -161,7 +161,7 @@ public class CommodityDAO implements ICommodityDAO {
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
 							comDTO.setSupplierList(exSupList);
 						}
-						else 
+						else
 						{
 							List<SupplierDTO> exSupList = comDTO.getSupplierList();
 							exSupList.add(new SupplierDTO(rsSup.getInt("supplierID"), rsSup.getString("supplierName")));
