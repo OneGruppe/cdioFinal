@@ -8,8 +8,7 @@ import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public class CommodityBatchController implements ICommodityBatchController
-{
+public class CommodityBatchController implements ICommodityBatchController {
 
 	private ICommodityBatchDAO comdao;
 

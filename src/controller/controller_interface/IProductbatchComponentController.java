@@ -6,6 +6,7 @@ import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
 public interface IProductbatchComponentController {
+
 	/**
 	 * Creates a Product batch Component
 	 * @param pbID
@@ -16,7 +17,7 @@ public interface IProductbatchComponentController {
 	 * @throws DALException
 	 */
 	public void createProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
-	
+
 	/**
 	 * Updates a Product batch component
 	 * @param pbID
@@ -27,7 +28,7 @@ public interface IProductbatchComponentController {
 	 * @throws DALException
 	 */
 	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
-	
+
 	/**
 	 * Returns a single Product batch component
 	 * @param component
@@ -35,7 +36,7 @@ public interface IProductbatchComponentController {
 	 * @throws DALException
 	 */
 	public ProductBatchComponentDTO getProductBatchComponent(int componentID) throws DALException;
-	
+
 	/**
 	 * Returns a list of all Product batch components
 	 * @param component
@@ -43,4 +44,6 @@ public interface IProductbatchComponentController {
 	 * @throws DALException
 	 */
 	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException;
+
+
 }

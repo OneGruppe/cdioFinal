@@ -6,7 +6,7 @@ import data.dto.UserDTO;
 import exceptions.DALException;
 
 public interface IUserController {
-	
+
 	/**
 	 * Creates a user
 	 * @param name
@@ -15,7 +15,7 @@ public interface IUserController {
 	 * @throws DALException
 	 */
 	public void createUser(String name, String ini, int active) throws DALException;
-	
+
 	/**
 	 * Updates a user
 	 * @param id
@@ -24,7 +24,7 @@ public interface IUserController {
 	 * @throws DALException
 	 */
 	public void updateUser(int id, String name, String ini) throws DALException;
-	
+
 	/**
 	 * Set user state (active/inactive)
 	 * @param id
@@ -32,7 +32,7 @@ public interface IUserController {
 	 * @throws DALException
 	 */
 	public void setUserState(int id, int state) throws DALException;
-	
+
 	/**
 	 * Get a single user
 	 * @param id
@@ -40,12 +40,13 @@ public interface IUserController {
 	 * @throws DALException
 	 */
 	public UserDTO getUser(int id) throws DALException;
-	
+
 	/**
 	 * Get all users
 	 * @return a list of UserDTO objects
 	 * @throws DALException
 	 */
 	public List<UserDTO> getAllUsers() throws DALException;
+
 
 }

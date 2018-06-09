@@ -8,8 +8,7 @@ import data.dao_interface.IUserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class UserController implements IUserController
-{
+public class UserController implements IUserController {
 
 	private IUserDAO userdao;
 
@@ -45,7 +44,6 @@ public class UserController implements IUserController
 	public void updateUser(int id, String name, String ini) throws DALException 
 	{
 		UserDTO user = new UserDTO(id, name, ini, 0);
-
 		userdao.updateUser(user);
 	}
 

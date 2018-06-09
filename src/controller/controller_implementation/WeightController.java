@@ -10,8 +10,7 @@ import controller.controller_interface.IUserController;
 import controller.controller_interface.IWeightController;
 import exceptions.DALException;
 
-public class WeightController implements IWeightController
-{
+public class WeightController implements IWeightController {
 
 	private IProductBatchController pbc;
 	private IUserController user;
@@ -281,15 +280,19 @@ public class WeightController implements IWeightController
 
 	public void restart()
 	{
-		try {
+		try 
+		{
 			weight.showLongMsg("Erorr has occured, restarting");
 			TimeUnit.SECONDS.sleep(2);
 			weight.removeLongMsg();
 			weightFlow();
-		} catch (DALException | InterruptedException e) {
+		} 
+		catch (DALException | InterruptedException e) 
+		{
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
+
 
 }

@@ -9,8 +9,7 @@ import data.dto.CommodityDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class CommodityController implements ICommodityController
-{
+public class CommodityController implements ICommodityController {
 
 	private ICommodityDAO comdao;
 

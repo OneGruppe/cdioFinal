@@ -8,8 +8,7 @@ import data.dao_interface.ISupplierDAO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class SupplierController implements ISupplierController 
-{
+public class SupplierController implements ISupplierController {
 
 	private ISupplierDAO supdao;
 

@@ -8,8 +8,7 @@ import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
-public class RecipeController implements IRecipeController
-{
+public class RecipeController implements IRecipeController {
 
 	private IRecipeDAO recipedao;
 

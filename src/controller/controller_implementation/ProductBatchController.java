@@ -8,8 +8,7 @@ import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public class ProductBatchController implements IProductBatchController 
-{
+public class ProductBatchController implements IProductBatchController {
 
 	private IProductBatchDAO pbdao;
 
