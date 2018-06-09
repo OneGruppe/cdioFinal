@@ -28,12 +28,12 @@ public class RecipeREST implements IRecipeREST {
 
 	public RecipeREST()  
 	{	
-		try {
-
+		try 
+		{
 			rc = new RecipeController();
-
-		} catch (DALException e) {
-
+		} 
+		catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -55,7 +55,6 @@ public class RecipeREST implements IRecipeREST {
 			System.out.println(e.getMessage());
 			message = "Recepten blev ikke oprettet pga. " + e.getMessage();
 		}
-
 		return message;
 	}
 
@@ -73,7 +72,6 @@ public class RecipeREST implements IRecipeREST {
 		{
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	@Override
@@ -97,19 +95,17 @@ public class RecipeREST implements IRecipeREST {
 	@Path("getRecipe")
 	public String getRecipe(@FormParam("id")int id) throws DALException 
 	{
-
 		JSONObject recJSON = new JSONObject();
 		RecipeDTO rec;
 
 		try 
 		{
-
 			if(id != 0)
 			{
 				rec = rc.getRecipe(id);
 
-				recJSON.put("recipeID", rec.getRecipeID());
-				recJSON.put("recipeName", rec.getRecipeName());
+				recJSON.put("recipeID", rec.getId());
+				recJSON.put("recipeName", rec.getName());
 			}
 			else
 			{
@@ -120,7 +116,6 @@ public class RecipeREST implements IRecipeREST {
 		{
 			System.out.println(e.getMessage());
 		}
-
 		return recJSON.toString();
 	}
 
@@ -143,9 +138,10 @@ public class RecipeREST implements IRecipeREST {
 		{
 			message = e.getMessage();
 		}
-		
+
 		System.out.println(message);
 		return recList.toString();
 	}
+
 
 }

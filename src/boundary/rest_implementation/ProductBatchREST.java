@@ -18,7 +18,6 @@ import controller.controller_interface.IProductBatchController;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("prodBatch")
@@ -28,9 +27,11 @@ public class ProductBatchREST implements IProductBatchREST {
 
 	public ProductBatchREST() 
 	{
-		try {
+		try 
+		{
 			pbc = new ProductBatchController();
-		} catch (DALException e) {
+		} catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -94,13 +95,11 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Path("getProductBatch")
 	public String getProductBatch(@FormParam("pbID") int pbID)
 	{
-
 		JSONObject prodJSON = new JSONObject();
 		ProductBatchDTO prodbatch;
 
 		try 
 		{
-
 			if(pbID != 0)
 			{
 				prodbatch = pbc.getProductBatch(pbID);
@@ -108,7 +107,6 @@ public class ProductBatchREST implements IProductBatchREST {
 				prodJSON.put("pbID", prodbatch.getId());
 				prodJSON.put("recipeID", prodbatch.getRecipeID());
 				prodJSON.put("status",  prodbatch.getStatus());
-
 			}
 			else
 			{
@@ -119,7 +117,6 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-
 		return prodJSON.toString();
 	}
 
@@ -139,8 +136,8 @@ public class ProductBatchREST implements IProductBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-
 		return prodList.toString();
 	}
+
 
 }

@@ -13,7 +13,7 @@ public interface IUserREST {
 	 * @throws DALException
 	 */
 	public String createUser(String name, String ini, int active);
-	
+
 	/**
 	 * <h1> <i>updateUser</i> </h1> <br>
 	 * Updates a user
@@ -23,7 +23,7 @@ public interface IUserREST {
 	 * @throws DALException
 	 */
 	public String updateUser(int id, String name, String ini);
-	
+
 	/**
 	 * <h1> <i>setUserState</i> </h1> <br>
 	 * Set user state (active/inactive)
@@ -32,7 +32,7 @@ public interface IUserREST {
 	 * @throws DALException
 	 */
 	public String setUserState(int id, int state);
-	
+
 	/**
 	 * <h1> <i>getUser</i> </h1> <br>
 	 * Get a single user
@@ -41,7 +41,7 @@ public interface IUserREST {
 	 * @throws DALException
 	 */
 	public String getUser(int id);
-	
+
 	/**
 	 * <h1> <i>getAllUser</i> </h1> <br>
 	 * Get all users
@@ -49,4 +49,6 @@ public interface IUserREST {
 	 * @throws DALException
 	 */
 	public String getAllUsers();
+
+
 }

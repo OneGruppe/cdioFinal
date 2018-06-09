@@ -18,18 +18,19 @@ import controller.controller_interface.ISupplierController;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class SupplierREST implements ISupplierREST{
+public class SupplierREST implements ISupplierREST {
 
 	private ISupplierController sc;
 
 	public SupplierREST()
 	{
-		try {
-
+		try 
+		{
 			sc = new SupplierController();
 
-		} catch (DALException e) {
-
+		} 
+		catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -37,19 +38,24 @@ public class SupplierREST implements ISupplierREST{
 	@Override
 	@PUT
 	@Path("createSupplier")
-	public String createSupplier(@FormParam("id") int id, @FormParam("name") String name) {
+	public String createSupplier(@FormParam("id") int id, @FormParam("name") String name) 
+	{
 		String message;
 
-		try {
-			if(id < 0 || id == 0 || name.equals("")) {
+		try 
+		{
+			if(id < 0 || id == 0 || name.equals("")) 
+			{
 				message = "Fejl i inputtet!";
 			}
-			else {
+			else 
+			{
 				sc.createSupplier(id, name);
 				message = "Leverandøren, " + name + ", med ID " + id + " er oprettet.";
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
@@ -59,25 +65,32 @@ public class SupplierREST implements ISupplierREST{
 	@Override
 	@POST
 	@Path("updateSupplier")
-	public String updateSupplier(@FormParam("id") int id, @FormParam("name") String name) { 
+	public String updateSupplier(@FormParam("id") int id, @FormParam("name") String name) 
+	{ 
 		String message = null;
 
-		try {
-			if(id < 0 || id == 0 || name.equals("") ) {
-				if(id < 0 || id == 0) {
+		try 
+		{
+			if(id < 0 || id == 0 || name.equals("") ) 
+			{
+				if(id < 0 || id == 0) 
+				{
 					message = "Fejl, ID skal være større end 0";
 				}
-				else if(name.equals("")) {
+				else if(name.equals("")) 
+				{
 					message = "Fejl, ugyldigt navn";
 				}
 			}
-			else {
-				String oldName = sc.getSupplier(id).getSupplierName();
+			else 
+			{
+				String oldName = sc.getSupplier(id).getName();
 				sc.createSupplier(id, name);
 				message = "Leverandøren " + oldName + " er opdateret til " + name + " - " + id;
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
@@ -87,20 +100,25 @@ public class SupplierREST implements ISupplierREST{
 	@Override
 	@DELETE
 	@Path("deleteSupplier")
-	public String deleteSupplier(@FormParam("id") int id) {
+	public String deleteSupplier(@FormParam("id") int id) 
+	{
 		String message;
 
-		try {
-			if(id < 1) {
+		try 
+		{
+			if(id < 1) 
+			{
 				message = "Fejl, ugyldigt input!";
 			}
-			else {
-				String oldName = sc.getSupplier(id).getSupplierName();
+			else 
+			{
+				String oldName = sc.getSupplier(id).getName();
 				sc.deleteSupplier(id);
 				message = "Levenrandøren " + oldName + " er blevet fjernet";
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		return message;
@@ -110,25 +128,30 @@ public class SupplierREST implements ISupplierREST{
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getSupplier")
-	public String getSupplier(@FormParam("id") int id) {	
+	public String getSupplier(@FormParam("id") int id) 
+	{	
 		String message;
 
 		JSONObject supplierJSON = new JSONObject();
 		SupplierDTO supplier;
 
-		try {
-			if(id > 0) {
+		try 
+		{
+			if(id > 0) 
+			{
 				supplier = sc.getSupplier(id);
-				supplierJSON.put("id", supplier.getSupplierID());
-				supplierJSON.put("name", supplier.getSupplierName());
+				supplierJSON.put("id", supplier.getId());
+				supplierJSON.put("name", supplier.getName());
 
-				message = "Leverandøren " + supplier.getSupplierName() + " blev fundet";
+				message = "Leverandøren " + supplier.getName() + " blev fundet";
 			}
-			else {
+			else 
+			{
 				message = "Fejl, der eksiterer ingen leverandøre med dette ID";
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
@@ -139,19 +162,24 @@ public class SupplierREST implements ISupplierREST{
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllSuppliers")
-	public String getAllSupplier() {
+	public String getAllSupplier() 
+	{
 		String message;
 
 		JSONArray suppliers = new JSONArray();
 
-		try {
+		try 
+		{
 			suppliers.put(sc.getAllSuppliers());
 			message = "Leverandørene blev fundet"; 
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
 		return message;
 	}
+
+
 }

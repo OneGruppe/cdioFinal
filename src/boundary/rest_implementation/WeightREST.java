@@ -13,19 +13,23 @@ import controller.controller_implementation.WeightController;
 import exceptions.DALException;
 
 //@Path("Weight")
-public class WeightREST implements IWeightREST
-{
+public class WeightREST implements IWeightREST {
+
 	private WeightController wc;
 
 	//@Path("doConnection")
 	public void doConnection(@FormParam("port") int port)
 	{
-		try {
+		try 
+		{
 			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new WeightTranslation("62.79.16.17", port));
 			wc.weightFlow();
-		} catch (DALException e) {
+		} 
+		catch (DALException e) 
+		{
 			wc.restart();
 		}
-
 	}
+
+
 }

@@ -27,9 +27,11 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 
 	public CommodityBatchREST() 
 	{
-		try {
+		try 
+		{
 			cbc = new CommodityBatchController();
-		} catch (DALException e) {
+		} catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -77,7 +79,6 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	@Override
@@ -88,14 +89,14 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	{
 		CommodityBatchDTO commoditybatch;
 		JSONObject comJSON = new JSONObject();
-		
+
 		try
 		{
 			if(combatchID != 0)
 			{
 				commoditybatch = cbc.getCommodityBatch(combatchID);
-				
-				comJSON.put("cbID", commoditybatch.getCommodityBatchID());
+
+				comJSON.put("cbID", commoditybatch.getId());
 				comJSON.put("commodityID", commoditybatch.getCommodityID());
 				comJSON.put("supplierID", commoditybatch.getSupplierID());
 				comJSON.put("amount", commoditybatch.getAmount());
@@ -104,15 +105,12 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			{
 				System.out.println("Fejl");
 			}
-
 		}
 		catch(DALException e)
 		{
 			System.out.println(e.getMessage());
 		}
-		
 		return comJSON.toString();
-
 	}
 
 	@Override
@@ -122,7 +120,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	public String getAllCommodityBatches() 
 	{
 		JSONArray combatches = new JSONArray();
-		
+
 		try 
 		{
 			combatches.put(cbc.getAllCommodityBatches());
@@ -133,5 +131,6 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		}
 		return combatches.toString();
 	}
+
 
 }

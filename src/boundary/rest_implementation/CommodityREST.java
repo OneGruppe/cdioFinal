@@ -33,13 +33,13 @@ public class CommodityREST implements ICommodityREST {
 
 	public CommodityREST() 
 	{
-		try {
-
+		try 
+		{
 			cc = new CommodityController();
 			sc = new SupplierController();
 
-		} catch (DALException e) {
-
+		} catch (DALException e) 
+		{
 			System.out.println(e.getMessage());
 		}
 	}
@@ -50,21 +50,27 @@ public class CommodityREST implements ICommodityREST {
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
 		String message;
 
-		try {
-			if(id < 1 || name.equals("")) {
-				if(id < 1) {
+		try 
+		{
+			if(id < 1 || name.equals("")) 
+			{
+				if(id < 1) 
+				{
 					message = "Fejl, ugyldigt ID!";
 				}
-				else if(name.equals("")) {
+				else if(name.equals("")) 
+				{
 					message = "Fejl, ugyldigt navn!";
 				}
 			}
-			else {
+			else 
+			{
 				suppliers = sc.getAllSuppliers();
 				cc.createCommodity(id, name, suppliers);
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 	}
@@ -75,15 +81,19 @@ public class CommodityREST implements ICommodityREST {
 	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
 		String message;
 		try {
-			if(id < 1 || name.equals("")) {
-				if(id < 1) {
+			if(id < 1 || name.equals("")) 
+			{
+				if(id < 1) 
+				{
 					message = "Fejl, ugyldigt ID!";
 				}
-				else if(name.equals("")) {
+				else if(name.equals("")) 
+				{
 					message = "Fejl, ugyldigt navn!";
 				}
 			}
-			else {
+			else 
+			{
 				String oldName = cc.getCommodity(id).getName();
 
 				suppliers = sc.getAllSuppliers();
@@ -92,7 +102,8 @@ public class CommodityREST implements ICommodityREST {
 				message = "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 	}
@@ -100,20 +111,25 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@DELETE
 	@Path("deleteCommodity")
-	public String deleteCommodity(@FormParam("id") int id)	{
+	public String deleteCommodity(@FormParam("id") int id)	
+	{
 		String message = null;
 
-		try {
-			if(id < 1) {
+		try 
+		{
+			if(id < 1) 
+			{
 				message = "Fejl, ugyldigt id";
 			}
-			else {
+			else 
+			{
 				String oldName = cc.getCommodity(id).getName();
 				sc.deleteSupplier(id);
 				message = "Råvaren " + oldName + " er blevet fjernet";
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
@@ -124,26 +140,29 @@ public class CommodityREST implements ICommodityREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getCommodity")
-	public String getCommodity(@FormParam("id") int id) {
+	public String getCommodity(@FormParam("id") int id) 
+	{
 		String message;
-
 		JSONObject commodityJSON = new JSONObject();
 		CommodityDTO commodity;
 
-		try {
-			if(id > 1) {
+		try 
+		{
+			if(id > 1) 
+			{
 				commodity = cc.getCommodity(id);
 				commodityJSON.put("id", commodity.getId());
 				commodityJSON.put("name", commodity.getName());
 
 				message = "Råvaren " + commodity.getName() + " blev fundet";
-
 			}
-			else {
+			else 
+			{
 				message = "Fejl, der eksiterer ingen råvare med dette ID";
 			}
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
@@ -154,19 +173,23 @@ public class CommodityREST implements ICommodityREST {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getAllCommodities")
-	public String getAllCommodities() {
+	public String getAllCommodities() 
+	{
 		String message;
-
 		JSONArray commodities = new JSONArray();
 
-		try {
+		try 
+		{
 			commodities.put(cc.getAllCommodities());
 			message = "Råvarene blev fundet";
 		}
-		catch(DALException e) {
+		catch(DALException e) 
+		{
 			message = e.getMessage();
 		}
 		System.out.println(message);
 		return message;
 	}
+
+
 }
