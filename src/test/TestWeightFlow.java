@@ -6,11 +6,6 @@ import controller.controller_implementation.ProductBatchController;
 import controller.controller_implementation.RecipeComponentController;
 import controller.controller_implementation.UserController;
 import controller.controller_implementation.WeightController;
-import controller.controller_interface.ICommodityBatchController;
-import controller.controller_interface.IProductBatchController;
-import controller.controller_interface.IRecipeComponentController;
-import controller.controller_interface.IUserController;
-import controller.controller_interface.IWeightController;
 import exceptions.DALException;
 
 public class TestWeightFlow {

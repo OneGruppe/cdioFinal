@@ -72,7 +72,6 @@ public class WeightController implements IWeightController {
 				break;
 			}
 		}
-
 	}
 
 	/*
@@ -222,6 +221,8 @@ public class WeightController implements IWeightController {
 			System.out.println("RecipeID: " + recipeID);
 			double comWeight = 0;
 
+			//TODO looper over en enkelt recipeComponent, men kan ikke helt se hvad det oprindelige flow er?
+			/*
 			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
 			{
 				int choice = weight.getInputWithMsg("Vej: " + rcc.getRecipeComponent(recipeID).get(i), 0, rcc.getRecipeComponent(recipeID).get(i).getNon_netto() + "kg");
@@ -243,6 +244,7 @@ public class WeightController implements IWeightController {
 					System.out.println("Temp: " + temp + " temp2: " + temp2);
 				}
 			}
+			*/
 			state += 1;
 		}
 		catch (DALException e)
@@ -291,7 +293,6 @@ public class WeightController implements IWeightController {
 		{
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 
