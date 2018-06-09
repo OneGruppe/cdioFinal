@@ -110,6 +110,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException 
 	{
 		List<CommodityBatchDTO> comBatchList = new ArrayList<CommodityBatchDTO>();
+
 		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch");
 
 		try 
@@ -121,12 +122,12 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 
 				if (combatdto.getCommodityBatchID() == 0) 
 				{
-					throw new DALException("Råvarebatchlisten er tom");
+					throw new DALException("Rï¿½varebatchlisten er tom");
 				}
 			}
 			return comBatchList;
 		}
-		catch (SQLException e) 
+		catch (SQLException e)
 		{
 			throw new DALException(e.getMessage());
 		}

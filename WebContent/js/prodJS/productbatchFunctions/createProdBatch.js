@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/cdio_final/rest/prodBatch/createProductBatch",
 			data: $('#createProdForm').serialize(),
-			contenttype: "application/x-ww-form-urlencoded",
+			contenttype: "application/json",
 			method: "POST",
 			success: function(data) {
 				alert("Produktbatch er oprettet");

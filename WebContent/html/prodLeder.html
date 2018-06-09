@@ -11,6 +11,9 @@
 <script src = "../js/prodJS/productbatchFunctions/showAllProds.js"></script>
 <script src = "../js/prodJS/productbatchFunctions/editProdBatch.js"></script>
 <script src = "../js/prodJS/productbatchFunctions/deleteProdBatch.js"></script>
+<script src = "../js/prodJS/commoditybatchFuntions/createCommodityBatch.js"></script>
+<script src = "../js/prodJS/commoditybatchFuntions/showComBatch.js"></script>
+<script src = "../js/prodJS/commoditybatchFuntions/showAllComs.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -84,7 +87,7 @@
 		<tr>
 		<td>
 		<label>Råvarebatch ID</label><br>
-		<input type = "number" name = "cbID"> 
+		<input type = "number" name = "commodityBatchID"> 
 		</td>
 		<td>
 		<label>Råvare ID</label><br>
@@ -99,7 +102,7 @@
 		<input type = "number" name = "amount"> 
 		</td>
 		<td>
-		<button id="creatingCommodityBatch" form="createComForm" type="submit">Opret Råvarebatch</button>
+		<button id="creatingCommodityBatch" form="createComForm" type="button">Opret Råvarebatch</button>
 		</td>
 		</tr>
 	</table>
@@ -112,7 +115,7 @@
 		<tr>
 		<td>
 		<label>Råvarebatch ID</label><br>
-		<input type = "number" name = "cbID"> 
+		<input type = "number" name = "commodityBatchID"> 
 		</td>
 		<td>
 		<button id="findCommodityBatch" form="findComForm" type="button">Find batch</button>
@@ -127,6 +130,34 @@
 	</table>
 </form>
 <!------- FIND COM FORM END -------->
+
+<!------- EDIT COM FORM START -------->
+<form id = "editComForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Råvarebatch ID</label><br>
+		<input type = "number" id = "setID" name = "cbID" readonly> 
+		</td>
+		<td>
+		<label>Råvare ID</label><br>
+		<input type = "number" id = "setReceptID" name = "commodityID"> 
+		</td>
+		<td>
+		<label>Leverandør ID</label><br>
+		<input type = "number" id = "setStatus" name = "supplierID"> 
+		</td>
+		<td>
+		<label>Mængde</label><br>
+		<input type = "number" id = "setStatus" name = "amount"> 
+		</td>
+		<td>
+		<button id="editCom" form="editComForm" type="button">Rediger batch</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- EDIT COM FORM END -------->
 
 <!------- FIND PROD FORM START -------->
 <form id = "findProdForm">

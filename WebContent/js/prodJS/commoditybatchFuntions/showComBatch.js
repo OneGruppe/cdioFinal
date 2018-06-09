@@ -12,7 +12,8 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
-				if(data.pbID != undefined)
+				console.log(data);
+				if(data.cbID != undefined)
 				{
 					if(document.contains(document.getElementById("showComTable")))
 					{
@@ -27,26 +28,32 @@ $(document).ready(function() {
 						r = t.insertRow(0);
 						
 						c = r.insertCell(0);
-						c.innerHTML = "ID";
+						c.innerHTML = "Råvarebatch ID";
 						
 						c = r.insertCell(1);
-						c.innerHTML = "Recept ID";
+						c.innerHTML = "Råvare ID";
 						
 						c = r.insertCell(2);
-						c.innerHTML = "Status";
+						c.innerHTML = "Leverandør ID";
+						
+						c = r.insertCell(3);
+						c.innerHTML = "Mængde";
 						
 
 						
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data.pbID;
+						c.innerHTML = data.cbID;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data.recipeID;
+						c.innerHTML = data.commodityID;
 						
 						c = r.insertCell(2);
-						c.innerHTML = data.status;
+						c.innerHTML = data.supplierID;
+						
+						c = r.insertCell(3);
+						c.innerHTML = data.amount;
 
 						
 						document.getElementById("showCom").appendChild(t);
@@ -63,26 +70,32 @@ $(document).ready(function() {
 						r = t.insertRow(0);
 						
 						c = r.insertCell(0);
-						c.innerHTML = "ID";
+						c.innerHTML = "Råvarebatch ID";
 						
 						c = r.insertCell(1);
-						c.innerHTML = "Recept ID";
+						c.innerHTML = "Råvare ID";
 						
 						c = r.insertCell(2);
-						c.innerHTML = "Status";
+						c.innerHTML = "Leverandør ID";
+						
+						c = r.insertCell(3);
+						c.innerHTML = "Mængde";
 						
 
 						
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data.pbID;
+						c.innerHTML = data.cbID;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data.recipeID;
+						c.innerHTML = data.commodityID;
 						
 						c = r.insertCell(2);
-						c.innerHTML = data.status;
+						c.innerHTML = data.supplierID;
+						
+						c = r.insertCell(3);
+						c.innerHTML = data.amount;
 
 						
 						document.getElementById("showCom").appendChild(t);

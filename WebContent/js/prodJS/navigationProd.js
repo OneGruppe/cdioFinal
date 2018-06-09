@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$('#findComForm').hide();
 	$('#findProdForm').hide();
 	$('#editProdForm').hide();
+	$('#editComForm').hide();
 
 	$('#navigateToCreateOptions').click(function() {
 		$('#dropDownCreateProd').slideToggle(500);
@@ -44,6 +45,8 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#showProdsTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -54,6 +57,8 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#showProdsTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -64,6 +69,8 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#showProdsTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -72,6 +79,8 @@ $(document).ready(function() {
 		$('#createComForm').fadeOut(200);
 		$('#createProdForm').fadeOut(200);
 		$('#showProdsTable').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -83,6 +92,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showProdTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -95,7 +105,8 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#showProdsTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
-		$('#showComTable').delay(300).fadeIn(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	
 	$('#navigateToEditProd').click(function() {
@@ -104,11 +115,28 @@ $(document).ready(function() {
 		$('#createProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#showProdTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
 		$('#editProdForm').delay(300).fadeIn(200);
+	})
+	
+	$('#navigateToEditCom').click(function() {
+		$('#findProdForm').fadeOut(200);
+		$('#createComForm').fadeOut(200);
+		$('#createProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
+		$('#showProdTable').fadeOut(200);
+		$('#editComForm').delay(300).fadeIn(200);
 	})
 	
 	$('#findProductBatch').click(function() {
 		$('#editProdForm').fadeOut(50);
 	})
+	
+	$('#findCommodityBatch').click(function() {
+		$('#editComForm').fadeOut(50);
+	})
+	
+	
 	
 })

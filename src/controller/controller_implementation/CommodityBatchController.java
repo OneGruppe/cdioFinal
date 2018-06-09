@@ -58,6 +58,7 @@ public class CommodityBatchController implements ICommodityBatchController
 	@Override
 	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException 
 	{
+
 		return comdao.getCommodityBatch(combatchID);
 	}
 

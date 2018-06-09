@@ -12,12 +12,12 @@ import controller.controller_implementation.UserController;
 import controller.controller_implementation.WeightController;
 import exceptions.DALException;
 
-@Path("Weight")
+//@Path("Weight")
 public class WeightREST implements IWeightREST
 {
 	private WeightController wc;
 
-	@Path("doConnection")
+	//@Path("doConnection")
 	public void doConnection(@FormParam("port") int port)
 	{
 		try {

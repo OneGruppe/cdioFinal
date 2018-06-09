@@ -39,7 +39,7 @@ $(document).ready(function() {
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data[0][i].ID;
+						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
 						c.innerHTML = data[0][i].recipeID;
@@ -75,7 +75,7 @@ $(document).ready(function() {
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data[0][i].ID;
+						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
 						c.innerHTML = data[0][i].recipeID;

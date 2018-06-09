@@ -1,8 +1,5 @@
 package boundary.rest_interface;
 
-import java.util.List;
-
-import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 public interface ICommodityBatchREST {
@@ -15,7 +12,7 @@ public interface ICommodityBatchREST {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException;
+	public void createCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount);
 	/**
 	 * <h1> <i>updateCommodityBatch</i> </h1> <br>
 	 * Updates a commoditybatch
@@ -24,7 +21,7 @@ public interface ICommodityBatchREST {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void updateCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException;
+	public void updateCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount);
 	
 	/**
 	 * <h1> <i>deleteCommodityBatch</i> </h1> <br>
@@ -32,7 +29,7 @@ public interface ICommodityBatchREST {
 	 * @param combatchID
 	 * @throws DALException
 	 */
-	public void deleteCommodityBatch(int commodityBatchID) throws DALException;
+	public void deleteCommodityBatch(int commodityBatchID);
 	
 	/**
 	 * <h1> <i>getCommodityBatch</i> </h1> <br>
@@ -41,7 +38,7 @@ public interface ICommodityBatchREST {
 	 * @return a signle CommodityBatchDTO object
 	 * @throws DALException
 	 */
-	public CommodityBatchDTO getCommodityBatch(int commodityBatchID) throws DALException;
+	public String getCommodityBatch(int commodityBatchID);
 	
 	/**
 	 * <h1> <i>getAllCommodityBatches</i> </h1> <br>
@@ -49,6 +46,6 @@ public interface ICommodityBatchREST {
 	 * @return a lsit of CommodityBatchDTO objects
 	 * @throws DALException
 	 */
-	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException;
+	public String getAllCommodityBatches();
 
 }
