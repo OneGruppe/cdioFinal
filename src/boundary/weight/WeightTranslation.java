@@ -8,8 +8,8 @@ import java.net.Socket;
 
 import exceptions.DALException;
 
-public class WeightTranslation 
-{
+public class WeightTranslation {
+
 	// declare socket to open connection to TCP/Telnet
 	// declare Writer and reader for I/O
 	private Socket socket;
@@ -490,5 +490,6 @@ public class WeightTranslation
 			throw new DALException(e.getMessage());
 		}
 	}
+
 
 }
