@@ -10,36 +10,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.connector.Connector;
 import data.dao_implementation.CommodityDAO;
-import data.dao_implementation.SupplierDAO;
 import data.dao_interface.ICommodityDAO;
-import data.dao_interface.ISupplierDAO;
+import data.dto.CommodityBatchDTO;
 import data.dto.CommodityDTO;
+import data.dto.RecipeComponentDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class CommodityDAOTest 
-{
-	
-	private ICommodityDAO comDAO;
-	private ISupplierDAO supDAO;
-	private int tempComID; //Used to get multiple Commodity ID's
-	private int tempSupID; //Used to get multiple supplier ID's
+public class CommodityDAOTest {
+
+	private ICommodityDAO dao;
+	private int testID1 = 50;
+	private int testID2 = 51;
 
 	@Before
 	public void setUp() 
 	{
-		tempComID = 0;
-		tempSupID = 0;
-
 		try 
 		{
-			comDAO = new CommodityDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
-			supDAO = new SupplierDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new CommodityDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
@@ -49,127 +43,103 @@ public class CommodityDAOTest
 	{
 		try 
 		{
-			Connector con = new Connector();
-
-			for(int i = 1; i <= tempComID; i++) 
-			{
-				con.doUpdate("DELETE FROM commodity WHERE commodityID = " + i);
-			}
-			for(int i = 1; i <= tempSupID; i++) 
-			{ 
-				con.doUpdate("DELETE FROM supplier WHERE supplierID = " + i);
-			}
+			dao.deleteCommodity(testID1);
+			dao.deleteCommodity(testID2);
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
-	public void createAndGetCommodityTEST() 
+	public void createCommodityTEST() 
 	{
-		SupplierDTO supplier1 = new SupplierDTO(2, "Test1");
-		SupplierDTO supplier2 = new SupplierDTO(2, "Test2");
-
-
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(supplier1);
-		supplierList.add(supplier2);
+		supplierList.add(new SupplierDTO(1, "Test1"));
+		supplierList.add(new SupplierDTO(2, "Test2"));
+
+		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
 
 		try 
 		{
-			supDAO.createSupplier(supplier1);
-			tempSupID++;
-			supDAO.createSupplier(supplier2);
-			tempSupID++;
+			dao.createCommodity(expected);
 
-			CommodityDTO expected = new CommodityDTO(1, "Test", supplierList);
-
-			comDAO.createCommodity(expected);
-			tempComID++;
-
-			CommodityDTO actual = comDAO.getCommodity(1);
+			CommodityDTO actual = dao.getCommodity(testID1);
 
 			assertEquals(expected.toString(), actual.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage()); 
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
 	public void updateCommodityTEST() 
 	{
-		SupplierDTO supplier1 = new SupplierDTO(1, "Test1");
-		SupplierDTO supplier2 = new SupplierDTO(2, "Test2");
-
-
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(supplier1);
-		supplierList.add(supplier2);
+		supplierList.add(new SupplierDTO(1, "Test1"));
+		supplierList.add(new SupplierDTO(2, "Test2"));
+
+		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
+		CommodityDTO updated = new CommodityDTO(testID1, "Bongo Bob", supplierList);
 
 		try 
 		{
-			supDAO.createSupplier(supplier1);
-			tempSupID++;
-			supDAO.createSupplier(supplier2);
-			tempSupID++;
+			dao.createCommodity(expected);
+			dao.updateCommodity(updated);
 
-			CommodityDTO dto = new CommodityDTO(1, "Test", supplierList);
-			CommodityDTO updateExpected = new CommodityDTO(1, "Bongo Bob", supplierList);
+			CommodityDTO actual = dao.getCommodity(testID1);
 
-			comDAO.createCommodity(dto);
-			comDAO.updateCommodity(updateExpected);
-			tempComID++;
-
-
-			CommodityDTO actual = comDAO.getCommodity(1);
-
-			assertEquals(updateExpected.toString(), actual.toString());
+			assertEquals(updated.toString(), actual.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
 	public void getAllCommodityTEST() 
 	{
-		SupplierDTO supplier1 = new SupplierDTO(1, "Test1");
-		SupplierDTO supplier2 = new SupplierDTO(2, "Test2");
-
-
 		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(supplier1);
-		supplierList.add(supplier2);
+		supplierList.add(new SupplierDTO(1, "Test1"));
+		supplierList.add(new SupplierDTO(2, "Test2"));
 
+		CommodityDTO expected1 = new CommodityDTO(testID1, "Test", supplierList);
+		CommodityDTO expected2 = new CommodityDTO(testID2, "Bongo Bob", supplierList);
+
+		List<CommodityDTO> expectedList = new ArrayList<CommodityDTO>();
+		expectedList.add(expected1);
+		expectedList.add(expected2);
+		
 		try 
 		{
-			supDAO.createSupplier(supplier1);
-			tempSupID++;
-			supDAO.createSupplier(supplier2);
-			tempSupID++;
+			dao.createCommodity(expected1);
+			dao.updateCommodity(expected2);
 
-			CommodityDTO dto = new CommodityDTO(1, "Test", supplierList);
-			CommodityDTO updateExpected = new CommodityDTO(1, "Bongo Bob", supplierList);
-
-			comDAO.createCommodity(dto);
-			comDAO.updateCommodity(updateExpected);
-			tempComID++;
-
-
-			CommodityDTO actual = comDAO.getCommodity(1);
-
-			assertEquals(updateExpected.toString(), actual.toString());
+			List<CommodityDTO> actualList = new ArrayList<CommodityDTO>();
+			
+			for (CommodityDTO dto : dao.getAllCommodities())
+			{
+				if (dto.toString().equals(testID1)) 
+				{
+					actualList.add(dto);
+				}
+				else if (dto.toString().equals(testID2)) 
+				{
+					actualList.add(dto);
+				}
+			}
+			assertEquals(expectedList.toString(), actualList.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}

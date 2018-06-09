@@ -13,19 +13,19 @@ import org.junit.Test;
 import data.connector.Connector;
 import data.dao_implementation.UserDAO;
 import data.dao_interface.IUserDAO;
+import data.dto.RecipeComponentDTO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class UserDAOTest 
-{
+public class UserDAOTest {
+
 	private IUserDAO dao;
-	private int tempID; //Used to get multiple ID's
+	private int testID1 = 50;
+	private int testID2 = 51;
 
 	@Before
 	public void setUp() 
 	{
-		tempID = 0;
-
 		try 
 		{
 			dao = new UserDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
@@ -43,89 +43,93 @@ public class UserDAOTest
 		try 
 		{
 			Connector con = new Connector();
-
-			for(int i = 1; i <= tempID; i++) 
-			{
-				con.doUpdate("DELETE FROM users WHERE userID = " + i);
-			}
+			con.doUpdate("DELETE FROM users WHERE userID = " + testID1);
+			con.doUpdate("DELETE FROM users WHERE userID = " + testID2);
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
-	public void createAndGetUser() 
+	public void createUserTEST() 
 	{
-		UserDTO expected = new UserDTO(1, "Test", "T_T", 0);
+		UserDTO expected = new UserDTO(testID1, "Test", "T_T", 0);
 
 		try 
 		{
 			dao.createUser(expected);
-			UserDTO actual = dao.getUser(1);
-			tempID++;
+
+			UserDTO actual = dao.getUser(testID1);
 
 			assertEquals(expected.toString(), actual.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
-	public void updateUser() 
+	public void updateUserTEST() 
 	{
-		UserDTO dto = new UserDTO(1, "Test", "T_T", 0);
-		UserDTO updateExpected = new UserDTO(1, "Not Test", "C:", 1);
+		UserDTO expected = new UserDTO(testID1, "Test", "T_T", 0);
+		UserDTO updated = new UserDTO(testID1, "Test Name", "C", 1);
 
 		try 
 		{
-			dao.createUser(dto);
-			dao.updateUser(updateExpected);
-			tempID++;
+			dao.createUser(expected);
+			dao.updateUser(updated);
 
-			UserDTO actual = dao.getUser(1);
+			UserDTO actual = dao.getUser(testID1);
 
-			assertEquals(updateExpected.toString(), actual.toString());
+			assertEquals(updated.toString(), actual.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
-	public void getALLUser() 
+	public void getALLUsersTEST() 
 	{
-		UserDTO user1 = new UserDTO(1, "Test1", "TTT", 0);
-		UserDTO user2 = new UserDTO(2, "Test2", "TTT", 0);
+		UserDTO expected1 = new UserDTO(testID1, "Test1", "TTT", 0);
+		UserDTO expected2 = new UserDTO(testID2, "Test2", "TTT", 1);
 
 		List<UserDTO> expectedList = new ArrayList<UserDTO>();
-		expectedList.add(user1);
-		expectedList.add(user2);
+		expectedList.add(expected1);
+		expectedList.add(expected2);
 
 		try 
 		{
-			dao.createUser(user1);
-			tempID++;
+			dao.createUser(expected1);
+			dao.createUser(expected2);
 
-			dao.createUser(user2);
-			tempID++;
+			List<UserDTO> actualList = new ArrayList<UserDTO>();
 
-			List<UserDTO> actualList = dao.getAllUsers();
-
+			for (UserDTO dto : dao.getAllUsers())
+			{
+				if (dto.toString().equals(testID1)) 
+				{
+					actualList.add(dto);
+				}
+				else if (dto.toString().equals(testID2)) 
+				{
+					actualList.add(dto);
+				}
+			}
 			assertEquals(expectedList.toString(), actualList.toString());
 		}
 		catch(DALException e) 
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	
 }

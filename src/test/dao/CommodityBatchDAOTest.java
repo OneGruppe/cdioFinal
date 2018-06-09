@@ -1,23 +1,29 @@
 package test.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import data.dao_implementation.CommodityBatchDAO;
 import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
+import data.dto.ProductBatchComponentDTO;
+import data.dto.RecipeComponentDTO;
+import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class CommodityBatchDAOTest 
-{
+public class CommodityBatchDAOTest {
 
 	private ICommodityBatchDAO dao;
+	private int testID1 = 50;
+	private int testID2 = 51;
 
-	//TODO - virker ikke, måske DAO-problem
 	@Before
 	public void setUp() 
 	{
@@ -27,75 +33,103 @@ public class CommodityBatchDAOTest
 		}
 		catch(DALException e)
 		{
-			System.out.println("Error connecting" + e.getMessage());
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
-	
-	//TODO - virker ikke, måske DAO-problem
+
 	@After
 	public void tearDown() 
 	{
 		try 
 		{
-			dao.deleteCommodityBatch(10);
+			dao.deleteCommodityBatch(testID1);
+			dao.deleteCommodityBatch(testID2);
 		}
 		catch (DALException e)
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error: " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
 	public void createCommodityBatchTEST()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 1, 10.0);
 
 		try
 		{
 			dao.createCommodityBatch(expected);
-			CommodityBatchDTO actual = dao.getCommodityBatch(10);
+
+			CommodityBatchDTO actual = dao.getCommodityBatch(testID1);
+
 			assertEquals(expected.toString(), actual.toString());	
 		}
 		catch(DALException e)
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
 	@Test
 	public void updateCommodityBatchTEST()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(10, 1, 1, 10.0);
-		CommodityBatchDTO updateExpected = new CommodityBatchDTO(10, 2, 2, 15.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 1, 10.0);
+		CommodityBatchDTO updated = new CommodityBatchDTO(testID1, 2, 2, 15.0);
 
 		try
 		{
 			dao.createCommodityBatch(expected);
-			dao.updateCommodityBatch(updateExpected);
-			CommodityBatchDTO actual = dao.getCommodityBatch(10); 
-			assertEquals(updateExpected.toString(), actual.toString());
+			dao.updateCommodityBatch(updated);
+			
+			CommodityBatchDTO actual = dao.getCommodityBatch(testID1);
+			
+			assertEquals(updated.toString(), actual.toString());
 		}
 		catch(DALException e)
 		{
+			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
-	//TODO - virker ikke, måske DAO-problem
-	@Test
-	public void getCommodityBatchTEST()
-	{
-		//TODO
-	}
-
-	//TODO - virker ikke, måske DAO-problem
 	@Test
 	public void getAllCommodityBatchesTEST()
 	{
-		//TODO
+		CommodityBatchDTO expected1 = new CommodityBatchDTO(testID1, 1, 1, 10.0);
+		CommodityBatchDTO expected2 = new CommodityBatchDTO(testID2, 2, 2, 15.0);
+
+		List<CommodityBatchDTO> expectedList = new ArrayList<CommodityBatchDTO>();
+		expectedList.add(expected1);
+		expectedList.add(expected2);
+		
+		try 
+		{
+			dao.createCommodityBatch(expected1);
+			dao.createCommodityBatch(expected2);
+			
+			List<CommodityBatchDTO> actualList = new ArrayList<CommodityBatchDTO>();
+			
+			for (CommodityBatchDTO dto : dao.getAllCommodityBatches())
+			{
+				if (dto.toString().equals(testID1)) 
+				{
+					actualList.add(dto);
+				}
+				else if (dto.toString().equals(testID2)) 
+				{
+					actualList.add(dto);
+				}
+			}
+			assertEquals(expectedList.toString(), actualList.toString());
+		}
+		catch(DALException e) 
+		{
+			System.out.println("Error: " + e.getMessage());
+			fail("Error " + e.getMessage());
+		}
 	}
 
 
