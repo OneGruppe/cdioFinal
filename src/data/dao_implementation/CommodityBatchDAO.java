@@ -93,7 +93,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 			}
 			else
 			{
-				return new CommodityBatchDTO(combatchID, rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
+				return new CommodityBatchDTO(rs.getInt("commodityBatchID"), rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
 			}
 		} 
 		catch (SQLException e) 

@@ -47,6 +47,7 @@ $(document).ready(function() {
 		$('#editProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -59,6 +60,7 @@ $(document).ready(function() {
 		$('#editProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -71,6 +73,7 @@ $(document).ready(function() {
 		$('#editProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -81,6 +84,7 @@ $(document).ready(function() {
 		$('#showProdsTable').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -93,6 +97,7 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -106,6 +111,7 @@ $(document).ready(function() {
 		$('#showProdsTable').fadeOut(200);
 		$('#editProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	

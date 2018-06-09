@@ -14,6 +14,8 @@
 <script src = "../js/prodJS/commoditybatchFuntions/createCommodityBatch.js"></script>
 <script src = "../js/prodJS/commoditybatchFuntions/showComBatch.js"></script>
 <script src = "../js/prodJS/commoditybatchFuntions/showAllComs.js"></script>
+<script src = "../js/prodJS/commoditybatchFuntions/editComBatch.js"></script>
+<script src = "../js/prodJS/commoditybatchFuntions/deleteComBatch.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -137,22 +139,22 @@
 		<tr>
 		<td>
 		<label>Råvarebatch ID</label><br>
-		<input type = "number" id = "setID" name = "cbID" readonly> 
+		<input type = "number" id = "setID" name = "commodityBatchID" readonly> 
 		</td>
 		<td>
 		<label>Råvare ID</label><br>
-		<input type = "number" id = "setReceptID" name = "commodityID"> 
+		<input type = "number" id = "setCommodityID" name = "commodityID"> 
 		</td>
 		<td>
 		<label>Leverandør ID</label><br>
-		<input type = "number" id = "setStatus" name = "supplierID"> 
+		<input type = "number" id = "setSupplierID" name = "supplierID"> 
 		</td>
 		<td>
 		<label>Mængde</label><br>
-		<input type = "number" id = "setStatus" name = "amount"> 
+		<input type = "number" id = "setAmount" name = "amount"> 
 		</td>
 		<td>
-		<button id="editCom" form="editComForm" type="button">Rediger batch</button>
+		<button id="editCom" form="editComForm" type="submit">Rediger batch</button>
 		</td>
 		</tr>
 	</table> <br>
@@ -187,18 +189,18 @@
 		<tr>
 		<td>
 		<label>Produktbatch ID</label><br>
-		<input type = "number" id = "setID" name = "pbID" readonly> 
+		<input type = "number" id = "setProdID" name = "pbID" readonly> 
 		</td>
 		<td>
 		<label>Recept ID</label><br>
-		<input type = "number" id = "setReceptID" name = "recpetID" readonly> 
+		<input type = "number" id = "setReceptID" name = "recipeID" readonly> 
 		</td>
 		<td>
 		<label>Status</label><br>
 		<input type = "number" id = "setStatus" name = "status"> 
 		</td>
 		<td>
-		<button id="editProd" form="editProdForm" type="submit">Rediger batch</button>
+		<button id="editProd" form="editProdForm" type="button">Rediger batch</button>
 		</td>
 		</tr>
 	</table> <br>

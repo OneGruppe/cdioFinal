@@ -59,12 +59,11 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Override
 	@POST
 	@Path("updateProductBatch")
-	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("status") int status)
+	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
 	{
-		System.out.println(pbID +" "+status);
 		try 
 		{
-			pbc.updateProductBatch(pbID, status);
+			pbc.updateProductBatch(pbID, recipeID, status);
 		} 
 		catch (DALException e) 
 		{
@@ -95,7 +94,6 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Path("getProductBatch")
 	public String getProductBatch(@FormParam("pbID") int pbID)
 	{
-		System.out.println(pbID);
 
 		JSONObject prodJSON = new JSONObject();
 		ProductBatchDTO prodbatch;

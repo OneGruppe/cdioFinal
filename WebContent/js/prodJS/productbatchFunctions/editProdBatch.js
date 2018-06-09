@@ -13,7 +13,7 @@ $(document).ready(function() {
 			method: "POST",
 			success:function(data) {
 				
-				$("#setID").attr("value", data.pbID);
+				$("#setProdID").attr("value", data.pbID);
 				$("#setReceptID").attr("value", data.recipeID);
 				$("#setStatus").attr("value", data.status);
 				

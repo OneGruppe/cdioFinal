@@ -58,6 +58,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
 		con.doUpdate("UPDATE productBatch SET "
+				+ "recipeID=" + productBatch.getRecipeID() + ", "
 				+ "status=" + productBatch.getStatus() + " "
 				+ "WHERE productBatchID=" + productBatch.getId());
 	}

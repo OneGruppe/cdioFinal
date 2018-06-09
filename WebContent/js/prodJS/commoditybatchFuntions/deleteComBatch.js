@@ -4,11 +4,11 @@
 
 $(document).ready(function() {
 	
-	$("#navigateToDeleteProd").click(function() {
+	$("#navigateToDeleteCom").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/prodBatch/deleteProductBatch",
-			data: $('#findProdForm').serialize(),
+			url:"/cdio_final/rest/comBatch/deleteCommodityBatch",
+			data: $('#findComForm').serialize(),
 			contenttype: "application/json",
 			method: "DELETE",
 			success:function(data) {

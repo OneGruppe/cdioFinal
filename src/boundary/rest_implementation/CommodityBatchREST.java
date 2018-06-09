@@ -54,11 +54,13 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Path("updateCommodityBatch")
 	public void updateCommodityBatch(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("commodityID") int commodityID, @FormParam("supplierID") int supplierID, @FormParam("amount") double amount) 
 	{
-		try {
+		try 
+		{
 			cbc.updateCommodityBatch(commodityBatchID, commodityID, supplierID, amount);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
 		}	
 	}
 
@@ -67,11 +69,13 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Path("deleteCommodityBatch")
 	public void deleteCommodityBatch(@FormParam("commodityBatchID") int combatchID) 
 	{
-		try {
+		try 
+		{
 			cbc.deleteCommodityBatch(combatchID);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
 		}
 
 	}

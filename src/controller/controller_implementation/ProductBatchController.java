@@ -36,9 +36,9 @@ public class ProductBatchController implements IProductBatchController
 	 * @see controller.controller_interface.IProductBatchController#updateProductBatch(int, int, int)
 	 */
 	@Override
-	public void updateProductBatch(int pbID, int status) throws DALException 
+	public void updateProductBatch(int pbID, int recipeID, int status) throws DALException 
 	{
-		ProductBatchDTO productBatch = new ProductBatchDTO(pbID, 0, status);
+		ProductBatchDTO productBatch = new ProductBatchDTO(pbID, recipeID, status);
 
 		pbdao.updateProductBatch(productBatch);
 
