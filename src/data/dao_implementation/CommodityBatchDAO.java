@@ -2,6 +2,7 @@ package data.dao_implementation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import data.connector.Connector;
@@ -9,12 +10,12 @@ import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public class CommodityBatchDAO implements ICommodityBatchDAO 
-{
+public class CommodityBatchDAO implements ICommodityBatchDAO {
+
 	private Connector con;
 
 	/**
-	 * Constructor that uses Constant-class 
+	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
 	public CommodityBatchDAO() throws DALException
@@ -23,7 +24,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	}
 
 	/**
-	 * Constructor that uses the parameters from 
+	 * Constructor that uses the parameters
 	 * @param server
 	 * @param port
 	 * @param database
@@ -35,7 +36,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	{
 		con = new Connector(server, port, database, username, password);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#createCommodityBatch(data.dto.CommodityBatchDTO)
@@ -43,7 +44,11 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO commodityBatch VALUES(" + commodityBatch.getCommodityBatchID() + ", " + commodityBatch.getCommodityID() + ", " + commodityBatch.getSupplierID() + ", '" + commodityBatch.getAmount() + "')" );
+		con.doUpdate("INSERT INTO commodityBatch VALUES (" 
+				+ commodityBatch.getCommodityBatchID() + ", " 
+				+ commodityBatch.getCommodityID() + ", " 
+				+ commodityBatch.getSupplierID() + ", " 
+				+ commodityBatch.getAmount() + ")" );
 	}
 
 	/*
@@ -53,10 +58,11 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
 	{
-		con.doUpdate("UPDATE commodityBatch SET ("
-				+ "commodityID='" + commodityBatch.getCommodityID() + "', "
-				+ "amount='" + commodityBatch.getAmount() + "'" 
-				+ "WHERE commodityBatchID='" + commodityBatch.getCommodityBatchID() + ")");
+		con.doUpdate("UPDATE commodityBatch SET "
+				+ "commodityID=" + commodityBatch.getCommodityID() + ", "
+				+ "supplierID=" + commodityBatch.getSupplierID() + ", "
+				+ "amount=" + commodityBatch.getAmount() + " "
+				+ "WHERE commodityBatchID=" + commodityBatch.getCommodityBatchID());
 	}
 
 	/*
@@ -66,7 +72,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public void deleteCommodityBatch(int combatchID) throws DALException 
 	{
-		con.doUpdate("DELETE commodityBatch WHERE commodityBatchID=" + combatchID);
+		con.doUpdate("DELETE FROM commodityBatch WHERE commodityBatchID=" + combatchID);
 	}
 
 	/*
@@ -76,9 +82,8 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException 
 	{
-		CommodityBatchDTO combatdto = null;
-
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE commodityBatchID=" + combatchID);
+		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch "
+				+ "WHERE commodityBatchID=" + combatchID);
 
 		try
 		{
@@ -88,9 +93,8 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 			}
 			else
 			{
-				combatdto = new CommodityBatchDTO(combatchID, rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
+				return new CommodityBatchDTO(combatchID, rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
 			}
-			return combatdto;
 		} 
 		catch (SQLException e) 
 		{
@@ -105,9 +109,8 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 	@Override
 	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException 
 	{
-		List<CommodityBatchDTO> comBatchList = null;
-
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatchID");
+		List<CommodityBatchDTO> comBatchList = new ArrayList<CommodityBatchDTO>();
+		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch");
 
 		try 
 		{
@@ -115,14 +118,18 @@ public class CommodityBatchDAO implements ICommodityBatchDAO
 			{
 				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("commodityBatchID"), rs.getInt("commodityID"), rs.getInt("supplierID"), rs.getDouble("amount"));
 				comBatchList.add(combatdto);
-				if (combatdto.getCommodityBatchID() == 0) {throw new DALException("Råvarebatchlisten er tom");}
+
+				if (combatdto.getCommodityBatchID() == 0) 
+				{
+					throw new DALException("Råvarebatchlisten er tom");
+				}
 			}
+			return comBatchList;
 		}
 		catch (SQLException e) 
 		{
 			throw new DALException(e.getMessage());
 		}
-		return comBatchList;
 	}
 
 

@@ -10,13 +10,12 @@ import data.dao_interface.IUserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class UserDAO implements IUserDAO 
-{
+public class UserDAO implements IUserDAO {
 
 	private Connector con;
 
 	/**
-	 * Constructor that uses Constant-class 
+	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
 	public UserDAO() throws DALException 
@@ -25,7 +24,7 @@ public class UserDAO implements IUserDAO
 	}
 
 	/**
-	 * Constructor that uses the parameters from 
+	 * Constructor that uses the parameters
 	 * @param server
 	 * @param port
 	 * @param database
@@ -45,7 +44,11 @@ public class UserDAO implements IUserDAO
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users(userID, name, initials, active) VALUES(" + user.getId() + ", '" + user.getName() + "', '" + user.getIni() + "',"  + user.getActive() + ")");
+		con.doUpdate("INSERT INTO users VALUES (" 
+				+ user.getId() + ", "
+				+ "'" + user.getName() + "', "
+				+ "'" + user.getIni() + "', "  
+				+ user.getActive() + ")");
 	}
 
 	/*
@@ -55,7 +58,11 @@ public class UserDAO implements IUserDAO
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET name = '" + user.getName() + "', initials = '" + user.getIni() + "', active= " + user.getActive() + " WHERE userID = " + user.getId());
+		con.doUpdate("UPDATE users SET "
+				+ "name='" + user.getName() + "', "
+				+ "initials='" + user.getIni() + "', "
+				+ "active=" + user.getActive() + " "
+				+ "WHERE userID=" + user.getId());
 	}
 
 	/*
@@ -65,7 +72,7 @@ public class UserDAO implements IUserDAO
 	@Override
 	public void setUserState(int userID, int state) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET active = " + state + " WHERE userID = " + userID);
+		con.doUpdate("UPDATE users SET active=" + state + " WHERE userID = " + userID);
 	}
 
 	/*
@@ -75,7 +82,8 @@ public class UserDAO implements IUserDAO
 	@Override
 	public UserDTO getUser(int userID) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM users WHERE userID = " + userID);
+		ResultSet rs = con.doQuery("SELECT * FROM users "
+				+ "WHERE userID = " + userID);
 
 		try 
 		{
@@ -102,7 +110,6 @@ public class UserDAO implements IUserDAO
 	public List<UserDTO> getAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
-
 		ResultSet rs = con.doQuery("SELECT * FROM users");
 
 		try
@@ -111,7 +118,11 @@ public class UserDAO implements IUserDAO
 			{
 				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
 				users.add(userdto);
-				if (userdto.getId() == 0) {throw new DALException("User-listen er tom");}
+
+				if (userdto.getId() == 0) 
+				{
+					throw new DALException("User-listen er tom");
+				}
 
 			}
 			return users;

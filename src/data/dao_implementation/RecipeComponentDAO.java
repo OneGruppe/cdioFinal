@@ -15,15 +15,16 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	private Connector con;
 
 	/**
-	 * Constructor that uses Constant-class 
+	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
-	public RecipeComponentDAO() throws DALException{
+	public RecipeComponentDAO() throws DALException
+	{
 		con = new Connector();
 	}
 
 	/**
-	 * Constructor that uses the parameters from 
+	 * Constructor that uses the parameters
 	 * @param server
 	 * @param port
 	 * @param database
@@ -41,18 +42,14 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#createRecipeComponent(data.dto.RecipeComponentDTO)
 	 */
 	@Override
-	public void createRecipeComponent(RecipeComponentDTO component) throws DALException {
-		if(component.getRecipeComponentID() == 0) {
-			con.doUpdate("INSERT INTO recipeComponent(recipeID, commodityID, non_netto, tolerance) VALUES (" +
-					component.getRecipeID() + ", " + component.getCommodityID() + ", "
-					+ component.getNon_netto() + ", " + component.getTolerance() + ")" );
-		}
-		else
-		{
-			con.doUpdate("INSERT INTO recipeComponent(recipeComponentID, recipeID, commodityID, non_netto, tolerance) VALUES (" +
-					component.getRecipeComponentID() + ", " + component.getRecipeID() + ", " + component.getCommodityID() + ", "
-					+ component.getNon_netto() + ", " + component.getTolerance() + ")" );
-		}
+	public void createRecipeComponent(RecipeComponentDTO component) throws DALException 
+	{
+		con.doUpdate("INSERT INTO recipeComponent VALUES (" 
+				+ component.getRecipeComponentID() + ", " 
+				+ component.getRecipeID() + ", " 
+				+ component.getCommodityID() + ", "
+				+ component.getNon_netto() + ", " 
+				+ component.getTolerance() + ")" );
 	}
 
 	/*
@@ -60,11 +57,14 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#updateRecipeComponent(data.dto.RecipeComponentDTO)
 	 */
 	@Override
-	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException {
-		con.doUpdate("UPDATE recipeComponent SET recipeID= " + component.getRecipeID() + 
-				", commodityID= " + component.getCommodityID() + ", non_netto= '" + component.getNon_netto() + 
-				"', tolerance= '" + component.getTolerance()
-				+ "' WHERE recipeComponentID= " + component.getRecipeComponentID());
+	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException 
+	{
+		con.doUpdate("UPDATE recipeComponent SET "
+				+ "recipeID=" + component.getRecipeID() + ", "
+				+ "commodityID=" + component.getCommodityID() + ", "
+				+ "non_netto=" + component.getNon_netto() + ", "
+				+ "tolerance=" + component.getTolerance() + " "
+				+ "WHERE recipeComponentID=" + component.getRecipeComponentID());
 	}
 
 	/*
@@ -72,8 +72,10 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#deleteRecipeComponent(int)
 	 */
 	@Override
-	public void deleteRecipeComponent(int componentID) throws DALException {
-		con.doUpdate("DELETE FROM recipeComponent WHERE recipeComponentID= " + componentID);
+	public void deleteRecipeComponent(int componentID) throws DALException 
+	{
+		con.doUpdate("DELETE FROM recipeComponent "
+				+ "WHERE recipeComponentID= " + componentID);
 	}
 
 	/*
@@ -83,11 +85,11 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	@Override
 	public RecipeComponentDTO getRecipeComponent(int recipeComponentID) throws DALException
 	{
-
 		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent WHERE recipeComponentID= " + recipeComponentID);
 
 		try {
-			if(!rs.first()) {
+			if(!rs.first()) 
+			{
 				throw new DALException("" + recipeComponentID);
 			}
 			else
@@ -95,7 +97,8 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 				return new RecipeComponentDTO(recipeComponentID, rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance"));
 			}
 		}
-		catch (SQLException e) {
+		catch (SQLException e) 
+		{
 			throw new DALException(e.getMessage());
 		}
 	}
@@ -108,7 +111,6 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	public List<RecipeComponentDTO> getAllRecipeComponents() throws DALException
 	{
 		List<RecipeComponentDTO> recipeComponentList = new ArrayList<RecipeComponentDTO>();
-
 		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent");
 
 		try {
@@ -121,13 +123,13 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 			{
 				throw new DALException("Recipe component-list is empty: ");
 			}
+			return recipeComponentList;
 		}
-		catch(SQLException e) {
+		catch(SQLException e) 
+		{
 			throw new DALException(e.getMessage());
 		}
-		return recipeComponentList;
 	}
-
 
 
 }

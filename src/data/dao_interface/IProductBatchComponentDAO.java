@@ -12,14 +12,22 @@ public interface IProductBatchComponentDAO {
 	 * @throws DALException
 	 */
 	public void createProductBatchComponent(ProductBatchComponentDTO productBatchComponent) throws DALException;
-	
+
 	/**
 	 * Update the information of the given Prroduct batch component.
 	 * @param productBatchComponent
 	 * @throws DALException
 	 */
 	public void updateProductBatchComponent(ProductBatchComponentDTO productBatchComponent) throws DALException;
-	
+
+	/**
+	 * Returns a list of all Product batch components.
+	 * @param prodbatcomID
+	 * @throws DALException
+	 */
+	public void deleteProductBatchComponent(int prodbatcomID) throws DALException;
+
+
 	/**
 	 * Returns a single Product batch component.
 	 * @param ProductBatchComponent
@@ -27,14 +35,13 @@ public interface IProductBatchComponentDAO {
 	 * @throws DALException
 	 */
 	public ProductBatchComponentDTO getProductBatchComponent(int ProductBatchComponent) throws DALException;
-	
+
 	/**
 	 * Returns a list of all Product batch components.
 	 * @return a list of all Product batch components as objects of ProductBatchComponentDTO.
 	 * @throws DALException
 	 */
 	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException;
-	
-	
+
 
 }

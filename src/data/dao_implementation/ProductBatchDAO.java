@@ -10,12 +10,12 @@ import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public class ProductBatchDAO implements IProductBatchDAO 
-{
+public class ProductBatchDAO implements IProductBatchDAO {
+
 	private Connector con;
 
 	/**
-	 * Constructor that uses Constant-class 
+	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
 	public ProductBatchDAO() throws DALException
@@ -24,7 +24,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	}
 
 	/**
-	 * Constructor that uses the parameters from 
+	 * Constructor that uses the parameters
 	 * @param server
 	 * @param port
 	 * @param database
@@ -36,7 +36,7 @@ public class ProductBatchDAO implements IProductBatchDAO
 	{
 		con = new Connector(server, port, database, username, password);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IProductBatchDAO#createProductBatch(data.dto.ProductBatchDTO)
@@ -44,9 +44,10 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("INSERT INTO productBatch VALUES(" + productBatch.getId() + ", "	
-														+ productBatch.getRecipeID() + ", " 
-														+ productBatch.getStatus() + ")" );
+		con.doUpdate("INSERT INTO productBatch VALUES (" 
+				+ productBatch.getId() + ", "	
+				+ productBatch.getRecipeID() + ", " 
+				+ productBatch.getStatus() + ")" );
 	}
 
 	/*
@@ -56,7 +57,9 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
-		con.doUpdate("UPDATE productBatch SET status= " + productBatch.getStatus() + " WHERE productBatchID= " + productBatch.getId());
+		con.doUpdate("UPDATE productBatch SET "
+				+ "status=" + productBatch.getStatus() + " "
+				+ "WHERE productBatchID=" + productBatch.getId());
 	}
 
 	/*
@@ -66,7 +69,8 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public void deleteProductBatch(int productBatchID) throws DALException 
 	{
-		con.doUpdate("DELETE FROM productBatch WHERE productBatchID= " + productBatchID);
+		con.doUpdate("DELETE FROM productBatch "
+				+ "WHERE productBatchID= " + productBatchID);
 	}
 
 
@@ -77,7 +81,8 @@ public class ProductBatchDAO implements IProductBatchDAO
 	@Override
 	public ProductBatchDTO getProductBatch(int productbatchID) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE productBatchID= " + productbatchID);
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch "
+				+ "WHERE productBatchID= " + productbatchID);
 
 		try 
 		{
@@ -89,7 +94,6 @@ public class ProductBatchDAO implements IProductBatchDAO
 			{
 				return new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("recipeID"), rs.getInt("status"));
 			}
-
 		} 
 		catch (SQLException e) 
 		{
@@ -106,15 +110,19 @@ public class ProductBatchDAO implements IProductBatchDAO
 	public List<ProductBatchDTO> getAllProductBatches() throws DALException
 	{
 		List<ProductBatchDTO> PBatches = new ArrayList<ProductBatchDTO>();
-
 		ResultSet rs = con.doQuery("SELECT * FROM productBatch");
 
 		try 
 		{
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 				ProductBatchDTO prodbatdto = new ProductBatchDTO(rs.getInt("productBatchID"), rs.getInt("recipeID"), rs.getInt("status"));
 				PBatches.add(prodbatdto);
-				if (prodbatdto.getId() == 0) {throw new DALException("Produktbatchlisten er tom");}
+
+				if (prodbatdto.getId() == 0) 
+				{
+					throw new DALException("Produktbatchlisten er tom");
+				}
 			}
 			return PBatches;
 		} 
