@@ -32,15 +32,15 @@ a {
 }
 
 #headerContainer {
-	position: absolute;
-	top: 30%;
+	position: relative;
+	top: -80%;
 	left: 60%;
 }
 
 #dropDownCreateProd {
-	position: fixed;
-	top: 5.48%;
-	left: 64.15%;
+	position: absolute;
+	top: 165%;
+	left: 4.1%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 8px;
 	padding-right: 8px;
@@ -49,9 +49,9 @@ a {
 }
 
 #dropDownFindProd {
-	position: fixed;
-	top: 5.48%;
-	left: 69.3%;
+	position: absolute;
+	top: 165%;
+	left: 9.4%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 2px;
 	padding-right: 2px;
@@ -60,9 +60,9 @@ a {
 }
 
 #dropDownVisProd {
-	position: fixed;
-	top: 5.48%;
-	left: 74.15%;
+	position: absolute;
+	top: 165%;
+	left: 14.15%;
 	background-color: rgba(181, 4, 4, 0.7);
 	padding-left: 8px;
 	padding-right: 8px;
