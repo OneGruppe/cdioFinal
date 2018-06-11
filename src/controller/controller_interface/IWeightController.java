@@ -58,5 +58,12 @@ public interface IWeightController {
 	 */
 	public void finish() throws DALException;
 
+	
+	/**
+	 * Restart weight flow
+	 * @throws DALExpception
+	 */
+	public void restart() throws DALException;
+
 
 }

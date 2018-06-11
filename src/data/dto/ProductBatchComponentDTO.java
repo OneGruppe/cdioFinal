@@ -4,28 +4,28 @@ public class ProductBatchComponentDTO
 {
 	private int id;
 	private int productbatchID;
-	private int commodityID;
+	private int commodityBatchID;
 	private int userID;
 	private double tara;
-	private double nonNetto;
+	private double netto;
 	
 	/**
 	 * Constructor for ProductBatchComponentDTO
 	 * @param id
 	 * @param productbatchID
-	 * @param commodityID
+	 * @param commodityBatchID
 	 * @param userID
 	 * @param tara
-	 * @param nonNetto
+	 * @param netto
 	 */
-	public ProductBatchComponentDTO(int id, int productbatchID, int commodityID, int userID, double tara, double nonNetto)
+	public ProductBatchComponentDTO(int id, int productbatchID, int commodityBatchID, int userID, double tara, double netto)
 	{
 		this.id = id;
 		this.productbatchID = productbatchID;
-		this.commodityID = commodityID;
+		this.commodityBatchID = commodityBatchID;
 		this.userID = userID;
 		this.tara = tara;
-		this.nonNetto = nonNetto;
+		this.netto = netto;
 	}
 	
 	public int getId()
@@ -48,14 +48,14 @@ public class ProductBatchComponentDTO
 		this.productbatchID = productbatchID;
 	}
 	
-	public int getCommodityID()
+	public int getCommodityBatchID()
 	{
-		return commodityID;
+		return commodityBatchID;
 	}
 	
-	public void setCommodityID(int commodityID)
+	public void setCommodityID(int commodityBatchID)
 	{
-		this.commodityID = commodityID;
+		this.commodityBatchID = commodityBatchID;
 	}
 	
 	public int getUserID()
@@ -78,20 +78,20 @@ public class ProductBatchComponentDTO
 		this.tara = tara;
 	}
 	
-	public double getNonNetto()
+	public double getNetto()
 	{
-		return nonNetto;
+		return netto;
 	}
 	
-	public void setNonNetto(double nonNetto)
+	public void setNonNetto(double netto)
 	{
-		this.nonNetto = nonNetto;
+		this.netto = netto;
 	}
 	
 	@Override
 	public String toString() {
-		return "ProductBatchComponentDTO [id=" + id + ", productbatchID=" + productbatchID + ", commodityID="
-				+ commodityID + ", userID=" + userID + ", tara=" + tara + ", nonNetto=" + nonNetto + "]";
+		return "ProductBatchComponentDTO [id=" + id + ", productbatchID=" + productbatchID + ", commodityBatchID="
+				+ commodityBatchID + ", userID=" + userID + ", tara=" + tara + ", netto=" + netto + "]";
 	}
 
 }

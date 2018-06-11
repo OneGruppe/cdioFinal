@@ -114,16 +114,13 @@ public class UserDAO implements IUserDAO {
 
 		try
 		{
-			while(rs.next()) 
-			{
-				UserDTO userdto = new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
+			while(rs.next()) {
+				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
 				users.add(userdto);
-
-				if (userdto.getId() == 0) 
-				{
-					throw new DALException("User-listen er tom");
-				}
-
+			}
+			if(users.isEmpty()) {
+				throw new DALException("ProductBatch komponent listen er tom...\nTilføj nogle værdier og prøv igen");
+			}
 			}
 			return users;
 		}
