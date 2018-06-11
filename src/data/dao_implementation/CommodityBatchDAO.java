@@ -60,7 +60,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 		con.doUpdate("UPDATE commodityBatch SET "
 				+ "commodityID=" + commodityBatch.getCommodityID() + ", "
 				+ "amount=" + commodityBatch.getAmount() + " "
-				+ "WHERE commodityBatchID=" + commodityBatch.getId());
+				+ "WHERE id=" + commodityBatch.getId());
 	}
 
 	/*
@@ -83,7 +83,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	{
 		List<CommodityBatchDTO> commodityBatchList = new ArrayList<CommodityBatchDTO>();
 		
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE commodityID= " +commodityID);
+		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE commodityID= " + commodityID);
 		
 		try 
 		{
@@ -116,12 +116,12 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 		{
 			while(rs.next()) 
 			{
-				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("commodityBatchID"), rs.getInt("commodityID"), rs.getDouble("amount"));
+				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("id"), rs.getInt("commodityID"), rs.getDouble("amount"));
 				comBatchList.add(combatdto);
 
 				if (combatdto.getId() == 0) 
 				{
-					throw new DALException("Rï¿½varebatchlisten er tom");
+					throw new DALException("Råvarebatchlisten er tom");
 				}
 			}
 			return comBatchList;

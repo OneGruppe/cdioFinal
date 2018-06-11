@@ -56,15 +56,17 @@ public class CommodityBatchDAOTest {
 	@Test
 	public void createCommodityBatchTEST()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 1, 10.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 10.0);
 
 		try
 		{
 			dao.createCommodityBatch(expected);
+			
+			for (CommodityBatchDTO actual : dao.getCommodityBatch(testID1))
+			{
+				assertEquals(expected.toString(), actual.toString());	
+			}
 
-			CommodityBatchDTO actual = dao.getCommodityBatch(testID1);
-
-			assertEquals(expected.toString(), actual.toString());	
 		}
 		catch(DALException e)
 		{
@@ -76,17 +78,18 @@ public class CommodityBatchDAOTest {
 	@Test
 	public void updateCommodityBatchTEST()
 	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 1, 10.0);
-		CommodityBatchDTO updated = new CommodityBatchDTO(testID1, 2, 2, 15.0);
+		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 10.0);
+		CommodityBatchDTO updated = new CommodityBatchDTO(testID1, 2, 15.0);
 
 		try
 		{
 			dao.createCommodityBatch(expected);
 			dao.updateCommodityBatch(updated);
 			
-			CommodityBatchDTO actual = dao.getCommodityBatch(testID1);
-			
-			assertEquals(updated.toString(), actual.toString());
+			for (CommodityBatchDTO actual : dao.getCommodityBatch(testID1))
+			{
+				assertEquals(expected.toString(), actual.toString());	
+			}
 		}
 		catch(DALException e)
 		{
@@ -98,8 +101,8 @@ public class CommodityBatchDAOTest {
 	@Test
 	public void getAllCommodityBatchesTEST()
 	{
-		CommodityBatchDTO expected1 = new CommodityBatchDTO(testID1, 1, 1, 10.0);
-		CommodityBatchDTO expected2 = new CommodityBatchDTO(testID2, 2, 2, 15.0);
+		CommodityBatchDTO expected1 = new CommodityBatchDTO(testID1, 1, 10.0);
+		CommodityBatchDTO expected2 = new CommodityBatchDTO(testID2, 2, 15.0);
 
 		List<CommodityBatchDTO> expectedList = new ArrayList<CommodityBatchDTO>();
 		expectedList.add(expected1);
