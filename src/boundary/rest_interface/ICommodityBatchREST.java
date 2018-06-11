@@ -7,38 +7,38 @@ public interface ICommodityBatchREST {
 	/**
 	 * <h1> <i>createCommodityBatch</i> </h1> <br>
 	 * Creates a commoditybatch
-	 * @param cbID
+	 * @param id
 	 * @param commodityID
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount);
+	public void createCommodityBatch(int id, int commodityID, double amount);
 	/**
 	 * <h1> <i>updateCommodityBatch</i> </h1> <br>
 	 * Updates a commoditybatch
-	 * @param cbID
+	 * @param id
 	 * @param commodityID
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void updateCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount);
+	public void updateCommodityBatch(int id, int commodityID, double amount);
 
 	/**
 	 * <h1> <i>deleteCommodityBatch</i> </h1> <br>
 	 * Deletes a commoditybatch
-	 * @param combatchID
+	 * @param id
 	 * @throws DALException
 	 */
-	public void deleteCommodityBatch(int commodityBatchID);
+	public void deleteCommodityBatch(int id);
 
 	/**
 	 * <h1> <i>getCommodityBatch</i> </h1> <br>
 	 * Get a single commoditybatch
-	 * @param combatchID
+	 * @param commodityID
 	 * @return a signle CommodityBatchDTO object
 	 * @throws DALException
 	 */
-	public String getCommodityBatch(int commodityBatchID);
+	public String getCommodityBatch(int commodityID);
 
 	/**
 	 * <h1> <i>getAllCommodityBatches</i> </h1> <br>

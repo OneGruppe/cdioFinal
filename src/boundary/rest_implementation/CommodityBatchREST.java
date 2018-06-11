@@ -10,12 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import boundary.rest_interface.ICommodityBatchREST;
 import controller.controller_implementation.CommodityBatchController;
 import controller.controller_interface.ICommodityBatchController;
-import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,11 +37,11 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@POST
 	@Path("createCommodityBatch")
-	public void createCommodityBatch(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("commodityID") int commodityID, @FormParam("supplierID") int supplierID, @FormParam("amount") double amount) 
+	public void createCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
 		try 
 		{
-			cbc.createCommodityBatch(commodityBatchID, commodityID, supplierID, amount);
+			cbc.createCommodityBatch(id, commodityID, amount);
 		} 
 		catch (DALException e) 
 		{
@@ -54,11 +52,11 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@POST
 	@Path("updateCommodityBatch")
-	public void updateCommodityBatch(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("commodityID") int commodityID, @FormParam("supplierID") int supplierID, @FormParam("amount") double amount) 
+	public void updateCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
 		try 
 		{
-			cbc.updateCommodityBatch(commodityBatchID, commodityID, supplierID, amount);
+			cbc.updateCommodityBatch(id, commodityID, amount);
 		} 
 		catch (DALException e) 
 		{
@@ -69,11 +67,11 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@DELETE
 	@Path("deleteCommodityBatch")
-	public void deleteCommodityBatch(@FormParam("commodityBatchID") int combatchID) 
+	public void deleteCommodityBatch(@FormParam("id") int id) 
 	{
 		try 
 		{
-			cbc.deleteCommodityBatch(combatchID);
+			cbc.deleteCommodityBatch(id);
 		} 
 		catch (DALException e) 
 		{
@@ -85,26 +83,14 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getCommodityBatch")
-	public String getCommodityBatch(@FormParam("commodityBatchID") int combatchID) 
+	public String getCommodityBatch(@FormParam("commodityID") int commodityID) 
 	{
-		CommodityBatchDTO commoditybatch;
-		JSONObject comJSON = new JSONObject();
+		
+		JSONArray comJSON = new JSONArray();
 
 		try
 		{
-			if(combatchID != 0)
-			{
-				commoditybatch = cbc.getCommodityBatch(combatchID);
-
-				comJSON.put("cbID", commoditybatch.getId());
-				comJSON.put("commodityID", commoditybatch.getCommodityID());
-				comJSON.put("supplierID", commoditybatch.getSupplierID());
-				comJSON.put("amount", commoditybatch.getAmount());
-			} 
-			else
-			{
-				System.out.println("Fejl");
-			}
+			comJSON.put(cbc.getCommodityBatch(commodityID));
 		}
 		catch(DALException e)
 		{
