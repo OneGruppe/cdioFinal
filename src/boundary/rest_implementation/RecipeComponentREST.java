@@ -16,9 +16,9 @@ import controller.controller_interface.IRecipeComponentController;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
-@Produces(MediaType.APPLICATION_JSON)
+/*@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-@Path("RecipeComponent")
+@Path("RecipeComponent")*/
 public class RecipeComponentREST implements IRecipeComponentREST {
 	private IRecipeComponentController rcc;
 	

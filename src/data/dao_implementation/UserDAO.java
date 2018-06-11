@@ -62,7 +62,7 @@ public class UserDAO implements IUserDAO {
 				+ "name='" + user.getName() + "', "
 				+ "ini='" + user.getIni() + "', "
 				+ "active=" + user.getActive() + " "
-				+ "WHERE userID=" + user.getId());
+				+ "WHERE id=" + user.getId());
 	}
 
 	/*
@@ -115,7 +115,7 @@ public class UserDAO implements IUserDAO {
 		try
 		{
 			while(rs.next()) {
-				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
+				UserDTO userdto = new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
 				users.add(userdto);
 			}
 			if(users.isEmpty()) {

@@ -14,9 +14,9 @@ import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_interface.IProductbatchComponentController;
 import exceptions.DALException;
 
-@Produces(MediaType.APPLICATION_JSON)
+/*@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("prodBatchComponent")
+@Path("prodBatchComponent")*/
 public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	
 	private IProductbatchComponentController prodBatchCompController;
