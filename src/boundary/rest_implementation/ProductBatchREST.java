@@ -10,10 +10,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
 import controller.controller_implementation.ProductBatchController;
 import controller.controller_interface.IProductBatchController;
+import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
