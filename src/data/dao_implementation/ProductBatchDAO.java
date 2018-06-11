@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data.connector.Connector;
-import data.dao_interface.IProductBatchComponentDAO;
+import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
+public class ProductBatchDAO implements IProductBatchDAO {
 
 	private Connector con;
 
@@ -18,7 +18,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
-	public ProductBatchComponentDAO() throws DALException
+	public ProductBatchDAO() throws DALException
 	{
 		con = new Connector();
 	}
@@ -32,7 +32,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	 * @param password
 	 * @throws DALException
 	 */
-	public ProductBatchComponentDAO(String server, int port, String database, String username, String password) throws DALException 
+	public ProductBatchDAO(String server, int port, String database, String username, String password) throws DALException 
 	{
 		con = new Connector(server, port, database, username, password);
 	}

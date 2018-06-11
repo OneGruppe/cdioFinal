@@ -5,7 +5,7 @@ import java.util.List;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public interface IProductBatchComponentDAO {
+public interface IProductBatchDAO {
 
 	/**
 	 * Creates a Product batch component and saves it to the database.
