@@ -57,8 +57,8 @@ public class SupplierDAO implements ISupplierDAO {
 	public void updateSupplier(SupplierDTO supplier) throws DALException 
 	{
 		con.doUpdate("UPDATE supplier SET "
-				+ "supplierName='" + supplier.getName() + "' "
-				+ "WHERE supplierID=" + supplier.getId());
+				+ "name='" + supplier.getName() + "' "
+				+ "WHERE id=" + supplier.getId());
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class SupplierDAO implements ISupplierDAO {
 	public void deleteSupplier(int supplierID) throws DALException 
 	{
 		con.doUpdate("DELETE FROM supplier "
-				+ "WHERE supplierID= " + supplierID);		
+				+ "WHERE id= " + supplierID);		
 	}
 
 	/*
@@ -80,7 +80,7 @@ public class SupplierDAO implements ISupplierDAO {
 	public SupplierDTO getSupplier(int supplierID) throws DALException 
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM supplier "
-				+ "WHERE supplierID= " + supplierID);
+				+ "WHERE id= " + supplierID);
 
 		try
 		{
@@ -90,7 +90,7 @@ public class SupplierDAO implements ISupplierDAO {
 			}
 			else
 			{
-				return new SupplierDTO(supplierID, rs.getString("supplierName"));
+				return new SupplierDTO(supplierID, rs.getString("name"));
 			}
 		} 
 		catch (SQLException e)
@@ -113,7 +113,7 @@ public class SupplierDAO implements ISupplierDAO {
 		{
 			while(rs.next())
 			{
-				SupplierDTO supdto = new SupplierDTO(rs.getInt("supplierID"), rs.getString("supplierName"));
+				SupplierDTO supdto = new SupplierDTO(rs.getInt("id"), rs.getString("name"));
 				suppList.add(supdto);
 
 				if (supdto.getId() == 0) 
