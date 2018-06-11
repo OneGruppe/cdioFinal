@@ -1,6 +1,5 @@
 package boundary.rest_implementation;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -22,7 +21,6 @@ import data.dto.CommodityDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("commodity")
 public class CommodityREST implements ICommodityREST {
 

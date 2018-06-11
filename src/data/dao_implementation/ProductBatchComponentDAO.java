@@ -39,7 +39,8 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 														+ "commodityBatchID= " + component.getCommodityBatchID()+ ", "
 														+ "userID= " + component.getUserID() + ", "
 														+ "tara= " + component.getTara() + ", "
-														+ "netto= " + component.getNetto());
+														+ "netto= " + component.getNetto()
+														+ " WHERE id= " + component.getId());
 	}
 
 	@Override
