@@ -127,7 +127,7 @@
 				<artifactId>tomcat8-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<warSourceDirectory>/html/</warSourceDirectory>
+					<path>/html/</path>
 				</configuration>
 			</plugin>
 
