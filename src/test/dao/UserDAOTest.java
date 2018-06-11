@@ -43,8 +43,8 @@ public class UserDAOTest {
 		try 
 		{
 			Connector con = new Connector();
-			con.doUpdate("DELETE FROM users WHERE userID = " + testID1);
-			con.doUpdate("DELETE FROM users WHERE userID = " + testID2);
+			con.doUpdate("DELETE FROM user WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM user WHERE id= " + testID2);
 		}
 		catch(DALException e) 
 		{

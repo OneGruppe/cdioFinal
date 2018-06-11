@@ -82,8 +82,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public UserDTO getUser(int id) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM user "
-				+ "WHERE id = " + id);
+		ResultSet rs = con.doQuery("SELECT * FROM user WHERE id = " + id);
 
 		try 
 		{
