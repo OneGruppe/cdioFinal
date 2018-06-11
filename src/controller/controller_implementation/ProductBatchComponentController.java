@@ -25,7 +25,6 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 	public void createProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException 
 	{
 		ProductBatchComponentDTO component = new ProductBatchComponentDTO(productBatchComponentID, productBatchID, commodityBatchID, userID, tara, netto);
-
 		dao.createProductBatchComponent(component);
 	}
 
@@ -37,7 +36,6 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException 
 	{
 		ProductBatchComponentDTO component = new ProductBatchComponentDTO(productBatchComponentID, productBatchID, commodityBatchID, userID, tara, netto);
-
 		dao.createProductBatchComponent(component);		
 	}
 
