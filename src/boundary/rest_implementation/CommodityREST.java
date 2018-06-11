@@ -14,9 +14,9 @@ import controller.controller_interface.ISupplierController;
 import data.dto.CommodityDTO;
 import exceptions.DALException;
 
-/*@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-@Path("commodity")*/
+@Path("commodity")
 public class CommodityREST implements ICommodityREST {
 
 	private ICommodityController cc;
