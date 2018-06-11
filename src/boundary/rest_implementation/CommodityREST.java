@@ -46,6 +46,7 @@ public class CommodityREST implements ICommodityREST {
 	@Path("createCommodity")
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
 	{
+		//TODO
 		String message;
 		try 
 		{
@@ -76,6 +77,7 @@ public class CommodityREST implements ICommodityREST {
 	@Path("updateCommodity")
 	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
 	{
+		//TODO
 		String message;
 		try
 		{
