@@ -2,56 +2,48 @@ package boundary.rest_interface;
 
 import exceptions.DALException;
 
-public interface IProductBatchREST {
-
+public interface IProductBatchREST
+{
 	/**
 	 * <h1> <i>createProductBatch</i> </h1> <br>
-	 * Creates a productbatch
-	 * @param pbID
-	 * @param status
+	 * Creates a ProductBatch
+	 * @param it
 	 * @param recipeID
-	 * @param userID
-	 * @param comBatID
-	 * @param tara
-	 * @param netto
+	 * @param status
 	 * @throws DALException
 	 */
-	public String createProductBatch(int pbID, int recipeID, int status);
+	public String createProductBatch(int id, int recipeID, int status);
 
 	/**
 	 * <h1> <i>updateProductBatch</i> </h1> <br>
 	 * Updates a productbatch
-	 * @param pbID
-	 * @param status
+	 * @param id
 	 * @param recipeID
-	 * @param userID
-	 * @param comBatID
-	 * @param tara
-	 * @param netto
+	 * @param status
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int recipeID, int status);
+	public void updateProductBatch(int id, int recipeID, int status);
 
 	/**
 	 * <h1> <i>deleteProductBatch</i> </h1> <br>
-	 * Deletes a productbatch
-	 * @param pbID
+	 * Deletes a ProductBatch
+	 * @param id
 	 * @throws DALException
 	 */
-	public void deleteProductBatch(int pbID);
+	public void deleteProductBatch(int id);
 
 	/**
 	 * <h1> <i>getProductBatch</i> </h1> <br>
-	 * Get a productbatch
-	 * @param pbID
-	 * @return a single productbatch
+	 * Get a ProductBatch
+	 * @param id
+	 * @return a single ProductBatch
 	 * @throws DALException
 	 */
-	public String getProductBatch(int componentID);
+	public String getProductBatch(int id);
 
 	/**
 	 * <h1> <i>getAllProductBatches</i> </h1> <br>
-	 * Get a list of all productbatches
+	 * Get a list of all ProductBatches
 	 * @return a list of ProductBatchDTO objects
 	 * @throws DALException
 	 */

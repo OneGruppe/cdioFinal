@@ -5,47 +5,46 @@ import java.util.List;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public interface IProductBatchController {
+public interface IProductBatchController
+{
 
 	/**
-	 * Creates a productbatch
-	 * @param pbID
+	 * Creates a ProductBatch
+	 * @param id
 	 * @param recipeID
 	 * @param status
 	 * @throws DALException
 	 */
-	public void createProductBatch(int pbID, int recipeID, int status) throws DALException;
+	public void createProductBatch(int id, int recipeID, int status) throws DALException;
 
 	/**
-	 * Updates a productbatch
-	 * @param pbID
+	 * Updates a ProductBatch
+	 * @param id
 	 * @param recipeID
 	 * @param status
 	 * @throws DALException
 	 */
-	public void updateProductBatch(int pbID, int recipeID, int status) throws DALException;
+	public void updateProductBatch(int id, int recipeID, int status) throws DALException;
 
 	/**
-	 * Deletes a productbatch
-	 * @param pbID
+	 * Deletes a ProductBatch
+	 * @param id
 	 * @throws DALException
 	 */
-	public void deleteProductBatch(int pbID) throws DALException;
+	public void deleteProductBatch(int id) throws DALException;
 
 	/**
-	 * Get a productbatch
-	 * @param pbID
-	 * @return a single productbatch
+	 * Get a ProductBatch
+	 * @param id
+	 * @return a single ProductBatch
 	 * @throws DALException
 	 */
-	public ProductBatchDTO getProductBatch(int pbID) throws DALException;
+	public ProductBatchDTO getProductBatch(int id) throws DALException;
 
 	/**
-	 * Get a list of all productbatches
+	 * Get a list of all ProductBatches
 	 * @return a list of ProductBatchDTO objects
 	 * @throws DALException
 	 */
 	public List<ProductBatchDTO> getAllProductBatches() throws DALException;
-
-
 }
