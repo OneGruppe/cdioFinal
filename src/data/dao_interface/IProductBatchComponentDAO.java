@@ -42,6 +42,6 @@ public interface IProductBatchComponentDAO {
 	 * @return a list of all ProductBatchComponentDTOs
 	 * @throws DALException
 	 */
-	public List<ProductBatchComponentDTO> getAllProductBatchComponenter() throws DALException;
+	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException;
 
 }

@@ -22,8 +22,7 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 	 * @see controller.controller_interface.IProductbatchComponentController#createProductBatchComponent(int, int, int, int, double, double)
 	 */
 	@Override
-	public void createProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto)
-			throws DALException 
+	public void createProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException 
 	{
 		ProductBatchComponentDTO component = new ProductBatchComponentDTO(productBatchComponentID, productBatchID, commodityBatchID, userID, tara, netto);
 
@@ -35,8 +34,7 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 	 * @see controller.controller_interface.IProductbatchComponentController#updateProductBatchComponent(int, int, int, int, double, double)
 	 */
 	@Override
-	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto)
-			throws DALException 
+	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException 
 	{
 		ProductBatchComponentDTO component = new ProductBatchComponentDTO(productBatchComponentID, productBatchID, commodityBatchID, userID, tara, netto);
 
@@ -48,9 +46,9 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 	 * @see controller.controller_interface.IProductbatchComponentController#getProductBatchComponent(int)
 	 */
 	@Override
-	public ProductBatchComponentDTO getProductBatchComponent(int componentID) throws DALException 
+	public List<ProductBatchComponentDTO> getProductBatchComponent(int productBatchID) throws DALException 
 	{
-		return dao.getProductBatchComponent(componentID);
+		return dao.getProductBatchComponent(productBatchID);
 	}
 
 	/*
