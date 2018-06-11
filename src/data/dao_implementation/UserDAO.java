@@ -44,7 +44,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users VALUES ("
+		con.doUpdate("INSERT INTO user VALUES ("
 				+ user.getId() + ", "
 				+ "'" + user.getName() + "', "
 				+ "'" + user.getIni() + "', "
@@ -58,7 +58,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET "
+		con.doUpdate("UPDATE user SET "
 				+ "name='" + user.getName() + "', "
 				+ "initials='" + user.getIni() + "', "
 				+ "active=" + user.getActive() + " "
@@ -72,7 +72,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void setUserState(int userID, int state) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET active=" + state + " WHERE userID = " + userID);
+		con.doUpdate("UPDATE user SET active=" + state + " WHERE userID = " + userID);
 	}
 
 	/*
@@ -82,7 +82,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public UserDTO getUser(int userID) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM users "
+		ResultSet rs = con.doQuery("SELECT * FROM user "
 				+ "WHERE userID = " + userID);
 
 		try 
@@ -110,7 +110,7 @@ public class UserDAO implements IUserDAO {
 	public List<UserDTO> getAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM users");
+		ResultSet rs = con.doQuery("SELECT * FROM user");
 
 		try
 		{
