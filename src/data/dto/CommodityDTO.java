@@ -48,6 +48,12 @@ public class CommodityDTO
 	{
 		this.supplierID = supplierID;
 	}
+
+	@Override
+	public String toString() {
+		return "CommodityDTO [id=" + id + ", name=" + name + ", supplierID=" + supplierID + "]";
+	}
+	
 	
 	
 }

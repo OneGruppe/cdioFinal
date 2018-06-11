@@ -59,7 +59,7 @@ public class CommodityDAO implements ICommodityDAO {
 	{
 		
 		con.doUpdate("UPDATE commodity SET "
-				+ "commodityName='" + commodity.getName() + "', "
+				+ "name='" + commodity.getName() + "', "
 				+ "supplierID=" +commodity.getSupplierID() + " "
 				+ "WHERE id=" + commodity.getId());
 

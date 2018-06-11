@@ -12,10 +12,7 @@ import org.junit.Test;
 
 import data.dao_implementation.CommodityDAO;
 import data.dao_interface.ICommodityDAO;
-import data.dto.CommodityBatchDTO;
 import data.dto.CommodityDTO;
-import data.dto.RecipeComponentDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public class CommodityDAOTest {
@@ -56,16 +53,11 @@ public class CommodityDAOTest {
 	@Test
 	public void createCommodityTEST() 
 	{
-		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Supplier 1"));
-		supplierList.add(new SupplierDTO(2, "Supplier 2"));
+		CommodityDTO expected = new CommodityDTO(testID1, "Test", 1);
 
-		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
-
-		try 
+		try
 		{
 			dao.createCommodity(expected);
-
 			CommodityDTO actual = dao.getCommodity(testID1);
 
 			assertEquals(expected.toString(), actual.toString());
@@ -80,12 +72,8 @@ public class CommodityDAOTest {
 	@Test
 	public void updateCommodityTEST() 
 	{
-		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Supplier 1"));
-		supplierList.add(new SupplierDTO(2, "Supplier 2"));
-
-		CommodityDTO expected = new CommodityDTO(testID1, "Test", supplierList);
-		CommodityDTO updated = new CommodityDTO(testID1, "Test2", supplierList);
+		CommodityDTO expected = new CommodityDTO(testID1, "Test", 1);
+		CommodityDTO updated = new CommodityDTO(testID1, "Test2", 2);
 
 		try 
 		{
@@ -106,24 +94,20 @@ public class CommodityDAOTest {
 	@Test
 	public void getAllCommodityTEST() 
 	{
-		List<SupplierDTO> supplierList = new ArrayList<SupplierDTO>();
-		supplierList.add(new SupplierDTO(1, "Supplier 1"));
-		supplierList.add(new SupplierDTO(2, "Supplier 2"));
-
-		CommodityDTO expected1 = new CommodityDTO(testID1, "Test", supplierList);
-		CommodityDTO expected2 = new CommodityDTO(testID2, "Test2", supplierList);
+		CommodityDTO expected1 = new CommodityDTO(testID1, "Test", 1);
+		CommodityDTO expected2 = new CommodityDTO(testID2, "Test2", 2);
 
 		List<CommodityDTO> expectedList = new ArrayList<CommodityDTO>();
 		expectedList.add(expected1);
 		expectedList.add(expected2);
-		
+
 		try 
 		{
 			dao.createCommodity(expected1);
 			dao.createCommodity(expected2);
 
 			List<CommodityDTO> actualList = new ArrayList<CommodityDTO>();
-			
+
 			for (CommodityDTO dto : dao.getAllCommodities())
 			{
 				if (dto.getId() == testID1) 
