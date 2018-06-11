@@ -47,7 +47,7 @@ public interface IProductBatchREST {
 	 * @return a single productbatch
 	 * @throws DALException
 	 */
-	public String getProductBatch(int pbID);
+	public String getProductBatch(int componentID);
 
 	/**
 	 * <h1> <i>getAllProductBatches</i> </h1> <br>
