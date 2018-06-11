@@ -1,5 +1,7 @@
 package boundary.rest_implementation;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -33,24 +35,16 @@ import exceptions.DALException;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("prodBatch")
-public class ProductBatchREST implements IProductBatchREST {
-
+public class ProductBatchREST implements IProductBatchREST
+{
 	private IProductBatchController pbc;
-	private IProductbatchComponentController pbcc;
-	private IUserController uc;
-	private ICommodityController cc;
-	private IRecipeComponentController rcc;
 
 	public ProductBatchREST() 
 	{
 		try 
 		{
 			pbc = new ProductBatchController();
-			pbcc = new ProductBatchComponentController();
-			uc = new UserController();
-			cc = new CommodityController();
-			rcc = new RecipeComponentController();
-		} 
+		}
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
@@ -60,13 +54,13 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Override
 	@POST
 	@Path("createProductBatch")
-	public String createProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status) 
+	public String createProductBatch(@FormParam("id") int id, @FormParam("recipeID") int recipeID, @FormParam("status") int status) 
 	{
 		String message;
 
 		try 
 		{
-			pbc.createProductBatch(pbID, recipeID, status);
+			pbc.createProductBatch(id, recipeID, status);
 			message = "Batchet blev oprettet";
 		} 
 		catch (DALException e) 
@@ -81,11 +75,11 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Override
 	@POST
 	@Path("updateProductBatch")
-	public void updateProductBatch(@FormParam("pbID") int pbID, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
+	public void updateProductBatch(@FormParam("id") int id, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
 	{
 		try 
 		{
-			pbc.updateProductBatch(pbID, recipeID, status);
+			pbc.updateProductBatch(id, recipeID, status);
 		} 
 		catch (DALException e) 
 		{
@@ -97,11 +91,11 @@ public class ProductBatchREST implements IProductBatchREST {
 	@Override
 	@DELETE
 	@Path("deleteProductBatch")
-	public void deleteProductBatch(@FormParam("pbID") int pbID)
+	public void deleteProductBatch(@FormParam("id") int id)
 	{
 		try 
 		{
-			pbc.deleteProductBatch(pbID);
+			pbc.deleteProductBatch(id);
 		} 
 		catch (DALException e) 
 		{
@@ -114,46 +108,19 @@ public class ProductBatchREST implements IProductBatchREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getProductBatch")
-	public String getProductBatch(@FormParam("componentID") int componentID)
+	public String getProductBatch(@FormParam("id") int id)
 	{
-		JSONObject prodJSON = new JSONObject();
-		ProductBatchDTO prodbatch;
-		ProductBatchComponentDTO prodComp;
-		UserDTO user;
-		CommodityDTO commodity;
-		RecipeComponentDTO rc;
-
+		JSONArray pbJSON = new JSONArray();
+		
 		try 
 		{
-			if(componentID != 0)
-			{
-				prodComp = pbcc.getProductBatchComponent(componentID);
-				prodbatch = pbc.getProductBatch(prodComp.getProductBatchID());
-				rc = rcc.getRecipeComponent(prodbatch.getRecipeID());
-				commodity = cc.getCommodity(rc.getCommodityID());
-				user = uc.getUser(prodComp.getUserID());
-
-				prodJSON.put("comName", commodity.getName());
-				prodJSON.put("pbID", prodComp.getProductBatchID());
-				prodJSON.put("recipeID", prodbatch.getRecipeID());
-				prodJSON.put("status",  prodbatch.getStatus());
-				prodJSON.put("pbcID", prodComp.getId());
-				prodJSON.put("comBatchID", prodComp.getCommodityBatchID());
-				prodJSON.put("userID", prodComp.getUserID());
-				prodJSON.put("name", user.getName());
-				prodJSON.put("tara", prodComp.getTara());
-				prodJSON.put("netto", prodComp.getNetto());
-			}
-			else
-			{
-				System.out.println("FEJL i ID input");
-			}
+			pbJSON.put(pbc.getProductBatch(id));
 		}
 		catch(DALException e) 
 		{
 			System.out.println(e.getMessage());
 		}
-		return prodJSON.toString();
+		return pbJSON.toString();
 	}
 
 	@Override
