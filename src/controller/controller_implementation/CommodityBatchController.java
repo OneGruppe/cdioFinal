@@ -26,7 +26,6 @@ public class CommodityBatchController implements ICommodityBatchController {
 	{
 		CommodityBatchDTO combatch = new CommodityBatchDTO(id, commodityID, amount);
 		comdao.createCommodityBatch(combatch);
-
 	}
 
 	/*
@@ -35,9 +34,9 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 */
 	@Override
 	public void updateCommodityBatch(int id, int commodityID, double amount) throws DALException 
-	{
+	{		
 		CommodityBatchDTO combatch = new CommodityBatchDTO(id, commodityID, amount);
-		comdao.updateCommodityBatch(combatch);
+		comdao.updateCommodityBatch(combatch);			
 	}
 
 	/*
@@ -47,7 +46,7 @@ public class CommodityBatchController implements ICommodityBatchController {
 	@Override
 	public void deleteCommodityBatch(int id) throws DALException 
 	{
-		comdao.deleteCommodityBatch(id);
+		comdao.deleteCommodityBatch(id);			
 	}
 
 	/*
@@ -56,9 +55,8 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 */
 	@Override
 	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException 
-	{
-
-		return comdao.getCommodityBatch(commodityID);
+	{ 
+		return comdao.getCommodityBatch(commodityID);			
 	}
 
 	/*
@@ -70,7 +68,7 @@ public class CommodityBatchController implements ICommodityBatchController {
 	{
 		List<CommodityBatchDTO> combatchList;
 		combatchList = comdao.getAllCommodityBatches();
-		return combatchList;
+		return combatchList;			
 	}
 
 
