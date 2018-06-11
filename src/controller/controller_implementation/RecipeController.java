@@ -22,9 +22,9 @@ public class RecipeController implements IRecipeController {
 	 * @see controller.controller_interface.IRecipeController#createRecipe(int, java.lang.String)
 	 */
 	@Override
-	public void createRecipe(int recipeID, String recipeName) throws DALException 
+	public void createRecipe(int id, String name) throws DALException 
 	{		
-		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName);
+		RecipeDTO recipe = new RecipeDTO(id, name);
 
 		recipedao.createRecipe(recipe);
 	}
@@ -34,9 +34,9 @@ public class RecipeController implements IRecipeController {
 	 * @see controller.controller_interface.IRecipeController#updateRecipe(int, java.lang.String)
 	 */
 	@Override
-	public void updateRecipe(int recipeID, String recipeName) throws DALException 
+	public void updateRecipe(int id, String name) throws DALException 
 	{
-		RecipeDTO recipe = new RecipeDTO(recipeID, recipeName);
+		RecipeDTO recipe = new RecipeDTO(id, name);
 
 		recipedao.updateRecipe(recipe);
 	}
@@ -46,9 +46,9 @@ public class RecipeController implements IRecipeController {
 	 * @see controller.controller_interface.IRecipeController#deleteRecipe(int)
 	 */
 	@Override
-	public void deleteRecipe(int recipeID) throws DALException 
+	public void deleteRecipe(int id) throws DALException 
 	{
-		recipedao.deleteRecipe(recipeID);
+		recipedao.deleteRecipe(id);
 
 	}
 
@@ -57,10 +57,10 @@ public class RecipeController implements IRecipeController {
 	 * @see controller.controller_interface.IRecipeController#getRecipe(int)
 	 */
 	@Override
-	public RecipeDTO getRecipe(int recipeID) throws DALException 
+	public RecipeDTO getRecipe(int id) throws DALException 
 	{
 		RecipeDTO recipe;
-		recipe = recipedao.getRecipe(recipeID);
+		recipe = recipedao.getRecipe(id);
 		return recipe;
 	}
 

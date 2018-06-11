@@ -57,24 +57,24 @@ public class RecipeDAO implements IRecipeDAO
 	}
 
 	@Override
-	public void deleteRecipe(int recipeID) throws DALException
+	public void deleteRecipe(int id) throws DALException
 	{
 		con.doUpdate("DELETE FROM recipe "
-				+ "WHERE id = " + recipeID);
+				+ "WHERE id = " + id);
 	}
 
 	@Override
-	public RecipeDTO getRecipe(int recipeID) throws DALException
+	public RecipeDTO getRecipe(int id) throws DALException
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM recipe "
-				+ "WHERE id = " + recipeID);
+				+ "WHERE id = " + id);
 
 		try
 		{
 			if(!rs.first())
-				throw new DALException("Recipe med ID " + recipeID + "findes ikke");
+				throw new DALException("Recipe med ID " + id + "findes ikke");
 			else
-				return new RecipeDTO(recipeID, rs.getString("name"));
+				return new RecipeDTO(id, rs.getString("name"));
 		}
 		catch (SQLException e)
 		{
