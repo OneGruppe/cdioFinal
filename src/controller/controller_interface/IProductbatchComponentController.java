@@ -31,11 +31,11 @@ public interface IProductbatchComponentController {
 
 	/**
 	 * Returns a list of what a single productBatch has
-	 * @param componentID
+	 * @param productBatchID
 	 * @return
 	 * @throws DALException
 	 */
-	public List<ProductBatchComponentDTO> getProductBatchComponent(int componentID) throws DALException;
+	public List<ProductBatchComponentDTO> getProductBatchComponent(int productBatchID) throws DALException;
 
 	/**
 	 * Returns a list of all Product batch components
