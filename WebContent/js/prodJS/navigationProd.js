@@ -48,6 +48,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -61,6 +62,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -74,6 +76,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -85,6 +88,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -98,6 +102,7 @@ $(document).ready(function() {
 		$('#editProdForm').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -112,6 +117,7 @@ $(document).ready(function() {
 		$('#editProdForm').fadeOut(200);
 		$('#showComTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	
@@ -122,6 +128,7 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showProdTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#editProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -132,15 +139,18 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#showProdTable').fadeOut(200);
+		$('#commodityNameTitle').fadeOut(200);
 		$('#editComForm').delay(300).fadeIn(200);
 	})
 	
 	$('#findProductBatch').click(function() {
 		$('#editProdForm').fadeOut(50);
+		$('#commodityNameTitle').fadeOut(200);
 	})
 	
 	$('#findCommodityBatch').click(function() {
 		$('#editComForm').fadeOut(50);
+		$('#commodityNameTitle').fadeOut(200);
 	})
 	
 	

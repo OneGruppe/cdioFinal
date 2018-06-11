@@ -13,9 +13,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
+import controller.controller_implementation.CommodityController;
+import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_implementation.ProductBatchController;
+import controller.controller_implementation.RecipeComponentController;
+import controller.controller_implementation.UserController;
+import controller.controller_interface.ICommodityController;
 import controller.controller_interface.IProductBatchController;
+import controller.controller_interface.IProductbatchComponentController;
+import controller.controller_interface.IRecipeComponentController;
+import controller.controller_interface.IUserController;
+import data.dto.CommodityDTO;
+import data.dto.ProductBatchComponentDTO;
 import data.dto.ProductBatchDTO;
+import data.dto.RecipeComponentDTO;
+import data.dto.UserDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,13 +36,22 @@ import exceptions.DALException;
 public class ProductBatchREST implements IProductBatchREST {
 
 	private IProductBatchController pbc;
+	private IProductbatchComponentController pbcc;
+	private IUserController uc;
+	private ICommodityController cc;
+	private IRecipeComponentController rcc;
 
 	public ProductBatchREST() 
 	{
 		try 
 		{
 			pbc = new ProductBatchController();
-		} catch (DALException e) 
+			pbcc = new ProductBatchComponentController();
+			uc = new UserController();
+			cc = new CommodityController();
+			rcc = new RecipeComponentController();
+		} 
+		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
 		}
@@ -93,20 +114,35 @@ public class ProductBatchREST implements IProductBatchREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getProductBatch")
-	public String getProductBatch(@FormParam("pbID") int pbID)
+	public String getProductBatch(@FormParam("componentID") int componentID)
 	{
 		JSONObject prodJSON = new JSONObject();
 		ProductBatchDTO prodbatch;
+		ProductBatchComponentDTO prodComp;
+		UserDTO user;
+		CommodityDTO commodity;
+		RecipeComponentDTO rc;
 
 		try 
 		{
-			if(pbID != 0)
+			if(componentID != 0)
 			{
-				prodbatch = pbc.getProductBatch(pbID);
+				prodComp = pbcc.getProductBatchComponent(componentID);
+				prodbatch = pbc.getProductBatch(prodComp.getProductBatchID());
+				rc = rcc.getRecipeComponent(prodbatch.getRecipeID());
+				commodity = cc.getCommodity(rc.getCommodityID());
+				user = uc.getUser(prodComp.getUserID());
 
-				prodJSON.put("pbID", prodbatch.getId());
+				prodJSON.put("comName", commodity.getName());
+				prodJSON.put("pbID", prodComp.getProductBatchID());
 				prodJSON.put("recipeID", prodbatch.getRecipeID());
 				prodJSON.put("status",  prodbatch.getStatus());
+				prodJSON.put("pbcID", prodComp.getId());
+				prodJSON.put("comBatchID", prodComp.getCommodityBatchID());
+				prodJSON.put("userID", prodComp.getUserID());
+				prodJSON.put("name", user.getName());
+				prodJSON.put("tara", prodComp.getTara());
+				prodJSON.put("netto", prodComp.getNetto());
 			}
 			else
 			{
