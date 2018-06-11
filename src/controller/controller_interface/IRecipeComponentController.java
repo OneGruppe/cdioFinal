@@ -3,6 +3,7 @@ package controller.controller_interface;
 import java.util.List;
 
 import data.dao_implementation.RecipeComponentDAO;
+import data.dto.RecipeComponentCommodityDTO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
@@ -10,25 +11,19 @@ public interface IRecipeComponentController {
 
 	/**
 	 * Creates Recipe component
-	 * @param recipeComponentID
 	 * @param recipeID
-	 * @param commodityID
-	 * @param non_netto
-	 * @param tolerance
+	 * @param componentCommodityList
 	 * @throws DALException
 	 */
-	public void createRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
+	public void createRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList) throws DALException;
 
 	/**
 	 * Updates Recipe component
-	 * @param recipeComponentID
 	 * @param recipeID
-	 * @param commodityID
-	 * @param non_netto
-	 * @param tolerance
+	 * @param componentCommodityList
 	 * @throws DALException
 	 */
-	public void updateRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
+	public void updateRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList) throws DALException;
 
 	/**
 	 * Returns a single Recipe component

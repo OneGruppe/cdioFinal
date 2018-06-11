@@ -5,6 +5,7 @@ import java.util.List;
 import controller.controller_interface.IRecipeComponentController;
 import data.dao_implementation.RecipeComponentDAO;
 import data.dao_interface.IRecipeComponentDAO;
+import data.dto.RecipeComponentCommodityDTO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
@@ -22,11 +23,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#createRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void createRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance)
-			throws DALException 
+	public void createRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList) throws DALException 
 	{
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeComponentID, recipeID, commodityID, non_netto, tolerance);
-
+		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, componentCommodityList);
 		dao.createRecipeComponent(component);
 	}
 
@@ -35,11 +34,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#updateRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void updateRecipeComponent(int recipeComponentID, int recipeID, int commodityID, double non_netto, double tolerance)
-			throws DALException 
+	public void updateRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList)	throws DALException 
 	{
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeComponentID, recipeID, commodityID, non_netto, tolerance);
-
+		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, componentCommodityList);
 		dao.updateRecipeComponent(component);
 	}
 
