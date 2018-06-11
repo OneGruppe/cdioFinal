@@ -22,9 +22,9 @@ public class ProductBatchController implements IProductBatchController {
 	 * @see controller.controller_interface.IProductBatchController#createProductBatch(int, int, int)
 	 */
 	@Override
-	public void createProductBatch(int pbID, int status, int recipeID) throws DALException 
+	public void createProductBatch(int pbID, int recipeID, int status) throws DALException 
 	{
-		ProductBatchDTO productBatch = new ProductBatchDTO(pbID, status, recipeID);
+		ProductBatchDTO productBatch = new ProductBatchDTO(pbID, recipeID, status);
 
 		pbdao.createProductBatch(productBatch);
 
