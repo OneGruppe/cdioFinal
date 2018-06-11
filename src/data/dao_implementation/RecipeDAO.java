@@ -8,7 +8,6 @@ import java.util.List;
 import data.connector.Connector;
 import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public class RecipeDAO implements IRecipeDAO
