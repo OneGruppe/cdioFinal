@@ -67,8 +67,9 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 		}
 	}
 
+
 	@Override
-	public List<ProductBatchComponentDTO> getAllProductBatchComponenter() throws DALException {
+	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException {
 		List<ProductBatchComponentDTO> components = new ArrayList<ProductBatchComponentDTO>();
 		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent");
 		
