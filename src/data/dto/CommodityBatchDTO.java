@@ -10,13 +10,13 @@ public class CommodityBatchDTO
 	 * Constructor for CommodityBatchDTO
 	 * @param id
 	 * @param commodityID
-	 * @param amoumt
+	 * @param amount
 	 */
-	public CommodityBatchDTO(int id, int commodityID, double amoumt)
+	public CommodityBatchDTO(int id, int commodityID, double amount)
 	{
 		this.id = id;
 		this.commodityID = commodityID;
-		this.amoumt = amoumt;
+		this.amoumt = amount;
 	}
 	
 	public int getId()
@@ -39,12 +39,12 @@ public class CommodityBatchDTO
 		this.commodityID = commodityID;
 	}
 	
-	public double getAmoumt()
+	public double getAmount()
 	{
 		return amoumt;
 	}
 	
-	public void setAmoumt(double amoumt)
+	public void setAmount(double amoumt)
 	{
 		this.amoumt = amoumt;
 	}
