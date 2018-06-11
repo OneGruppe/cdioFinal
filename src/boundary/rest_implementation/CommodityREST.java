@@ -1,15 +1,6 @@
 package boundary.rest_implementation;
 
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
@@ -21,7 +12,6 @@ import controller.controller_implementation.SupplierController;
 import controller.controller_interface.ICommodityController;
 import controller.controller_interface.ISupplierController;
 import data.dto.CommodityDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 /*@Produces(MediaType.APPLICATION_JSON)
@@ -39,7 +29,8 @@ public class CommodityREST implements ICommodityREST {
 			cc = new CommodityController();
 			sc = new SupplierController();
 
-		} catch (DALException e) 
+		}
+		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
 		}
@@ -48,7 +39,7 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
+	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier) {
 		String message;
 
 		try 
@@ -66,8 +57,7 @@ public class CommodityREST implements ICommodityREST {
 			}
 			else 
 			{
-				suppliers = sc.getAllSuppliers();
-				cc.createCommodity(id, name, suppliers);
+				cc.createCommodity(id, name, supplier);
 			}
 		}
 		catch(DALException e) 
@@ -79,7 +69,7 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@POST
 	@Path("updateCommodity")
-	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
+	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier) {
 		
 		String message;
 		
@@ -99,9 +89,7 @@ public class CommodityREST implements ICommodityREST {
 			{
 				String oldName = cc.getCommodity(id).getName();
 
-				suppliers = sc.getAllSuppliers();
-				cc.updateCommodity(id, name, suppliers);
-
+				cc.updateCommodity(id, oldName, supplier);
 				message = "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
 			}
 		}

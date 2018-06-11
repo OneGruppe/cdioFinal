@@ -1,8 +1,5 @@
 package boundary.rest_interface;
 
-import java.util.List;
-
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public interface ICommodityREST {
@@ -12,20 +9,20 @@ public interface ICommodityREST {
 	 * Creates a commodity
 	 * @param id
 	 * @param name
-	 * @param suppliers
+	 * @param supplier
 	 * @throws DALException
 	 */
-	public void createCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException;
+	public void createCommodity(int id, String name, int supplier) throws DALException;
 
 	/**
 	 * <h1> <i>updateCommodity</i> </h1> <br>
 	 * Updates a commodity
 	 * @param id
 	 * @param name
-	 * @param suppliers
+	 * @param supplier
 	 * @throws DALException
 	 */
-	public void updateCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException;
+	public void updateCommodity(int id, String name, int supplier) throws DALException;
 
 	/**
 	 * <h1> <i>deleteCommodity</i> </h1> <br>
