@@ -43,8 +43,8 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	}
 
 	@Override
-	public void deleteProductBatchComponent(ProductBatchComponentDTO component) throws DALException {
-		con.doUpdate("DELETE FROM productBatchComponent WHERE id= " + component.getId());
+	public void deleteProductBatchComponent(int productBatchComponentID) throws DALException {
+		con.doUpdate("DELETE FROM productBatchComponent WHERE id= " + productBatchComponentID);
 	}
 
 	@Override
