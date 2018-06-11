@@ -20,50 +20,42 @@ import exceptions.DALException;
 public class ProductBatchComponentDAOTest {
 
 	private IProductBatchComponentDAO dao;
-	private int testID1 = 50;
-	private int testID2 = 51;
+	private int testID1 = 99;
+	private int testID2 = 98;
 
 	@Before
-	public void setUp()
-	{
-		try 
-		{
+	public void setUp() {
+		try {
 			dao = new ProductBatchComponentDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
 		} 
-		catch (DALException e) 
-		{
+		catch (DALException e) {
 			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
 	@After
-	public void tearDown()
-	{
-		try 
-		{
+	public void tearDown() {
+		try {
 			dao.deleteProductBatchComponent(testID1);
 			dao.deleteProductBatchComponent(testID2);
 		}
-		catch(DALException e) 
-		{
+		catch(DALException e) {
 			System.out.println("Error: " + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
 
 	@Test
-	public void createProductBatchComponentTEST()
-	{
-		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 0.1);
-
-		try 
-		{
+	public void createProductBatchComponentTEST() {
+		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
+		
+		try {
 			dao.createProductBatchComponent(expected);
-
-			ProductBatchComponentDTO actual = dao.getProductBatchComponent(testID1);
-
-			assertEquals(expected.toString(), actual.toString());
+			
+			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(99)) {
+				assertEquals(expected.toString(), actual.toString());
+			}
 		} 
 		catch(DALException e) 
 		{
@@ -75,17 +67,16 @@ public class ProductBatchComponentDAOTest {
 	@Test
 	public void updateProductBatchComponentTEST()
 	{
-		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 0.1);
-		ProductBatchComponentDTO updated = new ProductBatchComponentDTO(testID1, 2, 2, 2, 2.0, 0.2);
+		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
+		ProductBatchComponentDTO updated = new ProductBatchComponentDTO(testID1, 99, 99, 99, 2.0, 2.0);
 
-		try 
-		{
+		try {
 			dao.createProductBatchComponent(expected);
 			dao.updateProductBatchComponent(updated);
 
-			ProductBatchComponentDTO actual = dao.getProductBatchComponent(testID1);
-
-			assertEquals(updated.toString(), actual.toString());
+			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(99)) {
+				assertEquals(expected.toString(), actual.toString());
+			}
 		} 
 		catch (DALException e) 
 		{
@@ -95,30 +86,25 @@ public class ProductBatchComponentDAOTest {
 	}
 
 	@Test
-	public void getAllProductBatchComponentsTEST()
-	{
-		ProductBatchComponentDTO expected1 = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 0.1);
-		ProductBatchComponentDTO expected2 = new ProductBatchComponentDTO(testID2, 1, 1, 1, 1.0, 0.1);
+	public void getAllProductBatchComponentsTEST() {
+		ProductBatchComponentDTO expected1 = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
+		ProductBatchComponentDTO expected2 = new ProductBatchComponentDTO(testID2, 99, 99, 99, 2.0, 2.0);
 
 		List<ProductBatchComponentDTO> expectedList = new ArrayList<ProductBatchComponentDTO>();
 		expectedList.add(expected1);
 		expectedList.add(expected2);
 
-		try 
-		{
+		try {
 			dao.createProductBatchComponent(expected1);
 			dao.createProductBatchComponent(expected2);
 			
 			List<ProductBatchComponentDTO> actualList = new ArrayList<ProductBatchComponentDTO>();
 
-			for (ProductBatchComponentDTO dto : dao.getAllProductBatchComponents())
-			{
-				if (dto.getId() == testID1) 
-				{
+			for (ProductBatchComponentDTO dto : dao.getAllProductBatchComponents()) {
+				if (dto.getId() == testID1) {
 					actualList.add(dto);
 				}
-				else if (dto.getId() == testID2) 
-				{
+				else if (dto.getId() == testID2) {
 					actualList.add(dto);
 				}
 			}
