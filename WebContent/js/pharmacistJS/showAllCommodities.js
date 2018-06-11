@@ -11,7 +11,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			url:"/cdio_final/rest/commodity/getAllCommodities",
-			data: $('#findComForm').serialize(),
+			data: $('#findCommodityForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",
 			method: "GET",
@@ -36,10 +36,6 @@ $(document).ready(function() {
 					
 					c = r.insertCell(2);
 					c.innerHTML = "Leverandør ID";
-					
-					c = r.insertCell(2);
-					c.innerHTML = "Leverandør Navn";
-										
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -51,12 +47,12 @@ $(document).ready(function() {
 						c = r.insertCell(1);
 						c.innerHTML = data[0][i].name;
 
-						c = r.insertCell(1);
-						c.innerHTML = data[0][i][i].supplierID;
+						c = r.insertCell(2);
+						c.innerHTML = data[0][i].supplierID;
 
 					}
 					
-					document.getElementById("showMulti").appendChild(t);
+					document.getElementById("showCommodities").appendChild(t);
 						
 				} 
 				else
@@ -76,9 +72,6 @@ $(document).ready(function() {
 					
 					c = r.insertCell(2);
 					c.innerHTML = "Leverandør ID";
-					
-					c = r.insertCell(2);
-					c.innerHTML = "Leverandør navn";
 										
 
 					for(var i = 0; i < data[0].length; i++)
@@ -91,12 +84,13 @@ $(document).ready(function() {
 						c = r.insertCell(1);
 						c.innerHTML = data[0][i].name;
 
-						c = r.insertCell(1);
-						c.innerHTML = data[0][i][i].supplierID;
+						c = r.insertCell(2);
+						c.innerHTML = data[0][i].supplierID;
+			
 
 					}
 					
-					document.getElementById("showMulti").appendChild(t);
+					document.getElementById("showCommodities").appendChild(t);
 
 				}
 			}

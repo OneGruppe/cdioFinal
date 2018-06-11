@@ -162,7 +162,7 @@ public class CommodityREST implements ICommodityREST {
 			message = e.getMessage();
 		}
 		System.out.println(message);
-		return message;
+		return commodityJSON.toString();
 	}
 
 	@Override
@@ -184,7 +184,7 @@ public class CommodityREST implements ICommodityREST {
 			message = e.getMessage();
 		}
 		System.out.println(message);
-		return message;
+		return commodities.toString();
 	}
 
 
