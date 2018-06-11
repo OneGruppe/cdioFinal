@@ -5,69 +5,57 @@ public class CommodityBatchDTO {
 	private int id;
 	private int commodityID;
 	private int supplierID;
+	private String supplierName;
 	private double amount;
-
+	
 	/**
 	 * Contructor for CommodityBatchDTO
-	 * @param id (int)
-	 * @param commodityID (int)
-	 * @param supplierID (int)
-	 * @param amount (double)
+	 * @param id
+	 * @param commodityID
+	 * @param supplierID
+	 * @param supplierName
+	 * @param amount
 	 */
-	public CommodityBatchDTO (int id, int commodityID, int supplierID, double amount)
-	{
+	public CommodityBatchDTO(int id, int commodityID, int supplierID, String supplierName, double amount) {
 		this.id = id;
 		this.commodityID = commodityID;
 		this.supplierID = supplierID;
+		this.supplierName = supplierName;
 		this.amount = amount;
 	}
-
-	public int getId() 
-	{
+	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) 
-	{
+	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getCommodityID() 
-	{
+	public int getCommodityID() {
 		return commodityID;
 	}
-
-	public void setCommodityID(int commodityID) 
-	{
+	public void setCommodityID(int commodityID) {
 		this.commodityID = commodityID;
 	}
-
-	public int getSupplierID() 
-	{
+	public int getSupplierID() {
 		return supplierID;
 	}
-
-	public void setSupplierID(int supplierID) 
-	{
+	public void setSupplierID(int supplierID) {
 		this.supplierID = supplierID;
 	}
-
-	public double getAmount() 
-	{
+	public String getSupplierName() {
+		return supplierName;
+	}
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
+	public double getAmount() {
 		return amount;
 	}
-
-	public void setAmount(double amount) 
-	{
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "CommodityBatchDTO [id=" + id + ", commodityID=" + commodityID + ", supplierID=" + supplierID
-				+ ", amount=" + amount + "]";
+				+ ", supplierName=" + supplierName + ", amount=" + amount + "]";
 	}
-
-
 }
