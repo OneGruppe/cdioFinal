@@ -24,6 +24,13 @@ public interface IRecipeComponentController {
 	public void updateRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
 
 	/**
+	 * Deletes a recipe component
+	 * @param id
+	 * @throws DALException
+	 */
+	public void deleteRecipeComponent(int id) throws DALException;
+	
+	/**
 	 * Returns a single Recipe component
 	 * @param recipeID
 	 * @return a single RecipeComponentDTO object
