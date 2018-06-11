@@ -94,11 +94,9 @@ public class RecipeDAO implements IRecipeDAO
 			{
 				RecipeDTO repdto = new RecipeDTO(rs.getInt("id"), rs.getString("name"));
 				recipeList.add(repdto);
-
-				if (repdto.getId() == 0) 
-				{
-					throw new DALException("Leverandorlisten er tom");
-				}
+			}
+			if(recipeList.isEmpty()) {
+				throw new DALException("Recept listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return recipeList;
 		} 

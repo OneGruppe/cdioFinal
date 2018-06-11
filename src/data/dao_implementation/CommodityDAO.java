@@ -119,12 +119,9 @@ public class CommodityDAO implements ICommodityDAO {
 			{
 				CommodityDTO commoditydto = new CommodityDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("supplierID"));
 				commodities.add(commoditydto);
-
-				if (commoditydto.getId() == 0) 
-				{
-					throw new DALException("User-listen er tom");
-				}
-
+			}
+			if(commodities.isEmpty()) {
+				throw new DALException("Råvare listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return commodities;
 		}

@@ -116,11 +116,9 @@ public class ProductBatchDAO implements IProductBatchDAO {
 			{
 				ProductBatchDTO dto = new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));
 				productBatchList.add(dto);
-
-				if(dto.getId() == 0) 
-				{
-					throw new DALException("Produkt batch listen er tom");
-				}
+			}
+			if(productBatchList.isEmpty()) {
+				throw new DALException("ProduktBatch listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return productBatchList;
 		}

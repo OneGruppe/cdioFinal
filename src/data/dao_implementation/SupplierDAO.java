@@ -115,11 +115,9 @@ public class SupplierDAO implements ISupplierDAO {
 			{
 				SupplierDTO supdto = new SupplierDTO(rs.getInt("id"), rs.getString("name"));
 				suppList.add(supdto);
-
-				if (supdto.getId() == 0) 
-				{
-					throw new DALException("Leverandorlisten er tom");
-				}
+			}
+			if(suppList.isEmpty()) {
+				throw new DALException("Leverandør listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return suppList;
 		} 
