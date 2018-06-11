@@ -2,11 +2,9 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
 
@@ -37,7 +35,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Override
 	@PUT
 	@Path("createRecipeComponent")
-	public String createRecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance) throws DALException
+	public String createRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
 	{
 		String message;
 
@@ -57,7 +55,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Override
 	@PUT
 	@Path("updateRecipeComponent")
-	public void updateRecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance) throws DALException
+	public void updateRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
 	{
 		try 
 		{
@@ -72,7 +70,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Override
 	@PUT
 	@Path("deleteRecipeComponent")
-	public void deleteRecipeComponent(int id) throws DALException
+	public void deleteRecipeComponent(@FormParam("id")int id) throws DALException
 	{
 		try
 		{
@@ -87,7 +85,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Override
 	@PUT
 	@Path("getRecipeComponent")
-	public String getRecipeComponent(int recipeID) throws DALException 
+	public String getRecipeComponent(@FormParam("recipeID")int recipeID) throws DALException 
 	{
 		JSONArray recComList = new JSONArray();
 		List<RecipeComponentDTO> recCom;
