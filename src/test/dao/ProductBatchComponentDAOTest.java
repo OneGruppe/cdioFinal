@@ -13,8 +13,6 @@ import org.junit.Test;
 import data.dao_implementation.ProductBatchComponentDAO;
 import data.dao_interface.IProductBatchComponentDAO;
 import data.dto.ProductBatchComponentDTO;
-import data.dto.ProductBatchDTO;
-import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
 public class ProductBatchComponentDAOTest {
@@ -91,8 +89,8 @@ public class ProductBatchComponentDAOTest {
 		ProductBatchComponentDTO expected2 = new ProductBatchComponentDTO(testID2, 99, 99, 99, 2.0, 2.0);
 
 		List<ProductBatchComponentDTO> expectedList = new ArrayList<ProductBatchComponentDTO>();
-		expectedList.add(expected1);
 		expectedList.add(expected2);
+		expectedList.add(expected1);
 
 		try {
 			dao.createProductBatchComponent(expected1);

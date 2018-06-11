@@ -1,7 +1,6 @@
 package test.dao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import org.junit.Test;
 
 import data.dao_implementation.RecipeDAO;
 import data.dao_interface.IRecipeDAO;
-import data.dto.CommodityBatchDTO;
-import data.dto.RecipeComponentDTO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
@@ -102,8 +99,8 @@ public class RecipeDAOTest {
 		RecipeDTO expected2 = new RecipeDTO(testID2, "Panodil");
 
 		List<RecipeDTO> expectedList = new ArrayList<RecipeDTO>();
-		expectedList.add(expected2);
 		expectedList.add(expected1);
+		expectedList.add(expected2);
 
 		try 
 		{
