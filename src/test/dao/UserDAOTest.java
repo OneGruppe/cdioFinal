@@ -13,7 +13,6 @@ import org.junit.Test;
 import data.connector.Connector;
 import data.dao_implementation.UserDAO;
 import data.dao_interface.IUserDAO;
-import data.dto.RecipeComponentDTO;
 import data.dto.UserDTO;
 import exceptions.DALException;
 

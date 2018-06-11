@@ -48,6 +48,19 @@ public class CommodityBatchController implements ICommodityBatchController {
 	{
 		comdao.deleteCommodityBatch(id);			
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.ICommodityBatchController#getCommodityBatchSingle(int)
+	 */
+	
+	@Override
+	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException 
+	{
+		CommodityBatchDTO commodityBatch;
+		commodityBatch = comdao.getCommodityBatchSingle(id);
+		return commodityBatch;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -70,6 +83,5 @@ public class CommodityBatchController implements ICommodityBatchController {
 		combatchList = comdao.getAllCommodityBatches();
 		return combatchList;			
 	}
-
 
 }

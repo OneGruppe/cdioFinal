@@ -7,16 +7,15 @@ $(document).ready(function() {
 	$("#navigateToEditCom").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/getCommodityBatch",
+			url:"/cdio_final/rest/comBatch/getSingleCommodity",
 			data: $('#findComForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
 				console.log(data);
 				
-				$("#setID").attr("value", data.cbID);
+				$("#setID").attr("value", data.id);
 				$("#setCommodityID").attr("value", data.commodityID);
-				$("#setSupplierID").attr("value", data.supplierID);
 				$("#setAmount").attr("value", data.amount);
 				
 			}	

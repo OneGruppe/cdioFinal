@@ -319,14 +319,7 @@ public class WeightTranslation {
 					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
 				}
 			}
-
-			// extracts only the numbers from response to a string
-			String weightString = response.substring(3, (response.length() - 2));
-
-			// convert from string to double.
-			double weight = Double.parseDouble(weightString);
 			return 0;
-
 		} 
 		catch(IOException e) 
 		{

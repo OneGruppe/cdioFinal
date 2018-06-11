@@ -1,7 +1,5 @@
 package boundary.rest_implementation;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -15,21 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
-import controller.controller_implementation.CommodityController;
-import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_implementation.ProductBatchController;
-import controller.controller_implementation.RecipeComponentController;
-import controller.controller_implementation.UserController;
-import controller.controller_interface.ICommodityController;
 import controller.controller_interface.IProductBatchController;
-import controller.controller_interface.IProductbatchComponentController;
-import controller.controller_interface.IRecipeComponentController;
-import controller.controller_interface.IUserController;
-import data.dto.CommodityDTO;
-import data.dto.ProductBatchComponentDTO;
 import data.dto.ProductBatchDTO;
-import data.dto.RecipeComponentDTO;
-import data.dto.UserDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -110,17 +96,35 @@ public class ProductBatchREST implements IProductBatchREST
 	@Path("getProductBatch")
 	public String getProductBatch(@FormParam("id") int id)
 	{
-		JSONArray pbJSON = new JSONArray();
-		
+		String message;
+
+		JSONObject prodJSON = new JSONObject();
+		ProductBatchDTO prod;
+
 		try 
 		{
-			pbJSON.put(pbc.getProductBatch(id));
-		}
-		catch(DALException e) 
+			if(id != 0)
+			{
+				prod = pbc.getProductBatch(id);
+				prodJSON.put("id", prod.getId());
+				prodJSON.put("recipeID", prod.getRecipeID());
+				prodJSON.put("status", prod.getStatus());
+
+				message = "Produktionsbatchet med id " + id + " blev fundet";
+			}
+			else
+			{
+				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+			}
+		} 
+		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			message = e.getMessage();
 		}
-		return pbJSON.toString();
+
+		System.out.println(message);
+
+		return prodJSON.toString();
 	}
 
 	@Override

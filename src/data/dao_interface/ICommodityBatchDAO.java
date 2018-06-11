@@ -29,6 +29,15 @@ public interface ICommodityBatchDAO {
 	public void deleteCommodityBatch(int combatchID) throws DALException;
 	
 	/**
+	 * Returns a single commoditybatch
+	 * @param id
+	 * @return a single CommodityBatchDTO obejct
+	 * @throws DALException
+	 */
+	
+	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException;
+	
+	/**
 	 * Returns a list of commoditybatches for with the specific commodity
 	 * @param commodityID
 	 * @return a list of CommodityBatchDTO objects

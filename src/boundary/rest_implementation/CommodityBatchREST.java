@@ -10,10 +10,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import boundary.rest_interface.ICommodityBatchREST;
 import controller.controller_implementation.CommodityBatchController;
 import controller.controller_interface.ICommodityBatchController;
+import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -78,7 +80,44 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	@Override
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getSingleCommodity")
+	public String getCommodityBatchSingle(@FormParam("id") int id) 
+	{
+		String message;
 
+		JSONObject combatchJSON = new JSONObject();
+		CommodityBatchDTO commodityBatch;
+
+		try 
+		{
+			if(id != 0)
+			{
+				commodityBatch = cbc.getCommodityBatchSingle(id);
+				combatchJSON.put("id", commodityBatch.getId());
+				combatchJSON.put("commodityID", commodityBatch.getCommodityID());
+				combatchJSON.put("amount", commodityBatch.getAmount());
+
+				message = "Råvarebatchet med id " + id + " blev fundet";
+			}
+			else
+			{
+				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+
+		System.out.println(message);
+
+		return combatchJSON.toString(); 
+	}
+	
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -117,6 +156,4 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		}
 		return combatches.toString();
 	}
-
-
 }

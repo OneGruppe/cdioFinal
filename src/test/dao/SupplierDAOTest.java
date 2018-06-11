@@ -1,7 +1,6 @@
 package test.dao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import org.junit.Test;
 
 import data.dao_implementation.SupplierDAO;
 import data.dao_interface.ISupplierDAO;
-import data.dto.CommodityBatchDTO;
-import data.dto.RecipeComponentDTO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
