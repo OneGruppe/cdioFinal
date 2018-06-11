@@ -1,7 +1,6 @@
 package test.dao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -60,9 +59,14 @@ public class RecipeComponentDAOTest {
 		{
 			dao.createRecipeComponent(expected);
 
-			RecipeComponentDTO actual = dao.getRecipeComponent(testID1);
-
-			assertEquals(expected.toString(), actual.toString());
+			for(RecipeComponentDTO actual : dao.getRecipeComponent(1))
+			{
+				if(actual.getId() == testID1)
+				{
+					assertEquals(expected.toString(), actual.toString());
+					break;
+				}
+			}
 		} 
 		catch(DALException e) 
 		{
@@ -74,17 +78,22 @@ public class RecipeComponentDAOTest {
 	@Test
 	public void updateRecipeComponentTEST() 
 	{
-		RecipeComponentDTO expected = new RecipeComponentDTO(testID1, 1, 1, 1.0, 0.1);
-		RecipeComponentDTO updated = new RecipeComponentDTO(testID1, 2, 2, 2.0, 0.2);
+		RecipeComponentDTO expected = new RecipeComponentDTO(testID1, 3, 1, 1.0, 0.1);
+		RecipeComponentDTO updated = new RecipeComponentDTO(testID1, 3, 1, 2.0, 0.2);
 
 		try 
 		{
 			dao.createRecipeComponent(expected);
 			dao.updateRecipeComponent(updated);
 
-			RecipeComponentDTO actual = dao.getRecipeComponent(testID1);
-
-			assertEquals(updated.toString(), actual.toString());
+			for(RecipeComponentDTO actual : dao.getRecipeComponent(3))
+			{
+				if(actual.getId() == testID1)
+				{
+					assertEquals(expected.toString(), actual.toString());
+					break;
+				}
+			}
 		}
 		catch(DALException e) 
 		{
@@ -96,8 +105,8 @@ public class RecipeComponentDAOTest {
 	@Test
 	public void getAllRecipeComponentsTEST() 
 	{
-		RecipeComponentDTO expected1 = new RecipeComponentDTO(testID1, 1, 1, 1.0, 0.1);
-		RecipeComponentDTO expected2 = new RecipeComponentDTO(testID2, 2, 2, 2.0, 0.2);
+		RecipeComponentDTO expected1 = new RecipeComponentDTO(testID1, 3, 1, 1.0, 0.1);
+		RecipeComponentDTO expected2 = new RecipeComponentDTO(testID2, 4, 2, 2.0, 0.2);
 
 		List<RecipeComponentDTO> expectedList = new ArrayList<RecipeComponentDTO>();
 		expectedList.add(expected1);
