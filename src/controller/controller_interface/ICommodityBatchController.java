@@ -31,6 +31,15 @@ public interface ICommodityBatchController {
 	 * @throws DALException
 	 */
 	public void deleteCommodityBatch(int id) throws DALException;
+	
+	/**
+	 * Returns a single commoditybatch
+	 * @param id
+	 * @return a single CommodityBatchDTO object
+	 * @throws DALException
+	 */
+	
+	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException;
 
 	/**
 	 * Get a single commoditybatch

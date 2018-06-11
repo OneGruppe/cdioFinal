@@ -94,17 +94,35 @@ public class ProductBatchREST implements IProductBatchREST
 	@Path("getProductBatch")
 	public String getProductBatch(@FormParam("id") int id)
 	{
-		JSONArray pbJSON = new JSONArray();
-		
+		String message;
+
+		JSONObject prodJSON = new JSONObject();
+		ProductBatchDTO prod;
+
 		try 
 		{
-			pbJSON.put(pbc.getProductBatch(id));
-		}
-		catch(DALException e) 
+			if(id != 0)
+			{
+				prod = pbc.getProductBatch(id);
+				prodJSON.put("id", prod.getId());
+				prodJSON.put("recipeID", prod.getRecipeID());
+				prodJSON.put("status", prod.getStatus());
+
+				message = "Produktionsbatchet med id " + id + " blev fundet";
+			}
+			else
+			{
+				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+			}
+		} 
+		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			message = e.getMessage();
 		}
-		return pbJSON.toString();
+
+		System.out.println(message);
+
+		return prodJSON.toString();
 	}
 
 	@Override

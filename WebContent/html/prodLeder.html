@@ -65,7 +65,7 @@
 		<tr>
 		<td>
 		<label>Produktbatch ID</label><br>
-		<input type = "number" name = "pbID"> 
+		<input type = "number" name = "id"> 
 		</td>
 		<td>
 		<label>Recept ID</label><br>
@@ -89,15 +89,11 @@
 		<tr>
 		<td>
 		<label>Råvarebatch ID</label><br>
-		<input type = "number" name = "commodityBatchID"> 
+		<input type = "number" name = "id"> 
 		</td>
 		<td>
 		<label>Råvare ID</label><br>
 		<input type = "number" name = "commodityID"> 
-		</td>
-		<td>
-		<label>Leverandør ID</label><br>
-		<input type = "number" name = "supplierID"> 
 		</td>
 		<td>
 		<label>Mængde</label><br>
@@ -116,11 +112,19 @@
 	<table>
 		<tr>
 		<td>
-		<label>Råvarebatch ID</label><br>
-		<input type = "number" name = "commodityBatchID"> 
+		<label>Råvare ID</label><br>
+		<input type = "number" name = "commodityID"> 
 		</td>
 		<td>
 		<button id="findCommodityBatch" form="findComForm" type="button">Find batch</button>
+		</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+		<td>
+		<label>Råvarebatch ID</label><br>
+		<input type = "number" name = "id"> 
 		</td>
 		<td>
 		<button id ="navigateToEditCom" form = "findComForm" type = "button"> Rediger batch </button>
@@ -139,15 +143,11 @@
 		<tr>
 		<td>
 		<label>Råvarebatch ID</label><br>
-		<input type = "number" id = "setID" name = "commodityBatchID" readonly> 
+		<input type = "number" id = "setID" name = "id" readonly> 
 		</td>
 		<td>
 		<label>Råvare ID</label><br>
 		<input type = "number" id = "setCommodityID" name = "commodityID"> 
-		</td>
-		<td>
-		<label>Leverandør ID</label><br>
-		<input type = "number" id = "setSupplierID" name = "supplierID"> 
 		</td>
 		<td>
 		<label>Mængde</label><br>
@@ -167,7 +167,7 @@
 		<tr>
 		<td>
 		<label>Produktbatch ID</label><br>
-		<input type = "number" name = "componentID"> 
+		<input type = "number" name = "id"> 
 		</td>
 		<td>
 		<button id="findProductBatch" form="findProdForm" type="button">Find batch</button>
@@ -189,7 +189,7 @@
 		<tr>
 		<td>
 		<label>Produktbatch ID</label><br>
-		<input type = "number" id = "setProdID" name = "pbID" readonly> 
+		<input type = "number" id = "setProdID" name = "id" readonly> 
 		</td>
 		<td>
 		<label>Recept ID</label><br>

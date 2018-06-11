@@ -32,9 +32,6 @@ $(document).ready(function() {
 					c.innerHTML = "Råvare ID";
 					
 					c = r.insertCell(2);
-					c.innerHTML = "Leverandør ID";
-					
-					c = r.insertCell(3);
 					c.innerHTML = "Mængde";
 
 					for(var i = 0; i < data[0].length; i++)
@@ -48,9 +45,6 @@ $(document).ready(function() {
 						c.innerHTML = data[0][i].commodityID;
 						
 						c = r.insertCell(2);
-						c.innerHTML = data[0][i].supplierID;
-						
-						c = r.insertCell(3);
 						c.innerHTML = data[0][i].amount;
 
 					}
@@ -74,9 +68,6 @@ $(document).ready(function() {
 					c.innerHTML = "Råvare ID";
 					
 					c = r.insertCell(2);
-					c.innerHTML = "Leverandør ID";
-					
-					c = r.insertCell(3);
 					c.innerHTML = "Mængde";
 
 					for(var i = 0; i < data[0].length; i++)
@@ -90,9 +81,6 @@ $(document).ready(function() {
 						c.innerHTML = data[0][i].commodityID;
 						
 						c = r.insertCell(2);
-						c.innerHTML = data[0][i].supplierID;
-						
-						c = r.insertCell(3);
 						c.innerHTML = data[0][i].amount;
 
 					}

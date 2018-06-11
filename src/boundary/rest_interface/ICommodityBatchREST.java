@@ -30,6 +30,13 @@ public interface ICommodityBatchREST {
 	 * @throws DALException
 	 */
 	public void deleteCommodityBatch(int id);
+	
+	/**
+	 * Returns a single commoditybatch
+	 * @param id
+	 * @return a single CommodityBatchDTO as JSON object in toString() format
+	 */
+	public String getCommodityBatchSingle(int id);
 
 	/**
 	 * <h1> <i>getCommodityBatch</i> </h1> <br>
