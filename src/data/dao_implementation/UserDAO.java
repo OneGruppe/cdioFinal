@@ -44,7 +44,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("INSERT INTO users VALUES ("
+		con.doUpdate("INSERT INTO user VALUES ("
 				+ user.getId() + ", "
 				+ "'" + user.getName() + "', "
 				+ "'" + user.getIni() + "', "
@@ -58,9 +58,9 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET "
+		con.doUpdate("UPDATE user SET "
 				+ "name='" + user.getName() + "', "
-				+ "initials='" + user.getIni() + "', "
+				+ "ini='" + user.getIni() + "', "
 				+ "active=" + user.getActive() + " "
 				+ "WHERE userID=" + user.getId());
 	}
@@ -70,9 +70,9 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#setUserState(int, int)
 	 */
 	@Override
-	public void setUserState(int userID, int state) throws DALException 
+	public void setUserState(int id, int state) throws DALException 
 	{
-		con.doUpdate("UPDATE users SET active=" + state + " WHERE userID = " + userID);
+		con.doUpdate("UPDATE user SET active=" + state + " WHERE id = " + id);
 	}
 
 	/*
@@ -80,20 +80,20 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#showUser(int)
 	 */
 	@Override
-	public UserDTO getUser(int userID) throws DALException 
+	public UserDTO getUser(int id) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM users "
-				+ "WHERE userID = " + userID);
+		ResultSet rs = con.doQuery("SELECT * FROM user "
+				+ "WHERE id = " + id);
 
 		try 
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("" + userID);
+				throw new DALException("" + id);
 			}
 			else 
 			{
-				return new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
+				return new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
 			}
 		} 
 		catch (SQLException e) 
@@ -110,13 +110,13 @@ public class UserDAO implements IUserDAO {
 	public List<UserDTO> getAllUsers() throws DALException 
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM users");
+		ResultSet rs = con.doQuery("SELECT * FROM user");
 
 		try
 		{
 			while(rs.next()) 
 			{
-				UserDTO userdto = new UserDTO(rs.getInt("userID"), rs.getString("name"), rs.getString("initials"), rs.getInt("active"));
+				UserDTO userdto = new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
 				users.add(userdto);
 
 				if (userdto.getId() == 0) 

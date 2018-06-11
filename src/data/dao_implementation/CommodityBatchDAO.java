@@ -77,31 +77,9 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#showCommodityBatch(int)
 	 */
-	@Override
-	public CommodityBatchDTO getCommodityBatch(int id) throws DALException 
-	{
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch "
-				+ "WHERE id=" + id);
-
-		try
-		{
-			if (!rs.first())
-			{
-				throw new DALException("CommodityBatch med ID " + id + " findes ikke");
-			}
-			else
-			{
-				return new CommodityBatchDTO(rs.getInt("commodityBatchID"), rs.getInt("commodityID"), rs.getDouble("amount"));
-			}
-		} 
-		catch (SQLException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
-	}
 	
 	@Override
-	public List<CommodityBatchDTO> getCommodityBatchList(int commodityID) throws DALException 
+	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException 
 	{
 		List<CommodityBatchDTO> commodityBatchList = new ArrayList<CommodityBatchDTO>();
 		

@@ -6,7 +6,6 @@ import controller.controller_interface.ICommodityController;
 import data.dao_implementation.CommodityDAO;
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public class CommodityController implements ICommodityController {
@@ -23,9 +22,9 @@ public class CommodityController implements ICommodityController {
 	 * @see controller.controller_interface.ICommodityController#createCommodity(int, java.lang.String, java.util.List)
 	 */
 	@Override
-	public void createCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException 
+	public void createCommodity(int id, String name, int supplierID) throws DALException 
 	{
-		CommodityDTO commodity = new CommodityDTO(id, name, suppliers);
+		CommodityDTO commodity = new CommodityDTO(id, name, supplierID);
 		comdao.createCommodity(commodity);
 
 	}
@@ -35,9 +34,9 @@ public class CommodityController implements ICommodityController {
 	 * @see controller.controller_interface.ICommodityController#updateCommodity(int, java.lang.String, java.util.List)
 	 */
 	@Override
-	public void updateCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException 
+	public void updateCommodity(int id, String name, int supplierID) throws DALException 
 	{
-		CommodityDTO commodity = new CommodityDTO(id, name, suppliers);
+		CommodityDTO commodity = new CommodityDTO(id, name, supplierID);
 		comdao.updateCommodity(commodity);
 
 	}

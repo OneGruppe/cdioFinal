@@ -8,41 +8,41 @@ import exceptions.DALException;
 public interface IProductBatchDAO {
 
 	/**
-	 * Creates a Product batch component and saves it to the database.
-	 * @param productBatchComponent
+	 * Creates a Product batch and saves it to the database.
+	 * @param productBatch
 	 * @throws DALException
 	 */
-	public void createProductBatchComponent(ProductBatchDTO productBatch) throws DALException;
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException;
 
 	/**
-	 * Update the information of the given Prroduct batch component.
-	 * @param productBatchComponent
+	 * Update the information of the given Product batch.
+	 * @param productBatch
 	 * @throws DALException
 	 */
-	public void updateProductBatchComponent(ProductBatchDTO productBatch) throws DALException;
+	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException;
 
 	/**
-	 * Returns a list of all Product batch components.
+	 * Returns a list of all Product batch.
 	 * @param prodbatcomID
 	 * @throws DALException
 	 */
-	public void deleteProductBatchComponent(int productBatchID) throws DALException;
+	public void deleteProductBatch(int productBatchID) throws DALException;
 
 
 	/**
-	 * Returns a single Product batch component.
-	 * @param ProductBatchComponent
-	 * @return a given Product batch component as a ProductBatchComponentDTO object.
+	 * Returns a single Product batch.
+	 * @param ProductBatch
+	 * @return a given Product batch as a ProductBatchDTO object.
 	 * @throws DALException
 	 */
-	public ProductBatchDTO getProductBatchComponent(int ProductBatch) throws DALException;
+	public ProductBatchDTO getProductBatch(int ProductBatch) throws DALException;
 
 	/**
-	 * Returns a list of all Product batch components.
-	 * @return a list of all Product batch components as objects of ProductBatchComponentDTO.
+	 * Returns a list of all Product batch.
+	 * @return a list of all Product batch as objects of ProductBatchDTO.
 	 * @throws DALException
 	 */
-	public List<ProductBatchDTO> getAllProductBatchComponents() throws DALException;
+	public List<ProductBatchDTO> getAllProductBatches() throws DALException;
 
 
 }

@@ -42,16 +42,12 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#createProductBatchComponent(data.dto.ProductBatchComponentDTO)
 	 */
 	@Override
-	public void createProductBatchComponent(ProductBatchDTO productBatch) throws DALException 
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
 		con.doUpdate("INSERT INTO productBatch VALUES ("
 				+ productBatch.getId() + ", "
 				+ productBatch.getRecipeID() + ", "
-				+ productBatch.getStatus() + ", "
-				+ productBatch.getCommodityBatchID() + ", "
-				+ productBatch.getUserID() + ", "
-				+ productBatch.getTara() + ", "
-				+ productBatch.getNonNetto() + ")" );
+				+ productBatch.getStatus() + ")" );
 	}
 
 	/*
@@ -59,16 +55,12 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
 	 */
 	@Override
-	public void updateProductBatchComponent(ProductBatchDTO productBatch) throws DALException 
+	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
 	{
 		con.doUpdate("UPDATE productBatch SET "
 				+ "recipeID= " + productBatch.getRecipeID() + ", "
-				+ "status= " + productBatch.getStatus() + ", "
-				+ "commodityBatchID=" + productBatch.getCommodityBatchID() + ", "
-				+ "userID=" + productBatch.getUserID() + ", "
-				+ "tara=" + productBatch.getTara() + ", "
-				+ "netto=" + productBatch.getNonNetto() + " "
-				+ "WHERE id=" + productBatch.getId() + " AND recipeID= " + productBatch.getRecipeID());
+				+ "status= " + productBatch.getStatus() + " "
+				+ "WHERE id=" + productBatch.getId());
 	}
 
 	/*
@@ -76,7 +68,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
 	 */
 	@Override
-	public void deleteProductBatchComponent(int id) throws DALException 
+	public void deleteProductBatch(int id) throws DALException 
 	{
 		con.doUpdate("DELETE FROM productBatch "
 				+ "WHERE id=" + id);
@@ -87,7 +79,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
 	 */
 	@Override
-	public ProductBatchDTO getProductBatchComponent(int id) throws DALException 
+	public ProductBatchDTO getProductBatch(int id) throws DALException 
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM productBatch "
 				+ "WHERE id= " + id);
@@ -95,11 +87,11 @@ public class ProductBatchDAO implements IProductBatchDAO {
 		try {
 			if(!rs.first()) 
 			{
-				throw new DALException("Produkt batch komponenten med productBatchID'et " + id + " findes ikke");
+				throw new DALException("Produkt batch med productBatchID'et " + id + " findes ikke");
 			} 
 			else 
 			{
-				return new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("nonNetto"));
+				return new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));
 			}
 		}
 		catch(SQLException e) 
@@ -113,16 +105,16 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#getAllProductBatchComponents()
 	 */
 	@Override
-	public List<ProductBatchDTO> getAllProductBatchComponents() throws DALException 
+	public List<ProductBatchDTO> getAllProductBatches() throws DALException 
 	{
 		List<ProductBatchDTO> productBatchList = new ArrayList<ProductBatchDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent");
+		ResultSet rs = con.doQuery("SELECT * FROM productBatch");
 
 		try 
 		{
 			while(rs.next()) 
 			{
-				ProductBatchDTO dto = new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("nonNetto"));
+				ProductBatchDTO dto = new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));
 				productBatchList.add(dto);
 
 				if(dto.getId() == 0) 
