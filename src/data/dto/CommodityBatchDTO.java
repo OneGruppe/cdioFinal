@@ -16,12 +16,12 @@ public class CommodityBatchDTO {
 	 * @param supplierName
 	 * @param amount
 	 */
-	public CommodityBatchDTO(int id, int commodityID, int supplierID, String supplierName, double amount) {
+	public CommodityBatchDTO(int id, int commodityID, double amount, int supplierID, String supplierName) {
 		this.id = id;
 		this.commodityID = commodityID;
+		this.amount = amount;
 		this.supplierID = supplierID;
 		this.supplierName = supplierName;
-		this.amount = amount;
 	}
 	public int getId() {
 		return id;
@@ -55,7 +55,7 @@ public class CommodityBatchDTO {
 	}
 	@Override
 	public String toString() {
-		return "CommodityBatchDTO [id=" + id + ", commodityID=" + commodityID + ", supplierID=" + supplierID
-				+ ", supplierName=" + supplierName + ", amount=" + amount + "]";
+		return "CommodityBatchDTO [id=" + id + ", commodityID=" + commodityID + ", amount=" + amount + ", supplierID=" + supplierID
+				+ ", supplierName=" + supplierName + "]";
 	}
 }

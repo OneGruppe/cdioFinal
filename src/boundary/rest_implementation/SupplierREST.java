@@ -1,5 +1,6 @@
 package boundary.rest_implementation;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -18,6 +19,9 @@ import controller.controller_interface.ISupplierController;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Path("supplier")
 public class SupplierREST implements ISupplierREST {
 
 	private ISupplierController sc;
@@ -178,7 +182,7 @@ public class SupplierREST implements ISupplierREST {
 			message = e.getMessage();
 		}
 		System.out.println(message);
-		return message;
+		return suppliers.toString();
 	}
 
 

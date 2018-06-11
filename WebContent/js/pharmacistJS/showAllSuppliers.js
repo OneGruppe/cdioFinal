@@ -4,32 +4,32 @@
 
 $(document).ready(function() {
 	
-	$("#navigateToShowRecipe").click(function() {
+	$("#navigateToShowSupplier").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/recipe/getAllRecipes",
-			data: $('#findRecipeForm').serialize(),
+			url:"/cdio_final/rest/supplier/getAllSuppliers",
+			data: $('#findSupplierForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",
 			method: "GET",
 			success:function(data) {
 				console.log(data);
 				
-				if(document.contains(document.getElementById("showRecipeTable")))
+				if(document.contains(document.getElementById("showSupTable")))
 				{
-					document.getElementById("showRecipeTable").remove();
+					document.getElementById("showSupTable").remove();
 					var t, r, c;
 					
 					t = document.createElement("table");
-					t.setAttribute("id", "showRecipeTable");
+					t.setAttribute("id", "showSupTable");
 					
 					r = t.insertRow(0);
 					
 					c = r.insertCell(0);
-					c.innerHTML = "Recept ID";
+					c.innerHTML = "Leverandør ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Recept Name";
+					c.innerHTML = "Leverandør Navn";
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 					}
 					
-					document.getElementById("showRecipes").appendChild(t);
+					document.getElementById("showSuppliers").appendChild(t);
 						
 				} 
 				else
@@ -51,15 +51,15 @@ $(document).ready(function() {
 					var t, r, c;
 					
 					t = document.createElement("table");
-					t.setAttribute("id", "showRecipeTable");
+					t.setAttribute("id", "showSupTable");
 					
 					r = t.insertRow(0);
 					
 					c = r.insertCell(0);
-					c.innerHTML = "Rececpt ID";
+					c.innerHTML = "Leverandør ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Recept Name";
+					c.innerHTML = "Leverandør Navn";
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 					}
 					
-					document.getElementById("showRecipes").appendChild(t);
+					document.getElementById("showSuppliers").appendChild(t);
 
 				}
 			}
