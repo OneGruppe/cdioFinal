@@ -63,7 +63,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 				+ "recipeID=" + recipecomponent.getRecipeID() + ", "
 				+ "commodityID=" + recipecomponent.getCommodityID() + ", "
 				+ "non_netto=" + recipecomponent.getNonNetto() + ", "
-				+ "tolerance=" + recipecomponent.getTolerance() + ", "
+				+ "tolerance=" + recipecomponent.getTolerance()
 				+ "WHERE id=" + recipecomponent.getId());
 	}
 
@@ -104,7 +104,7 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 		}
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			throw new DALException("" + e.getMessage());
 		}
 	}
 

@@ -79,14 +79,14 @@ public class RecipeComponentDAOTest {
 	public void updateRecipeComponentTEST() 
 	{
 		RecipeComponentDTO expected = new RecipeComponentDTO(testID1, 3, 1, 1.0, 0.1);
-		RecipeComponentDTO updated = new RecipeComponentDTO(testID1, 3, 1, 2.0, 0.2);
+		RecipeComponentDTO updated = new RecipeComponentDTO(testID1, 4, 1, 2.0, 0.2);
 
 		try 
 		{
 			dao.createRecipeComponent(expected);
 			dao.updateRecipeComponent(updated);
 
-			for(RecipeComponentDTO actual : dao.getRecipeComponent(3))
+			for(RecipeComponentDTO actual : dao.getRecipeComponent(4))
 			{
 				if(actual.getId() == testID1)
 				{
