@@ -132,16 +132,16 @@ $(document).ready(function() {
 	$('#dropDownCreate').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentShow').hide();
-		$('#dropDownContentCreate').toggle(500);
+		$('#dropDownContentCreate').slideToggle(500);
 	})
 	$('#dropDownFind').click(function() {
 		$('#dropDownContentCreate').hide();
 		$('#dropDownContentShow').hide();
-		$('#dropDownContentFind').toggle(500);
+		$('#dropDownContentFind').slideToggle(500);
 	})
 	$('#dropdownShow').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentCreate').hide();
-		$('#dropDownContentShow').toggle(500);
+		$('#dropDownContentShow').slideToggle(500);
 	})
 })

@@ -27,38 +27,58 @@ a {
 }
 
 
-#navigateToCreateRecipe, #navigateToFindRecipe,
-#navigateToShowRecipe, #navigateToCreateCommodity, 
-#navigateToFindCommodity, #navigateToShowCommodity,
-#navigateToCreateSupplier, #navigateToFindSupplier,
-#navigateToShowSupplier, #navigateToCreateRecipeComponent, 
-#navigateToFindRecipeComponent, #navigateToShowRecipeComponent  {
-	color: #323232;
+.dropDownOptions  {
+	color: white;
+}
+
+.dropDownOptions:hover  {
+	font-style: italic;
 }
 
 #headerContainer {
 	float: right;
 	position: relative;
 	top: -80%;
-	right: 5%;
+	right: 8%;
 }
 
 #dropDownContentCreate {
-	position: fixed;
-	top: 4%;
-	left: 62.5%;
+	position: absolute;
+	top: 165%;
+	left: 28.8%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 8px;
+	padding-right: 10px;
+	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
 }
 
 #dropDownContentFind {
-	position: fixed;
-	top: 4%;
-	left: 65.5%;
+	position: absolute;
+	top: 165%;
+	left: 61.4%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 2px;
+	padding-right: 2px;
+	border: 1px solid black;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
 }
 
 #dropDownContentShow {
-	position: fixed;
-	top: 4%;
-	left: 67.5%;
+	position: absolute;
+	top: 165%;
+	left: 91.5%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 8px;
+	padding-right: 50px;
+	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
 }
 
 ul {
@@ -71,8 +91,8 @@ li {
 }
 
 #Home, #dropDownCreate, #dropDownShow, #dropDownFind {
-	padding-left: 15px;
-	padding-right: 30px;
+	padding-left: 35px;
+	padding-right: 50px;
 	margin-right: 8px;
 	border-right: white 2px solid;
 }
