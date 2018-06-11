@@ -44,9 +44,9 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier) {
+	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
+	{
 		String message;
-
 		try 
 		{
 			if(id < 1 || name.equals("")) 
@@ -74,11 +74,11 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@POST
 	@Path("updateCommodity")
-	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier) {
-		
+	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
+	{
 		String message;
-		
-		try {
+		try
+		{
 			if(id < 1 || name.equals("")) 
 			{
 				if(id < 1) 
