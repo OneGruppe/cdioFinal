@@ -1,13 +1,16 @@
 /**
  * 
  */
+/**
+ * 
+ */
 
 $(document).ready(function() {
 	
-	$('#navigateToShowComBatch').click(function() {
+	$("#navigateToShowCommodity").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/getAllCommodityBatches",
+			url:"/cdio_final/rest/commodity/getAllCommodities",
 			data: $('#findComForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",
@@ -15,27 +18,28 @@ $(document).ready(function() {
 			success:function(data) {
 				console.log(data);
 				
-				if(document.contains(document.getElementById("showComsTable")))
+				if(document.contains(document.getElementById("showComTable")))
 				{
-					document.getElementById("showComsTable").remove();
+					document.getElementById("showComTable").remove();
 					var t, r, c;
 					
 					t = document.createElement("table");
-					t.setAttribute("id", "showComsTable");
+					t.setAttribute("id", "showComTable");
 					
 					r = t.insertRow(0);
 					
 					c = r.insertCell(0);
-					c.innerHTML = "Råvarebatch ID";
+					c.innerHTML = "Råvare ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Råvare ID";
+					c.innerHTML = "Råvare Navn";
 					
 					c = r.insertCell(2);
 					c.innerHTML = "Leverandør ID";
 					
-					c = r.insertCell(3);
-					c.innerHTML = "Mængde";
+					c = r.insertCell(2);
+					c.innerHTML = "Leverandør Navn";
+										
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -45,17 +49,14 @@ $(document).ready(function() {
 						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data[0][i].commodityID;
-						
-						c = r.insertCell(2);
-						c.innerHTML = data[0][i].supplierID;
-						
-						c = r.insertCell(3);
-						c.innerHTML = data[0][i].amount;
+						c.innerHTML = data[0][i].name;
+
+						c = r.insertCell(1);
+						c.innerHTML = data[0][i][i].supplierID;
 
 					}
 					
-					document.getElementById("showComs").appendChild(t);
+					document.getElementById("showMulti").appendChild(t);
 						
 				} 
 				else
@@ -63,21 +64,22 @@ $(document).ready(function() {
 					var t, r, c;
 					
 					t = document.createElement("table");
-					t.setAttribute("id", "showComsTable");
+					t.setAttribute("id", "showComTable");
 					
 					r = t.insertRow(0);
 					
 					c = r.insertCell(0);
-					c.innerHTML = "Råvarebatch ID";
+					c.innerHTML = "Råvare ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Råvare ID";
+					c.innerHTML = "Råvare navn";
 					
 					c = r.insertCell(2);
 					c.innerHTML = "Leverandør ID";
 					
-					c = r.insertCell(3);
-					c.innerHTML = "Mængde";
+					c = r.insertCell(2);
+					c.innerHTML = "Leverandør navn";
+										
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -87,21 +89,18 @@ $(document).ready(function() {
 						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data[0][i].commodityID;
-						
-						c = r.insertCell(2);
-						c.innerHTML = data[0][i].supplierID;
-						
-						c = r.insertCell(3);
-						c.innerHTML = data[0][i].amount;
+						c.innerHTML = data[0][i].name;
+
+						c = r.insertCell(1);
+						c.innerHTML = data[0][i][i].supplierID;
 
 					}
 					
-					document.getElementById("showComs").appendChild(t);
+					document.getElementById("showMulti").appendChild(t);
+
 				}
 			}
 		});
 		return false;
 	});
 });
-	

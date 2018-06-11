@@ -2,6 +2,7 @@ package boundary.rest_implementation;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -79,7 +80,9 @@ public class CommodityREST implements ICommodityREST {
 	@POST
 	@Path("updateCommodity")
 	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("suppliers") List<SupplierDTO> suppliers) {
+		
 		String message;
+		
 		try {
 			if(id < 1 || name.equals("")) 
 			{

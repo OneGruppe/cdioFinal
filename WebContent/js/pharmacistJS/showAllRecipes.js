@@ -4,10 +4,10 @@
 
 $(document).ready(function() {
 	
-	$("navigateToFindRecipe").click(function() {
+	$("#navigateToShowRecipe").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/recipe/showAllRecipe",
+			url:"/cdio_final/rest/recipe/getAllRecipes",
 			data: $('#findRecipeForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",
@@ -28,7 +28,7 @@ $(document).ready(function() {
 					c = r.insertCell(0);
 					c.innerHTML = "Recept ID";
 					
-					c = r.insertCell(2);
+					c = r.insertCell(1);
 					c.innerHTML = "Recept Name";
 
 					for(var i = 0; i < data[0].length; i++)
@@ -36,10 +36,10 @@ $(document).ready(function() {
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data[0][i].recipeID;
+						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data[0][i].recipeName;
+						c.innerHTML = data[0][i].name;
 
 					}
 					
@@ -58,7 +58,7 @@ $(document).ready(function() {
 					c = r.insertCell(0);
 					c.innerHTML = "Rececpt ID";
 					
-					c = r.insertCell(2);
+					c = r.insertCell(1);
 					c.innerHTML = "Recept Name";
 
 					for(var i = 0; i < data[0].length; i++)
@@ -66,10 +66,10 @@ $(document).ready(function() {
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);
-						c.innerHTML = data[0][i].recipeID;
+						c.innerHTML = data[0][i].id;
 						
 						c = r.insertCell(1);
-						c.innerHTML = data[0][i].recipeName;
+						c.innerHTML = data[0][i].name;
 
 					}
 					
