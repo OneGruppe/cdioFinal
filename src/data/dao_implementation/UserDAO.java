@@ -119,8 +119,7 @@ public class UserDAO implements IUserDAO {
 				users.add(userdto);
 			}
 			if(users.isEmpty()) {
-				throw new DALException("ProductBatch komponent listen er tom...\nTilføj nogle værdier og prøv igen");
-			}
+				throw new DALException("Bruger listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return users;
 		}
