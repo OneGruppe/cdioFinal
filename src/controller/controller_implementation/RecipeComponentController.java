@@ -5,7 +5,6 @@ import java.util.List;
 import controller.controller_interface.IRecipeComponentController;
 import data.dao_implementation.RecipeComponentDAO;
 import data.dao_interface.IRecipeComponentDAO;
-import data.dto.RecipeComponentCommodityDTO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
@@ -23,9 +22,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#createRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void createRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList) throws DALException 
+	public void createRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException 
 	{
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, componentCommodityList);
+		RecipeComponentDTO component = new RecipeComponentDTO(id, recipeID, commodityID, non_netto, tolerance);
 		dao.createRecipeComponent(component);
 	}
 
@@ -34,9 +33,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#updateRecipeComponent(int, int, double, double)
 	 */
 	@Override
-	public void updateRecipeComponent(int recipeID, List<RecipeComponentCommodityDTO> componentCommodityList)	throws DALException 
+	public void updateRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException 
 	{
-		RecipeComponentDTO component = new RecipeComponentDTO(recipeID, componentCommodityList);
+		RecipeComponentDTO component = new RecipeComponentDTO(id, recipeID, commodityID, non_netto, tolerance);
 		dao.updateRecipeComponent(component);
 	}
 
@@ -45,9 +44,9 @@ public class RecipeComponentController implements IRecipeComponentController {
 	 * @see controller.controller_interface.IRecipeComponentController#getRecipeComponent(int)
 	 */
 	@Override
-	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException 
+	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException 
 	{
-		RecipeComponentDTO component = dao.getRecipeComponent(recipeID);
+		List<RecipeComponentDTO> component = dao.getRecipeComponent(recipeID);
 		return component;
 	}
 
