@@ -110,8 +110,9 @@ $(document).ready(function() {
 		$('#findRecipeComponentForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
 		$('#showSingle').fadeOut(200);
-		$('#findRecipeForm').fadeOut(200);
-		$('#findMulti').delay(300).fadeIn(200);
+		$('#showMulti').fadeOut(200);
+		$('#findRecipeForm').delay(300).fadeIn(200);
+		
 	})
 	
 	$('#navigateToShowRecipe').click(function() {
@@ -123,8 +124,8 @@ $(document).ready(function() {
 		$('#findRecipeComponentForm').fadeOut(200)
 		$('#findSupplierForm').fadeOut(200);
 		$('#showSingle').fadeOut(200);
-		$('#showMulti').fadeOut(200);
-		$('#findRecipeForm').delay(300).fadeIn(200);
+		$('#findRecipeForm').fadeOut(200);
+		$('#showMulti').delay(300).fadeIn(200);
 	})
 	/*****************
 	 * dropdown menu *
