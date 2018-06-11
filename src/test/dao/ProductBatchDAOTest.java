@@ -12,10 +12,7 @@ import org.junit.Test;
 
 import data.dao_implementation.ProductBatchDAO;
 import data.dao_interface.IProductBatchDAO;
-import data.dto.ProductBatchComponentDTO;
 import data.dto.ProductBatchDTO;
-import data.dto.RecipeComponentDTO;
-import data.dto.RecipeDTO;
 import exceptions.DALException;
 
 public class ProductBatchDAOTest {
