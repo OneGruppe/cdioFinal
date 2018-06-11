@@ -35,6 +35,15 @@ public interface ICommodityBatchDAO {
 	 * @throws DALException
 	 */
 	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException;
+	
+	/**
+	 * Returns a list of commoditybatches for with the specific commodity
+	 * @param commodityID
+	 * @return a list of CommodityBatchDTO objects
+	 * @throws DALException
+	 */
+	
+	public List<CommodityBatchDTO> getCommodityBatchList(int commodityID) throws DALException;
 
 	/**
 	 * Returns a list of all commodity batches
