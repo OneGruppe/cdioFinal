@@ -1,7 +1,5 @@
 package boundary.rest_implementation;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -12,24 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchREST;
-import controller.controller_implementation.CommodityController;
-import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_implementation.ProductBatchController;
-import controller.controller_implementation.RecipeComponentController;
-import controller.controller_implementation.UserController;
-import controller.controller_interface.ICommodityController;
 import controller.controller_interface.IProductBatchController;
-import controller.controller_interface.IProductbatchComponentController;
-import controller.controller_interface.IRecipeComponentController;
-import controller.controller_interface.IUserController;
-import data.dto.CommodityDTO;
-import data.dto.ProductBatchComponentDTO;
-import data.dto.ProductBatchDTO;
-import data.dto.RecipeComponentDTO;
-import data.dto.UserDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)

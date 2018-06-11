@@ -13,9 +13,6 @@ import org.junit.Test;
 import data.dao_implementation.CommodityBatchDAO;
 import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
-import data.dto.ProductBatchComponentDTO;
-import data.dto.RecipeComponentDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public class CommodityBatchDAOTest {

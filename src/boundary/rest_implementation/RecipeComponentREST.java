@@ -1,6 +1,5 @@
 package boundary.rest_implementation;
 
-import java.util.List;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.PUT;
@@ -11,7 +10,6 @@ import org.json.JSONArray;
 import boundary.rest_interface.IRecipeComponentREST;
 import controller.controller_implementation.RecipeComponentController;
 import controller.controller_interface.IRecipeComponentController;
-import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
 /*@Produces(MediaType.APPLICATION_JSON)
@@ -88,7 +86,6 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	public String getRecipeComponent(@FormParam("recipeID")int recipeID) throws DALException 
 	{
 		JSONArray recComList = new JSONArray();
-		List<RecipeComponentDTO> recCom;
 
 		try 
 		{

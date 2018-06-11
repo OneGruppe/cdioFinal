@@ -129,6 +129,9 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 				{
 					recipeComponentList.add(new RecipeComponentDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
 				}
+				if(recipeComponentList.isEmpty()) {
+					throw new DALException("Recept komponent listen er tom...\nTilføj nogle værdier og prøv igen");
+				}
 			}
 			return recipeComponentList;
 		}

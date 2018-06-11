@@ -1,7 +1,6 @@
 package boundary.rest_implementation;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.Path;
 
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;

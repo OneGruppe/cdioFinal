@@ -118,11 +118,9 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 			{
 				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("id"), rs.getInt("commodityID"), rs.getDouble("amount"));
 				comBatchList.add(combatdto);
-
-				if (combatdto.getId() == 0) 
-				{
-					throw new DALException("R�varebatchlisten er tom");
-				}
+			}
+			if(comBatchList.isEmpty()) {
+				throw new DALException("RåvareBatch listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return comBatchList;
 		}

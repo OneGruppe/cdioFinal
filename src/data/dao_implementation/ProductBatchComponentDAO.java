@@ -78,7 +78,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 			while(rs.next()) {
 				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getInt("tara"), rs.getInt("netto"));
 				components.add(dto);
-				}
+			}
 			if(components.isEmpty()) {
 				throw new DALException("ProductBatch komponent listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
