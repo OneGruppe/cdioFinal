@@ -79,7 +79,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 */
 	
 	@Override
-	public List<CommodityBatchDTO> getCommodityBatchList(int commodityID) throws DALException 
+	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException 
 	{
 		List<CommodityBatchDTO> commodityBatchList = new ArrayList<CommodityBatchDTO>();
 		

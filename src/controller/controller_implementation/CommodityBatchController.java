@@ -22,9 +22,9 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 * @see controller.controller_interface.ICommodityBatchController#createCommodityBatch(int, int, int, double)
 	 */
 	@Override
-	public void createCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException 
+	public void createCommodityBatch(int id, int commodityID, double amount) throws DALException 
 	{
-		CommodityBatchDTO combatch = new CommodityBatchDTO(commodityBatchID, commodityID, supplierID, amount);
+		CommodityBatchDTO combatch = new CommodityBatchDTO(id, commodityID, amount);
 		comdao.createCommodityBatch(combatch);
 
 	}
@@ -34,9 +34,9 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 * @see controller.controller_interface.ICommodityBatchController#updateCommodityBatch(int, int, int, double)
 	 */
 	@Override
-	public void updateCommodityBatch(int commodityBatchID, int commodityID, int supplierID, double amount) throws DALException 
+	public void updateCommodityBatch(int id, int commodityID, double amount) throws DALException 
 	{
-		CommodityBatchDTO combatch = new CommodityBatchDTO(commodityBatchID, commodityID, supplierID, amount);
+		CommodityBatchDTO combatch = new CommodityBatchDTO(id, commodityID, amount);
 		comdao.updateCommodityBatch(combatch);
 	}
 
@@ -45,9 +45,9 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 * @see controller.controller_interface.ICommodityBatchController#deleteCommodityBatch(int)
 	 */
 	@Override
-	public void deleteCommodityBatch(int combatchID) throws DALException 
+	public void deleteCommodityBatch(int id) throws DALException 
 	{
-		comdao.deleteCommodityBatch(combatchID);
+		comdao.deleteCommodityBatch(id);
 	}
 
 	/*
@@ -55,10 +55,10 @@ public class CommodityBatchController implements ICommodityBatchController {
 	 * @see controller.controller_interface.ICommodityBatchController#getCommodityBatch(int)
 	 */
 	@Override
-	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException 
+	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException 
 	{
 
-		return comdao.getCommodityBatch(combatchID);
+		return comdao.getCommodityBatch(commodityID);
 	}
 
 	/*

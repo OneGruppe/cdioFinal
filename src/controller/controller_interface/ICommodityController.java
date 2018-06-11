@@ -3,7 +3,6 @@ package controller.controller_interface;
 import java.util.List;
 
 import data.dto.CommodityDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 public interface ICommodityController {
@@ -15,7 +14,7 @@ public interface ICommodityController {
 	 * @param suppliers
 	 * @throws DALException
 	 */
-	public void createCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException;
+	public void createCommodity(int id, String name, int supplierID) throws DALException;
 
 	/**
 	 * Updates a commodity
@@ -24,7 +23,7 @@ public interface ICommodityController {
 	 * @param suppliers
 	 * @throws DALException
 	 */
-	public void updateCommodity(int id, String name, List<SupplierDTO> suppliers) throws DALException;
+	public void updateCommodity(int id, String name, int supplierID) throws DALException;
 
 	/**
 	 * Deletes a commodity

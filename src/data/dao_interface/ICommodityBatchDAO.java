@@ -35,7 +35,7 @@ public interface ICommodityBatchDAO {
 	 * @throws DALException
 	 */
 	
-	public List<CommodityBatchDTO> getCommodityBatchList(int commodityID) throws DALException;
+	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException;
 
 	/**
 	 * Returns a list of all commodity batches

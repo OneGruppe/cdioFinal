@@ -14,7 +14,7 @@ public interface ICommodityBatchController {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int cbID, int commodityID, int supplierID, double amount) throws DALException;
+	public void createCommodityBatch(int id, int commodityID, double amount) throws DALException;
 
 	/**
 	 * Updates a commoditybatch
@@ -23,14 +23,14 @@ public interface ICommodityBatchController {
 	 * @param amount
 	 * @throws DALException
 	 */
-	public void updateCommodityBatch(int cbID, int commodityID, int supplierID, double amount) throws DALException;
+	public void updateCommodityBatch(int id, int commodityID, double amount) throws DALException;
 
 	/**
 	 * Deletes a commoditybatch
 	 * @param combatchID
 	 * @throws DALException
 	 */
-	public void deleteCommodityBatch(int combatchID) throws DALException;
+	public void deleteCommodityBatch(int id) throws DALException;
 
 	/**
 	 * Get a single commoditybatch
@@ -38,7 +38,7 @@ public interface ICommodityBatchController {
 	 * @return a signle CommodityBatchDTO object
 	 * @throws DALException
 	 */
-	public CommodityBatchDTO getCommodityBatch(int combatchID) throws DALException;
+	public List<CommodityBatchDTO> getCommodityBatch(int id) throws DALException;
 
 	/**
 	 * Get a list of all commoditybatches
