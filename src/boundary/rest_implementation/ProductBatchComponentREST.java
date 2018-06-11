@@ -1,6 +1,6 @@
 package boundary.rest_implementation;
 
-import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,9 +14,8 @@ import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_interface.IProductbatchComponentController;
 import exceptions.DALException;
 
-/*@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-@Path("prodBatchComponent")*/
+@Produces(MediaType.APPLICATION_JSON)
+@Path("prodBatchComponent")
 public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	
 	private IProductbatchComponentController prodBatchCompController;
@@ -36,7 +35,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Override
 	@POST
 	@Path("createProductBatchComponent")
-	public void createProductBatchComponent(int id, int productBatchID, int commodityBatchID, int userID, double tara, double netto) 
+	public void createProductBatchComponent(@FormParam("id") int id, @FormParam("productBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
 	{
 		try 
 		{
@@ -52,7 +51,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Override
 	@POST
 	@Path("updateProductBatchComponent")
-	public void updateProductBatchComponent(int id, int productBatchID, int commodityBatchID, int userID, double tara, double netto)
+	public void updateProductBatchComponent(@FormParam("id") int id, @FormParam("productBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto)
 	{
 		try 
 		{
@@ -69,7 +68,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("getProductBatchComponent")
-	public String getProductBatchComponent(int id) 
+	public String getProductBatchComponent(@FormParam("id") int id) 
 	{
 		JSONArray prodComJSON = new JSONArray();
 
