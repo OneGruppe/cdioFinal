@@ -1,6 +1,6 @@
 package data.dto;
 
-public class RecipeComponent
+public class RecipeComponentDTO
 {
 	private int id;
 	private int recipeID;
@@ -16,7 +16,7 @@ public class RecipeComponent
 	 * @param nonNetto
 	 * @param tolerance
 	 */
-	public RecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance)
+	public RecipeComponentDTO(int id, int recipeID, int commodityID, double nonNetto, double tolerance)
 	{
 		this.id = id;
 		this.recipeID = recipeID;

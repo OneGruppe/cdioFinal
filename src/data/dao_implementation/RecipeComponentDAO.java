@@ -7,7 +7,6 @@ import java.util.List;
 
 import data.connector.Connector;
 import data.dao_interface.IRecipeComponentDAO;
-import data.dto.RecipeComponentCommodityDTO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
@@ -43,17 +42,14 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#createRecipeComponent(data.dto.RecipeComponentDTO)
 	 */
 	@Override
-	public void createRecipeComponent(RecipeComponentDTO component) throws DALException 
+	public void createRecipeComponent(RecipeComponentDTO recipecomponent) throws DALException 
 	{
-		for(RecipeComponentCommodityDTO recepcom : component.getComponentCommodityList())
-		{
-			con.doUpdate("INSERT INTO recipeComponent (recipeID, commodityID, non_netto, tolerance) VALUES ("
-					+ component.getRecipeID() + ", "
-					+ recepcom.getCommodityID() + ", "
-					+ recepcom.getNon_netto() + ", "
-					+ recepcom.getTolerance() + ")" );
-		}
-
+		con.doUpdate("INSERT INTO recipeComponent (id, receptID, commodityID, non_netto, tolerance) VALUES ("
+				+ recipecomponent.getId() + ", "
+				+ recipecomponent.getRecipeID() + ", "
+				+ recipecomponent.getCommodityID() + ", "
+				+ recipecomponent.getNonNetto() + ", "
+				+ recipecomponent.getTolerance() + ")" );
 	}
 
 	/*
@@ -61,18 +57,14 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#updateRecipeComponent(data.dto.RecipeComponentDTO)
 	 */
 	@Override
-	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException 
+	public void updateRecipeComponent(RecipeComponentDTO recipecomponent) throws DALException 
 	{
-		con.doQuery("DELETE FROM recipeComponent WHERE recipeID=" + component.getRecipeID());
-
-		for(RecipeComponentCommodityDTO recepcom : component.getComponentCommodityList())
-		{
-			con.doUpdate("INSERT INTO recipeComponent (recipeID, commodityID, non_netto, tolerance) VALUES ("
-					+ component.getRecipeID() + ", "
-					+ recepcom.getCommodityID() + ", "
-					+ recepcom.getNon_netto() + ", "
-					+ recepcom.getTolerance() + ")" );
-		}
+		con.doUpdate("UPDATE recipeComponent SET "
+				+ "recipeID=" + recipecomponent.getRecipeID() + ", "
+				+ "commodityID=" + recipecomponent.getCommodityID() + ", "
+				+ "non_netto=" + recipecomponent.getNonNetto() + ", "
+				+ "tolerance=" + recipecomponent.getTolerance() + ", "
+				+ "WHERE id=" + recipecomponent.getId());
 	}
 
 	/*
@@ -80,10 +72,10 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#deleteRecipeComponent(int)
 	 */
 	@Override
-	public void deleteRecipeComponent(int recipeID) throws DALException 
+	public void deleteRecipeComponent(int recipeComponentID) throws DALException 
 	{
 		con.doUpdate("DELETE FROM recipeComponent "
-				+ "WHERE recipeID= " + recipeID);
+				+ "WHERE id=" + recipeComponentID);
 	}
 
 	/*
@@ -91,10 +83,10 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	 * @see data.dao_interface.IRecipeComponentDAO#getRecipeComponent(int)
 	 */
 	@Override
-	public RecipeComponentDTO getRecipeComponent(int recipeID) throws DALException
+	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException
 	{
+		List<RecipeComponentDTO> recipeComponentList = new ArrayList<RecipeComponentDTO>();
 		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent WHERE recipeID= " + recipeID);
-		List<RecipeComponentCommodityDTO> componentCommodityList = new ArrayList<RecipeComponentCommodityDTO>();
 
 		try {
 			if(!rs.first()) 
@@ -105,10 +97,10 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 			{
 				while(rs.next())
 				{
-					componentCommodityList.add(new RecipeComponentCommodityDTO(rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
+					recipeComponentList.add(new RecipeComponentDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
 				}
 			}
-			return new RecipeComponentDTO(recipeID, componentCommodityList);
+			return recipeComponentList;
 		}
 		catch (SQLException e) 
 		{
@@ -124,41 +116,23 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	public List<RecipeComponentDTO> getAllRecipeComponents() throws DALException
 	{
 		List<RecipeComponentDTO> recipeComponentList = new ArrayList<RecipeComponentDTO>();
-		List<RecipeComponentCommodityDTO> emptyList = new ArrayList<RecipeComponentCommodityDTO>();
-
-		ResultSet rsRecipe = con.doQuery("SELECT * FROM recipe");
+		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent");
 
 		try {
-			while(rsRecipe.next())
+			if(!rs.first()) 
 			{
-				RecipeComponentDTO recipeDTO = new RecipeComponentDTO(rsRecipe.getInt("recipeID"), emptyList);
-				recipeComponentList.add(recipeDTO);
+				throw new DALException("there is no recipecomponents");
 			}
-			if(recipeComponentList.isEmpty())
+			else
 			{
-				throw new DALException("Recipe component-list is empty: ");
-			}
-
-			ResultSet rsRecipeCom = con.doQuery("SELECT * FROM recipeComponent");
-
-			while (rsRecipeCom.next())
-			{
-				for (RecipeComponentDTO receptcom : recipeComponentList)
+				while(rs.next())
 				{
-					if (receptcom.getRecipeID() == rsRecipeCom.getInt("recipeID"))
-					{
-						List<RecipeComponentCommodityDTO> comList = receptcom.getComponentCommodityList();
-						comList.add(new RecipeComponentCommodityDTO(rsRecipeCom.getInt("recipeID"), rsRecipeCom.getDouble("non_netto"), rsRecipeCom.getDouble("tolerance")))
-						;
-					}
+					recipeComponentList.add(new RecipeComponentDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
 				}
-				
 			}
-
-
 			return recipeComponentList;
 		}
-		catch(SQLException e) 
+		catch (SQLException e) 
 		{
 			throw new DALException(e.getMessage());
 		}
