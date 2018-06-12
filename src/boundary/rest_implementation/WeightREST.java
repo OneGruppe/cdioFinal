@@ -22,7 +22,7 @@ public class WeightREST implements IWeightREST {
 
 	@PUT
 	@Path("doConnection")
-	public String doConnection(@FormParam("ip") String ip, @FormParam("port") int port) throws DALException
+	public String doConnection() throws DALException
 	{
 		try 
 		{
