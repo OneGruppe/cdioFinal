@@ -38,7 +38,7 @@ public class UserREST implements IUserREST {
 	@Override
 	@POST
 	@Path("createUser")
-	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
+	public void createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
 		String message;
 
@@ -59,7 +59,7 @@ public class UserREST implements IUserREST {
 			message = e.getMessage();		
 		}
 		System.out.println(message);
-		return message;
+		//		return message;
 	}
 
 	@Override

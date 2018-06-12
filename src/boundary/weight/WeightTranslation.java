@@ -224,8 +224,10 @@ public class WeightTranslation {
 				System.out.println("Command to getInputWithMsg returned an error");
 				break;
 			case "RM20 C":
-				clearDisplayAndShowWeight();
-				getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
+				//TODO clearDisplayAndShowWeight virker ikke?
+				//clearDisplayAndShowWeight();
+				//getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
+				return -2;
 			case "ES":
 				getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
 				break;
