@@ -86,20 +86,19 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException
 	{
 		List<RecipeComponentDTO> recipeComponentList = new ArrayList<RecipeComponentDTO>();
+
 		ResultSet rs = con.doQuery("SELECT * FROM recipeComponent WHERE recipeID= " + recipeID);
 
 		try {
-			if(!rs.first()) 
+			while(rs.next())
 			{
-				throw new DALException("" + recipeID);
+				recipeComponentList.add(new RecipeComponentDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
 			}
-			else
+			if(recipeComponentList.isEmpty())
 			{
-				while(rs.next())
-				{
-					recipeComponentList.add(new RecipeComponentDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("commodityID"), rs.getDouble("non_netto"), rs.getDouble("tolerance")));
-				}
+				throw new DALException("Recept komponent listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
+
 			return recipeComponentList;
 		}
 		catch (SQLException e) 

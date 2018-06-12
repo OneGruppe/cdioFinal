@@ -86,6 +86,11 @@ public class WeightController implements IWeightController {
 		{
 			System.out.println("State: " + state);
 			weight.getInputWithMsg("Tryk 0 for tilbage", 0, "");
+			
+			System.out.println("test get metoder: " + user.getUser(1));
+			System.out.println("test get metoder: " + pbc.getProductBatch(1));
+			System.out.println("test get metoder: " + rcc.getRecipeComponent(1));
+			
 			state++;
 		}
 		catch (DALException e)
@@ -178,6 +183,7 @@ public class WeightController implements IWeightController {
 			else
 			{
 				tara = weight.getTaraWeight();
+				System.out.println("Tara = " + tara);
 				state++;
 			}
 		}
@@ -221,14 +227,21 @@ public class WeightController implements IWeightController {
 		{
 			int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 			System.out.println("RecipeID: " + recipeID);
+			System.out.println("size = " + rcc.getRecipeComponent(recipeID).size());
+			System.out.println("ToString = " + rcc.getRecipeComponent(recipeID).toString());
 
-			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++) {
+			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
+			{
+				System.out.println(rcc.getRecipeComponent(recipeID).get(i).getCommodityID());
 				double comWeight = 0;
 				int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
 				String commodityName = cc.getCommodity(commodityID).getName();
+				System.out.println(commodityName);
 				int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
 				if(choice == goBack)
 					break;
+				weight.removeInputWithMsg();
+				
 				double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
 				double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
 				System.out.println("Min = " + min + " max = " + max);
