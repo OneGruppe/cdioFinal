@@ -16,6 +16,8 @@ $(document).ready(function() {
 	$('#findProdForm').hide();
 	$('#editProdForm').hide();
 	$('#editComForm').hide();
+	$('#createProdCompForm').hide();
+	$('#findProdCompForm').hide();
 
 	$('#navigateToCreateOptions').click(function() {
 		$('#dropDownCreateProd').slideToggle(500);
@@ -49,6 +51,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -63,6 +67,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -77,6 +83,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -89,6 +97,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -103,6 +113,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -118,6 +130,8 @@ $(document).ready(function() {
 		$('#showComTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	
@@ -129,6 +143,8 @@ $(document).ready(function() {
 		$('#showProdTable').fadeOut(200);
 		$('#showComsTable').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#editProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -140,7 +156,38 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#showProdTable').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
 		$('#editComForm').delay(300).fadeIn(200);
+	})
+	
+	$('#navigateToCreateProdComp').click(function() {
+		$('#findProdForm').fadeOut(200);
+		$('#findComForm').fadeOut(200);
+		$('#createComForm').fadeOut(200);
+		$('#showProdTable').fadeOut(200);
+		$('#showProdsTable').fadeOut(200);
+		$('#editProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
+		$('#commodityName').fadeOut(200);
+		$('#findProdCompForm').fadeOut(200);
+		$('#createProdCompForm').delay(300).fadeIn(200);
+	})
+	
+	$('#navigateToFindProdComp').click(function() {
+		$('#findProdForm').fadeOut(200);
+		$('#findComForm').fadeOut(200);
+		$('#createComForm').fadeOut(200);
+		$('#showProdTable').fadeOut(200);
+		$('#showProdsTable').fadeOut(200);
+		$('#editProdForm').fadeOut(200);
+		$('#showComTable').fadeOut(200);
+		$('#showComsTable').fadeOut(200);
+		$('#editComForm').fadeOut(200);
+		$('#commodityName').fadeOut(200);
+		$('#findProdCompForm').delay(300).fadeIn(200);
 	})
 	
 	$('#findProductBatch').click(function() {
