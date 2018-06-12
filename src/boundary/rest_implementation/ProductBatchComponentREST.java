@@ -51,7 +51,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Override
 	@POST
 	@Path("updateProductBatchComponent")
-	public void updateProductBatchComponent(@FormParam("id") int id, @FormParam("productBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto)
+	public void updateProductBatchComponent(@FormParam("id") int id, @FormParam("prodBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto)
 	{
 		try 
 		{

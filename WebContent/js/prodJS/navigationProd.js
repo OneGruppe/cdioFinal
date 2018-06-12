@@ -53,6 +53,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -69,6 +70,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -85,6 +87,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -99,6 +102,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -115,6 +119,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -132,6 +137,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	
@@ -145,6 +151,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#editProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -158,6 +165,7 @@ $(document).ready(function() {
 		$('#commodityName').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#editComForm').delay(300).fadeIn(200);
 	})
 	
@@ -173,6 +181,7 @@ $(document).ready(function() {
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
+		$("#showProdCompTable").fadeOut(200);
 		$('#createProdCompForm').delay(300).fadeIn(200);
 	})
 	
@@ -187,6 +196,8 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#editComForm').fadeOut(200);
 		$('#commodityName').fadeOut(200);
+		$('#createProdCompForm').fadeOut(200)
+		$("#showProdCompTable").fadeOut(200);
 		$('#findProdCompForm').delay(300).fadeIn(200);
 	})
 	
