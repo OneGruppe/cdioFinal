@@ -17,6 +17,7 @@
 <script src = "../js/prodJS/commoditybatchFuntions/editComBatch.js"></script>
 <script src = "../js/prodJS/commoditybatchFuntions/deleteComBatch.js"></script>
 <script src = "../js/prodJS/productbatchFunctions/createProductComp.js"></script>
+<script src = "../js/prodJS/productbatchFunctions/showProdComp.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -31,6 +32,7 @@
 			<ul>
 				<li><a class = "dropDownSingleDirect" id = "navigateToCreateComBatch" href = "#">Råvarebatch</a>
 				<li><a class = "dropDownSingleDirect" id = "navigateToCreateProdBatch" href = "#">Produktbatch</a>
+				<li><a class = "dropDownSingleDirect" id = "navigateToCreateProdComp" href = "#">Produktbatch Komponent</a>
 			</ul>
 		</div>
 		
@@ -39,6 +41,7 @@
 			<ul>
 				<li><a class = "dropDownSingleDirect" id = "navigateToFindComBatch" href = "#">Råvarebatch</a>
 				<li><a class = "dropDownSingleDirect" id = "navigateToFindProdBatch" href = "#">Produktbatch</a>
+				<li><a class = "dropDownSingleDirect" id = "navigateToFindProdComp" href = "#">Produktbatch Komponent</a>
 			</ul>
 		</div>
 		
@@ -119,6 +122,36 @@
 	</table>
 </form>
 <!------- CREATE PRODCOMP FORM END -------->
+
+<!------- FIND PRODCOM FORM START -------->
+<form id = "findProdCompForm">
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findProductBatchComp" form="findProdCompForm" type="button">Find Produktbatch komponenter</button>
+		</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch komponent ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findProductBatchComp" form="findProdCompForm" type="button">Find Produktbatch komponent</button>
+		</td>
+		<td>
+		<button id ="navigateToDeleteCom" form = "findComForm" type = "button">Slet batch</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!------- FIND PRODCOM FORM END -------->
 
 <!------- CREATE COM FORM START -------->
 <form id = "createComForm">
