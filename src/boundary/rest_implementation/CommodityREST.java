@@ -151,7 +151,7 @@ public class CommodityREST implements ICommodityREST {
 				commodity = cc.getCommodity(id);
 				commodityJSON.put("id", commodity.getId());
 				commodityJSON.put("name", commodity.getName());
-
+				commodityJSON.put("supplierID",commodity.getSupplierID());
 				message = "Råvaren " + commodity.getName() + " blev fundet";
 			}
 			else 
