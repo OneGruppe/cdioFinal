@@ -51,8 +51,7 @@ public class RecipeComponentController implements IRecipeComponentController {
 	@Override
 	public List<RecipeComponentDTO> getRecipeComponent(int recipeID) throws DALException 
 	{
-		List<RecipeComponentDTO> component = dao.getRecipeComponent(recipeID);
-		return component;
+		return dao.getRecipeComponent(recipeID);
 	}
 
 	/*

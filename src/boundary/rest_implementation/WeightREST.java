@@ -5,6 +5,7 @@ import javax.ws.rs.FormParam;
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
 import controller.controller_implementation.CommodityBatchController;
+import controller.controller_implementation.CommodityController;
 import controller.controller_implementation.ProductBatchController;
 import controller.controller_implementation.RecipeComponentController;
 import controller.controller_implementation.UserController;
@@ -22,7 +23,7 @@ public class WeightREST implements IWeightREST {
 	{
 		try 
 		{
-			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new WeightTranslation(ip, port));
+			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new CommodityController(), new WeightTranslation(ip, port));
 			wc.weightFlow();
 		} 
 		catch (DALException e) 
