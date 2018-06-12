@@ -157,7 +157,7 @@ public class WeightController implements IWeightController {
 				state--;
 			else
 			{
-				pbc.getProductBatch(productBatchID).setId(1);
+				pbc.getProductBatch(productBatchID).setStatus(1);
 				state++;
 			}
 		}
@@ -237,22 +237,68 @@ public class WeightController implements IWeightController {
 				int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
 				String commodityName = cc.getCommodity(commodityID).getName();
 				System.out.println(commodityName);
-				int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
-				if(choice == goBack)
-					break;
-				weight.removeInputWithMsg();
 				
-				double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
-				double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
-				System.out.println("Min = " + min + " max = " + max);
-
-				while(!(weight.getWeight() < min) || !(weight.getWeight() > max))
+				int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
+				if (choice == goBack)
 				{
-					comWeight = weight.getWeight();
-					System.out.println("comWeight = " + comWeight);
-					cbc.getCommodityBatchSingle(commodityBatchID).setAmount(comWeight);
-					System.out.println("cbc after weight = " + cbc.getCommodityBatchSingle(commodityID));
+					state--;
 				}
+				else 
+				{
+					double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+					double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+					System.out.println("Min = " + min + " max = " + max);
+								
+					while(true)
+					{
+						comWeight = weight.getWeight();
+						
+						if(comWeight < min) 
+						{
+							weight.showLongMsg("Mere vaegt");
+						} 
+						else if(comWeight > max)
+						{
+							weight.showLongMsg("For meget vaegt");
+						} 
+						else if(comWeight > min && max > comWeight) 
+						{
+							try 
+							{
+								//TODO Opret objekt som dannes under process og fjern råvare fra lager, yderligere skal næste råvare igennem samme procedure.
+								TimeUnit.SECONDS.sleep(3);
+								comWeight = weight.getWeight();
+								weight.showLongMsg("Vaegt: " + comWeight);
+								TimeUnit.SECONDS.sleep(3);
+								weight.removeLongMsg();
+								choice = weight.getInputWithMsg("Fortsaet?", 0, "");
+								weight.removeMsg();
+								if(choice == -2) 
+								TimeUnit.SECONDS.sleep(5);
+							}
+							catch (InterruptedException e) 
+							{
+								e.printStackTrace();
+							}
+							
+							if(choice == -1) 
+							{
+								break;
+								
+							} 
+							else if(choice == -2)
+							{
+								continue;
+							}
+						}
+						System.out.println(comWeight);
+					}
+					
+					System.out.println(comWeight);
+				}
+				
+				weight.removeMsg();
+				
 			}
 			state += 1;
 		}
