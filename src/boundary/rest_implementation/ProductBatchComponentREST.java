@@ -8,10 +8,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchComponentREST;
 import controller.controller_implementation.ProductBatchComponentController;
 import controller.controller_interface.IProductbatchComponentController;
+import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -62,6 +64,47 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	
+	@Override
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getSingleProductBatchComponent")
+	public String getSingleProductBatchComponent(int id) 
+	{
+		System.out.println("Første");
+		String message;
+
+		JSONObject componentJSON = new JSONObject();
+		ProductBatchComponentDTO component;
+
+		try 
+		{
+			if(id != 0)
+			{
+				component = prodBatchCompController.getSingleProductBatchComponent(id);
+				componentJSON.put("id", component.getId());
+				componentJSON.put("commodityBatchID", component.getCommodityBatchID());
+				componentJSON.put("productBatchID", component.getProductbatchID());
+				componentJSON.put("userID", component.getUserID());
+				componentJSON.put("tara", component.getTara());
+				componentJSON.put("netto", component.getNetto());
+
+				message = "Komponenten med id" + component.getId() + " blev fundet";
+			}
+			else
+			{
+				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+			}
+		} 
+		catch (DALException e) 
+		{
+			message = e.getMessage();
+		}
+
+		System.out.println(message);
+
+		return componentJSON.toString();
 	}
 
 	@Override

@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$("#findCommodityBatch").click(function() {
 			
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/getCommodityBatch",
+			url:"/rest/comBatch/getCommodityBatch",
 			data: $('#findComForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

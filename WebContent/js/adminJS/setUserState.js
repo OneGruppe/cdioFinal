@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToSetUser").click(function() {
 
 		$.ajax({
-			url : "/cdio_final/rest/user/getUser",
+			url : "/rest/user/getUser",
 			data : $('#findUserForm').serialize(),
 			contenttype : "application/json",
 			method : "POST",
@@ -24,7 +24,7 @@ $(document).ready(function() {
 	$("#setUser").click(function() {
 		
 		$.ajax({
-			url : "/cdio_final/rest/user/setUserState",
+			url : "/rest/user/setUserState",
 			data : $('#setUserForm').serialize(),
 			dataType : "json",
 			contenttype : "application/json",

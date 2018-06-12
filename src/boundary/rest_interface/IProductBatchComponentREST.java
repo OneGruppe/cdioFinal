@@ -28,6 +28,15 @@ public interface IProductBatchComponentREST {
 	
 	public void updateProductBatchComponent(int id, int productBatchID, int commodityBatchID, int userID, double tara, double netto);
 
+	
+	/**
+	 * <blockquote><h1> <i>getSingleProductBatchComponent</i></h1> <blockquote>({@code int} id)</blockquote></blockquote>
+	 * Returns a single productbatch component
+	 * @param id
+	 * @return a single ProductBatchComponentDTO object as JSON object
+	 */
+	public String getSingleProductBatchComponent(int id);
+	
 	/**
 	 * <blockquote><h1> <i>getProductBatchComponent</i></h1> <blockquote>({@code int} productBatchID)</blockquote></blockquote>
 	 * Returns a list of productbatch components matching the productbatch	

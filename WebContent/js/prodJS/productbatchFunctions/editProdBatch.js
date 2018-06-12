@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToEditProd").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/prodBatch/getProductBatch",
+			url:"/rest/prodBatch/getProductBatch",
 			data: $('#findProdForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
@@ -25,7 +25,7 @@ $(document).ready(function() {
 	$("#editProd").click(function() {
 		
 		$.ajax({
-			url: "/cdio_final/rest/prodBatch/updateProductBatch",
+			url: "/rest/prodBatch/updateProductBatch",
 			data: $('#editProdForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

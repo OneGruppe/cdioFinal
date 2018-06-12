@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToShowSupplier").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/supplier/getAllSuppliers",
+			url:"/rest/supplier/getAllSuppliers",
 			data: $('#findSupplierForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

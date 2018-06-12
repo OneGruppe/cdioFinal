@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('#navigateToShowComBatch').click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/getAllCommodityBatches",
+			url:"/rest/comBatch/getAllCommodityBatches",
 			data: $('#findComForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

@@ -51,9 +51,31 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	}
 
 	@Override
-	public void deleteProductBatchComponent(int productBatchComponentID) throws DALException 
+	public void deleteProductBatchComponent(int id) throws DALException 
 	{
-		con.doUpdate("DELETE FROM productBatchComponent WHERE id=" + productBatchComponentID);
+		con.doUpdate("DELETE FROM productBatchComponent WHERE id=" + id);
+	}
+	
+	@Override
+	public ProductBatchComponentDTO getSingleProductBatchComponent(int id) throws DALException 
+	{
+		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE id = " + id);
+
+		try 
+		{
+			if(!rs.first()) 
+			{
+				throw new DALException("" + id);
+			}
+			else 
+			{
+				return new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("commodityBatchID"), rs.getInt("productBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
+			}
+		} 
+		catch (SQLException e) 
+		{
+			throw new DALException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -103,6 +125,5 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 			throw new DALException(e.getMessage());
 		}
 	}
-
 
 }

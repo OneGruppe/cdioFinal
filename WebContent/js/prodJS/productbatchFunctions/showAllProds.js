@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('#navigateToShowProdBatch').click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/prodBatch/getAllProductBatches",
+			url:"/rest/prodBatch/getAllProductBatches",
 			data: $('#findProdForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('#navigateToShowUsers').click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/user/getAllUsers",
+			url:"/rest/user/getAllUsers",
 			data: $('#findUserForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

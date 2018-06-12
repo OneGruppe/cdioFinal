@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToEditCom").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/getSingleCommodity",
+			url:"/rest/comBatch/getSingleCommodity",
 			data: $('#findComForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	$("#editCom").click(function() {
 		
 		$.ajax({
-			url: "/cdio_final/rest/comBatch/updateCommodityBatch",
+			url: "/rest/comBatch/updateCommodityBatch",
 			data: $('#editComForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

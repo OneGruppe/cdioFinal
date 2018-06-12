@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToDeleteCom").click(function() {
 		
 		$.ajax({
-			url:"/cdio_final/rest/comBatch/deleteCommodityBatch",
+			url:"/rest/comBatch/deleteCommodityBatch",
 			data: $('#findComForm').serialize(),
 			contenttype: "application/json",
 			method: "DELETE",

@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$("#findUser").click(function() {
 			
 		$.ajax({
-			url:"/cdio_final/rest/user/getUser",
+			url:"/rest/user/getUser",
 			data: $('#findUserForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

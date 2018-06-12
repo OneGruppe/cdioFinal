@@ -6,7 +6,7 @@ $(document).ready(function() {
 	
 	$("#creatingProductComp").click(function() {
 		$.ajax({
-			url: "/cdio_final/rest/prodBatchComponent/createProductBatchComponent",
+			url: "/rest/prodBatchComponent/createProductBatchComponent",
 			data: $('#createProdCompForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",

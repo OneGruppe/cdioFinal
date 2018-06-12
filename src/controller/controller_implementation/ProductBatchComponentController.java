@@ -41,6 +41,18 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 
 	/*
 	 * (non-Javadoc)
+	 * @see controller.controller_interface.IProductbatchComponentController#getSingleProductBatchComponent(int)
+	 */
+	@Override
+	public ProductBatchComponentDTO getSingleProductBatchComponent(int id) throws DALException 
+	{
+		ProductBatchComponentDTO component;
+		component = dao.getSingleProductBatchComponent(id);
+		return component;
+	}
+	
+	/*
+	 * (non-Javadoc)
 	 * @see controller.controller_interface.IProductbatchComponentController#getProductBatchComponent(int)
 	 */
 	@Override
@@ -59,6 +71,5 @@ public class ProductBatchComponentController implements IProductbatchComponentCo
 		List<ProductBatchComponentDTO> componentList = dao.getAllProductBatchComponents();
 		return componentList;
 	}
-
 
 }

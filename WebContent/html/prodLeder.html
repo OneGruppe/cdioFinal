@@ -18,6 +18,7 @@
 <script src = "../js/prodJS/commoditybatchFuntions/deleteComBatch.js"></script>
 <script src = "../js/prodJS/productbatchFunctions/createProductComp.js"></script>
 <script src = "../js/prodJS/productbatchFunctions/showProdComp.js"></script>
+<script src = "../js/prodJS/productbatchFunctions/showSingleComp.js"></script>
 </head>
 <body>
 <!------- HEADER DIV START -------->
@@ -136,17 +137,19 @@
 		</td>
 		</tr>
 	</table>
+</form>
+<form id = "findSingleProdCompForm">
 	<table>
 		<tr>
 		<td>
 		<label>Produktbatch komponent ID</label><br>
-		<input type = "number" name = "id"> 
+		<input type = "number" name = "compID"> 
 		</td>
 		<td>
-		<button id="findProductBatchComp" form="findProdCompForm" type="button">Find Produktbatch komponent</button>
+		<button id="navigateToFindSingleComp" form="findSingleProdCompForm" type="button">Find Produktbatch komponent</button>
 		</td>
 		<td>
-		<button id ="navigateToDeleteCom" form = "findComForm" type = "button">Slet batch</button>
+		<button id ="navigateToDeleteCom" form = "findSingleProdCompForm" type = "button">Slet batch</button>
 		</td>
 		</tr>
 	</table>

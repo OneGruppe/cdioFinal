@@ -30,6 +30,14 @@ public interface IProductbatchComponentController {
 	public void updateProductBatchComponent(int productBatchComponentID, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException;
 
 	/**
+	 * Returns a single productbatch component
+	 * @param id
+	 * @return a single ProductBatchComponentDTO object
+	 * @throws DALException
+	 */
+	public ProductBatchComponentDTO getSingleProductBatchComponent(int id) throws DALException;
+	
+	/**
 	 * Returns a list of what a single productBatch has
 	 * @param productBatchID
 	 * @return
