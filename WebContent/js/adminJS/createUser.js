@@ -10,9 +10,6 @@ $(document).ready(function() {
 			data: $('#createUserForm').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
-			error: function(data) {
-				console.log("rofl");
-			},
 			success: function(data) {
 				console.log(data);
 				alert("Brugeren er oprettet");
