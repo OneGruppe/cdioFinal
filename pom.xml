@@ -125,12 +125,6 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat8-maven-plugin</artifactId>
 				<version>2.2</version>
-				<configuration>
-					<configuration>
-						<port>8080</port>
-						<path>/cdio_final</path>
-					</configuration>
-				</configuration>
 			</plugin>
 
 		</plugins>
