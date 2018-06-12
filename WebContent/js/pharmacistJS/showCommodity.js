@@ -17,13 +17,13 @@ $(document).ready(function() {
 				
 				if(data.id != undefined)
 				{
-					if(document.contains(document.getElementById("showRecTable")))
+					if(document.contains(document.getElementById("showComTable")))
 					{
-						document.getElementById("showRecTable").remove();
+						document.getElementById("showComTable").remove();
 						var t, r, c;
 						
 						t = document.createElement("table");
-						t.setAttribute("id", "showRecTable");
+						t.setAttribute("id", "showComTable");
 						
 						r = t.insertRow(0);
 						
@@ -58,7 +58,7 @@ $(document).ready(function() {
 						var t, r, c;
 						
 						t = document.createElement("table");
-						t.setAttribute("id", "showRecTable");
+						t.setAttribute("id", "showComTable");
 						
 						r = t.insertRow(0);
 						
