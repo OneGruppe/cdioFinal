@@ -1,7 +1,6 @@
 package boundary.rest_implementation;
 
-import javax.ws.rs.FormParam;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 import boundary.rest_interface.IWeightREST;
@@ -20,13 +19,14 @@ public class WeightREST implements IWeightREST {
 
 	private IWeightController wc;
 
-	@PUT
+	@Override
+	@POST
 	@Path("doConnection")
 	public String doConnection() throws DALException
 	{
 		try 
 		{
-			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new CommodityController(), new WeightTranslation(ip, port));
+			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new CommodityController(), new WeightTranslation("62.79.16.17", 8000));
 			wc.weightFlow();
 			return "Forbindelse blev oprettet korrekt";
 		} 
@@ -35,7 +35,6 @@ public class WeightREST implements IWeightREST {
 			return "Der skete en fejl, prøv igen: " + e.getMessage();
 		}
 	}
-	
 
 	
 }

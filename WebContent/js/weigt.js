@@ -9,7 +9,7 @@ $(document).ready(function() {
 			url: "/rest/Weight/doConnection",
 			data: $('#').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
-			method: "PUT",
+			method: "POST",
 			success: function(data) {
 				console.log(data);
 				alert(data);
