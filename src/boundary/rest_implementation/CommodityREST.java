@@ -44,7 +44,7 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
+	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
 		//TODO
 		String message;
@@ -146,7 +146,7 @@ public class CommodityREST implements ICommodityREST {
 
 		try 
 		{
-			if(id > 1) 
+			if(id != 0) 
 			{
 				commodity = cc.getCommodity(id);
 				commodityJSON.put("id", commodity.getId());
