@@ -46,12 +46,12 @@ public class ProductBatchComponentDAOTest {
 
 	@Test
 	public void createProductBatchComponentTEST() {
-		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
+		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 1.0);
 		
 		try {
 			dao.createProductBatchComponent(expected);
 			
-			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(99)) {
+			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(1)) {
 				assertEquals(expected.toString(), actual.toString());
 			}
 		} 
@@ -65,14 +65,14 @@ public class ProductBatchComponentDAOTest {
 	@Test
 	public void updateProductBatchComponentTEST()
 	{
-		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
-		ProductBatchComponentDTO updated = new ProductBatchComponentDTO(testID1, 99, 99, 99, 2.0, 2.0);
+		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 1.0);
+		ProductBatchComponentDTO updated = new ProductBatchComponentDTO(testID1, 1, 2, 2, 2.0, 2.0);
 
 		try {
 			dao.createProductBatchComponent(expected);
 			dao.updateProductBatchComponent(updated);
 
-			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(99)) {
+			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(1)) {
 				assertEquals(expected.toString(), actual.toString());
 			}
 		} 
@@ -85,8 +85,8 @@ public class ProductBatchComponentDAOTest {
 
 	@Test
 	public void getAllProductBatchComponentsTEST() {
-		ProductBatchComponentDTO expected1 = new ProductBatchComponentDTO(testID1, 99, 99, 99, 1.0, 1.0);
-		ProductBatchComponentDTO expected2 = new ProductBatchComponentDTO(testID2, 99, 99, 99, 2.0, 2.0);
+		ProductBatchComponentDTO expected1 = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 1.0);
+		ProductBatchComponentDTO expected2 = new ProductBatchComponentDTO(testID2, 1, 1, 1, 2.0, 2.0);
 
 		List<ProductBatchComponentDTO> expectedList = new ArrayList<ProductBatchComponentDTO>();
 		expectedList.add(expected2);

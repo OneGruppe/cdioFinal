@@ -35,11 +35,11 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Override
 	@POST
 	@Path("createProductBatchComponent")
-	public void createProductBatchComponent(@FormParam("id") int id, @FormParam("productBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
+	public void createProductBatchComponent(@FormParam("id") int id, @FormParam("commodityBatchID")int commodityBatchID, @FormParam("productBatchID") int productBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
 	{
 		try 
 		{
-			prodBatchCompController.createProductBatchComponent(id, productBatchID, commodityBatchID, userID, tara, netto);
+			prodBatchCompController.createProductBatchComponent(id, commodityBatchID, productBatchID, userID, tara, netto);
 		} 
 		catch (DALException e) 
 		{
