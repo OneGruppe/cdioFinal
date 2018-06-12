@@ -83,6 +83,42 @@
 </form>
 <!------- CREATE PROD FORM END -------->
 
+<!------- CREATE PRODCOMP FORM START -------->
+<form id = "createProdCompForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Produktbatch komponent ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<label>Produktbatch ID</label><br>
+		<input type = "number" name = "prodBatchID"> 
+		</td>
+		<td>
+		<label>Råvarebatch ID</label><br>
+		<input type = "number" name = "commodityBatchID"> 
+		</td>
+		<td>
+		<label>Bruger ID</label><br>
+		<input type = "number" name = "userID"> 
+		</td>
+		<td>
+		<label>Tara</label><br>
+		<input type = "number" name = "tara"> 
+		</td>
+		<td>
+		<label>Netto</label><br>
+		<input type = "number" name = "netto"> 
+		</td>
+		<td>
+		<button id="creatingProductComp" form="createProdCompForm" type="button">Opret Produktbatch komponent</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!------- CREATE PRODCOMP FORM END -------->
+
 <!------- CREATE COM FORM START -------->
 <form id = "createComForm">
 	<table>
