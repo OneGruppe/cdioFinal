@@ -52,7 +52,7 @@ $(document).ready(function() {
 		$('#showCommodities').fadeOut(200)
 		$('#createRecipeComponentForm').delay(300).fadeIn(200);	
 	})
-		$('#navigateToCreateRecipe').click(function() {
+	$('#navigateToCreateRecipe').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createSupplierForm').fadeOut(200);
 		$('#createRecipeComponentForm').fadeOut(200);
@@ -206,7 +206,7 @@ $(document).ready(function() {
 		$('#showSuppliers').delay(300).fadeIn(200);
 	})
 	
-		$('#navigateToShowSupplier').click(function() {
+	$('#navigateToShowCommodity').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createRecipeComponentForm').fadeOut(200);
 		$('#createRecipeForm').fadeOut(200)
@@ -221,8 +221,8 @@ $(document).ready(function() {
 		$('#showRecCom').fadeOut(200);
 		$('#showRecComs').fadeOut(200);
 		$('#showCommodity').fadeOut(200);
-		$('#showCommodities').fadeOut(200)
-		$('#showSuppliers').delay(300).fadeIn(200);
+		$('#showSuppliers').fadeOut(200)
+		$('#showCommodities').delay(300).fadeIn(200);
 	})
 	
 	/*****************
