@@ -14,6 +14,7 @@ $(document).ready(function() {
 				console.log("rofl");
 			},
 			success: function(data) {
+				console.log(data);
 				alert("Brugeren er oprettet");
 			}
 		});
