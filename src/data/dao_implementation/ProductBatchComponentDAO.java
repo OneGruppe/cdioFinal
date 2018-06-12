@@ -28,6 +28,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	@Override
 	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
 	{
+		
 		con.doUpdate("INSERT INTO productBatchComponent VALUES (" 
 				+ component.getId() + ", "
 				+ component.getProductbatchID() + ", "
