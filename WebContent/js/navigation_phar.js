@@ -108,6 +108,10 @@ $(document).ready(function() {
 		$('#showCommodities').fadeOut(200)
 		$('#findCommodityForm').delay(300).fadeIn(200);
 	})
+	
+	$('#findCommodity').click(function(){
+		$('#showCommodity').delay(300).fadeIn(200);
+	})
 	$('#navigateToFindRecipeComponent').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createRecipeComponentForm').fadeOut(200);
@@ -217,8 +221,8 @@ $(document).ready(function() {
 		$('#showRecCom').fadeOut(200);
 		$('#showRecComs').fadeOut(200);
 		$('#showCommodity').fadeOut(200);
-		$('#showSuppliers').fadeOut(200)
-		$('#showCommodities').delay(300).fadeIn(200);
+		$('#showCommodities').fadeOut(200)
+		$('#showSuppliers').delay(300).fadeIn(200);
 	})
 	
 	/*****************
