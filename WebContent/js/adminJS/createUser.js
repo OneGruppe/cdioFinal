@@ -3,12 +3,12 @@
  */
 
 $(document).ready(function() {
-	
+
 	$("#creatingUser").click(function() {
 		$.ajax({
 			url: "/rest/user/createUser",
 			data: $('#createUserForm').serialize(),
-			contenttype: "application/x-ww-form-urlencoded",
+			contenttype: "application/json",
 			method: "POST",
 			success: function(data) {
 				console.log(data);
