@@ -17,6 +17,7 @@ public class WeightController implements IWeightController {
 	private IRecipeComponentController rcc;
 	private ICommodityBatchController cbc;
 	private WeightTranslation weight;
+	private CommodityController cc;
 
 	private int state = 1;
 	private int userID = -10;
@@ -25,12 +26,13 @@ public class WeightController implements IWeightController {
 	private int goBack = 0;
 	private int commodityBatchID = -1000;
 
-	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, WeightTranslation weight) throws DALException
+	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, CommodityController cc, WeightTranslation weight) throws DALException
 	{
 		this.pbc = pbc;
 		this.user = user;
 		this.rcc = rcc;
 		this.cbc = cbc;
+		this.cc = cc;
 		this.weight = weight;
 	}
 
@@ -219,32 +221,26 @@ public class WeightController implements IWeightController {
 		{
 			int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 			System.out.println("RecipeID: " + recipeID);
-			double comWeight = 0;
 
-			//TODO looper over en enkelt recipeComponent, men kan ikke helt se hvad det oprindelige flow er?
-			/*
-			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
-			{
-				int choice = weight.getInputWithMsg("Vej: " + rcc.getRecipeComponent(recipeID).get(i), 0, rcc.getRecipeComponent(recipeID).get(i).getNon_netto() + "kg");
-				System.out.println("Weight: " + rcc.getRecipeComponent(recipeID).get(i) + " netto: " + rcc.getRecipeComponent(recipeID).get(i).getNon_netto());
-
+			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++) {
+				double comWeight = 0;
+				int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
+				String commodityName = cc.getCommodity(commodityID).getName();
+				int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
 				if(choice == goBack)
 					break;
-				double max = rcc.getRecipeComponent(recipeID).get(i).getNon_netto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
-				double min = rcc.getRecipeComponent(recipeID).get(i).getNon_netto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+				double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() - rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+				double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + rcc.getRecipeComponent(recipeID).get(i).getTolerance();
+				System.out.println("Min = " + min + " max = " + max);
 
-				while(weight.getWeight() > min && weight.getWeight() < max)
+				while(!(weight.getWeight() < min) || !(weight.getWeight() > max))
 				{
 					comWeight = weight.getWeight();
-					System.out.println("comWeight: " + comWeight);
-					cbc.getCommodityBatch(commodityBatchID).setAmount(comWeight);
-
-					double temp = tara + comWeight;
-					double temp2 = tara + rcc.getRecipeComponent(recipeID).get(i).getNon_netto();
-					System.out.println("Temp: " + temp + " temp2: " + temp2);
+					System.out.println("comWeight = " + comWeight);
+					cbc.getCommodityBatchSingle(commodityBatchID).setAmount(comWeight);
+					System.out.println("cbc after weight = " + cbc.getCommodityBatchSingle(commodityID));
 				}
 			}
-			*/
 			state += 1;
 		}
 		catch (DALException e)
