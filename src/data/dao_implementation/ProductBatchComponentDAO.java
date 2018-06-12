@@ -26,8 +26,8 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 	@Override
 	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException {
 		con.doUpdate("INSERT INTO productBatchComponent VALUES (" + component.getId() + ", "
-																	+ component.getCommodityBatchID() +", "
-																	+ component.getProductbatchID() + ", "
+																	+ component.getCommodityBatchID() + ", "
+																	+ component.getProductbatchID() +", "
 																	+ component.getUserID() + ", "
 																	+ component.getTara() + ", "
 																	+ component.getNetto() + ")" );
@@ -35,8 +35,8 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 
 	@Override
 	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException {
-		con.doUpdate("UPDATE productBatchComponent SET productBatchID= " + component.getProductbatchID() + ", "
-														+ "commodityBatchID= " + component.getCommodityBatchID()+ ", "
+		con.doUpdate("UPDATE productBatchComponent SET commodityBatchID= " + component.getCommodityBatchID() + ", "
+														+ "productBatchID= " + component.getProductbatchID() + ", "
 														+ "userID= " + component.getUserID() + ", "
 														+ "tara= " + component.getTara() + ", "
 														+ "netto= " + component.getNetto()
@@ -58,7 +58,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 				throw new DALException("ProduktBatchet med ID'et " + productBatchID + " findes ikke!\nPrøv igen");
 			} else {
 				while(rs.next()) {
-				components.add(new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getInt("tara"), rs.getInt("netto")));
+				components.add(new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("commodityBatchID"), rs.getInt("productBatchID"), rs.getInt("userID"), rs.getInt("tara"), rs.getInt("netto")));
 				}
 			}
 			return components;
