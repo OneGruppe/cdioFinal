@@ -11,7 +11,7 @@ $(document).ready(function() {
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {
-				alert(data);
+				alert("Brugeren er oprettet");
 			}
 		});
 		return false;
