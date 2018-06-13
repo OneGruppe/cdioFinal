@@ -251,7 +251,8 @@ public class WeightController implements IWeightController {
 									pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
 									double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
 									double newAmount = originalAmount - comWeight;
-									cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
+									//TODO
+									//cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
 									System.out.println("BATCH ID =" + commodityBatchID + " ID =" + commodityID + " " + originalAmount + " " + newAmount + " " + comWeight);
 									System.out.println(comWeight + " fjernet fra " + commodityName + " totalt på lager " + cbc.getCommodityBatchSingle(commodityID).getAmount());
 									break;

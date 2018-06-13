@@ -30,17 +30,6 @@ public class RecipeComponentController implements IRecipeComponentController {
 
 	/*
 	 * (non-Javadoc)
-	 * @see controller.controller_interface.IRecipeComponentController#updateRecipeComponent(int, int, double, double)
-	 */
-	@Override
-	public void updateRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException 
-	{
-		RecipeComponentDTO component = new RecipeComponentDTO(id, recipeID, commodityID, non_netto, tolerance);
-		dao.updateRecipeComponent(component);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see controller.controller_interface.IRecipeComponentController#getRecipeComponent(int)
 	 */
 	@Override

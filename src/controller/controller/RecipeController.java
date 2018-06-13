@@ -31,18 +31,6 @@ public class RecipeController implements IRecipeController {
 
 	/*
 	 * (non-Javadoc)
-	 * @see controller.controller_interface.IRecipeController#updateRecipe(int, java.lang.String)
-	 */
-	@Override
-	public void updateRecipe(int id, String name) throws DALException 
-	{
-		RecipeDTO recipe = new RecipeDTO(id, name);
-
-		recipedao.updateRecipe(recipe);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see controller.controller_interface.IRecipeController#getRecipe(int)
 	 */
 	@Override

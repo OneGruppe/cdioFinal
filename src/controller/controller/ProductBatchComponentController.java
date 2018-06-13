@@ -30,17 +30,6 @@ public class ProductBatchComponentController implements IProductBatchComponentCo
 
 	/*
 	 * (non-Javadoc)
-	 * @see controller.controller_interface.IProductbatchComponentController#updateProductBatchComponent(int, int, int, int, double, double)
-	 */
-	@Override
-	public void updateProductBatchComponent(int productBatchComponent, int productBatchID, int commodityBatchID, int userID, double tara, double netto) throws DALException 
-	{
-		ProductBatchComponentDTO component = new ProductBatchComponentDTO(productBatchComponent, productBatchID, commodityBatchID, userID, tara, netto);
-		dao.createProductBatchComponent(component);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see controller.controller_interface.IProductbatchComponentController#getSingleProductBatchComponent(int)
 	 */
 	@Override

@@ -16,14 +16,6 @@ public interface IRecipeController {
 	public void createRecipe(int recipeID, String recipeName) throws DALException;
 
 	/**
-	 * Updates a recipe
-	 * @param recipeID
-	 * @param recipeName
-	 * @throws DALException
-	 */
-	public void updateRecipe(int recipeID, String recipeName) throws DALException;
-
-	/**
 	 * Get a single recipe
 	 * @param recipeID
 	 * @return a single RecipeDTO object

@@ -14,14 +14,6 @@ public interface IRecipeComponentController {
 	 * @throws DALException
 	 */
 	public void createRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
-
-	/**
-	 * Updates Recipe component
-	 * @param recipeID
-	 * @param componentCommodityList
-	 * @throws DALException
-	 */
-	public void updateRecipeComponent(int id, int recipeID, int commodityID, double non_netto, double tolerance) throws DALException;
 	
 	/**
 	 * Returns a single Recipe component

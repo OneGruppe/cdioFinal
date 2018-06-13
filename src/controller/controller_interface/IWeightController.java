@@ -39,12 +39,6 @@ public interface IWeightController {
 	public void taraWeight() throws DALException, WeightException;
 
 	/**
-	 * Accepts the commodityBatchID from the user
-	 * @throws DALException when database communication fails
-	 */
-//	public void enterCBID() throws DALException;
-
-	/**
 	 * Guides the user to weight each commodity within non netto and toleance
 	 * @throws DALException when database communication fails
 	 * @throws WeightException when the weight returns an error
