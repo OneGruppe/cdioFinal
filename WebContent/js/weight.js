@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#connectToWeight").click(function() {
 		$.ajax({
 			url: "/rest/weight/doConnection",
-			/** data: $('#').serialize(), */
+			data: $('#').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {
