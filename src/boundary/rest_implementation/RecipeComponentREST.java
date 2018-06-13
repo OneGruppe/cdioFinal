@@ -1,9 +1,12 @@
 package boundary.rest_implementation;
 
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
 
@@ -12,9 +15,9 @@ import controller.controller_implementation.RecipeComponentController;
 import controller.controller_interface.IRecipeComponentController;
 import exceptions.DALException;
 
-/*@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-@Path("RecipeComponent")*/
+@Path("RecipeComponent")
 public class RecipeComponentREST implements IRecipeComponentREST {
 	private IRecipeComponentController rcc;
 	
