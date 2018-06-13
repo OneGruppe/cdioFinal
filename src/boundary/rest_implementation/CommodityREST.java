@@ -47,7 +47,7 @@ public class CommodityREST implements ICommodityREST {
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
 		//TODO
-		String message;
+		String message = null;
 		try 
 		{
 			if(id < 1 || name.equals("")) 
@@ -64,12 +64,15 @@ public class CommodityREST implements ICommodityREST {
 			else 
 			{
 				cc.createCommodity(id, name, supplier);
+				message = "Råvaren er blevet oprettet";
 			}
 		}
 		catch(DALException e) 
 		{
 			message = e.getMessage();
 		}
+		
+		System.out.println(message);
 	}
 
 	@Override

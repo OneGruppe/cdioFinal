@@ -8,7 +8,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/rest/comBatch/createCommodityBatch",
 			data: $('#createComForm').serialize(),
-			contenttype: "application/json",
+			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {
 				alert("Råvarebatch er oprettet");

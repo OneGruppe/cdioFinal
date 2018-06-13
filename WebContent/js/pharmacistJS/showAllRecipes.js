@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToShowRecipe").click(function() {
 		
 		$.ajax({
-			url:"/rest/recipe/getAllRecipes",
+			url:"/cdio_final/rest/recipe/getAllRecipes",
 			data: $('#findRecipeForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",

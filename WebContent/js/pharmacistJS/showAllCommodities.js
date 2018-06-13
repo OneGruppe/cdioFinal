@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#navigateToShowCommodity").click(function() {
 		
 		$.ajax({
-			url:"/rest/commodity/getAllCommodities",
+			url:"/cdio_final/rest/commodity/getAllCommodities",
 			data: $('#findCommodityForm').serialize(),
 			dataType: "json",
 			contenttype: "application/json",
