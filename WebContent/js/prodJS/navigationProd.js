@@ -158,6 +158,7 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#createProdForm').fadeOut(200);
 		$('#createProdCompForm').delay(300).fadeIn(200);
 	})
 	
