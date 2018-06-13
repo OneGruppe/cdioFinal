@@ -5,7 +5,7 @@ import java.util.List;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
-public interface IProductbatchComponentController {
+public interface IProductBatchComponentController {
 
 	/**
 	 * Creates a Product batch Component
