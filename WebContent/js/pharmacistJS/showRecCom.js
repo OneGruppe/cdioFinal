@@ -55,10 +55,10 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].commodityID;
 							
 							c = r.insertCell(3);
-							c.innerHTML = (data[0][i].non_netto).toFixed(4);
+							c.innerHTML = (data[0][i].non_netto).toFixed(2);
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tolerance).toFixed(4);
+							c.innerHTML = data[0][i].tolerance;
 							
 						}
 
@@ -107,10 +107,10 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].commodityID;
 							
 							c = r.insertCell(3);
-							c.innerHTML = (data[0][i].non_netto).toFixed(4);
+							c.innerHTML = (data[0][i].non_netto).toFixed(2);
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tolerance).toFixed(4);
+							c.innerHTML = data[0][i].tolerance;
 							
 						}
 
