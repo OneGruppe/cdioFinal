@@ -42,10 +42,6 @@ $(document).ready(function() {
 						c = r.insertCell(1);
 						c.innerHTML = data.name;
 						
-						c = r.insertCell(2);
-						c.innerHTML = data.supplierID;
-
-						
 						document.getElementById("showRecipe").appendChild(t);
 							
 					} 
