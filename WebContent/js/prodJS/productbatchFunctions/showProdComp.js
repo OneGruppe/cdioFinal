@@ -60,9 +60,11 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].userID;
 							
 							c = r.insertCell(4);
+							c.setAttribute("step", "any");
 							c.innerHTML = data[0][i].tara;
 							
 							c = r.insertCell(5);
+							c.setAttribute("step", "any");
 							c.innerHTML = data[0][i].netto;
 						}
 
@@ -117,9 +119,11 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].userID;
 							
 							c = r.insertCell(4);
+							c.setAttribute("step", "any");
 							c.innerHTML = data[0][i].tara;
 							
 							c = r.insertCell(5);
+							c.setAttribute("step", "any");
 							c.innerHTML = data[0][i].netto;
 						}
 
