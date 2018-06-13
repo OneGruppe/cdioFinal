@@ -34,7 +34,8 @@ public class Connector {
 		} 
 		catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("Connector error: " + e.getMessage());
+			throw new DALException("Connector error: " + e.getMessage());
 		}
 	}
 
@@ -57,7 +58,8 @@ public class Connector {
 		} 
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("Connector error: " + e.getMessage());
+			throw new DALException("Connector error: " + e.getMessage());
 		}
 	}
 
@@ -88,7 +90,8 @@ public class Connector {
 		} 
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("Connector error: " + e.getMessage());
+			throw new DALException("Connector error: " + e.getMessage());
 		}
 	}
 
@@ -107,7 +110,8 @@ public class Connector {
 		} 
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("Connector error: " + e.getMessage());
+			throw new DALException("Connector error: " + e.getMessage());
 		}
 	}
 
