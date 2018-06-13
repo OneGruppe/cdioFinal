@@ -10,9 +10,10 @@ public interface IUserREST {
 	 * @param name
 	 * @param ini initials of user
 	 * @param active user state (active(1)/inactive(0))
+	 * @return 
 	 * @throws DALException
 	 */
-	public void createUser(String name, String ini, int active);
+	public String createUser(String name, String ini, int active);
 
 	/**
 	 * <h1> <i>updateUser</i> </h1> <br>
