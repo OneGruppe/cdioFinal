@@ -117,6 +117,10 @@ $(document).ready(function() {
 		$('#showRecipe').delay(300).fadeIn(200);
 	})
 	
+	$('#findSupplier').click(function(){
+		$('#showSupplier').delay(300).fadeIn(200);
+	})
+	
 	$('#navigateToFindRecipeComponent').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createRecipeComponentForm').fadeOut(200);
