@@ -134,22 +134,6 @@
 		</tr>
 	</table>
 </form>
-<form id = "findSingleProdCompForm">
-	<table>
-		<tr>
-		<td>
-		<label>Produktbatch komponent ID</label><br>
-		<input type = "number" name = "compID"> 
-		</td>
-		<td>
-		<button id="navigateToFindSingleComp" form="findSingleProdCompForm" type="button">Find Produktbatch komponent</button>
-		</td>
-		<td>
-		<button id ="navigateToDeleteCom" form = "findSingleProdCompForm" type = "button">Slet batch</button>
-		</td>
-		</tr>
-	</table>
-</form>
 <!------- FIND PRODCOM FORM END -------->
 
 <!------- CREATE COM FORM START -------->
@@ -189,46 +173,8 @@
 		</td>
 		</tr>
 	</table>
-	<table>
-		<tr>
-		<td>
-		<label>Råvarebatch ID</label><br>
-		<input type = "number" name = "id"> 
-		</td>
-		<td>
-		<button id ="navigateToEditCom" form = "findComForm" type = "button"> Rediger batch </button>
-		</td>
-		<td>
-		<button id ="navigateToDeleteCom" form = "findComForm" type = "button">Slet batch</button>
-		</td>
-		</tr>
-	</table>
 </form>
 <!------- FIND COM FORM END -------->
-
-<!------- EDIT COM FORM START -------->
-<form id = "editComForm" method = "POST">
-	<table>
-		<tr>
-		<td>
-		<label>Råvarebatch ID</label><br>
-		<input type = "number" id = "setID" name = "id" readonly> 
-		</td>
-		<td>
-		<label>Råvare ID</label><br>
-		<input type = "number" id = "setCommodityID" name = "commodityID"> 
-		</td>
-		<td>
-		<label>Mængde</label><br>
-		<input type = "number" id = "setAmount" name = "amount"> 
-		</td>
-		<td>
-		<button id="editCom" form="editComForm" type="submit">Rediger batch</button>
-		</td>
-		</tr>
-	</table> <br>
-</form>
-<!------- EDIT COM FORM END -------->
 
 <!------- FIND PROD FORM START -------->
 <form id = "findProdForm">
@@ -241,40 +187,10 @@
 		<td>
 		<button id="findProductBatch" form="findProdForm" type="button">Find batch</button>
 		</td>
-		<td>
-		<button id ="navigateToEditProd" form = "findProdForm" type = "button"> Rediger batch </button>
-		</td>
-		<td>
-		<button id ="navigateToDeleteProd" form = "findProdForm" type = "button">Slet batch</button>
-		</td>
 		</tr>
 	</table>
 </form>
 <!------- FIND PROD FORM END -------->
-
-<!------- EDIT PROD FORM START -------->
-<form id = "editProdForm" method = "POST">
-	<table>
-		<tr>
-		<td>
-		<label>Produktbatch ID</label><br>
-		<input type = "number" id = "setProdID" name = "id" readonly> 
-		</td>
-		<td>
-		<label>Recept ID</label><br>
-		<input type = "number" id = "setReceptID" name = "recipeID" readonly> 
-		</td>
-		<td>
-		<label>Status</label><br>
-		<input type = "number" id = "setStatus" name = "status"> 
-		</td>
-		<td>
-		<button id="editProd" form="editProdForm" type="button">Rediger batch</button>
-		</td>
-		</tr>
-	</table> <br>
-</form>
-<!------- EDIT PROD FORM END -------->
 
 <!------- SHOW PROD TABLE START -------->
 <div id = "showProd"></div>
