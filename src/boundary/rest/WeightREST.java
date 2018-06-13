@@ -78,6 +78,7 @@ public class WeightREST implements IWeightREST {
 		} 
 		catch (DALException | IOException | WeightException e) 
 		{
+			System.out.println(e.getMessage());
 			return e.getMessage();
 		}
 	}

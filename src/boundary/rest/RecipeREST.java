@@ -45,19 +45,16 @@ public class RecipeREST implements IRecipeREST {
 	@Path("createRecipe")
 	public String createRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
-		String message;
-
 		try 
 		{
 			rc.createRecipe(id, name);
-			message = "Recepten blev oprettet";
+			return "Recepten blev oprettet";
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
-			message = "Recepten blev ikke oprettet pga. " + e.getMessage();
+			return e.getMessage();
 		}
-		return message;
 	}
 
 	/*
@@ -70,8 +67,6 @@ public class RecipeREST implements IRecipeREST {
 	@Path("getRecipe")
 	public String getRecipe(@FormParam("id")int id) throws DALException
 	{
-		String message;
-
 		JSONObject recipeJSON = new JSONObject();
 		RecipeDTO recipe;
 
@@ -80,22 +75,20 @@ public class RecipeREST implements IRecipeREST {
 			if(id > 0) 
 			{
 				recipe = rc.getRecipe(id);
-
 				recipeJSON.put("id", recipe.getId());
 				recipeJSON.put("name", recipe.getName());
-				message = "Recepten " + recipe.getName() + " blev fundet";
+				return recipeJSON.toString();
 			}
 			else 
 			{
-				message = "Fejl, der eksiterer ingen recepter med dette ID";
+				return "Fejl, der eksiterer ingen recepter med dette ID";
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return recipeJSON.toString();
 	}
 
 	/*
@@ -108,22 +101,18 @@ public class RecipeREST implements IRecipeREST {
 	@Path("getAllRecipes")
 	public String getAllRecipe() throws DALException 
 	{
-		String message; 
-		System.out.println("so far so good");
 		JSONArray recList = new JSONArray();
-		System.out.println("JSON made");
+
 		try
 		{
 			recList.put(rc.getAllRecipes());
-			message = "Alle recepterne er fundet";
+			return recList.toString();
 		}
 		catch(DALException e)
 		{
-			message = e.getMessage();
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-
-		System.out.println(message);
-		return recList.toString();
 	}
 
 

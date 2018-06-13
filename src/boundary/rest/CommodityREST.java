@@ -41,34 +41,28 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@POST
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
+	public String createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
-		
-		String message = null;
 		try 
 		{
-			if(id < 1 || name.equals("")) 
+			if(id < 1) 
 			{
-				if(id < 1) 
-				{
-					message = "Fejl, ugyldigt ID!";
-				}
-				else if(name.equals("")) 
-				{
-					message = "Fejl, ugyldigt navn!";
-				}
+				return "Fejl, ugyldigt ID!";
+			}
+			else if(name.equals("")) 
+			{
+				return "Fejl, ugyldigt navn!";
 			}
 			else 
 			{
 				cc.createCommodity(id, name, supplier);
-				message = "Råvaren er blevet oprettet";
+				return "R�varen er blevet oprettet";
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
 	}
 
 	/*
@@ -78,34 +72,28 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@POST
 	@Path("updateCommodity")
-	public void updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
+	public String updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
 	{
-		//TODO
-		String message;
 		try
 		{
-			if(id < 1 || name.equals("")) 
+			if(id < 1) 
 			{
-				if(id < 1) 
-				{
-					message = "Fejl, ugyldigt ID!";
-				}
-				else if(name.equals("")) 
-				{
-					message = "Fejl, ugyldigt navn!";
-				}
+				return "Fejl, ugyldigt ID!";
+			}
+			else if(name.equals("")) 
+			{
+				return "Fejl, ugyldigt navn!";
 			}
 			else 
 			{
 				String oldName = cc.getCommodity(id).getName();
-
 				cc.updateCommodity(id, oldName, supplier);
-				message = "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
+				return "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
 	}
 
@@ -119,7 +107,6 @@ public class CommodityREST implements ICommodityREST {
 	@Path("getCommodity")
 	public String getCommodity(@FormParam("id") int id) 
 	{
-		String message;
 		JSONObject commodityJSON = new JSONObject();
 		CommodityDTO commodity;
 
@@ -131,19 +118,17 @@ public class CommodityREST implements ICommodityREST {
 				commodityJSON.put("id", commodity.getId());
 				commodityJSON.put("name", commodity.getName());
 				commodityJSON.put("supplierID",commodity.getSupplierID());
-				message = "Råvaren " + commodity.getName() + " blev fundet";
+				return commodityJSON.toString();
 			}
 			else 
 			{
-				message = "Fejl, der eksiterer ingen råvare med dette ID";
+				return "Fejl, der eksiterer ingen råvare med dette ID";
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return commodityJSON.toString();
 	}
 
 	/*
@@ -156,20 +141,17 @@ public class CommodityREST implements ICommodityREST {
 	@Path("getAllCommodities")
 	public String getAllCommodities() 
 	{
-		String message;
 		JSONArray commodities = new JSONArray();
 
 		try 
 		{
 			commodities.put(cc.getAllCommodities());
-			message = "Råvarene blev fundet";
+			return commodities.toString();
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return commodities.toString();
 	}
 
 

@@ -10,9 +10,10 @@ public interface ICommodityREST {
 	 * @param id
 	 * @param name
 	 * @param supplier
+	 * @return 
 	 * @throws DALException
 	 */
-	public void createCommodity(int id, String name, int supplier) throws DALException;
+	public String createCommodity(int id, String name, int supplier) throws DALException;
 
 	/**
 	 * <h1> <i>updateCommodity</i> </h1> <br>
@@ -20,9 +21,10 @@ public interface ICommodityREST {
 	 * @param id
 	 * @param name
 	 * @param supplier
+	 * @return 
 	 * @throws DALException
 	 */
-	public void updateCommodity(int id, String name, int supplier) throws DALException;
+	public String updateCommodity(int id, String name, int supplier) throws DALException;
 
 	/**
 	 * <h1> <i>getCommodity</i> </h1> <br>
