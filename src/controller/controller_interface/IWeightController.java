@@ -11,12 +11,6 @@ public interface IWeightController {
 	public void weightFlow() throws DALException;
 
 	/**
-	 * Shows the welcome message to the user
-	 * @throws DALException
-	 */
-	public void welcome() throws DALException;
-
-	/**
 	 * Method to accept the users ID
 	 * @throws DALException
 	 */
@@ -44,7 +38,7 @@ public interface IWeightController {
 	 * Accepts the commodityBatchID from the user
 	 * @throws DALException
 	 */
-	public void enterCBID() throws DALException;
+//	public void enterCBID() throws DALException;
 
 	/**
 	 * Guides the user to weight each commodity within non netto and toleance
