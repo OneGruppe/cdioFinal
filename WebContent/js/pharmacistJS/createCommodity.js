@@ -6,7 +6,7 @@ $(document).ready(function() {
 	
 	$("#creatingCommodty").click(function() {
 		$.ajax({
-			url: "/cdio_final/rest/commodity/createCommodity",
+			url: "/rest/commodity/createCommodity",
 			data: $('#createCommodityForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
