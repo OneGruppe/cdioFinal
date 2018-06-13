@@ -290,6 +290,8 @@ public class WeightController implements IWeightController {
 							{
 								netto = weight.getWeight();
 								pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
+								double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
+								cbc.getCommodityBatchSingle(commodityBatchID).setAmount(originalAmount - comWeight);
 								break;
 								
 							} 
