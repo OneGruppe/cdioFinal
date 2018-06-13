@@ -41,8 +41,9 @@ $(document).ready(function() {
 						
 						c = r.insertCell(1);
 						c.innerHTML = data.name;
+
 						
-						document.getElementById("showRecipe").appendChild(t);
+						document.getElementById("showRecept").appendChild(t);
 							
 					} 
 					else
@@ -59,7 +60,7 @@ $(document).ready(function() {
 						c.innerHTML = "Recept ID";
 						
 						c = r.insertCell(1);
-						c.innerHTML = "Recept navn";
+						c.innerHTML = "Recept Navn";
 						
 						
 						r = t.insertRow(1);
