@@ -18,9 +18,17 @@ public class UserDAO implements IUserDAO {
 	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
-	public UserDAO() throws DALException 
+	public UserDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -32,9 +40,16 @@ public class UserDAO implements IUserDAO {
 	 * @param password
 	 * @throws DALException
 	 */
-	public UserDAO(String server, int port, String database, String username, String password) throws DALException 
+	public UserDAO(String server, int port, String database, String username, String password) throws DALException
 	{
-		con = new Connector(server, port, database, username, password);
+		try {
+			con = new Connector(server, port, database, username, password);
+		} 		
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -42,13 +57,21 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#createUser(data.dto.UserDTO)
 	 */
 	@Override
-	public void createUser(UserDTO user) throws DALException 
+	public void createUser(UserDTO user) throws DALException
 	{
-		con.doUpdate("INSERT INTO user VALUES ("
-				+ user.getId() + ", "
-				+ "'" + user.getName() + "', "
-				+ "'" + user.getIni() + "', "
-				+ user.getActive() + ")");
+		try 
+		{
+			con.doUpdate("INSERT INTO user VALUES ("
+					+ user.getId() + ", "
+					+ "'" + user.getName() + "', "
+					+ "'" + user.getIni() + "', "
+					+ user.getActive() + ")");
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i oprettelse af bruger");
+		}
 	}
 
 	/*
@@ -56,13 +79,20 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#updateUser(data.dto.UserDTO)
 	 */
 	@Override
-	public void updateUser(UserDTO user) throws DALException 
+	public void updateUser(UserDTO user) throws DALException
 	{
-		con.doUpdate("UPDATE user SET "
-				+ "name='" + user.getName() + "', "
-				+ "ini='" + user.getIni() + "', "
-				+ "active=" + user.getActive() + " "
-				+ "WHERE id=" + user.getId());
+		try {
+			con.doUpdate("UPDATE user SET "
+					+ "name='" + user.getName() + "', "
+					+ "ini='" + user.getIni() + "', "
+					+ "active=" + user.getActive() + " "
+					+ "WHERE id=" + user.getId());
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i opdatering af bruger");
+		}
 	}
 
 	/*
@@ -70,9 +100,17 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#setUserState(int, int)
 	 */
 	@Override
-	public void setUserState(int id, int state) throws DALException 
+	public void setUserState(int id, int state) throws DALException
 	{
-		con.doUpdate("UPDATE user SET active=" + state + " WHERE id = " + id);
+		try 
+		{
+			con.doUpdate("UPDATE user SET active=" + state + " WHERE id = " + id);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i opdatering af brugerens status");
+		}
 	}
 
 	/*
@@ -88,7 +126,7 @@ public class UserDAO implements IUserDAO {
 		{
 			if(!rs.first()) 
 			{
-				throw new DALException("" + id);
+				throw new DALException("Bruger med id '" + id + "' findes ikke");
 			}
 			else 
 			{
@@ -97,7 +135,8 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i hentningen af bruger");
 		}
 	}
 
@@ -118,13 +157,14 @@ public class UserDAO implements IUserDAO {
 				users.add(userdto);
 			}
 			if(users.isEmpty()) {
-				throw new DALException("Bruger listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
+				throw new DALException("Bruger listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return users;
 		}
-		catch(SQLException e) 
+		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println(e.getMessage());
+			throw new DALException("Fejl i hentningen af bruger-listen");
 		}
 	}
 
