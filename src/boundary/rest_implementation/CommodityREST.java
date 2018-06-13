@@ -44,10 +44,10 @@ public class CommodityREST implements ICommodityREST {
 	@Override
 	@PUT
 	@Path("createCommodity")
-	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
+	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
 		//TODO
-		String message;
+		String message = null;
 		try 
 		{
 			if(id < 1 || name.equals("")) 
@@ -64,12 +64,15 @@ public class CommodityREST implements ICommodityREST {
 			else 
 			{
 				cc.createCommodity(id, name, supplier);
+				message = "Råvaren er blevet oprettet";
 			}
 		}
 		catch(DALException e) 
 		{
 			message = e.getMessage();
 		}
+		
+		System.out.println(message);
 	}
 
 	@Override
@@ -146,12 +149,12 @@ public class CommodityREST implements ICommodityREST {
 
 		try 
 		{
-			if(id > 1) 
+			if(id != 0) 
 			{
 				commodity = cc.getCommodity(id);
 				commodityJSON.put("id", commodity.getId());
 				commodityJSON.put("name", commodity.getName());
-
+				commodityJSON.put("supplierID",commodity.getSupplierID());
 				message = "Råvaren " + commodity.getName() + " blev fundet";
 			}
 			else 

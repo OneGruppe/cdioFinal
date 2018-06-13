@@ -11,7 +11,7 @@ public interface IWeightREST {
 	 * @return 
 	 * @throws DALException
 	 */
-	public void doConnection(String ip, int port) throws DALException;
+	public String doConnection() throws DALException;
 	
 	
 }

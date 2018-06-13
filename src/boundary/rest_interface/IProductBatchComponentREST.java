@@ -13,7 +13,7 @@ public interface IProductBatchComponentREST {
 	 * @param netto
 	 */
 	
-	public void createProductBatchComponent(int id, int productBatchID, int commodityBatchID, int userID, double tara, double netto);
+	public void createProductBatchComponent(int productBatchID, int commodityBatchID, int userID, double tara, double netto);
 	
 	/**
 	 * <blockquote><h1> <i>updateProductBatchComponent</i></h1> <blockquote>({@code int} id,<br> {@code int} productBatchID,<br> {@code int} commodityBatchID,<br> {@code int} userID,<br> {@code double} tara,<br> {@code double} netto) </blockquote></blockquote>

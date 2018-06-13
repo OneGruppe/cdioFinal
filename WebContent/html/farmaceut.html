@@ -8,7 +8,10 @@
 <script src = "../js/navigation_phar.js"></script>
 <script src = "../js/pharmacistJS/showAllRecipes.js"></script>
 <script src = "../js/pharmacistJS/showAllCommodities.js"></script>
+<script src = "../js/pharmacistJS/showCommodity.js"></script>
+<script src = "../js/pharmacistJS/createCommodity.js"></script>
 <script src = "../js/pharmacistJS/showAllSuppliers.js"></script>
+
 </head>
 <body>
 <!-- HEADER DIV -->
@@ -61,11 +64,15 @@
 		<tr>
 		<td>
 		<label>ID</label><br>
-		<input type = "number" name = "ID" autofocus> 
+		<input type = "number" name = "id" autofocus> 
 		</td>
 		<td>
 		<label>Navn</label><br>
 		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<label>Supplier ID</label><br>
+		<input type = "number" name = "supplierID" autofocus> 
 		</td>
 		<td>
 		<button id="creatingCommodity" form="createCommodityForm" type="submit">Opret råvare</button>

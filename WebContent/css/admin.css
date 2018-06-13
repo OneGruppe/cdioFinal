@@ -33,7 +33,7 @@ a {
  	z-index: -1;
 }
 
-#navigateToHome, #navigateToCreateUser, #navigateToFindUser, #navigateToShowUsers, #navigateToUpdateUser {
+#connectToWeight, #navigateToHome, #navigateToCreateUser, #navigateToFindUser, #navigateToUpdateUser {
 	padding-right: 8px;
 	margin-right: 8px;
 	border-right: white 2px solid;
