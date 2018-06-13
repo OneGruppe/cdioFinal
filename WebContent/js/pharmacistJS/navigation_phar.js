@@ -113,12 +113,16 @@ $(document).ready(function() {
 		$('#showCommodity').delay(300).fadeIn(200);
 	})
 
-	$('#findRecipe').click(function(){
+	$('#findRecipeComponent').click(function(){
 		$('#showRecipe').delay(300).fadeIn(200);
 	})
 	
 	$('#findSupplier').click(function(){
-		$('#showSupplier').delay(300).fadeIn(200);
+		$('#showRecCom').delay(300).fadeIn(200);
+	})
+	
+	$('#findRecipe').click(function(){
+		$('#showRecipe').delay(300).fadeIn(200);
 	})
 	
 	$('#navigateToFindRecipeComponent').click(function() {

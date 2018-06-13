@@ -3,8 +3,8 @@
  */
 
 $(document).ready(function() {
-	
-	$("#creatingCommodty").click(function() {
+
+	$("#creatingCommodity").click(function() {
 		$.ajax({
 			url: "/rest/commodity/createCommodity",
 			data: $('#createCommodityForm').serialize(),

@@ -43,8 +43,8 @@ public class CommodityREST implements ICommodityREST {
 	@Path("createCommodity")
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
-		//TODO
-		String message = null;
+
+		String message;
 		try 
 		{
 			if(id < 1 || name.equals("")) 
