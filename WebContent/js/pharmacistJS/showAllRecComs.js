@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
 	
-	$("#navigateToShowRecipe").click(function() {
+	$("navigateToShowRecipeComponent").click(function() {
 		
 		$.ajax({
 			url:"/rest/RecipeComponent/getAllRecipeComponents",
