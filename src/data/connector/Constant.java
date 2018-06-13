@@ -2,14 +2,15 @@ package data.connector;
 
 public class Constant {
 
-	protected static final String
-	server					= "91.100.3.26", 
-	database				=  "CDIOFinal_test",
-	username				= "Eclipse-bruger", 
-	password				= "ySmTL37uDjYZmzyn";
+	public static final String
+	dbServer					= "diplomportal.c2nouactg6m6.eu-west-1.rds.amazonaws.com", 
+	databaseName				= "s160198",
+	dbUsername					= System.getenv("cdioFinal12.SQL.User"), 
+	dbPassword					= System.getenv("cdioFinal12.SQL.Password"),
+	weightConstantIP			= "62.79.16.17";
 
-	protected static final int
-	port					= 9865;
-
-
+	public static final int
+	dbPort					= 3306,
+	weightPortOne				= 8000,
+	weightPortTwo				= 8001;
 }

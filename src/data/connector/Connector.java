@@ -70,7 +70,7 @@ public class Connector {
 	 */
 	public Connector() throws DALException
 	{
-		this(Constant.server, Constant.port, Constant.database, Constant.username, Constant.password);
+		this(Constant.dbServer, Constant.dbPort, Constant.databaseName, Constant.dbUsername, Constant.dbPassword);
 	}
 
 	/**
