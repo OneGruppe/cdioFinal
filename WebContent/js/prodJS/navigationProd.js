@@ -49,6 +49,7 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#createProdTitel').delay(300).fadeIn(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -172,6 +173,7 @@ $(document).ready(function() {
 		$('#showComsTable').fadeOut(200);
 		$('#createProdCompForm').fadeOut(200)
 		$("#showProdCompTable").fadeOut(200);
+		$('#createProdForm').fadeOut(200);
 		$('#findProdCompForm').delay(300).fadeIn(200);
 	})
 	
