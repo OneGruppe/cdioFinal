@@ -16,6 +16,7 @@ import boundary.rest_interface.IRecipeREST;
 import controller.controller.RecipeController;
 import controller.controller_interface.IRecipeController;
 import data.dto.RecipeDTO;
+import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -77,31 +78,35 @@ public class RecipeREST implements IRecipeREST {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getRecipe")
-	public String getRecipe(@FormParam("id")int id) throws DALException 
+	public String getRecipe(@FormParam("id")int id) throws DALException
 	{
-		JSONObject recJSON = new JSONObject();
-		RecipeDTO rec;
+	String message;
 
-		try 
-		{
-			if(id != 0)
-			{
-				rec = rc.getRecipe(id);
+	JSONObject recipeJSON = new JSONObject();
+	RecipeDTO recipe;
 
-				recJSON.put("recipeID", rec.getId());
-				recJSON.put("recipeName", rec.getName());
-			}
-			else
-			{
-				System.out.println("FEJL i ID input");
-			}
-		}
-		catch(DALException e) 
+	try 
+	{
+		if(id > 0) 
 		{
-			System.out.println(e.getMessage());
+			recipe = rc.getRecipe(id);
+			
+			recipeJSON.put("id", recipe.getId());
+			recipeJSON.put("name", recipe.getName());
+			message = "Recepten " + recipe.getName() + " blev fundet";
 		}
-		return recJSON.toString();
+		else 
+		{
+			message = "Fejl, der eksiterer ingen recepter med dette ID";
+		}
 	}
+	catch(DALException e) 
+	{
+		message = e.getMessage();
+	}
+	System.out.println(message);
+	return recipeJSON.toString();
+}
 
 	@Override
 	@GET

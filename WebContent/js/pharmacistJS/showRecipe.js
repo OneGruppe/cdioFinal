@@ -43,7 +43,7 @@ $(document).ready(function() {
 						c.innerHTML = data.name;
 
 						
-						document.getElementById("showRecept").appendChild(t);
+						document.getElementById("showRecipe").appendChild(t);
 							
 					} 
 					else
