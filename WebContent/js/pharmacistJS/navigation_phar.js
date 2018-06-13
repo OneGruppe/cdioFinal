@@ -113,8 +113,8 @@ $(document).ready(function() {
 		$('#showCommodity').delay(300).fadeIn(200);
 	})
 
-	$('#findRecipeComponent').click(function(){
-		$('#showRecCom').delay(300).fadeIn(200);
+	$('#findRecipe').click(function(){
+		$('#showRecipe').delay(300).fadeIn(200);
 	})
 	
 	$('#navigateToFindRecipeComponent').click(function() {
