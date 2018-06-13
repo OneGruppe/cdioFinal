@@ -26,7 +26,7 @@ public class WeightController implements IWeightController {
 	private int userID = -10;
 	private double tara = 0;
 	private double netto = 0;
-	private int goBack = -2;
+	private int goBack = 0;
 
 	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, CommodityController cc, WeightTranslation weight, ProductBatchComponentController pbcc) throws DALException
 	{
@@ -38,8 +38,6 @@ public class WeightController implements IWeightController {
 		this.weight = weight;
 		this.pbcc = pbcc;
 	}
-	
-	//TODO Kig på flow, cancel = -2 AKA goBack = -2, switch fungere ikke længere, switch skal virke igen.
 
 	/*
 	 * (non-Javadoc)
@@ -52,6 +50,8 @@ public class WeightController implements IWeightController {
 			switch(state)
 			{
 			case 1:
+				welcome();
+				break;
 			case 2:
 				enterOprID();
 				break;
@@ -65,8 +65,7 @@ public class WeightController implements IWeightController {
 				taraWeight();
 				break;
 			case 6:
-//				enterCBID();
-				state++;
+				enterCBID();
 				break;
 			case 7:
 				weightCommodities();
@@ -77,6 +76,30 @@ public class WeightController implements IWeightController {
 			default:
 				break;
 			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#welcome()
+	 */
+	public void welcome() throws DALException
+	{
+		try
+		{
+			System.out.println("State: " + state);
+			int response = weight.getInputWithMsg("Tryk 0 for tilbage", 0, "");
+			
+			System.out.println("test get metoder: " + user.getUser(1));
+			System.out.println("test get metoder: " + pbc.getProductBatch(1));
+			System.out.println("test get metoder: " + rcc.getRecipeComponent(1));
+			if(response == -2 || response == -1 || response == 0) 
+				state++;
+		}
+		catch (DALException e)
+		{
+			System.out.println("Failure in Welcome()");
+			welcome();
 		}
 	}
 
@@ -112,7 +135,7 @@ public class WeightController implements IWeightController {
 		try
 		{
 			int response = weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), 0, "");
-			if(response == goBack)
+			if(response == 0)
 				state--;
 			else
 				state++;
@@ -175,28 +198,28 @@ public class WeightController implements IWeightController {
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 		}
 	}
-//
-//	/*
-//	 * (non-Javadoc)
-//	 * @see controller.controller_interface.IWeightController#enterCBID()
-//	 */
-//	public void enterCBID() throws NumberFormatException, DALException
-//	{
-//		System.out.println("State: " + state);
-//		try
-//		{
-//			commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
-//			if (commodityBatchID == 0)
-//				state--;
-//			else
-//				state++;
-//		}
-//		catch (DALException e)
-//		{
-//			System.out.println("Failure in enterCBID(): " + e.getMessage());
-//			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
-//		}
-//	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see controller.controller_interface.IWeightController#enterCBID()
+	 */
+	public void enterCBID() throws NumberFormatException, DALException
+	{
+		System.out.println("State: " + state);
+		try
+		{
+			commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
+			if (commodityBatchID == 0)
+				state--;
+			else
+				state++;
+		}
+		catch (DALException e)
+		{
+			System.out.println("Failure in enterCBID(): " + e.getMessage());
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -214,88 +237,77 @@ public class WeightController implements IWeightController {
 
 			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
 			{
-				commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
-				if (commodityBatchID == goBack)
+				System.out.println(rcc.getRecipeComponent(recipeID).get(i).getCommodityID());
+				double comWeight = 0;
+				int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
+				String commodityName = cc.getCommodity(commodityID).getName();
+				System.out.println(commodityName);
+				
+				int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
+				if (choice == goBack)
 				{
 					state--;
 				}
-				else
+				else 
 				{
-					cbc.getCommodityBatchSingle(commodityBatchID);
-					System.out.println(rcc.getRecipeComponent(recipeID).get(i).getCommodityID());
-					double comWeight = 0;
-					int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
-					String commodityName = cc.getCommodity(commodityID).getName();
-					System.out.println(commodityName);
-					
-					int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
-					if (choice == goBack)
-					{
-						state--;
-					}
-					else 
-					{
-						double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 - (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
-						double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 + (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
-						System.out.println("Min = " + min + " max = " + max);
-						
-						while(true)
-						{
-							comWeight = weight.getWeight();
-							
-							if(comWeight < min) 
-							{
-								weight.showLongMsg("Mere vaegt");
-							} 
-							else if(comWeight > max)
-							{
-								weight.showLongMsg("For meget vaegt");
-							} 
-							else if(comWeight > min && max > comWeight) 
-							{
-								try 
-								{
-									//TODO Opret objekt som dannes under process og fjern råvare fra lager, yderligere skal næste råvare igennem samme procedure.
-									TimeUnit.SECONDS.sleep(3);
-									comWeight = weight.getWeight();
-									weight.showLongMsg("Vaegt: " + comWeight);
-									TimeUnit.SECONDS.sleep(3);
-									weight.removeLongMsg();
-									choice = weight.getInputWithMsg("Fortsaet?", 0, "");
-									weight.removeMsg();
-									if(choice == -2) 
-										TimeUnit.SECONDS.sleep(5);
-								}
-								catch (InterruptedException e) 
-								{
-									e.printStackTrace();
-								}
+					double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 - (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
+					double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 + (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
+					System.out.println("Min = " + min + " max = " + max);
 								
-								if(choice == -1) 
-								{
-									netto = weight.getWeight();
-									pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
-									double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
-									double newAmount = originalAmount - comWeight;
-									cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
-									System.out.println("BATCH ID =" + commodityBatchID + " ID =" + commodityID + " " + originalAmount + " " + newAmount + " " + comWeight);
-									System.out.println(comWeight + " fjernet fra " + commodityName + " totalt på lager " + cbc.getCommodityBatchSingle(commodityID).getAmount());
-									break;
-									
-								} 
-								else if(choice == -2)
-								{
-									continue;
-								}
-							}
-							System.out.println(comWeight);
-						}
+					while(true)
+					{
+						comWeight = weight.getWeight();
 						
+						if(comWeight < min) 
+						{
+							weight.showLongMsg("Mere vaegt");
+						} 
+						else if(comWeight > max)
+						{
+							weight.showLongMsg("For meget vaegt");
+						} 
+						else if(comWeight > min && max > comWeight) 
+						{
+							try 
+							{
+								//TODO Opret objekt som dannes under process og fjern råvare fra lager, yderligere skal næste råvare igennem samme procedure.
+								TimeUnit.SECONDS.sleep(3);
+								comWeight = weight.getWeight();
+								weight.showLongMsg("Vaegt: " + comWeight);
+								TimeUnit.SECONDS.sleep(3);
+								weight.removeLongMsg();
+								choice = weight.getInputWithMsg("Fortsaet?", 0, "");
+								weight.removeMsg();
+								if(choice == -2) 
+								TimeUnit.SECONDS.sleep(5);
+							}
+							catch (InterruptedException e) 
+							{
+								e.printStackTrace();
+							}
+							
+							if(choice == -1) 
+							{
+								netto = weight.getWeight();
+								pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
+								double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
+								cbc.getCommodityBatchSingle(commodityBatchID).setAmount(originalAmount - comWeight);
+								break;
+								
+							} 
+							else if(choice == -2)
+							{
+								continue;
+							}
+						}
 						System.out.println(comWeight);
 					}
 					
-					weight.removeMsg();
+					System.out.println(comWeight);
 				}
+				
+				weight.removeMsg();
+				
 			}
 			state += 1;
 		}

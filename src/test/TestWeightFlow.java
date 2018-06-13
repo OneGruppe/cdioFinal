@@ -22,7 +22,7 @@ public class TestWeightFlow {
 			CommodityBatchController cbc = new CommodityBatchController();
 			CommodityController cc = new CommodityController();
 			ProductBatchComponentController pbcc = new ProductBatchComponentController();
-			WeightTranslation weight = new WeightTranslation("62.79.16.17", 8001);
+			WeightTranslation weight = new WeightTranslation("62.79.16.17", 8000);
 
 			WeightController wc = new WeightController(pbc, user, rcc, cbc, cc, weight, pbcc);
 			wc.weightFlow();
