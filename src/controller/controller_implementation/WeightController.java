@@ -18,15 +18,17 @@ public class WeightController implements IWeightController {
 	private ICommodityBatchController cbc;
 	private WeightTranslation weight;
 	private CommodityController cc;
+	private ProductBatchComponentController pbcc;
 
 	private int state = 1;
+	private int commodityBatchID = -1000;
+	private int productBatchID = -100;
 	private int userID = -10;
 	private double tara = 0;
-	private int productBatchID = -100;
+	private double netto = 0;
 	private int goBack = 0;
-	private int commodityBatchID = -1000;
 
-	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, CommodityController cc, WeightTranslation weight) throws DALException
+	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, CommodityController cc, WeightTranslation weight, ProductBatchComponentController pbcc) throws DALException
 	{
 		this.pbc = pbc;
 		this.user = user;
@@ -34,6 +36,7 @@ public class WeightController implements IWeightController {
 		this.cbc = cbc;
 		this.cc = cc;
 		this.weight = weight;
+		this.pbcc = pbcc;
 	}
 
 	/*
@@ -85,13 +88,13 @@ public class WeightController implements IWeightController {
 		try
 		{
 			System.out.println("State: " + state);
-			weight.getInputWithMsg("Tryk 0 for tilbage", 0, "");
+			int response = weight.getInputWithMsg("Tryk 0 for tilbage", 0, "");
 			
 			System.out.println("test get metoder: " + user.getUser(1));
 			System.out.println("test get metoder: " + pbc.getProductBatch(1));
 			System.out.println("test get metoder: " + rcc.getRecipeComponent(1));
-			
-			state++;
+			if(response == -2 || response == -1 || response == 0) 
+				state++;
 		}
 		catch (DALException e)
 		{
@@ -283,6 +286,8 @@ public class WeightController implements IWeightController {
 							
 							if(choice == -1) 
 							{
+								netto = weight.getWeight();
+								pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
 								break;
 								
 							} 
