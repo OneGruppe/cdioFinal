@@ -1,4 +1,4 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.IRecipeREST;
-import controller.controller_implementation.RecipeController;
+import controller.controller.RecipeController;
 import controller.controller_interface.IRecipeController;
 import data.dto.RecipeDTO;
 import exceptions.DALException;

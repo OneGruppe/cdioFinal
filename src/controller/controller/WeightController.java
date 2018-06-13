@@ -1,4 +1,4 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.concurrent.TimeUnit;
 

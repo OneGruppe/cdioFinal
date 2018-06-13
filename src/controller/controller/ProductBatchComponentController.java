@@ -1,9 +1,9 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.List;
 
 import controller.controller_interface.IProductbatchComponentController;
-import data.dao_implementation.ProductBatchComponentDAO;
+import data.dao.ProductBatchComponentDAO;
 import data.dao_interface.IProductBatchComponentDAO;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;

@@ -1,9 +1,9 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.List;
 
 import controller.controller_interface.ISupplierController;
-import data.dao_implementation.SupplierDAO;
+import data.dao.SupplierDAO;
 import data.dao_interface.ISupplierDAO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;

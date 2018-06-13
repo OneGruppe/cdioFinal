@@ -1,4 +1,4 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -12,8 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.ICommodityREST;
-import controller.controller_implementation.CommodityController;
-import controller.controller_implementation.SupplierController;
+import controller.controller.CommodityController;
+import controller.controller.SupplierController;
 import controller.controller_interface.ICommodityController;
 import controller.controller_interface.ISupplierController;
 import data.dto.CommodityDTO;

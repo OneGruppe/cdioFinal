@@ -1,4 +1,4 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchComponentREST;
-import controller.controller_implementation.ProductBatchComponentController;
+import controller.controller.ProductBatchComponentController;
 import controller.controller_interface.IProductbatchComponentController;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;

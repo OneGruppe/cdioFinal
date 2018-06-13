@@ -1,4 +1,4 @@
-package data.dao_implementation;
+package data.dao;
 
 import data.connector.Connector;
 import data.dao_interface.ISupplierDAO;

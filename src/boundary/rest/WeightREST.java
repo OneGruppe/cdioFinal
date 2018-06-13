@@ -1,16 +1,16 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
-import controller.controller_implementation.CommodityBatchController;
-import controller.controller_implementation.CommodityController;
-import controller.controller_implementation.ProductBatchController;
-import controller.controller_implementation.RecipeComponentController;
-import controller.controller_implementation.UserController;
-import controller.controller_implementation.WeightController;
+import controller.controller.CommodityBatchController;
+import controller.controller.CommodityController;
+import controller.controller.ProductBatchController;
+import controller.controller.RecipeComponentController;
+import controller.controller.UserController;
+import controller.controller.WeightController;
 import controller.controller_interface.IWeightController;
 import exceptions.DALException;
 

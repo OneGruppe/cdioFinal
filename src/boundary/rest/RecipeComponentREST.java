@@ -1,4 +1,4 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 
 import javax.ws.rs.Consumes;
@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 
 import boundary.rest_interface.IRecipeComponentREST;
-import controller.controller_implementation.RecipeComponentController;
+import controller.controller.RecipeComponentController;
 import controller.controller_interface.IRecipeComponentController;
 import exceptions.DALException;
 

@@ -1,4 +1,4 @@
-package boundary.rest_implementation;
+package boundary.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import boundary.rest_interface.ISupplierREST;
-import controller.controller_implementation.SupplierController;
+import controller.controller.SupplierController;
 import controller.controller_interface.ISupplierController;
 import data.dto.SupplierDTO;
 import exceptions.DALException;

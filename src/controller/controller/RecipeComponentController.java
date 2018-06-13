@@ -1,9 +1,9 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.List;
 
 import controller.controller_interface.IRecipeComponentController;
-import data.dao_implementation.RecipeComponentDAO;
+import data.dao.RecipeComponentDAO;
 import data.dao_interface.IRecipeComponentDAO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;

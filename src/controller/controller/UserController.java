@@ -1,9 +1,9 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.List;
 
 import controller.controller_interface.IUserController;
-import data.dao_implementation.UserDAO;
+import data.dao.UserDAO;
 import data.dao_interface.IUserDAO;
 import data.dto.UserDTO;
 import exceptions.DALException;

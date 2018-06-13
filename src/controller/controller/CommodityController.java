@@ -1,9 +1,9 @@
-package controller.controller_implementation;
+package controller.controller;
 
 import java.util.List;
 
 import controller.controller_interface.ICommodityController;
-import data.dao_implementation.CommodityDAO;
+import data.dao.CommodityDAO;
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
 import exceptions.DALException;
