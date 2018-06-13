@@ -115,6 +115,8 @@ public class WeightController implements IWeightController {
 			userID = weight.getInputWithMsg("Indtast operatoer ID", 0, "");
 			if (userID == goBack)
 				state--;
+			if(user.getUser(userID).getActive() == 0) 
+				weight.getInputWithMsg("Bruger inaktiv, proov igen", 0, "");
 			else state++;
 		}
 		catch (DALException e)
@@ -141,7 +143,7 @@ public class WeightController implements IWeightController {
 		catch (DALException e)
 		{
 			System.out.println("Failure in WelcomeAnswer(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 			state--;
 		}
 	}	
@@ -167,7 +169,7 @@ public class WeightController implements IWeightController {
 		catch (DALException e)
 		{
 			System.out.println("Failure in enterPBID(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 		}
 	}
 
