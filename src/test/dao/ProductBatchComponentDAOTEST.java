@@ -15,7 +15,7 @@ import data.dao_interface.IProductBatchComponentDAO;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
-public class ProductBatchComponentDAOTest {
+public class ProductBatchComponentDAOTEST {
 
 	private IProductBatchComponentDAO dao;
 	private int testID1 = 50;

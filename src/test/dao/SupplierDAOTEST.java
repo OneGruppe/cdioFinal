@@ -15,7 +15,7 @@ import data.dao_interface.ISupplierDAO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
 
-public class SupplierDAOTest {
+public class SupplierDAOTEST {
 
 	private ISupplierDAO dao;
 	private int testID1 = 50;

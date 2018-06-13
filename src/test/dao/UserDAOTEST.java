@@ -10,27 +10,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.dao.ProductBatchDAO;
-import data.dao_interface.IProductBatchDAO;
-import data.dto.ProductBatchDTO;
+import data.connector.Connector;
+import data.dao.UserDAO;
+import data.dao_interface.IUserDAO;
+import data.dto.UserDTO;
 import exceptions.DALException;
 
-public class ProductBatchDAOTest {
+public class UserDAOTEST {
 
-	private IProductBatchDAO dao;
+	private IUserDAO dao;
 	private int testID1 = 50;
 	private int testID2 = 51;
 
 	@Before
-	public void setUp()
+	public void setUp() 
 	{
-		try
+		try 
 		{
-			dao = new ProductBatchDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new UserDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("Error connecting" + e.getMessage());
 			fail("Error " + e.getMessage());
 		}
 	}
@@ -40,8 +41,9 @@ public class ProductBatchDAOTest {
 	{
 		try 
 		{
-			dao.deleteProductBatch(testID1);
-			dao.deleteProductBatch(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM user WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM user WHERE id= " + testID2);
 		}
 		catch(DALException e) 
 		{
@@ -51,15 +53,15 @@ public class ProductBatchDAOTest {
 	}
 
 	@Test
-	public void createProductBatchTEST() 
+	public void createUserTEST() 
 	{
-		ProductBatchDTO expected = new ProductBatchDTO(testID1, 1, 1);
+		UserDTO expected = new UserDTO(testID1, "Test", "T_T", 0);
 
 		try 
 		{
-			dao.createProductBatch(expected);
+			dao.createUser(expected);
 
-			ProductBatchDTO actual = dao.getProductBatch(testID1);
+			UserDTO actual = dao.getUser(testID1);
 
 			assertEquals(expected.toString(), actual.toString());
 		}
@@ -71,17 +73,17 @@ public class ProductBatchDAOTest {
 	}
 
 	@Test
-	public void updateProductBatchTEST() 
+	public void updateUserTEST() 
 	{
-		ProductBatchDTO expected = new ProductBatchDTO(testID1, 1, 1);
-		ProductBatchDTO updated = new ProductBatchDTO(testID1, 1, 0);
+		UserDTO expected = new UserDTO(testID1, "Test", "T_T", 0);
+		UserDTO updated = new UserDTO(testID1, "Test Name", "C", 1);
 
 		try 
 		{
-			dao.createProductBatch(expected);
-			dao.updateProductBatch(updated);
-			
-			ProductBatchDTO actual = dao.getProductBatch(testID1);
+			dao.createUser(expected);
+			dao.updateUser(updated);
+
+			UserDTO actual = dao.getUser(testID1);
 
 			assertEquals(updated.toString(), actual.toString());
 		}
@@ -93,23 +95,23 @@ public class ProductBatchDAOTest {
 	}
 
 	@Test
-	public void getAllProductBatchesTEST() 
+	public void getALLUsersTEST() 
 	{
-		ProductBatchDTO expected1 = new ProductBatchDTO(testID1, 1, 1);
-		ProductBatchDTO expected2 = new ProductBatchDTO(testID2, 2, 1);
+		UserDTO expected1 = new UserDTO(testID1, "Test1", "TTT", 0);
+		UserDTO expected2 = new UserDTO(testID2, "Test2", "TTT", 1);
 
-		List<ProductBatchDTO> expectedList = new ArrayList<ProductBatchDTO>();
+		List<UserDTO> expectedList = new ArrayList<UserDTO>();
 		expectedList.add(expected1);
 		expectedList.add(expected2);
 
 		try 
 		{
-			dao.createProductBatch(expected1);
-			dao.createProductBatch(expected2);
-			
-			List<ProductBatchDTO> actualList = new ArrayList<ProductBatchDTO>();
+			dao.createUser(expected1);
+			dao.createUser(expected2);
 
-			for (ProductBatchDTO dto : dao.getAllProductBatches())
+			List<UserDTO> actualList = new ArrayList<UserDTO>();
+
+			for (UserDTO dto : dao.getAllUsers())
 			{
 				if (dto.getId() == testID1) 
 				{
@@ -128,6 +130,5 @@ public class ProductBatchDAOTest {
 			fail("Error " + e.getMessage());
 		}
 	}
-
 
 }

@@ -15,7 +15,7 @@ import data.dao_interface.IRecipeComponentDAO;
 import data.dto.RecipeComponentDTO;
 import exceptions.DALException;
 
-public class RecipeComponentDAOTest {
+public class RecipeComponentDAOTEST {
 
 	private IRecipeComponentDAO dao;
 	private int testID1 = 50;

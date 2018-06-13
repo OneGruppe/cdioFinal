@@ -15,7 +15,7 @@ import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
 import exceptions.DALException;
 
-public class CommodityDAOTest {
+public class CommodityDAOTEST {
 
 	private ICommodityDAO dao;
 	private int testID1 = 50;

@@ -15,7 +15,7 @@ import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
 import exceptions.DALException;
 
-public class CommodityBatchDAOTest {
+public class CommodityBatchDAOTEST {
 
 	private ICommodityBatchDAO dao;
 	private int testID1 = 50;
