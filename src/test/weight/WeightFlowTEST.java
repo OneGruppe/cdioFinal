@@ -1,13 +1,13 @@
 package test.weight;
 
 import boundary.weight.WeightTranslation;
-import controller.controller_implementation.CommodityBatchController;
-import controller.controller_implementation.CommodityController;
-import controller.controller_implementation.ProductBatchComponentController;
-import controller.controller_implementation.ProductBatchController;
-import controller.controller_implementation.RecipeComponentController;
-import controller.controller_implementation.UserController;
-import controller.controller_implementation.WeightController;
+import controller.controller.CommodityBatchController;
+import controller.controller.CommodityController;
+import controller.controller.ProductBatchComponentController;
+import controller.controller.ProductBatchController;
+import controller.controller.RecipeComponentController;
+import controller.controller.UserController;
+import controller.controller.WeightController;
 import exceptions.DALException;
 
 public class WeightFlowTEST {

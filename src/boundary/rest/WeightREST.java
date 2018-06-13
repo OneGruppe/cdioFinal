@@ -7,6 +7,7 @@ import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
 import controller.controller.CommodityBatchController;
 import controller.controller.CommodityController;
+import controller.controller.ProductBatchComponentController;
 import controller.controller.ProductBatchController;
 import controller.controller.RecipeComponentController;
 import controller.controller.UserController;
@@ -26,8 +27,11 @@ public class WeightREST implements IWeightREST {
 	{
 		try 
 		{
-			wc = new WeightController(new ProductBatchController(), new UserController(), new RecipeComponentController(), new CommodityBatchController(), new CommodityController(), new WeightTranslation("62.79.16.17", 8000));
-			wc.weightFlow();
+			wc = new WeightController(
+					new ProductBatchController(), new UserController(), 
+					new RecipeComponentController(), new CommodityBatchController(), 
+					new CommodityController(), new WeightTranslation("62.79.16.17", 8000), new ProductBatchComponentController());
+					wc.weightFlow();
 			return "Forbindelse blev oprettet korrekt";
 		} 
 		catch (DALException e) 
@@ -36,5 +40,5 @@ public class WeightREST implements IWeightREST {
 		}
 	}
 
-	
+
 }
