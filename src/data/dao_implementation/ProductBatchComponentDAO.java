@@ -87,7 +87,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 		try {
 			while(rs.next())
 			{
-				components.add(new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getInt("tara"), rs.getInt("netto")));
+				components.add(new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto")));
 			}
 			if(components.isEmpty())
 			{
@@ -111,7 +111,7 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 		try {
 			while(rs.next()) 
 			{
-				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getInt("tara"), rs.getInt("netto"));
+				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
 				components.add(dto);
 			}
 			if(components.isEmpty()) 
