@@ -39,7 +39,7 @@ public class SupplierREST implements ISupplierREST {
 	}
 
 	@Override
-	@PUT
+	@POST
 	@Path("createSupplier")
 	public String createSupplier(@FormParam("id") int id, @FormParam("name") String name) 
 	{

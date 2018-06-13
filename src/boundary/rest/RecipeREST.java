@@ -38,7 +38,7 @@ public class RecipeREST implements IRecipeREST {
 	}
 
 	@Override
-	@PUT
+	@POST
 	@Path("createRecipe")
 	public String createRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{

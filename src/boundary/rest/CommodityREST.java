@@ -41,7 +41,7 @@ public class CommodityREST implements ICommodityREST {
 	}
 
 	@Override
-	@PUT
+	@POST
 	@Path("createCommodity")
 	public void createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
