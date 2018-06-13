@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 
 
-@SuiteClasses({CommodityBatchDAOTEST.class, CommodityDAOTEST.class, ProductBatchComponentDAOTEST.class, ProductBatchDAOTEST.class, RecipeComponentDAOTEST.class, RecipeDAOTEST.class, SupplierDAOTEST.class, UserDAOTEST.class})
+@SuiteClasses({CommodityBatchDAOTest.class, CommodityDAOTest.class, ProductBatchComponentDAOTest.class, ProductBatchDAOTest.class, RecipeComponentDAOTest.class, RecipeDAOTest.class, SupplierDAOTest.class, UserDAOTest.class})
 public class AllDAOTEST {
 	
 }
