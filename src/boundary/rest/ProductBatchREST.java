@@ -45,20 +45,16 @@ public class ProductBatchREST implements IProductBatchREST
 	@Path("createProductBatch")
 	public String createProductBatch(@FormParam("id") int id, @FormParam("recipeID") int recipeID, @FormParam("status") int status) 
 	{
-		String message;
-
-		try 
+		try
 		{
 			pbc.createProductBatch(id, recipeID, status);
-			message = "Batchet blev oprettet";
+			return "Batchet blev oprettet";
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
-			message = "Batchet blev ikke oprettet pga. " + e.getMessage();
+			return e.getMessage();
 		}
-
-		return message;
 	}
 
 	/*
@@ -71,8 +67,6 @@ public class ProductBatchREST implements IProductBatchREST
 	@Path("getProductBatch")
 	public String getProductBatch(@FormParam("id") int id)
 	{
-		String message;
-
 		JSONObject prodJSON = new JSONObject();
 		ProductBatchDTO prod;
 
@@ -84,22 +78,18 @@ public class ProductBatchREST implements IProductBatchREST
 				prodJSON.put("id", prod.getId());
 				prodJSON.put("recipeID", prod.getRecipeID());
 				prodJSON.put("status", prod.getStatus());
-
-				message = "Produktionsbatchet med id " + id + " blev fundet";
+				return prodJSON.toString();
 			}
 			else
 			{
-				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+				return "Ugyldigt ID blev indtastet\nPrøv igen";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-
-		System.out.println(message);
-
-		return prodJSON.toString();
 	}
 
 	/*
@@ -117,12 +107,13 @@ public class ProductBatchREST implements IProductBatchREST
 		try 
 		{
 			prodList.put(pbc.getAllProductBatches());
+			return prodList.toString();
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		return prodList.toString();
 	}
 
 

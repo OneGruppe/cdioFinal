@@ -21,7 +21,7 @@ import exceptions.DALException;
 @Path("recipeComponent")
 public class RecipeComponentREST implements IRecipeComponentREST {
 	private IRecipeComponentController rcc;
-	
+
 	public RecipeComponentREST() 
 	{
 		try
@@ -33,7 +33,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see boundary.rest_interface.IRecipeComponentREST#createRecipeComponent(int, int, int, double, double)
@@ -43,19 +43,16 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Path("createRecipeComponent")
 	public String createRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
 	{
-		String message;
-
 		try 
 		{
 			rcc.createRecipeComponent(id, recipeID, commodityID, nonNetto, tolerance);
-			message = "Recepten komponenten blev oprettet";
+			return "Recepten komponenten blev oprettet";
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
-			message = "Recepten komponenten blev ikke oprettet pga. " + e.getMessage();
+			return "Recepten komponenten blev ikke oprettet pga. " + e.getMessage();
 		}
-		return message;	
 	}
 
 	/*
@@ -72,14 +69,12 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 		try
 		{
 			recComList.put(rcc.getRecipeComponent(recipeID));
+			return recComList.toString();
 		}
 		catch(DALException e)
 		{
-			System.out.println(e.getMessage());
-		}
-	
-		
-		return recComList.toString();
+			return e.getMessage();
+		}		
 	}
 
 	/*
@@ -91,20 +86,16 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Path("getAllRecipeComponents")
 	public String getAllRecipeComponents() throws DALException
 	{
-		String message; 
 		JSONArray recList = new JSONArray();
 		try
 		{
 			recList.put(rcc.getAllRecipeComponent());
-			message = "Alle recepterne er fundet";
+			return recList.toString();
 		}
 		catch(DALException e)
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-
-		System.out.println(message);
-		return recList.toString();
 	}
 
 }

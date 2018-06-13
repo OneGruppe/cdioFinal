@@ -10,9 +10,10 @@ public interface ICommodityBatchREST {
 	 * @param id
 	 * @param commodityID
 	 * @param amount
+	 * @return 
 	 * @throws DALException
 	 */
-	public void createCommodityBatch(int id, int commodityID, double amount);
+	public String createCommodityBatch(int id, int commodityID, double amount);
 	
 	/**
 	 * Returns a single commoditybatch

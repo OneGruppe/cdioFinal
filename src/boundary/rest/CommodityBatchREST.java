@@ -42,15 +42,17 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Override
 	@POST
 	@Path("createCommodityBatch")
-	public void createCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
+	public String createCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
 		try 
 		{
 			cbc.createCommodityBatch(id, commodityID, amount);
+			return "R�varebatch oprettet";
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}		
 	}
 	
@@ -64,8 +66,6 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Path("getSingleCommodity")
 	public String getCommodityBatchSingle(@FormParam("id") int id) 
 	{
-		String message;
-
 		JSONObject combatchJSON = new JSONObject();
 		CommodityBatchDTO commodityBatch;
 
@@ -77,22 +77,19 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 				combatchJSON.put("id", commodityBatch.getId());
 				combatchJSON.put("commodityID", commodityBatch.getCommodityID());
 				combatchJSON.put("amount", commodityBatch.getAmount());
-
-				message = "Råvarebatchet med id " + id + " blev fundet";
+				return combatchJSON.toString(); 
 			}
 			else
 			{
-				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+				return "Ugyldigt ID blev indtastet\nPrøv igen";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
 
-		System.out.println(message);
-
-		return combatchJSON.toString(); 
 	}
 	
 	/*
@@ -111,12 +108,13 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		try
 		{
 			comJSON.put(cbc.getCommodityBatch(commodityID));
+			return comJSON.toString();
 		}
 		catch(DALException e)
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		return comJSON.toString();
 	}
 
 	/*
@@ -134,11 +132,12 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		try 
 		{
 			combatches.put(cbc.getAllCommodityBatches());
+			return combatches.toString();
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		return combatches.toString();
 	}
 }

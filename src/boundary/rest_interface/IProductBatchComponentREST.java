@@ -11,8 +11,9 @@ public interface IProductBatchComponentREST {
 	 * @param userID
 	 * @param tara
 	 * @param netto
+	 * @return 
 	 */
-	public void createProductBatchComponent(int productBatchID, int commodityBatchID, int userID, double tara, double netto);
+	public String createProductBatchComponent(int productBatchID, int commodityBatchID, int userID, double tara, double netto);
 	
 	/**
 	 * <blockquote><h1> <i>getSingleProductBatchComponent</i></h1> <blockquote>({@code int} id)</blockquote></blockquote>
