@@ -11,6 +11,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success: function(data) {
+				console.log(data);
 				alert("Råvaren er oprettet");
 			}
 		});
