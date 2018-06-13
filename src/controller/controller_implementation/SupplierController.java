@@ -44,16 +44,6 @@ public class SupplierController implements ISupplierController {
 
 	/*
 	 * (non-Javadoc)
-	 * @see controller.controller_interface.ISupplierController#deleteSupplier(int)
-	 */
-	@Override
-	public void deleteSupplier(int id) throws DALException 
-	{
-		supdao.deleteSupplier(id);		
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see controller.controller_interface.ISupplierController#getSupplier(int)
 	 */
 	@Override

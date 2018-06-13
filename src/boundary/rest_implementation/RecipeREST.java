@@ -1,7 +1,6 @@
 package boundary.rest_implementation;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -67,21 +66,6 @@ public class RecipeREST implements IRecipeREST {
 		try 
 		{
 			rc.updateRecipe(id, name);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Override
-	@DELETE
-	@Path("deleteRecipe")
-	public void deleteRecipe(@FormParam("id")int id) throws DALException
-	{
-		try 
-		{
-			rc.deleteRecipe(id);
 		} 
 		catch (DALException e) 
 		{
