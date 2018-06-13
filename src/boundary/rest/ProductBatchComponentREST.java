@@ -19,9 +19,9 @@ import exceptions.DALException;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("prodBatchComponent")
 public class ProductBatchComponentREST implements IProductBatchComponentREST {
-	
+
 	private IProductBatchComponentController prodBatchCompController;
-	
+
 	public ProductBatchComponentREST() 
 	{
 		try 
@@ -41,19 +41,21 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Override
 	@POST
 	@Path("createProductBatchComponent")
-	public void createProductBatchComponent(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("prodBatchID") int productBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
+	public String createProductBatchComponent(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("prodBatchID") int productBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
 	{
 		try 
 		{
 			prodBatchCompController.createProductBatchComponent(productBatchID, commodityBatchID, userID, tara, netto);
+			return "Produktbatchkomponent oprettet";
 		} 
 		catch (DALException e) 
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see boundary.rest_interface.IProductBatchComponentREST#getSingleProductBatchComponent(int)
@@ -64,9 +66,6 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Path("getSingleProductBatchComponent")
 	public String getSingleProductBatchComponent(int id) 
 	{
-		System.out.println("Første");
-		String message;
-
 		JSONObject componentJSON = new JSONObject();
 		ProductBatchComponentDTO component;
 
@@ -81,22 +80,19 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 				componentJSON.put("userID", component.getUserID());
 				componentJSON.put("tara", component.getTara());
 				componentJSON.put("netto", component.getNetto());
-
-				message = "Komponenten med id" + component.getId() + " blev fundet";
+				return componentJSON.toString();
 			}
 			else
 			{
-				message = "Ugyldigt ID blev indtastet\nPrøv igen";
+				return "Ugyldigt ID blev indtastet\nPr�v igen";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
 
-		System.out.println(message);
-
-		return componentJSON.toString();
 	}
 
 	/*
@@ -109,21 +105,18 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Path("getProductBatchComponent")
 	public String getProductBatchComponent(@FormParam("id") int id) 
 	{
-		System.out.println("TJEK");
 		JSONArray prodComJSON = new JSONArray();
 
 		try
 		{
 			prodComJSON.put(prodBatchCompController.getProductBatchComponent(id));
+			return prodComJSON.toString();
 		}
 		catch(DALException e)
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		
-		System.out.println(prodComJSON.toString());
-		
-		return prodComJSON.toString();
 	}
 
 	/*
@@ -137,16 +130,17 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	public String getAllProductBatchComponents() 
 	{
 		JSONArray prodComJSON = new JSONArray();
-		
+
 		try 
 		{
 			prodComJSON.put(prodBatchCompController.getAllProductBatchComponents());
+			return prodComJSON.toString();
 		}
 		catch(DALException e)
 		{
 			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		return null;
 	}
 
 }
