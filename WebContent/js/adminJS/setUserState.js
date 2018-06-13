@@ -12,7 +12,7 @@ $(document).ready(function() {
 			contenttype : "application/json",
 			method : "POST",
 			success : function(data) {
-
+				console.log(data);
 				$("#setID").attr("value", data.ID);
 				$("#setStatus").attr("value", data.active);
 
@@ -30,6 +30,7 @@ $(document).ready(function() {
 			contenttype : "application/json",
 			method : "POST",
 			success : function(data) {
+				console.log(data);
 				alert("Brugerens status er blevet ændret!");
 			}
 		});

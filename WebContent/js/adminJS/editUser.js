@@ -11,7 +11,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
-				
+				console.log(data);
 				$("#lockedID").attr("value", data.ID);
 				$("#setName").attr("value", data.name);
 				$("#setIni").attr("value", data.ini);

@@ -12,6 +12,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success:function(data) {
+				console.log(data);
 				if(data.ID != undefined)
 				{
 					if(document.contains(document.getElementById("showUserTable")))
