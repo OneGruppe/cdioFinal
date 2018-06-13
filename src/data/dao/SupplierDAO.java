@@ -65,7 +65,7 @@ public class SupplierDAO implements ISupplierDAO {
 			con.doUpdate("INSERT INTO supplier VALUES ("
 					+ supplier.getId() + ", "
 					+ "'" + supplier.getName() + "')");
-			
+
 		} 
 		catch (DALException e) 
 		{
@@ -73,6 +73,18 @@ public class SupplierDAO implements ISupplierDAO {
 			throw new DALException("Fejl i oprettelse af leverandør");
 		}
 	}
+
+	/* 
+	 * (non-Javadoc) 
+	 * @see data.dao_interface.ISupplierDAO#updateSupplier(data.dto.SupplierDTO) 
+	 */ 
+	@Override 
+	public void updateSupplier(SupplierDTO supplier) throws DALException  
+	{ 
+		con.doUpdate("UPDATE supplier SET " 
+				+ "name='" + supplier.getName() + "' " 
+				+ "WHERE id=" + supplier.getId()); 
+	} 
 
 	/*
 	 * (non-Javadoc)

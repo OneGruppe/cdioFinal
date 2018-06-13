@@ -53,6 +53,27 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 		}
 	}
 
+	/* 
+	 * (non-Javadoc) 
+	 * @see data.dao_interface.ICommodityBatchDAO#updateCommodityBatch(data.dto.CommodityBatchDTO) 
+	 */ 
+	@Override 
+	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
+	{ 
+		try  
+		{ 
+			con.doUpdate("UPDATE commodityBatch SET " 
+					+ "commodityID=" + commodityBatch.getCommodityID() + ", " 
+					+ "amount=" + commodityBatch.getAmount() + " " 
+					+ "WHERE id=" + commodityBatch.getId()); 
+		}  
+		catch (DALException e)  
+		{ 
+			System.out.println("CommodityBatchDAO error: " + e.getMessage()); 
+			throw new DALException("Fejl i updatering af råvarebatch med id = '" + commodityBatch.getId() + "'");
+		} 
+	} 
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#createCommodityBatch(data.dto.CommodityBatchDTO)

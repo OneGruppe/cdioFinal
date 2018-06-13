@@ -14,6 +14,13 @@ public interface ISupplierDAO {
 	 */
 	public void createSupplier(SupplierDTO supplier) throws DALException;
 
+	/** 
+	 * Updates the information of the given supplier 
+	 * @param supplier 
+	 * @throws DALException 
+	 */ 
+	public void updateSupplier(SupplierDTO supplier) throws DALException; 
+
 	/**
 	 * Returns a single supplier
 	 * @param supplierID
