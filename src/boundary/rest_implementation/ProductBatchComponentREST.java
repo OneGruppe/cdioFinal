@@ -113,7 +113,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Path("getProductBatchComponent")
 	public String getProductBatchComponent(@FormParam("id") int id) 
 	{
-		
+		System.out.println("TJEK");
 		JSONArray prodComJSON = new JSONArray();
 
 		try
@@ -124,7 +124,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		{
 			System.out.println(e.getMessage());
 		}
-		System.out.println("DIN MOR");
+		
 		System.out.println(prodComJSON.toString());
 		
 		return prodComJSON.toString();

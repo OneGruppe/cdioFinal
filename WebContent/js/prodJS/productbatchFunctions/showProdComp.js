@@ -14,6 +14,7 @@ $(document).ready(function() {
 			success:function(data) {
 				
 				console.log(data);
+				
 					if(document.contains(document.getElementById("showProdCompTable")))
 					{
 						document.getElementById("showProdCompTable").remove();
