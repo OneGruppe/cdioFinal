@@ -14,18 +14,10 @@ $(document).ready(function() {
 			success:function(data) {
 				
 				console.log(data);
-				if(document.contains(document.getElementById("showComTable")) && document.contains(document.getElementById("commodityName")))
+				if(document.contains(document.getElementById("showComTable")))
 				{
-					document.getElementById("commodityName").remove();	
 					document.getElementById("showComTable").remove();
-					var t, r, c, h;
-					
-					h = document.createElement("h3");
-					h.setAttribute("id", "commodityName");
-					
-					h.innerHTML = data.id;
-					
-					document.getElementById("showCom").appendChild(h);
+					var t, r, c;
 						
 					t = document.createElement("table");
 					t.setAttribute("id", "showComTable");
@@ -61,10 +53,7 @@ $(document).ready(function() {
 				} 
 				else
 				{
-					var t, r, c, h;
-					
-					h = document.createElement("h3");
-					h.setAttribute("id", "commodityName");
+					var t, r, c;
 						
 					t = document.createElement("table");
 					t.setAttribute("id", "showComTable");
@@ -81,11 +70,7 @@ $(document).ready(function() {
 					c.innerHTML = "Mængde";
 						
 					for(var i = 0; i < data[0].length; i++)
-					{
-						h.innerHTML = "Råvarebatches som indeholder råvare ID:<br> " + data[0][0].id;
-						
-						document.getElementById("showCom").appendChild(h);
-						
+					{						
 						r = t.insertRow(1);
 						
 						c = r.insertCell(0);

@@ -112,6 +112,15 @@ $(document).ready(function() {
 	$('#findCommodity').click(function(){
 		$('#showCommodity').delay(300).fadeIn(200);
 	})
+
+	$('#findRecipe').click(function(){
+		$('#showRecipe').delay(300).fadeIn(200);
+	})
+	
+	$('#findSupplier').click(function(){
+		$('#showSupplier').delay(300).fadeIn(200);
+	})
+	
 	$('#navigateToFindRecipeComponent').click(function() {
 		$('#createCommodityForm').fadeOut(200);
 		$('#createRecipeComponentForm').fadeOut(200);
@@ -231,16 +240,16 @@ $(document).ready(function() {
 	$('#dropDownCreate').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentShow').hide();
-		$('#dropDownContentCreate').slideToggle(500);
+		$('#dropDownContentCreate').slideToggle(250);
 	})
 	$('#dropDownFind').click(function() {
 		$('#dropDownContentCreate').hide();
 		$('#dropDownContentShow').hide();
-		$('#dropDownContentFind').slideToggle(500);
+		$('#dropDownContentFind').slideToggle(250);
 	})
 	$('#dropdownShow').click(function() {
 		$('#dropDownContentFind').hide();
 		$('#dropDownContentCreate').hide();
-		$('#dropDownContentShow').slideToggle(500);
+		$('#dropDownContentShow').slideToggle(250);
 	})
 })

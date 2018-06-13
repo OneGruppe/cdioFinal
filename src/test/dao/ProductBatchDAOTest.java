@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.dao_implementation.ProductBatchDAO;
+import data.dao.ProductBatchDAO;
 import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;

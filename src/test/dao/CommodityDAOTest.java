@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.dao_implementation.CommodityDAO;
+import data.dao.CommodityDAO;
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
 import exceptions.DALException;

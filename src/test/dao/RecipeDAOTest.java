@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.dao_implementation.RecipeDAO;
+import data.dao.RecipeDAO;
 import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;

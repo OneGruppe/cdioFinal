@@ -22,14 +22,6 @@ public interface IRecipeComponentREST {
 	public void updateRecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance) throws DALException;
 
 	/**
-	 * Deletes a RecipeComponent
-	 * @param id
-	 * @return 
-	 * @throws DALException
-	 */
-	public void deleteRecipeComponent(int id) throws DALException;
-
-	/**
 	 * Gets a single RecipeComponent
 	 * @return
 	 * @throws DALException

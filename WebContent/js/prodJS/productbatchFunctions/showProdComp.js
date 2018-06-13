@@ -14,6 +14,7 @@ $(document).ready(function() {
 			success:function(data) {
 				
 				console.log(data);
+				
 					if(document.contains(document.getElementById("showProdCompTable")))
 					{
 						document.getElementById("showProdCompTable").remove();
@@ -60,10 +61,10 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].userID;
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tara).toFixed(8);
+							c.innerHTML = (data[0][i].tara).toFixed(4);
 							
 							c = r.insertCell(5);
-							c.innerHTML = (data[0][i].netto).toFixed(8);
+							c.innerHTML = (data[0][i].netto).toFixed(4);
 						}
 
 						
@@ -117,10 +118,10 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].userID;
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tara).toFixed(8);
+							c.innerHTML = (data[0][i].tara).toFixed(4);
 							
 							c = r.insertCell(5);
-							c.innerHTML = (data[0][i].netto).toFixed(8);
+							c.innerHTML = (data[0][i].netto).toFixed(4);
 						}
 
 						

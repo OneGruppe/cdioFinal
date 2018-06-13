@@ -29,7 +29,7 @@ $(document).ready(function() {
 					c.innerHTML = "Recept ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Recept Name";
+					c.innerHTML = "Recept navn";
 
 					for(var i = 0; i < data[0].length; i++)
 					{
@@ -59,7 +59,7 @@ $(document).ready(function() {
 					c.innerHTML = "Rececpt ID";
 					
 					c = r.insertCell(1);
-					c.innerHTML = "Recept Name";
+					c.innerHTML = "Recept navn";
 
 					for(var i = 0; i < data[0].length; i++)
 					{
