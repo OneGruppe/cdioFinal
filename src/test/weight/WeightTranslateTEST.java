@@ -2,6 +2,7 @@ package test.weight;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -9,29 +10,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import boundary.weight.WeightTranslation;
+import data.connector.Constant;
 import exceptions.DALException;
+import exceptions.WeightException;
 
 public class WeightTranslateTEST {
 
 	WeightTranslation weight;
 
-	public void doConnect() 
-	{
-		try 
-		{
-			//weight = new WeightTranslation("169.254.2.3", 8000);
-			weight = new WeightTranslation("62.79.16.17", 8001);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-
 	@Before
 	public void startUp() 
 	{
-		doConnect();
+			try {
+				weight = new WeightTranslation(Constant.weightPortOne);
+			} catch (IOException | WeightException e) {
+				System.out.println(e.getMessage());
+			}
 	}
 
 	@After
@@ -41,7 +35,7 @@ public class WeightTranslateTEST {
 		{
 			weight.closeAllLeaks();
 		} 
-		catch (DALException e) 
+		catch (WeightException e) 
 		{
 			System.out.println(e.getMessage());
 		}
@@ -59,7 +53,7 @@ public class WeightTranslateTEST {
 			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeMsg();
 		} 
-		catch (DALException | InterruptedException e) 
+		catch (WeightException | InterruptedException e) 
 		{
 			fail("showMsgTest - Error: " + e.getMessage());
 		}
@@ -77,7 +71,7 @@ public class WeightTranslateTEST {
 			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeMsg();
 		} 
-		catch (DALException | InterruptedException e) 
+		catch (WeightException | InterruptedException e) 
 		{
 			fail("showMsgTooLongTest - Error: " + e.getMessage());
 		}
@@ -95,7 +89,7 @@ public class WeightTranslateTEST {
 			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeLongMsg();
 		} 
-		catch (DALException | InterruptedException e) 
+		catch (WeightException | InterruptedException e) 
 		{
 			fail("showLongMsgTest - Error: " + e.getMessage());
 		}
@@ -113,7 +107,7 @@ public class WeightTranslateTEST {
 			TimeUnit.MILLISECONDS.sleep(200);
 			weight.removeLongMsg();
 		} 
-		catch (DALException | InterruptedException e) 
+		catch (WeightException | InterruptedException e) 
 		{
 			fail("showTooLongLongM - Error: " + e.getMessage());
 		}
@@ -130,7 +124,7 @@ public class WeightTranslateTEST {
 			int response = weight.getInputWithMsg("Enter kilo", 0, " kg");
 			System.out.println("Response from weight: '" + response + "'");
 		} 
-		catch (DALException e) 
+		catch (WeightException e) 
 		{
 			fail("getInputWithMsgTest - Error: " + e.getMessage());
 		}
@@ -147,7 +141,7 @@ public class WeightTranslateTEST {
 			double value = weight.getWeight();
 			System.out.println("Weight:" + value);
 		} 
-		catch (DALException e) 
+		catch (WeightException e) 
 		{
 			fail("getWeightTest - Error: " + e.getMessage());
 		}
@@ -165,7 +159,7 @@ public class WeightTranslateTEST {
 			System.out.println("Weight tara:" + value);
 			weight.removeTaraWeight();
 		} 
-		catch (DALException e) 
+		catch (WeightException e) 
 		{
 			fail("getWeightTest - Error: " + e.getMessage());
 		}

@@ -1,7 +1,10 @@
 package test.weight;
 
 
+import java.io.IOException;
+
 import boundary.weight.WeightTranslation;
+import boundary.weight_interface.IWeightTranslation;
 import controller.controller.CommodityBatchController;
 import controller.controller.CommodityController;
 import controller.controller.ProductBatchComponentController;
@@ -9,31 +12,37 @@ import controller.controller.ProductBatchController;
 import controller.controller.RecipeComponentController;
 import controller.controller.UserController;
 import controller.controller.WeightController;
+import controller.controller_interface.ICommodityBatchController;
+import controller.controller_interface.ICommodityController;
+import controller.controller_interface.IProductBatchComponentController;
+import controller.controller_interface.IProductBatchController;
+import controller.controller_interface.IRecipeComponentController;
+import controller.controller_interface.IUserController;
+import controller.controller_interface.IWeightController;
+import data.connector.Constant;
 import exceptions.DALException;
+import exceptions.WeightException;
 
 public class WeightFlowTEST {
 
 	public static void main(String[] args) 
 	{
-		try 
-		{
-			ProductBatchController pbc = new ProductBatchController();
-			UserController user = new UserController();
-			RecipeComponentController rcc = new RecipeComponentController();
-			CommodityBatchController cbc = new CommodityBatchController();
-			CommodityController cc = new CommodityController();
-			ProductBatchComponentController pbcc = new ProductBatchComponentController();
-			WeightTranslation weight = new WeightTranslation("62.79.16.17", 8001);
-
-			WeightController wc = new WeightController(pbc, user, rcc, cbc, cc, weight, pbcc);
+		
+		try {
+			IProductBatchController pbc = new ProductBatchController();
+			IUserController user = new UserController();
+			IRecipeComponentController rcc = new RecipeComponentController();
+			ICommodityBatchController cbc = new CommodityBatchController();
+			ICommodityController cc = new CommodityController();
+			IProductBatchComponentController pbcc = new ProductBatchComponentController();
+			IWeightTranslation weight = new WeightTranslation(Constant.weightPortOne);
+			
+			IWeightController wc = new WeightController(pbc, user, rcc, cbc, cc, pbcc, weight);
 			wc.weightFlow();
-
-		} 
-		catch (DALException e) 
-		{
-			System.out.println("Main " + e.getMessage());
+			
+		} catch (DALException | WeightException | IOException e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
-
-
 }

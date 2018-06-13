@@ -6,9 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import boundary.weight_interface.IWeightTranslation;
+import data.connector.Constant;
 import exceptions.DALException;
+import exceptions.WeightException;
 
-public class WeightTranslation {
+public class WeightTranslation implements IWeightTranslation{
 
 	// declare socket to open connection to TCP/Telnet
 	// declare Writer and reader for I/O
@@ -17,17 +20,20 @@ public class WeightTranslation {
 	private BufferedReader read;
 
 	/**
-	 * Constructor that takes in the IP of the weight.
-	 * @param ip The ip that is used to connect to the weight (62.79.16.17)
-	 * @param port The port that is used to connect to the weight (port is 2.2=8000 and 2.3=8001)
-	 * @throws DALException 
+	 * Constructor that takes in the port of the weight.
+	 * After connection start, the 
+	 * Ports can be recieved from Constant-class.
+	 * @param port
+	 * @throws DALException if the initial show+remove fails
+	 * @throws IOException if connection failed
+	 * @throws WeightException if initial showMsg("Init") and removeMsg fails
 	 */
-	public WeightTranslation(String ip, int port) throws DALException 
+	public WeightTranslation(int port) throws IOException, WeightException
 	{
 		try 
 		{
 			// create socket connection with ip and port, delivered from Main
-			socket = new Socket(ip, port);
+			socket = new Socket(Constant.weightConstantIP, port);
 			// initialize the writer and the reader with the socket output and input stream
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -36,16 +42,16 @@ public class WeightTranslation {
 		}
 		catch (IOException e) 
 		{
-			throw new DALException("Error in connecting to the weight" + e.getMessage());
+			throw new IOException("Cannot connect to the weight" + e.getMessage());
 		}
 	}
 
 	/**
 	 * Shows message on weight, can only show 6 char's
 	 * @param recvMessage that is shown on weight.
-	 * @throws IOException if error, an IOExeption is thrown.
+	 * @throws WeightException 
 	 */
-	public void showMsg(String recvMessage) throws DALException 
+	public void showMsg(String recvMessage) throws WeightException
 	{
 		String message = recvMessage;
 		if (message.length() > 5)
@@ -66,7 +72,7 @@ public class WeightTranslation {
 				clearDisplayAndShowWeight();
 				showMsg(message);
 			case "D L":
-				throw new DALException("Command understood, parameter wrong or balance with	no display.");
+				throw new WeightException("Command understood, parameter wrong or balance with	no display.");
 			case "DW":
 				clearDisplayAndShowWeight();
 				showMsg(message);
@@ -74,21 +80,21 @@ public class WeightTranslation {
 				showMsg(message);
 				break;
 			default:
-				throw new DALException("Error showing message on weight - weight returns: " + response);
+				throw new WeightException("Error showing message on weight - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 	}
 
 	/**
 	 * Removes a normal message on weight.
 	 * @param message that is shown on weight, send "" in param to clear text.
-	 * @throws IOException if error, an IOExeption is thrown.
+	 * @throws WeightException
 	 */
-	public void removeMsg() throws DALException 
+	public void removeMsg() throws WeightException
 	{
 		write.println("D \"\"");
 		try
@@ -105,21 +111,21 @@ public class WeightTranslation {
 				removeMsg();
 				break;
 			default:
-				throw new DALException("Error showing message on weight - weight returns: " + response);
+				throw new WeightException("Error showing message on weight - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 	}
 
 	/**
 	 * Shows a long message, can only show 30 char's
 	 * @param message the message that is printed on the weight.
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void showLongMsg(String recvMessage) throws DALException 
+	public void showLongMsg(String recvMessage) throws WeightException
 	{
 		String message = recvMessage;
 		if (message.length() > 30)
@@ -140,25 +146,25 @@ public class WeightTranslation {
 				clearDisplayAndShowWeight();
 				showLongMsg(message);
 			case "P111 L":
-				throw new DALException("Error showing message in weight");
+				throw new WeightException("Error showing message in weight");
 			case "ES":
 				showLongMsg(message);
 				break;
 			default:
-				throw new DALException("Error showing long message on weight - weight returns: " + response);
+				throw new WeightException("Error showing long message on weight - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 	}
 
 	/**
 	 * Removes a long message
-	 * @throws DALException
+	 * @throws WeightException
 	 */
-	public void removeLongMsg() throws DALException
+	public void removeLongMsg() throws WeightException
 	{
 		write.println("P111 \"\"");
 		try 
@@ -172,17 +178,17 @@ public class WeightTranslation {
 			case "P111 I":
 				System.out.println("Command to removeLongMsg returned an error");
 			case "P111 L":
-				throw new DALException("Error in removing message on weight");
+				throw new WeightException("Error in removing message on weight");
 			case "ES":
 				removeLongMsg();
 				break;
 			default:
-				throw new DALException("Error in removing long message in weight - weight returns: " + response);
+				throw new WeightException("Error in removing long message in weight - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 	}
 
@@ -191,10 +197,10 @@ public class WeightTranslation {
 	 * @param promtMessage Promt string (max. 24 characters)
 	 * @param defaultNumber Text/Value to be displayed as default, and to be overwritten by user input. (max. 24 characters)
 	 * @param unit Unit (max. 7 characters)
-	 * @return
-	 * @throws DALException
+	 * @return int message
+	 * @throws WeightException
 	 */
-	public int getInputWithMsg(String promtMessage, int defaultNumber, String unit) throws DALException 
+	public int getInputWithMsg(String promtMessage, int defaultNumber, String unit) throws WeightException
 	{
 		try
 		{
@@ -241,23 +247,23 @@ public class WeightTranslation {
 				}
 				else
 				{
-					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+					throw new WeightException("Error showing getInputWithMsg - weight returns: " + response);
 				}
 			}
 			return -9999;
 		} 
 		catch(IOException e) 
 		{
-			throw new DALException("Error getting the input");
+			throw new WeightException("Error getting the input");
 		}
 	}
 
 
 	/**
 	 * Removes the displayed message on the weight.
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void removeInputWithMsg() throws DALException 
+	public void removeInputWithMsg() throws WeightException
 	{
 
 		// Write commends to the weight (open telnet)
@@ -276,12 +282,12 @@ public class WeightTranslation {
 				removeInputWithMsg();
 				break;
 			default:
-				throw new DALException("Error in removeInputWithMsg - weight returns: " + response);
+				throw new WeightException("Error in removeInputWithMsg - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 
 	}
@@ -289,9 +295,9 @@ public class WeightTranslation {
 	/**
 	 * Will take the current weight load of the weight and pull it into a double.
 	 * @return weight Weight in the form of a double
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public double getWeight() throws DALException 
+	public double getWeight() throws WeightException
 	{
 		try 
 		{
@@ -306,9 +312,9 @@ public class WeightTranslation {
 				getTaraWeight();
 				break;
 			case "S +":
-				throw new DALException("Upper limit of taring range exceeded.");
+				throw new WeightException("Upper limit of taring range exceeded.");
 			case "S -":
-				throw new DALException("Lower limit of taring range exceeded.");
+				throw new WeightException("Lower limit of taring range exceeded.");
 			case "ES":
 				break;
 			default:
@@ -318,23 +324,23 @@ public class WeightTranslation {
 				}
 				else
 				{
-					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+					throw new WeightException("Error showing getInputWithMsg - weight returns: " + response);
 				}
 			}
 			return 0;
 		} 
 		catch(IOException e) 
 		{
-			throw new DALException("Error showing weight");
+			throw new WeightException("Error showing weight");
 		}
 	}
 
 	/**
 	 * Will set the tara weight on the weight to what's currently the weights' load.
 	 * @return weight Weight in the form of a double
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public double getTaraWeight() throws DALException
+	public double getTaraWeight() throws WeightException
 	{
 		try
 		{
@@ -349,9 +355,9 @@ public class WeightTranslation {
 				getTaraWeight();
 				break;
 			case "T +":
-				throw new DALException("Upper limit of taring range exceeded.");
+				throw new WeightException("Upper limit of taring range exceeded.");
 			case "T -":
-				throw new DALException("Lower limit of taring range exceeded.");
+				throw new WeightException("Lower limit of taring range exceeded.");
 			case "ES":
 				break;
 			default:
@@ -361,22 +367,22 @@ public class WeightTranslation {
 				}
 				else
 				{
-					throw new DALException("Error showing getInputWithMsg - weight returns: " + response);
+					throw new WeightException("Error showing getInputWithMsg - weight returns: " + response);
 				}
 			}
 			return 0;
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Error showing Tara weight");
+			throw new WeightException("Error showing Tara weight");
 		}
 	}
 
 	/**
 	 * Remove the tara weight from the weight.
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void removeTaraWeight() throws DALException
+	public void removeTaraWeight() throws WeightException
 	{
 		try
 		{
@@ -395,20 +401,20 @@ public class WeightTranslation {
 			case "ES":
 				break;
 			default:
-				throw new DALException("Error in removeTaraWeight - weight returns: " + response);
+				throw new WeightException("Error in removeTaraWeight - weight returns: " + response);
 			}
 		}
 		catch (IOException e) 
 		{
-			throw new DALException("Error showing Tara weight");
+			throw new WeightException("Error showing Tara weight");
 		}
 	}
 
 	/**
 	 * Shows the normal weight-mode on the display
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void showWeight() throws DALException 
+	public void showWeight() throws WeightException
 	{
 		try 
 		{
@@ -427,20 +433,20 @@ public class WeightTranslation {
 				showWeight();
 				break;
 			default:
-				throw new DALException("Error showing weight-display - weight returns: " + response);
+				throw new WeightException("Error showing weight-display - weight returns: " + response);
 			}
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException("Cannot read line from Weight - " + e.getMessage());
+			throw new WeightException("Cannot read line from Weight - " + e.getMessage());
 		}
 	}
 
 	/**
 	 * Clearing all that can be cleared, removeMsg() + removeLongMsg() + removeInputWithMsg() + showWeightDisplay()
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void clearDisplayAndShowWeight() throws DALException
+	public void clearDisplayAndShowWeight() throws WeightException
 	{
 		removeMsg();
 		removeLongMsg();
@@ -449,30 +455,10 @@ public class WeightTranslation {
 	}
 
 	/**
-	 * Shuts down the weight remotely, but only with the physical weight
-	 * @throws DALException
-	 */
-	public void shutdownWeight() throws DALException
-	{
-		try 
-		{
-			clearDisplayAndShowWeight();
-			write.println("PWR 0");
-			read.readLine();
-			write.println("PWR 0");
-			read.readLine();
-		}
-		catch (IOException e) 
-		{
-			throw new DALException(e.getMessage());
-		}
-	}
-
-	/**
 	 * Closes all open objects
-	 * @throws DALException
+	 * @throws WeightException 
 	 */
-	public void closeAllLeaks() throws DALException
+	public void closeAllLeaks() throws WeightException
 	{
 		try 
 		{
@@ -482,7 +468,7 @@ public class WeightTranslation {
 		} 
 		catch (IOException e) 
 		{
-			throw new DALException(e.getMessage());
+			throw new WeightException("Cannot close ressources" + e.getMessage());
 		}
 	}
 

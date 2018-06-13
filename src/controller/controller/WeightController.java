@@ -1,14 +1,10 @@
 package controller.controller;
 
 import java.util.concurrent.TimeUnit;
-
-import boundary.weight.WeightTranslation;
-import controller.controller_interface.ICommodityBatchController;
-import controller.controller_interface.IProductBatchController;
-import controller.controller_interface.IRecipeComponentController;
-import controller.controller_interface.IUserController;
-import controller.controller_interface.IWeightController;
+import boundary.weight_interface.IWeightTranslation;
+import controller.controller_interface.*;
 import exceptions.DALException;
+import exceptions.WeightException;
 
 public class WeightController implements IWeightController {
 
@@ -16,9 +12,9 @@ public class WeightController implements IWeightController {
 	private IUserController user;
 	private IRecipeComponentController rcc;
 	private ICommodityBatchController cbc;
-	private WeightTranslation weight;
-	private CommodityController cc;
-	private ProductBatchComponentController pbcc;
+	private ICommodityController cc;
+	private IProductBatchComponentController pbcc;
+	private IWeightTranslation weight;
 
 	private int state = 1;
 	private int commodityBatchID = -1000;
@@ -28,24 +24,24 @@ public class WeightController implements IWeightController {
 	private double netto = 0;
 	private int goBack = -2;
 
-	public WeightController(ProductBatchController pbc, UserController user, RecipeComponentController rcc, CommodityBatchController cbc, CommodityController cc, WeightTranslation weight, ProductBatchComponentController pbcc) throws DALException
+	public WeightController(IProductBatchController pbc, IUserController user, IRecipeComponentController rcc, ICommodityBatchController cbc, ICommodityController cc, IProductBatchComponentController pbcc, IWeightTranslation weight) throws DALException
 	{
 		this.pbc = pbc;
 		this.user = user;
 		this.rcc = rcc;
 		this.cbc = cbc;
 		this.cc = cc;
-		this.weight = weight;
 		this.pbcc = pbcc;
+		this.weight = weight;
 	}
-	
+
 	//TODO Kig på flow, cancel = -2 AKA goBack = -2, switch fungere ikke længere, switch skal virke igen.
 
 	/*
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#weightFlow()
 	 */
-	public void weightFlow() throws DALException
+	public void weightFlow() throws WeightException, DALException
 	{
 		while(state < 9)
 		{
@@ -65,7 +61,7 @@ public class WeightController implements IWeightController {
 				taraWeight();
 				break;
 			case 6:
-//				enterCBID();
+				//				enterCBID();
 				state++;
 				break;
 			case 7:
@@ -96,7 +92,7 @@ public class WeightController implements IWeightController {
 				weight.getInputWithMsg("Bruger inaktiv, proov igen", 0, "");
 			else state++;
 		}
-		catch (DALException e)
+		catch (WeightException e)
 		{
 			System.out.println("failure in enterOprID()" + e.getMessage());
 		}
@@ -117,10 +113,17 @@ public class WeightController implements IWeightController {
 			else
 				state++;
 		}
-		catch (DALException e)
+		catch (WeightException e)
 		{
 			System.out.println("Failure in WelcomeAnswer(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			try 
+			{
+				weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			} 
+			catch (WeightException e1) 
+			{
+				System.out.println(e1.getMessage());
+			}
 			state--;
 		}
 	}	
@@ -129,7 +132,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#enterPBID()
 	 */
-	public void enterPBID() throws NumberFormatException, DALException
+	public void enterPBID() throws DALException, WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -143,7 +146,7 @@ public class WeightController implements IWeightController {
 				state++;
 			}
 		}
-		catch (DALException e)
+		catch (WeightException e)
 		{
 			System.out.println("Failure in enterPBID(): " + e.getMessage());
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
@@ -154,7 +157,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#taraWeight()
 	 */
-	public void taraWeight() throws NumberFormatException, DALException
+	public void taraWeight() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -169,40 +172,40 @@ public class WeightController implements IWeightController {
 				state++;
 			}
 		}
-		catch (DALException e)
+		catch (WeightException e)
 		{
 			System.out.println("Failure in taraWeight: " + e.getMessage());
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
 		}
 	}
-//
-//	/*
-//	 * (non-Javadoc)
-//	 * @see controller.controller_interface.IWeightController#enterCBID()
-//	 */
-//	public void enterCBID() throws NumberFormatException, DALException
-//	{
-//		System.out.println("State: " + state);
-//		try
-//		{
-//			commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
-//			if (commodityBatchID == 0)
-//				state--;
-//			else
-//				state++;
-//		}
-//		catch (DALException e)
-//		{
-//			System.out.println("Failure in enterCBID(): " + e.getMessage());
-//			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
-//		}
-//	}
+	//
+	//	/*
+	//	 * (non-Javadoc)
+	//	 * @see controller.controller_interface.IWeightController#enterCBID()
+	//	 */
+	//	public void enterCBID() throws NumberFormatException, DALException
+	//	{
+	//		System.out.println("State: " + state);
+	//		try
+	//		{
+	//			commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
+	//			if (commodityBatchID == 0)
+	//				state--;
+	//			else
+	//				state++;
+	//		}
+	//		catch (DALException e)
+	//		{
+	//			System.out.println("Failure in enterCBID(): " + e.getMessage());
+	//			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+	//		}
+	//	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#weightCommodities()
 	 */
-	public void weightCommodities() throws DALException
+	public void weightCommodities() throws DALException, WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -227,7 +230,7 @@ public class WeightController implements IWeightController {
 					int commodityID = rcc.getRecipeComponent(recipeID).get(i).getCommodityID();
 					String commodityName = cc.getCommodity(commodityID).getName();
 					System.out.println(commodityName);
-					
+
 					int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
 					if (choice == goBack)
 					{
@@ -238,11 +241,11 @@ public class WeightController implements IWeightController {
 						double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 - (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
 						double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 + (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
 						System.out.println("Min = " + min + " max = " + max);
-						
+
 						while(true)
 						{
 							comWeight = weight.getWeight();
-							
+
 							if(comWeight < min) 
 							{
 								weight.showLongMsg("Mere vaegt");
@@ -270,7 +273,7 @@ public class WeightController implements IWeightController {
 								{
 									e.printStackTrace();
 								}
-								
+
 								if(choice == -1) 
 								{
 									netto = weight.getWeight();
@@ -281,7 +284,7 @@ public class WeightController implements IWeightController {
 									System.out.println("BATCH ID =" + commodityBatchID + " ID =" + commodityID + " " + originalAmount + " " + newAmount + " " + comWeight);
 									System.out.println(comWeight + " fjernet fra " + commodityName + " totalt på lager " + cbc.getCommodityBatchSingle(commodityID).getAmount());
 									break;
-									
+
 								} 
 								else if(choice == -2)
 								{
@@ -290,16 +293,16 @@ public class WeightController implements IWeightController {
 							}
 							System.out.println(comWeight);
 						}
-						
+
 						System.out.println(comWeight);
 					}
-					
+
 					weight.removeMsg();
 				}
 			}
 			state += 1;
 		}
-		catch (DALException e)
+		catch (WeightException e)
 		{
 			System.out.println("Failure in weightCommodities(): " + e.getMessage());	
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
@@ -310,7 +313,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#finish()
 	 */
-	public void finish() throws NumberFormatException, DALException
+	public void finish() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -324,7 +327,7 @@ public class WeightController implements IWeightController {
 				pbc.getProductBatch(productBatchID).setStatus(2);
 			}
 		}
-		catch (DALException e)
+		catch (WeightException | DALException e)
 		{
 			System.out.println("Failure in finish(): " + e.getMessage());
 			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
@@ -332,7 +335,7 @@ public class WeightController implements IWeightController {
 		}
 	}
 
-	public void restart()
+	public void restart() throws WeightException, DALException
 	{
 		try 
 		{
@@ -341,10 +344,12 @@ public class WeightController implements IWeightController {
 			weight.removeLongMsg();
 			weightFlow();
 		} 
-		catch (DALException | InterruptedException e) 
+		catch (InterruptedException e) 
 		{
-			System.out.println(e.getMessage());
+			weight.removeLongMsg();
+			weight.showLongMsg("Error in restart");
 		}
+
 	}
 
 
