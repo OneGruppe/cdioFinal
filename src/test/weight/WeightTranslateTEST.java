@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import boundary.weight.WeightTranslation;
 import data.connector.Constant;
-import exceptions.DALException;
 import exceptions.WeightException;
 
 public class WeightTranslateTEST {

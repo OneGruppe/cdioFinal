@@ -16,7 +16,6 @@ import boundary.rest_interface.IRecipeREST;
 import controller.controller.RecipeController;
 import controller.controller_interface.IRecipeController;
 import data.dto.RecipeDTO;
-import data.dto.SupplierDTO;
 import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
