@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.SupplierDAO;
 import data.dao_interface.ISupplierDAO;
 import data.dto.SupplierDTO;
@@ -26,12 +27,12 @@ public class SupplierDAOTEST {
 	{
 		try 
 		{
-			dao = new SupplierDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new SupplierDAO();
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class SupplierDAOTEST {
 	{
 		try 
 		{
-			dao.deleteSupplier(testID1);
-			dao.deleteSupplier(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM supplier WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM supplier WHERE id= " + testID2);
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -65,30 +67,8 @@ public class SupplierDAOTEST {
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error: " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateSupplierTEST() 
-	{
-		SupplierDTO expected = new SupplierDTO(testID1, "Test");
-		SupplierDTO updated = new SupplierDTO(testID1, "Bongo Bob");
-
-		try 
-		{
-			dao.createSupplier(expected);
-			dao.updateSupplier(updated);
-
-			SupplierDTO actual = dao.getSupplier(testID1);
-
-			assertEquals(updated.toString(), actual.toString());
-		} 
-		catch(DALException e) 
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -124,8 +104,8 @@ public class SupplierDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

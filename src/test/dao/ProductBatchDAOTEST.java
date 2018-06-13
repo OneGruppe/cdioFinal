@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.ProductBatchDAO;
 import data.dao_interface.IProductBatchDAO;
 import data.dto.ProductBatchDTO;
@@ -26,12 +27,12 @@ public class ProductBatchDAOTEST {
 	{
 		try
 		{
-			dao = new ProductBatchDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new ProductBatchDAO();
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class ProductBatchDAOTEST {
 	{
 		try 
 		{
-			dao.deleteProductBatch(testID1);
-			dao.deleteProductBatch(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM productBatch WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM productBatch WHERE id= " + testID2);
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -65,30 +67,8 @@ public class ProductBatchDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateProductBatchTEST() 
-	{
-		ProductBatchDTO expected = new ProductBatchDTO(testID1, 1, 1);
-		ProductBatchDTO updated = new ProductBatchDTO(testID1, 1, 0);
-
-		try 
-		{
-			dao.createProductBatch(expected);
-			dao.updateProductBatch(updated);
-			
-			ProductBatchDTO actual = dao.getProductBatch(testID1);
-
-			assertEquals(updated.toString(), actual.toString());
-		}
-		catch(DALException e) 
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -124,8 +104,8 @@ public class ProductBatchDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

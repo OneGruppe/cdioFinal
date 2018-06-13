@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.CommodityBatchDAO;
 import data.dao_interface.ICommodityBatchDAO;
 import data.dto.CommodityBatchDTO;
@@ -26,12 +27,12 @@ public class CommodityBatchDAOTEST {
 	{
 		try
 		{
-			dao = new CommodityBatchDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new CommodityBatchDAO();
 		}
 		catch(DALException e)
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class CommodityBatchDAOTEST {
 	{
 		try 
 		{
-			dao.deleteCommodityBatch(testID1);
-			dao.deleteCommodityBatch(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM user commodityBatch id= " + testID1);
+			con.doUpdate("DELETE FROM user commodityBatch id= " + testID2);
 		}
 		catch (DALException e)
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -67,31 +69,8 @@ public class CommodityBatchDAOTEST {
 		}
 		catch(DALException e)
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateCommodityBatchTEST()
-	{
-		CommodityBatchDTO expected = new CommodityBatchDTO(testID1, 1, 10.0);
-		CommodityBatchDTO updated = new CommodityBatchDTO(testID1, 2, 15.0);
-
-		try
-		{
-			dao.createCommodityBatch(expected);
-			dao.updateCommodityBatch(updated);
-			
-			for (CommodityBatchDTO actual : dao.getCommodityBatch(testID1))
-			{
-				assertEquals(expected.toString(), actual.toString());	
-			}
-		}
-		catch(DALException e)
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -127,8 +106,8 @@ public class CommodityBatchDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

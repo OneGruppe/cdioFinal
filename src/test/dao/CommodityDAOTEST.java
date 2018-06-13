@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.CommodityDAO;
 import data.dao_interface.ICommodityDAO;
 import data.dto.CommodityDTO;
@@ -26,12 +27,12 @@ public class CommodityDAOTEST {
 	{
 		try 
 		{
-			dao = new CommodityDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new CommodityDAO();
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class CommodityDAOTEST {
 	{
 		try 
 		{
-			dao.deleteCommodity(testID1);
-			dao.deleteCommodity(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM commodity WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM commodity WHERE id= " + testID2);
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -64,8 +66,8 @@ public class CommodityDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage()); 
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -86,8 +88,8 @@ public class CommodityDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -123,8 +125,8 @@ public class CommodityDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

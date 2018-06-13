@@ -27,12 +27,12 @@ public class UserDAOTEST {
 	{
 		try 
 		{
-			dao = new UserDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new UserDAO();
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error connecting" + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -47,8 +47,8 @@ public class UserDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -67,8 +67,8 @@ public class UserDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -89,8 +89,8 @@ public class UserDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -126,8 +126,8 @@ public class UserDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

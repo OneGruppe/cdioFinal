@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.RecipeDAO;
 import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
@@ -26,12 +27,12 @@ public class RecipeDAOTEST {
 	{
 		try 
 		{
-			dao = new RecipeDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new RecipeDAO();
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class RecipeDAOTEST {
 	{
 		try 
 		{
-			dao.deleteRecipe(testID1);
-			dao.deleteRecipe(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM recipe WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM recipe WHERE id= " + testID2);
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -65,30 +67,8 @@ public class RecipeDAOTEST {
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateRecipeTEST() 
-	{
-		RecipeDTO expected = new RecipeDTO(testID1, "Pensilin");
-		RecipeDTO updated = new RecipeDTO(testID1, "Not Pensilin");
-
-		try 
-		{
-			dao.createRecipe(expected);
-			dao.updateRecipe(updated);
-
-			RecipeDTO actual = dao.getRecipe(testID1);
-
-			assertEquals(updated.toString(), actual.toString());
-		}
-		catch(DALException e) 
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -124,8 +104,8 @@ public class RecipeDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 }

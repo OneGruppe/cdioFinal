@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.ProductBatchComponentDAO;
 import data.dao_interface.IProductBatchComponentDAO;
 import data.dto.ProductBatchComponentDTO;
@@ -26,12 +27,12 @@ public class ProductBatchComponentDAOTEST {
 	{
 		try 
 		{
-			dao = new ProductBatchComponentDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new ProductBatchComponentDAO();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class ProductBatchComponentDAOTEST {
 	{
 		try 
 		{
-			dao.deleteProductBatchComponent(testID1);
-			dao.deleteProductBatchComponent(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM productBatchComponent WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM productBatchComponent WHERE id= " + testID2);
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -65,32 +67,8 @@ public class ProductBatchComponentDAOTEST {
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateProductBatchComponentTEST()
-	{
-		ProductBatchComponentDTO expected = new ProductBatchComponentDTO(testID1, 1, 1, 1, 1.0, 1.0);
-		ProductBatchComponentDTO updated = new ProductBatchComponentDTO(testID1, 1, 2, 1, 2.0, 2.0);
-
-		try {
-			dao.createProductBatchComponent(expected);
-			dao.updateProductBatchComponent(updated);
-
-			for(ProductBatchComponentDTO actual : dao.getProductBatchComponent(1)) {
-				if(updated.getId() == updated.getId())
-				{					
-					assertEquals(updated.toString(), actual.toString());
-				}
-			}
-		} 
-		catch (DALException e) 
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -122,8 +100,8 @@ public class ProductBatchComponentDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 

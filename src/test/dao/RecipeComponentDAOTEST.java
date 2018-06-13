@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.connector.Connector;
 import data.dao.RecipeComponentDAO;
 import data.dao_interface.IRecipeComponentDAO;
 import data.dto.RecipeComponentDTO;
@@ -26,12 +27,12 @@ public class RecipeComponentDAOTEST {
 	{
 		try 
 		{
-			dao = new RecipeComponentDAO("91.100.3.26", 9865, "CDIOFinal_test", "Eclipse-bruger", "ySmTL37uDjYZmzyn");
+			dao = new RecipeComponentDAO();
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -40,13 +41,14 @@ public class RecipeComponentDAOTEST {
 	{
 		try 
 		{
-			dao.deleteRecipeComponent(testID1);
-			dao.deleteRecipeComponent(testID2);
+			Connector con = new Connector();
+			con.doUpdate("DELETE FROM recipeComponent WHERE id= " + testID1);
+			con.doUpdate("DELETE FROM recipeComponent WHERE id= " + testID2);
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -70,35 +72,8 @@ public class RecipeComponentDAOTEST {
 		} 
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
-		}
-	}
-
-	@Test
-	public void updateRecipeComponentTEST() 
-	{
-		RecipeComponentDTO expected = new RecipeComponentDTO(testID1, 3, 1, 1.0, 0.1);
-		RecipeComponentDTO updated = new RecipeComponentDTO(testID1, 4, 1, 2.0, 0.2);
-
-		try 
-		{
-			dao.createRecipeComponent(expected);
-			dao.updateRecipeComponent(updated);
-
-			for(RecipeComponentDTO actual : dao.getRecipeComponent(4))
-			{
-				if(actual.getId() == testID1)
-				{
-					assertEquals(expected.toString(), actual.toString());
-					break;
-				}
-			}
-		}
-		catch(DALException e) 
-		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
@@ -134,8 +109,8 @@ public class RecipeComponentDAOTEST {
 		}
 		catch(DALException e) 
 		{
-			System.out.println("Error: " + e.getMessage());
-			fail("Error " + e.getMessage());
+			System.out.println(e.getMessage());
+			fail(e.getMessage());
 		}
 	}
 
