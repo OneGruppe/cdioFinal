@@ -20,7 +20,15 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 */
 	public CommodityBatchDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -32,9 +40,17 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * @param password
 	 * @throws DALException
 	 */
-	public CommodityBatchDAO(String server, int port, String database, String username, String password) throws DALException 
+	public CommodityBatchDAO(String server, int port, String database, String username, String password) throws DALException
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 		
+		catch (DALException e) 
+		{
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -42,12 +58,20 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * @see data.dao_interface.ICommodityBatchDAO#createCommodityBatch(data.dto.CommodityBatchDTO)
 	 */
 	@Override
-	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
+	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException
 	{
-		con.doUpdate("INSERT INTO commodityBatch VALUES ("
-				+ commodityBatch.getId() + ", "
-				+ commodityBatch.getCommodityID() + ", "
-				+ commodityBatch.getAmount() + ")" );
+		try 
+		{
+			con.doUpdate("INSERT INTO commodityBatch VALUES ("
+					+ commodityBatch.getId() + ", "
+					+ commodityBatch.getCommodityID() + ", "
+					+ commodityBatch.getAmount() + ")" );
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse af råvare");
+		}
 	}
 
 	/*
@@ -55,12 +79,20 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * @see data.dao_interface.ICommodityBatchDAO#updateCommodityBatch(data.dto.CommodityBatchDTO)
 	 */
 	@Override
-	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException 
+	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException
 	{
-		con.doUpdate("UPDATE commodityBatch SET "
-				+ "commodityID=" + commodityBatch.getCommodityID() + ", "
-				+ "amount=" + commodityBatch.getAmount() + " "
-				+ "WHERE id=" + commodityBatch.getId());
+		try 
+		{
+			con.doUpdate("UPDATE commodityBatch SET "
+					+ "commodityID=" + commodityBatch.getCommodityID() + ", "
+					+ "amount=" + commodityBatch.getAmount() + " "
+					+ "WHERE id=" + commodityBatch.getId());
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i updatering af råvarebatch med id = '" + commodityBatch.getId() + "'");
+		}
 	}
 
 	/*
@@ -68,63 +100,74 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * @see data.dao_interface.ICommodityBatchDAO#deleteCommodityBatch(int)
 	 */
 	@Override
-	public void deleteCommodityBatch(int id) throws DALException 
+	public void deleteCommodityBatch(int id) throws DALException
 	{
-		con.doUpdate("DELETE FROM commodityBatch WHERE id=" + id);
+		try 
+		{
+			con.doUpdate("DELETE FROM commodityBatch WHERE id=" + id);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i sletning af råvarebatch med id = '" + id + "'");
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#showCommodityBatch(int)
 	 */
-	
 	@Override
-	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException 
+	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE id = " + id);
-
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE id = " + id);
+
 			if(!rs.first()) 
 			{
-				throw new DALException("" + id);
+				throw new DALException("Råvarebatch med id '" + id + "' findes ikke");
 			}
 			else 
 			{
 				return new CommodityBatchDTO(rs.getInt("id"), rs.getInt("commodityID"), rs.getDouble("amount"));
 			}
-		} 
-		catch (SQLException e) 
+		}
+		catch (SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentningen af råvarebatch med id = '" + id + "'");
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#getCommodityBatch(int)
 	 */
 	@Override
-	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException 
+	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException
 	{
 		List<CommodityBatchDTO> commodityBatchList = new ArrayList<CommodityBatchDTO>();
-		
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE commodityID= " + commodityID);
-		
-		try 
+
+		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM commodityBatch WHERE commodityID= " + commodityID);
+
 			while(rs.next()) 
 			{
 				commodityBatchList.add(new CommodityBatchDTO(rs.getInt("id"), rs.getInt("commodityID"), rs.getDouble("amount")));
 			}
-			
+			if(commodityBatchList.isEmpty()) 
+			{
+				throw new DALException("Råvarebatch-listen listen er tom...\nTilføj nogle værdier og prøv igen");
+			}
+			return commodityBatchList;	
 		} 
-		catch(SQLException e) 
+		catch(SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af råvarebatch-listen med råvareid = '" + commodityID + "'");
 		}
-		
-		return commodityBatchList;	
 	}
 
 	/*
@@ -132,28 +175,31 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 	 * @see data.dao_interface.ICommodityBatchDAO#showAllCommodityBatches()
 	 */
 	@Override
-	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException 
+	public List<CommodityBatchDTO> getAllCommodityBatches() throws DALException
 	{
-		List<CommodityBatchDTO> comBatchList = new ArrayList<CommodityBatchDTO>();
-
-		ResultSet rs = con.doQuery("SELECT * FROM commodityBatch");
+		List<CommodityBatchDTO> commodityBatchList = new ArrayList<CommodityBatchDTO>();
 
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM commodityBatch");
+
 			while(rs.next()) 
 			{
 				CommodityBatchDTO combatdto = new CommodityBatchDTO(rs.getInt("id"), rs.getInt("commodityID"), rs.getDouble("amount"));
-				comBatchList.add(combatdto);
+				commodityBatchList.add(combatdto);
 			}
-			if(comBatchList.isEmpty()) {
-				throw new DALException("RÃ¥vareBatch listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
+			if(commodityBatchList.isEmpty()) 
+			{
+				throw new DALException("Råvarebatch-listen listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
-			return comBatchList;
+			return commodityBatchList;
 		}
-		catch (SQLException e)
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("CommodityBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af råvarebatch-listen");
 		}
 	}
+
 
 }

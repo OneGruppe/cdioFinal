@@ -26,7 +26,7 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i forbindelse til database");
 		}
 	}
@@ -42,12 +42,13 @@ public class UserDAO implements IUserDAO {
 	 */
 	public UserDAO(String server, int port, String database, String username, String password) throws DALException
 	{
-		try {
+		try 
+		{
 			con = new Connector(server, port, database, username, password);
 		} 		
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i forbindelse til database");
 		}
 	}
@@ -69,7 +70,7 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i oprettelse af bruger");
 		}
 	}
@@ -81,7 +82,8 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void updateUser(UserDTO user) throws DALException
 	{
-		try {
+		try 
+		{
 			con.doUpdate("UPDATE user SET "
 					+ "name='" + user.getName() + "', "
 					+ "ini='" + user.getIni() + "', "
@@ -90,7 +92,7 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i opdatering af bruger");
 		}
 	}
@@ -108,7 +110,7 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i opdatering af brugerens status");
 		}
 	}
@@ -118,12 +120,12 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#showUser(int)
 	 */
 	@Override
-	public UserDTO getUser(int id) throws DALException 
+	public UserDTO getUser(int id) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM user WHERE id = " + id);
-
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM user WHERE id = " + id);
+
 			if(!rs.first()) 
 			{
 				throw new DALException("Bruger med id '" + id + "' findes ikke");
@@ -133,10 +135,10 @@ public class UserDAO implements IUserDAO {
 				return new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
 			}
 		} 
-		catch (SQLException e) 
+		catch (SQLException | DALException e) 
 		{
-			System.out.println(e.getMessage());
-			throw new DALException("Fejl i hentningen af bruger");
+			System.out.println("UserDAO eror: " + e.getMessage());
+			throw new DALException("Fejl i visning af bruger");
 		}
 	}
 
@@ -145,23 +147,26 @@ public class UserDAO implements IUserDAO {
 	 * @see data.dao_interface.IUserDAO#showAllUsers()
 	 */
 	@Override
-	public List<UserDTO> getAllUsers() throws DALException 
+	public List<UserDTO> getAllUsers() throws DALException
 	{
 		List<UserDTO> users = new ArrayList<UserDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM user");
 
 		try
 		{
-			while(rs.next()) {
+			ResultSet rs = con.doQuery("SELECT * FROM user");
+
+			while(rs.next()) 
+			{
 				UserDTO userdto = new UserDTO(rs.getInt("id"), rs.getString("name"), rs.getString("ini"), rs.getInt("active"));
 				users.add(userdto);
 			}
-			if(users.isEmpty()) {
+			if(users.isEmpty()) 
+			{
 				throw new DALException("Bruger listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return users;
 		}
-		catch (SQLException e) 
+		catch (SQLException | DALException e) 
 		{
 			System.out.println(e.getMessage());
 			throw new DALException("Fejl i hentningen af bruger-listen");
