@@ -12,7 +12,7 @@ $(document).ready(function() {
 			method: "POST",
 			success: function(data) {
 				console.log(data);
-				alert("Råvaren er oprettet");
+				alert(data);
 			}
 		});
 		return false;
