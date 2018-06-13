@@ -16,7 +16,6 @@ public class TestWeightFlow {
 	{
 		try 
 		{
-			UserController uc = new UserController();
 			ProductBatchController pbc = new ProductBatchController();
 			UserController user = new UserController();
 			RecipeComponentController rcc = new RecipeComponentController();
@@ -25,7 +24,7 @@ public class TestWeightFlow {
 			ProductBatchComponentController pbcc = new ProductBatchComponentController();
 			WeightTranslation weight = new WeightTranslation("62.79.16.17", 8000);
 
-			WeightController wc = new WeightController(uc, pbc, user, rcc, cbc, cc, weight, pbcc);
+			WeightController wc = new WeightController(pbc, user, rcc, cbc, cc, weight, pbcc);
 			wc.weightFlow();
 
 		} 
