@@ -2,13 +2,13 @@ package controller.controller;
 
 import java.util.List;
 
-import controller.controller_interface.IProductbatchComponentController;
+import controller.controller_interface.IProductBatchComponentController;
 import data.dao.ProductBatchComponentDAO;
 import data.dao_interface.IProductBatchComponentDAO;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
-public class ProductBatchComponentController implements IProductbatchComponentController {
+public class ProductBatchComponentController implements IProductBatchComponentController {
 
 	private IProductBatchComponentDAO dao;
 

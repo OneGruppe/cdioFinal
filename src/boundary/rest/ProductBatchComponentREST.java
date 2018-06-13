@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 import boundary.rest_interface.IProductBatchComponentREST;
 import controller.controller.ProductBatchComponentController;
-import controller.controller_interface.IProductbatchComponentController;
+import controller.controller_interface.IProductBatchComponentController;
 import data.dto.ProductBatchComponentDTO;
 import exceptions.DALException;
 
@@ -20,7 +20,7 @@ import exceptions.DALException;
 @Path("prodBatchComponent")
 public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	
-	private IProductbatchComponentController prodBatchCompController;
+	private IProductBatchComponentController prodBatchCompController;
 	
 	public ProductBatchComponentREST() 
 	{
