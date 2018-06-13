@@ -32,14 +32,14 @@ $(document).ready(function() {
 						c.innerHTML = "Recept ID";
 						
 						c = r.insertCell(2);
-						c.innerHTML = "Råvare ID";					
+						c.innerHTML = "Råvare ID";
 						
 						c = r.insertCell(3);
-						c.innerHTML = "Netto";
+						c.innerHTML = "Non Netto";
 						
 						c = r.insertCell(4);
 						c.innerHTML = "Tolerance";
-					
+						
 						for(var i = 0; i < data[0].length; i++)
 						{
 							
@@ -55,11 +55,11 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].commodityID;
 							
 							c = r.insertCell(3);
-							c.innerHTML = (data[0][i].non_netto).toFixed(8);
+							c.innerHTML = (data[0][i].non_netto).toFixed(4);
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tolerance).toFixed(8);
-						
+							c.innerHTML = (data[0][i].tolerance).toFixed(4);
+							
 						}
 
 						
@@ -83,10 +83,10 @@ $(document).ready(function() {
 						c.innerHTML = "Recept ID";
 						
 						c = r.insertCell(2);
-						c.innerHTML = "Råvare ID";					
+						c.innerHTML = "Råvare ID";
 						
 						c = r.insertCell(3);
-						c.innerHTML = "Netto";
+						c.innerHTML = "Non Netto";
 						
 						c = r.insertCell(4);
 						c.innerHTML = "Tolerance";
@@ -107,11 +107,11 @@ $(document).ready(function() {
 							c.innerHTML = data[0][i].commodityID;
 							
 							c = r.insertCell(3);
-							c.innerHTML = (data[0][i].non_netto).toFixed(8);
+							c.innerHTML = (data[0][i].non_netto).toFixed(4);
 							
 							c = r.insertCell(4);
-							c.innerHTML = (data[0][i].tolerance).toFixed(8);
-						
+							c.innerHTML = (data[0][i].tolerance).toFixed(4);
+							
 						}
 
 						
