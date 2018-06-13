@@ -26,7 +26,8 @@ public class UserREST implements IUserREST {
 
 	public UserREST() 
 	{
-		try {
+		try 
+		{
 			uc = new UserController();
 		} 
 		catch (DALException e) 
@@ -42,28 +43,24 @@ public class UserREST implements IUserREST {
 	@Override
 	@POST
 	@Path("createUser")
-	public void createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
+	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
-		String message;
-
 		try 
 		{
 			if(name.equals("") || ini.equals("") || active < 0 && active > 1)
 			{
-				message = "Fejl i inputtet!";
+				return "Fejl i inputtet!";
 			}
 			else
 			{
 				uc.createUser(name, ini, active);
-				message = "Brugeren " + name + " er oprettet.";
+				return "Brugeren " + name + " er oprettet.";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();		
+			return e.getMessage();		
 		}
-		System.out.println(message);
-		//		return message; //TODO
 	}
 
 	/*
@@ -75,26 +72,22 @@ public class UserREST implements IUserREST {
 	@Path("updateUser")
 	public String updateUser(@FormParam("id") int id, @FormParam("name") String name, @FormParam("ini") String ini) 
 	{
-		String message;
-
 		try 
 		{
 			if(name.equals("") || ini.equals(""))
 			{
-				message = "Fejl i inputtet!";
+				return "Fejl i inputtet!";
 			}
 			else
 			{
 				uc.updateUser(id, name, ini);
-				message = "Brugeren " + name + " er opdateret!";
+				return "Brugeren " + name + " er opdateret!";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return message;
 	}
 
 	/*
@@ -106,27 +99,22 @@ public class UserREST implements IUserREST {
 	@Path("setUserState")
 	public String setUserState(@FormParam("id") int id, @FormParam("state") int state) 
 	{
-		String message;
-
 		try 
 		{
 			if(state == 0 || state == 1)
 			{
 				uc.setUserState(id, state);
-				message = "Brugerens aktivitetsstatus er Ã¦ndret til " + state;
+				return "Brugerens aktivitetsstatus er ændret til " + state;
 			}
 			else
 			{
-				message = "Brugerens aktivitetsstatus kan kun vÃ¦re 0 eller 1.";
+				return "Brugerens aktivitetsstatus kan kun være 0 eller 1.";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-
-		System.out.println(message);
-		return message;
 	}
 
 	/*
@@ -139,8 +127,6 @@ public class UserREST implements IUserREST {
 	@Path("getUser")
 	public String getUser(@FormParam("id") int id)
 	{
-		String message;
-
 		JSONObject userJSON = new JSONObject();
 		UserDTO user;
 
@@ -154,21 +140,19 @@ public class UserREST implements IUserREST {
 				userJSON.put("ini", user.getIni());
 				userJSON.put("active", user.getActive());
 
-				message = "Brugeren " + user.getName() + " blev fundet";
+				return userJSON.toString();
 			}
 			else
 			{
-				message = "Ugyldigt ID blev indtastet\nPrÃ¸v igen";
+				return "Ugyldigt ID blev indtastet\nPrøv igen";
 			}
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
 
-		System.out.println(message);
 
-		return userJSON.toString();
 	}
 
 	/*
@@ -181,20 +165,16 @@ public class UserREST implements IUserREST {
 	@Path("getAllUsers")
 	public String getAllUsers() 
 	{
-		String message;
 		JSONArray users = new JSONArray();
-
 		try 
 		{
 			users.put(uc.getAllUsers());
-			message = "Alle brugeren er fundet!";
+			return users.toString();
 		} 
 		catch (DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return users.toString();
 	}
 
 
