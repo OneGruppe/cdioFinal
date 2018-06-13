@@ -65,16 +65,6 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see data.dao_interface.ICommodityBatchDAO#deleteCommodityBatch(int)
-	 */
-	@Override
-	public void deleteCommodityBatch(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM commodityBatch WHERE id=" + id);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#showCommodityBatch(int)
 	 */
 	

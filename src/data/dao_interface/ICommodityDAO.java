@@ -21,13 +21,6 @@ public interface ICommodityDAO {
 	public void updateCommodity(CommodityDTO commodity) throws DALException;
 
 	/**
-	 * Deletes the commodity with the given ID.
-	 * @param commodity
-	 * @throws DALException
-	 */
-	public void deleteCommodity(int commodityID) throws DALException;
-
-	/**
 	 * Returns a single commodity
 	 * @param commodityID the id of the Commodity
 	 * @return user with id commodityID in form of CommodityDTO

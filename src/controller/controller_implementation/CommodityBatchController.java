@@ -38,16 +38,6 @@ public class CommodityBatchController implements ICommodityBatchController {
 		CommodityBatchDTO combatch = new CommodityBatchDTO(id, commodityID, amount);
 		comdao.updateCommodityBatch(combatch);			
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see controller.controller_interface.ICommodityBatchController#deleteCommodityBatch(int)
-	 */
-	@Override
-	public void deleteCommodityBatch(int id) throws DALException 
-	{
-		comdao.deleteCommodityBatch(id);			
-	}
 	
 	/*
 	 * (non-Javadoc)

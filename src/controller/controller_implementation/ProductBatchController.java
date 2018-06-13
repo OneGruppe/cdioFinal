@@ -45,17 +45,6 @@ public class ProductBatchController implements IProductBatchController {
 
 	/*
 	 * (non-Javadoc)
-	 * @see controller.controller_interface.IProductBatchController#deleteProductBatch(int)
-	 */
-	@Override
-	public void deleteProductBatch(int pbID) throws DALException 
-	{
-		pbdao.deleteProductBatch(pbID);
-
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see controller.controller_interface.IProductBatchController#getProductBatch(int)
 	 */
 	@Override

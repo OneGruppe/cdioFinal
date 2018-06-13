@@ -22,13 +22,6 @@ public interface IProductBatchComponentDAO {
 	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException;
 	
 	/**
-	 * Deletes a given ProductBatch component DTO
-	 * @param component
-	 * @throws DALException
-	 */
-	public void deleteProductBatchComponent(int productBatchComponentID) throws DALException;
-	
-	/**
 	 * Return a single productbatch component
 	 * @param productBatchComponentID
 	 * @return a single ProductBatchComponentDTO object

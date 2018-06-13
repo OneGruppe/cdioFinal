@@ -69,17 +69,6 @@ public class RecipeComponentDAO implements IRecipeComponentDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see data.dao_interface.IRecipeComponentDAO#deleteRecipeComponent(int)
-	 */
-	@Override
-	public void deleteRecipeComponent(int recipeComponentID) throws DALException 
-	{
-		con.doUpdate("DELETE FROM recipeComponent "
-				+ "WHERE id=" + recipeComponentID);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see data.dao_interface.IRecipeComponentDAO#getRecipeComponent(int)
 	 */
 	@Override

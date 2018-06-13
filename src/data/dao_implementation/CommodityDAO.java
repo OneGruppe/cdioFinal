@@ -67,17 +67,6 @@ public class CommodityDAO implements ICommodityDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see data.dao_interface.ICommodityDAO#deleteCommodity(int)
-	 */
-	@Override
-	public void deleteCommodity(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM commodity "
-				+ "WHERE id = " + id + "");
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityDAO#showCommodity(int)
 	 */
 	@Override

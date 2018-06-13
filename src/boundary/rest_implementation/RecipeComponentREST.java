@@ -67,21 +67,6 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 
 	@Override
 	@PUT
-	@Path("deleteRecipeComponent")
-	public void deleteRecipeComponent(@FormParam("id")int id) throws DALException
-	{
-		try
-		{
-			rcc.deleteRecipeComponent(id);
-		}
-		catch (DALException e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Override
-	@PUT
 	@Path("getRecipeComponent")
 	public String getRecipeComponent(@FormParam("recipeID")int recipeID) throws DALException 
 	{

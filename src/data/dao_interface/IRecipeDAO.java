@@ -22,13 +22,6 @@ public interface IRecipeDAO
 	public void updateRecipe(RecipeDTO recipe) throws DALException;
 	
 	/**
-	 * Deletes the recipe with the given ID
-	 * @param recipeID
-	 * @throws DALException
-	 */
-	public void deleteRecipe(int recipeID) throws DALException;
-	
-	/**
 	 * Returns a single recipe
 	 * @param recipeID
 	 * @return

@@ -65,17 +65,6 @@ public class ProductBatchDAO implements IProductBatchDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
-	 */
-	@Override
-	public void deleteProductBatch(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM productBatch "
-				+ "WHERE id=" + id);
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
 	 */
 	@Override

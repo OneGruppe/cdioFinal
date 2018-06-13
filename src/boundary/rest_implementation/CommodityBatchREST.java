@@ -1,7 +1,6 @@
 package boundary.rest_implementation;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -64,21 +63,6 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		{
 			System.out.println(e.getMessage());
 		}	
-	}
-
-	@Override
-	@DELETE
-	@Path("deleteCommodityBatch")
-	public void deleteCommodityBatch(@FormParam("id") int id) 
-	{
-		try 
-		{
-			cbc.deleteCommodityBatch(id);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
 	}
 	
 	@Override

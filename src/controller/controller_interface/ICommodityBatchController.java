@@ -24,13 +24,6 @@ public interface ICommodityBatchController {
 	 * @throws DALException
 	 */
 	public void updateCommodityBatch(int id, int commodityID, double amount) throws DALException;
-
-	/**
-	 * Deletes a commoditybatch
-	 * @param id
-	 * @throws DALException
-	 */
-	public void deleteCommodityBatch(int id) throws DALException;
 	
 	/**
 	 * Returns a single commoditybatch

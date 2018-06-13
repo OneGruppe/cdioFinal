@@ -21,13 +21,6 @@ public interface IRecipeREST {
 	public void updateRecipe(int id, String name) throws DALException;
 
 	/**
-	 * Deletes a Recipe
-	 * @param id
-	 * @throws DALException
-	 */
-	public void deleteRecipe(int id) throws DALException;
-
-	/**
 	 * Gets a single Recipe
 	 * @return
 	 * @throws DALException
