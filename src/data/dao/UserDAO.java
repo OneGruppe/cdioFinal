@@ -168,7 +168,7 @@ public class UserDAO implements IUserDAO {
 		}
 		catch (SQLException | DALException e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println("UserDAO eror: " + e.getMessage());
 			throw new DALException("Fejl i hentningen af bruger-listen");
 		}
 	}

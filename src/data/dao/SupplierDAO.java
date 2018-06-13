@@ -1,14 +1,14 @@
 package data.dao;
 
-import data.connector.Connector;
-import data.dao_interface.ISupplierDAO;
-import data.dto.SupplierDTO;
-import exceptions.DALException;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import data.connector.Connector;
+import data.dao_interface.ISupplierDAO;
+import data.dto.SupplierDTO;
+import exceptions.DALException;
 
 public class SupplierDAO implements ISupplierDAO {
 
@@ -18,9 +18,17 @@ public class SupplierDAO implements ISupplierDAO {
 	 * Constructor that uses Constant-class to connect
 	 * @throws DALException
 	 */
-	public SupplierDAO()throws DALException
+	public SupplierDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("SupplierDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -34,7 +42,15 @@ public class SupplierDAO implements ISupplierDAO {
 	 */
 	public SupplierDAO(String server, int port, String database, String username, String password) throws DALException 
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("SupplierDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -44,32 +60,18 @@ public class SupplierDAO implements ISupplierDAO {
 	@Override
 	public void createSupplier(SupplierDTO supplier) throws DALException
 	{
-		con.doUpdate("INSERT INTO supplier VALUES ("
-				+ supplier.getId() + ", "
-				+ "'" + supplier.getName() + "')");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_interface.ISupplierDAO#updateSupplier(data.dto.SupplierDTO)
-	 */
-	@Override
-	public void updateSupplier(SupplierDTO supplier) throws DALException 
-	{
-		con.doUpdate("UPDATE supplier SET "
-				+ "name='" + supplier.getName() + "' "
-				+ "WHERE id=" + supplier.getId());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_in terface.ISupplierDAO#deleteSupplier(int)
-	 */
-	@Override
-	public void deleteSupplier(int supplierID) throws DALException 
-	{
-		con.doUpdate("DELETE FROM supplier "
-				+ "WHERE id= " + supplierID);		
+		try 
+		{
+			con.doUpdate("INSERT INTO supplier VALUES ("
+					+ supplier.getId() + ", "
+					+ "'" + supplier.getName() + "')");
+			
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("SupplierDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse af leverandør");
+		}
 	}
 
 	/*
@@ -79,11 +81,10 @@ public class SupplierDAO implements ISupplierDAO {
 	@Override
 	public SupplierDTO getSupplier(int supplierID) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM supplier "
-				+ "WHERE id= " + supplierID);
-
 		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM supplier WHERE id= " + supplierID);
+
 			if (!rs.first())
 			{
 				throw new DALException("Supplier med ID " + supplierID + " findes ikke");
@@ -93,9 +94,10 @@ public class SupplierDAO implements ISupplierDAO {
 				return new SupplierDTO(supplierID, rs.getString("name"));
 			}
 		} 
-		catch (SQLException e)
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("SupplierDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af leverandør");
 		}
 	}
 
@@ -107,23 +109,26 @@ public class SupplierDAO implements ISupplierDAO {
 	public List<SupplierDTO> getAllSuppliers() throws DALException 
 	{
 		List<SupplierDTO> suppList = new ArrayList<SupplierDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM supplier");
 
 		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM supplier");
+
 			while(rs.next())
 			{
 				SupplierDTO supdto = new SupplierDTO(rs.getInt("id"), rs.getString("name"));
 				suppList.add(supdto);
 			}
-			if(suppList.isEmpty()) {
+			if(suppList.isEmpty()) 
+			{
 				throw new DALException("LeverandÃ¸r listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
 			}
 			return suppList;
 		} 
-		catch (SQLException e)
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("SupplierDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af leverandør-listen");
 		}
 	}
 

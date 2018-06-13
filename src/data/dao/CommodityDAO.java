@@ -20,7 +20,15 @@ public class CommodityDAO implements ICommodityDAO {
 	 */
 	public CommodityDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -32,9 +40,17 @@ public class CommodityDAO implements ICommodityDAO {
 	 * @param password
 	 * @throws DALException
 	 */
-	public CommodityDAO(String server, int port, String database, String username, String password) throws DALException 
+	public CommodityDAO(String server, int port, String database, String username, String password) throws DALException
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -42,12 +58,20 @@ public class CommodityDAO implements ICommodityDAO {
 	 * @see data.dao_interface.ICommodityDAO#createCommodity(data.dto.CommodityDTO)
 	 */
 	@Override
-	public void createCommodity(CommodityDTO commodity) throws DALException 
+	public void createCommodity(CommodityDTO commodity) throws DALException
 	{
-		con.doUpdate("INSERT INTO commodity VALUES (" 
-				+ commodity.getId() + ", "
-				+ "'" + commodity.getName() + "', " 
-				+ commodity.getSupplierID() + ")");
+		try 
+		{
+			con.doUpdate("INSERT INTO commodity VALUES (" 
+					+ commodity.getId() + ", "
+					+ "'" + commodity.getName() + "', " 
+					+ commodity.getSupplierID() + ")");
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse af råvare");
+		}
 	}
 
 	/*
@@ -55,25 +79,21 @@ public class CommodityDAO implements ICommodityDAO {
 	 * @see data.dao_interface.ICommodityDAO#updateCommodity(data.dto.CommodityDTO)
 	 */
 	@Override
-	public void updateCommodity(CommodityDTO commodity) throws DALException 
+	public void updateCommodity(CommodityDTO commodity) throws DALException
 	{
-		
-		con.doUpdate("UPDATE commodity SET "
-				+ "name='" + commodity.getName() + "', "
-				+ "supplierID=" +commodity.getSupplierID() + " "
-				+ "WHERE id=" + commodity.getId());
+		try
+		{
+			con.doUpdate("UPDATE commodity SET "
+					+ "name='" + commodity.getName() + "', "
+					+ "supplierID=" +commodity.getSupplierID() + " "
+					+ "WHERE id=" + commodity.getId());
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i opdatering af råvare");
+		}
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_interface.ICommodityDAO#deleteCommodity(int)
-	 */
-	@Override
-	public void deleteCommodity(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM commodity "
-				+ "WHERE id = " + id + "");
 	}
 
 	/*
@@ -83,23 +103,24 @@ public class CommodityDAO implements ICommodityDAO {
 	@Override
 	public CommodityDTO getCommodity(int id) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM commodity "
-				+ "WHERE id = " + id);
 
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM commodity WHERE id = " + id);
+
 			if(!rs.first()) 
 			{
-				throw new DALException("" + id);
+				throw new DALException("Råvare med id '" + id + "' findes ikke");
 			}
 			else 
 			{
 				return new CommodityDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("supplierID"));
 			}
 		} 
-		catch (SQLException e) 
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af råvare");
 		}
 	}
 
@@ -111,23 +132,26 @@ public class CommodityDAO implements ICommodityDAO {
 	public List<CommodityDTO> getAllCommodities() throws DALException
 	{
 		List<CommodityDTO> commodities = new ArrayList<CommodityDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM commodity");
 
 		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM commodity");
+
 			while(rs.next()) 
 			{
 				CommodityDTO commoditydto = new CommodityDTO(rs.getInt("id"), rs.getString("name"), rs.getInt("supplierID"));
 				commodities.add(commoditydto);
 			}
-			if(commodities.isEmpty()) {
-				throw new DALException("RÃ¥vare listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
+			if(commodities.isEmpty()) 
+			{
+				throw new DALException("Råvare listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return commodities;
 		}
-		catch(SQLException e) 
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("CommodityDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af råvare-listen");
 		}
 	}
 

@@ -20,7 +20,15 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 */
 	public ProductBatchDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -34,7 +42,15 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 */
 	public ProductBatchDAO(String server, int port, String database, String username, String password) throws DALException 
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -42,36 +58,20 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	 * @see data.dao_interface.IProductBatchComponentDAO#createProductBatchComponent(data.dto.ProductBatchComponentDTO)
 	 */
 	@Override
-	public void createProductBatch(ProductBatchDTO productBatch) throws DALException 
+	public void createProductBatch(ProductBatchDTO productBatch) throws DALException
 	{
-		con.doUpdate("INSERT INTO productBatch VALUES ("
-				+ productBatch.getId() + ", "
-				+ productBatch.getRecipeID() + ", "
-				+ productBatch.getStatus() + ")" );
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
-	 */
-	@Override
-	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException 
-	{
-		con.doUpdate("UPDATE productBatch SET "
-				+ "recipeID= " + productBatch.getRecipeID() + ", "
-				+ "status= " + productBatch.getStatus() + " "
-				+ "WHERE id=" + productBatch.getId());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO)
-	 */
-	@Override
-	public void deleteProductBatch(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM productBatch "
-				+ "WHERE id=" + id);
+		try 
+		{
+			con.doUpdate("INSERT INTO productBatch VALUES ("
+					+ productBatch.getId() + ", "
+					+ productBatch.getRecipeID() + ", "
+					+ productBatch.getStatus() + ")" );
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse af produktBatch");
+		}
 	}
 
 	/*
@@ -81,10 +81,10 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	@Override
 	public ProductBatchDTO getProductBatch(int id) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM productBatch "
-				+ "WHERE id= " + id);
-
-		try {
+		try 
+		{
+			ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE id= " + id);
+			
 			if(!rs.first()) 
 			{
 				throw new DALException("Produkt batch med productBatchID'et " + id + " findes ikke");
@@ -94,9 +94,10 @@ public class ProductBatchDAO implements IProductBatchDAO {
 				return new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));
 			}
 		}
-		catch(SQLException e) 
+		catch(SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("ProductBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af produktBatch");
 		}
 	}
 
@@ -108,23 +109,26 @@ public class ProductBatchDAO implements IProductBatchDAO {
 	public List<ProductBatchDTO> getAllProductBatches() throws DALException 
 	{
 		List<ProductBatchDTO> productBatchList = new ArrayList<ProductBatchDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM productBatch");
 
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM productBatch");
+			
 			while(rs.next()) 
 			{
 				ProductBatchDTO dto = new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));
 				productBatchList.add(dto);
 			}
-			if(productBatchList.isEmpty()) {
-				throw new DALException("ProduktBatch listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
+			if(productBatchList.isEmpty()) 
+			{
+				throw new DALException("ProduktBatch listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return productBatchList;
 		}
-		catch(SQLException e) 
+		catch(SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("ProductBatchDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af produktBatch-listen");
 		}
 	}
 

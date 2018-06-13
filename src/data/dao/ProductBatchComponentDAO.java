@@ -16,56 +16,68 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 
 	public ProductBatchComponentDAO() throws DALException 
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	public ProductBatchComponentDAO(String server, int port, String database, String username, String password) throws DALException 
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchComponentDAO#createProductBatchComponent(data.dto.ProductBatchComponentDTO)
+	 */
 	@Override
-	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
+	public void createProductBatchComponent(ProductBatchComponentDTO component) throws DALException
 	{
-		
-		con.doUpdate("INSERT INTO productBatchComponent VALUES (" 
-				+ component.getId() + ", "
-				+ component.getProductbatchID() + ", "
-				+ component.getCommodityBatchID() + ", "
-				+ component.getUserID() + ", "
-				+ component.getTara() + ", "
-				+ component.getNetto() + ")" );
+		try 
+		{
+			con.doUpdate("INSERT INTO productBatchComponent VALUES (" 
+					+ component.getId() + ", "
+					+ component.getProductbatchID() + ", "
+					+ component.getCommodityBatchID() + ", "
+					+ component.getUserID() + ", "
+					+ component.getTara() + ", "
+					+ component.getNetto() + ")" );
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse af produktbatch");
+		}
 	}
 
-	@Override
-	public void updateProductBatchComponent(ProductBatchComponentDTO component) throws DALException 
-	{
-		con.doUpdate("UPDATE productBatchComponent SET "
-				+ "productBatchID=" + component.getProductbatchID() + ", "
-				+ "commodityBatchID=" + component.getCommodityBatchID()+ ", "
-				+ "userID=" + component.getUserID() + ", "
-				+ "tara=" + component.getTara() + ", "
-				+ "netto=" + component.getNetto()
-				+ " WHERE id=" + component.getId());
-	}
-
-	@Override
-	public void deleteProductBatchComponent(int id) throws DALException 
-	{
-		con.doUpdate("DELETE FROM productBatchComponent WHERE id=" + id);
-	}
-	
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchComponentDAO#getSingleProductBatchComponent(int)
+	 */
 	@Override
 	public ProductBatchComponentDTO getSingleProductBatchComponent(int id) throws DALException 
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE id = " + id);
-
 		try 
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE id = " + id);
+
 			if(!rs.first()) 
 			{
-				throw new DALException("" + id);
+				throw new DALException("ProduktBatchet med ID'et " + id + " findes ikke!\nPrøv igen");
 			}
 			else 
 			{
@@ -74,41 +86,54 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 		} 
 		catch (SQLException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentningen af produktbatch");
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
+	 */
 	@Override
 	public List<ProductBatchComponentDTO> getProductBatchComponent(int productBatchID) throws DALException 
 	{
 		List<ProductBatchComponentDTO> components = new ArrayList<ProductBatchComponentDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE productBatchID=" + productBatchID);
 
-		try {
+		try 
+		{
+			ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent WHERE productBatchID=" + productBatchID);
+
 			while(rs.next())
 			{
 				components.add(new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto")));
 			}
 			if(components.isEmpty())
 			{
-				throw new DALException("ProduktBatchet med ID'et " + productBatchID + " findes ikke!\nPrÃ¸v igen");
+				throw new DALException("ProduktBatchet med ID'et " + productBatchID + " findes ikke!\nPrøv igen");
 			}
 			return components;
 		}
-		catch(SQLException e) 
+		catch(SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentningen af produktbatch-listen");
 		}
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IProductBatchComponentDAO#getAllProductBatchComponents()
+	 */
 	@Override
 	public List<ProductBatchComponentDTO> getAllProductBatchComponents() throws DALException 
 	{
 		List<ProductBatchComponentDTO> components = new ArrayList<ProductBatchComponentDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent");
 
-		try {
+		try 
+		{
+			ResultSet rs = con.doQuery("SELECT * FROM productBatchComponent");
+
 			while(rs.next()) 
 			{
 				ProductBatchComponentDTO dto = new ProductBatchComponentDTO(rs.getInt("id"), rs.getInt("productBatchID"), rs.getInt("commodityBatchID"), rs.getInt("userID"), rs.getDouble("tara"), rs.getDouble("netto"));
@@ -116,13 +141,14 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 			}
 			if(components.isEmpty()) 
 			{
-				throw new DALException("ProductBatch komponent listen er tom...\nTilfÃ¸j nogle vÃ¦rdier og prÃ¸v igen");
+				throw new DALException("ProductBatch komponent listen er tom...\nTilføj nogle værdier og prøv igen");
 			}
 			return components;
 		}
-		catch(SQLException e) 
+		catch(SQLException | DALException e) 
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("ProductBatchComponentDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentningen af produktbatch-listen");
 		}
 	}
 

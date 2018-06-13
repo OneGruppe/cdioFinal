@@ -10,16 +10,25 @@ import data.dao_interface.IRecipeDAO;
 import data.dto.RecipeDTO;
 import exceptions.DALException;
 
-public class RecipeDAO implements IRecipeDAO
-{
+public class RecipeDAO implements IRecipeDAO {
+	
 	private Connector con;
+	
 	/**
 	 * Constructor that uses Constant-class connect
 	 * @throws DALException
 	 */
 	public RecipeDAO() throws DALException
 	{
-		con = new Connector();
+		try 
+		{
+			con = new Connector();
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("RecipeDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/**
@@ -33,7 +42,15 @@ public class RecipeDAO implements IRecipeDAO
 	 */
 	public RecipeDAO(String server, int port, String database, String username, String password) throws DALException
 	{
-		con = new Connector(server, port, database, username, password);
+		try 
+		{
+			con = new Connector(server, port, database, username, password);
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("RecipeDAO error: " + e.getMessage());
+			throw new DALException("Fejl i forbindelse til database");
+		}
 	}
 
 	/*
@@ -43,53 +60,52 @@ public class RecipeDAO implements IRecipeDAO
 	@Override
 	public void createRecipe(RecipeDTO recipe) throws DALException
 	{
-		con.doUpdate("INSERT INTO recipe VALUES ("
-				+ recipe.getId() + ", "
-				+ "'" + recipe.getName() + "')");
+		try {
+			con.doUpdate("INSERT INTO recipe VALUES ("
+					+ recipe.getId() + ", "
+					+ "'" + recipe.getName() + "')");
+		} catch (DALException e) {
+			System.out.println("RecipeDAO error: " + e.getMessage());
+			throw new DALException("Fejl i oprettelse til recept");
+		}
 	}
 
-	@Override
-	public void updateRecipe(RecipeDTO recipe) throws DALException
-	{
-		con.doUpdate("UPDATE recipe SET " 
-				+ "name='" + recipe.getName() +"' "
-				+ "WHERE id=" + recipe.getId());
-	}
-
-	@Override
-	public void deleteRecipe(int id) throws DALException
-	{
-		con.doUpdate("DELETE FROM recipe "
-				+ "WHERE id = " + id);
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#getRecipe(int)
+	 */
 	@Override
 	public RecipeDTO getRecipe(int id) throws DALException
 	{
-		ResultSet rs = con.doQuery("SELECT * FROM recipe "
-				+ "WHERE id = " + id);
-
 		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM recipe WHERE id = " + id);
+
 			if(!rs.first())
 				throw new DALException("Recipe med ID " + id + "findes ikke");
 			else
 				return new RecipeDTO(id, rs.getString("name"));
 		}
-		catch (SQLException e)
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());		
+			System.out.println("RecipeDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af recept-listen");
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see data.dao_interface.IRecipeDAO#getAllRecipes()
+	 */
 	@Override
 	public List<RecipeDTO> getAllRecipes() throws DALException
 	{
 		List<RecipeDTO> recipeList = new ArrayList<RecipeDTO>();
-		ResultSet rs = con.doQuery("SELECT * FROM recipe");
 
 		try
 		{
+			ResultSet rs = con.doQuery("SELECT * FROM recipe");
+			
 			while(rs.next())
 			{
 				RecipeDTO repdto = new RecipeDTO(rs.getInt("id"), rs.getString("name"));
@@ -100,9 +116,10 @@ public class RecipeDAO implements IRecipeDAO
 			}
 			return recipeList;
 		} 
-		catch (SQLException e)
+		catch (SQLException | DALException e)
 		{
-			throw new DALException(e.getMessage());
+			System.out.println("RecipeDAO error: " + e.getMessage());
+			throw new DALException("Fejl i hentning af recept-listen");
 		}
 	}
 }

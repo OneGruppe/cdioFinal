@@ -13,20 +13,6 @@ public interface ICommodityBatchDAO {
 	 * @throws DALException
 	 */
 	public void createCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException;
-
-	/**
-	 * Updates the information of the given commodity batch.
-	 * @param commodityBatch
-	 * @throws DALException
-	 */
-	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException;
-
-	/**
-	 * Deletes the commodity batch with the given ID. 
-	 * @param commodityBatch
-	 * @throws DALException
-	 */
-	public void deleteCommodityBatch(int combatchID) throws DALException;
 	
 	/**
 	 * Returns a single commoditybatch
@@ -34,7 +20,6 @@ public interface ICommodityBatchDAO {
 	 * @return a single CommodityBatchDTO obejct
 	 * @throws DALException
 	 */
-	
 	public CommodityBatchDTO getCommodityBatchSingle(int id) throws DALException;
 	
 	/**
@@ -43,7 +28,6 @@ public interface ICommodityBatchDAO {
 	 * @return a list of CommodityBatchDTO objects
 	 * @throws DALException
 	 */
-	
 	public List<CommodityBatchDTO> getCommodityBatch(int commodityID) throws DALException;
 
 	/**

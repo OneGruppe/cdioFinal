@@ -76,45 +76,6 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see data.dao_interface.ICommodityBatchDAO#updateCommodityBatch(data.dto.CommodityBatchDTO)
-	 */
-	@Override
-	public void updateCommodityBatch(CommodityBatchDTO commodityBatch) throws DALException
-	{
-		try 
-		{
-			con.doUpdate("UPDATE commodityBatch SET "
-					+ "commodityID=" + commodityBatch.getCommodityID() + ", "
-					+ "amount=" + commodityBatch.getAmount() + " "
-					+ "WHERE id=" + commodityBatch.getId());
-		} 
-		catch (DALException e) 
-		{
-			System.out.println("CommodityBatchDAO error: " + e.getMessage());
-			throw new DALException("Fejl i updatering af råvarebatch med id = '" + commodityBatch.getId() + "'");
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see data.dao_interface.ICommodityBatchDAO#deleteCommodityBatch(int)
-	 */
-	@Override
-	public void deleteCommodityBatch(int id) throws DALException
-	{
-		try 
-		{
-			con.doUpdate("DELETE FROM commodityBatch WHERE id=" + id);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println("CommodityBatchDAO error: " + e.getMessage());
-			throw new DALException("Fejl i sletning af råvarebatch med id = '" + id + "'");
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see data.dao_interface.ICommodityBatchDAO#showCommodityBatch(int)
 	 */
 	@Override
@@ -166,7 +127,7 @@ public class CommodityBatchDAO implements ICommodityBatchDAO {
 		catch(SQLException | DALException e) 
 		{
 			System.out.println("CommodityBatchDAO error: " + e.getMessage());
-			throw new DALException("Fejl i hentning af råvarebatch-listen med råvareid = '" + commodityID + "'");
+			throw new DALException("Fejl i hentning af råvarebatch-listen");
 		}
 	}
 

@@ -15,20 +15,6 @@ public interface IRecipeDAO
 	public void createRecipe(RecipeDTO recipe) throws DALException;
 	
 	/**
-	 * Updates the information of the given recipe
-	 * @param recipe
-	 * @throws DALException
-	 */
-	public void updateRecipe(RecipeDTO recipe) throws DALException;
-	
-	/**
-	 * Deletes the recipe with the given ID
-	 * @param recipeID
-	 * @throws DALException
-	 */
-	public void deleteRecipe(int recipeID) throws DALException;
-	
-	/**
 	 * Returns a single recipe
 	 * @param recipeID
 	 * @return
