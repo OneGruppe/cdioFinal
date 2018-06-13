@@ -46,26 +46,22 @@ public class SupplierREST implements ISupplierREST {
 	@Path("createSupplier")
 	public String createSupplier(@FormParam("id") int id, @FormParam("name") String name) 
 	{
-		String message;
-
 		try 
 		{
 			if(id < 0 || id == 0 || name.equals("")) 
 			{
-				message = "Fejl i inputtet!";
+				return "Fejl i inputtet!";
 			}
 			else 
 			{
 				sc.createSupplier(id, name);
-				message = "Leverand√∏ren, " + name + ", med ID " + id + " er oprettet.";
+				return "Leverand¯ren, " + name + ", med ID " + id + " er oprettet.";
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return message;
 	}
 
 	/*
@@ -77,34 +73,27 @@ public class SupplierREST implements ISupplierREST {
 	@Path("updateSupplier")
 	public String updateSupplier(@FormParam("id") int id, @FormParam("name") String name) 
 	{ 
-		String message = null;
-
 		try 
 		{
-			if(id < 0 || id == 0 || name.equals("") ) 
+			if(id < 0 || id == 0) 
 			{
-				if(id < 0 || id == 0) 
-				{
-					message = "Fejl, ID skal v√¶re st√∏rre end 0";
-				}
-				else if(name.equals("")) 
-				{
-					message = "Fejl, ugyldigt navn";
-				}
+				return "Fejl, ID skal vÊre st¯rre end 0";
+			}
+			else if(name.equals("")) 
+			{
+				return "Fejl, ugyldigt navn";
 			}
 			else 
 			{
 				String oldName = sc.getSupplier(id).getName();
 				sc.createSupplier(id, name);
-				message = "Leverand√∏ren " + oldName + " er opdateret til " + name + " - " + id;
+				return "Leverand¯ren " + oldName + " er opdateret til " + name + " - " + id;
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return message;
 	}
 
 	/*
@@ -117,11 +106,10 @@ public class SupplierREST implements ISupplierREST {
 	@Path("getSupplier")
 	public String getSupplier(@FormParam("id") int id) 
 	{	
-		String message;
 		JSONObject supplierJSON = new JSONObject();
 		SupplierDTO supplier;
 
-		try 
+		try
 		{
 			if(id > 0) 
 			{
@@ -129,19 +117,17 @@ public class SupplierREST implements ISupplierREST {
 				supplierJSON.put("id", supplier.getId());
 				supplierJSON.put("name", supplier.getName());
 
-				message = "Leverand√∏ren " + supplier.getName() + " blev fundet";
+				return supplierJSON.toString();
 			}
 			else 
 			{
-				message = "Fejl, der eksiterer ingen leverand√∏re med dette ID";
+				return "Fejl, der eksiterer ingen leverand¯re med dette ID";
 			}
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return supplierJSON.toString();
 	}
 
 	/*
@@ -154,20 +140,17 @@ public class SupplierREST implements ISupplierREST {
 	@Path("getAllSuppliers")
 	public String getAllSupplier() 
 	{
-		String message;
 		JSONArray suppliers = new JSONArray();
 
 		try 
 		{
 			suppliers.put(sc.getAllSuppliers());
-			message = "Leverand√∏rene blev fundet"; 
+			return suppliers.toString();
 		}
 		catch(DALException e) 
 		{
-			message = e.getMessage();
+			return e.getMessage();
 		}
-		System.out.println(message);
-		return suppliers.toString();
 	}
 
 
