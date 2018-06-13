@@ -22,6 +22,14 @@ public interface ICommodityBatchREST {
 	 * @throws DALException
 	 */
 	public void updateCommodityBatch(int id, int commodityID, double amount);
+
+	/**
+	 * <h1> <i>deleteCommodityBatch</i> </h1> <br>
+	 * Deletes a commoditybatch
+	 * @param id
+	 * @throws DALException
+	 */
+	public void deleteCommodityBatch(int id);
 	
 	/**
 	 * Returns a single commoditybatch

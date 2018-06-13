@@ -22,6 +22,14 @@ public interface ISupplierREST {
 	public String updateSupplier(int id, String name) throws DALException;
 
 	/**
+	 * Deletes a supplier
+	 * @param id
+	 * @return 
+	 * @throws DALException
+	 */
+	public String deleteSupplier(int id) throws DALException;
+
+	/**
 	 * Gets a single supplier
 	 * @return
 	 * @throws DALException

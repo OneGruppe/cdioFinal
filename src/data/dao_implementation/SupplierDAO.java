@@ -63,6 +63,17 @@ public class SupplierDAO implements ISupplierDAO {
 
 	/*
 	 * (non-Javadoc)
+	 * @see data.dao_in terface.ISupplierDAO#deleteSupplier(int)
+	 */
+	@Override
+	public void deleteSupplier(int supplierID) throws DALException 
+	{
+		con.doUpdate("DELETE FROM supplier "
+				+ "WHERE id= " + supplierID);		
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see data.dao_interface.ISupplierDAO#showSupplier(int)
 	 */
 	@Override

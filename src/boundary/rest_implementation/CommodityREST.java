@@ -1,5 +1,6 @@
 package boundary.rest_implementation;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -106,6 +107,34 @@ public class CommodityREST implements ICommodityREST {
 		{
 			message = e.getMessage();
 		}
+	}
+
+	@Override
+	@DELETE
+	@Path("deleteCommodity")
+	public String deleteCommodity(@FormParam("id") int id)	
+	{
+		String message = null;
+
+		try 
+		{
+			if(id < 1) 
+			{
+				message = "Fejl, ugyldigt id";
+			}
+			else 
+			{
+				String oldName = cc.getCommodity(id).getName();
+				sc.deleteSupplier(id);
+				message = "Råvaren " + oldName + " er blevet fjernet";
+			}
+		}
+		catch(DALException e) 
+		{
+			message = e.getMessage();
+		}
+		System.out.println(message);
+		return message;
 	}
 
 	@Override

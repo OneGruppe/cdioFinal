@@ -24,6 +24,13 @@ public interface ISupplierController {
 	public void updateSupplier(int id, String name) throws DALException;
 
 	/**
+	 * Deletes a supplier
+	 * @param id
+	 * @throws DALException
+	 */
+	public void deleteSupplier(int id) throws DALException;
+
+	/**
 	 * Get a single supplier from the system
 	 * @param id
 	 * @return a single SupplierDTO object

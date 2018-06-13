@@ -43,6 +43,17 @@ public class RecipeController implements IRecipeController {
 
 	/*
 	 * (non-Javadoc)
+	 * @see controller.controller_interface.IRecipeController#deleteRecipe(int)
+	 */
+	@Override
+	public void deleteRecipe(int id) throws DALException 
+	{
+		recipedao.deleteRecipe(id);
+
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see controller.controller_interface.IRecipeController#getRecipe(int)
 	 */
 	@Override

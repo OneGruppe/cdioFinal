@@ -57,6 +57,13 @@ public class RecipeDAO implements IRecipeDAO
 	}
 
 	@Override
+	public void deleteRecipe(int id) throws DALException
+	{
+		con.doUpdate("DELETE FROM recipe "
+				+ "WHERE id = " + id);
+	}
+
+	@Override
 	public RecipeDTO getRecipe(int id) throws DALException
 	{
 		ResultSet rs = con.doQuery("SELECT * FROM recipe "

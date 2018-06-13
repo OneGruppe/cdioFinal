@@ -26,6 +26,13 @@ public interface ICommodityController {
 	public void updateCommodity(int id, String name, int supplierID) throws DALException;
 
 	/**
+	 * Deletes a commodity
+	 * @param id
+	 * @throws DALException
+	 */
+	public void deleteCommodity(int id) throws DALException;
+
+	/**
 	 * Get a commodity
 	 * @param id
 	 * @return a single commodity from database

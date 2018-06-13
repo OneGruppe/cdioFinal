@@ -39,6 +39,11 @@ public class RecipeComponentController implements IRecipeComponentController {
 		dao.updateRecipeComponent(component);
 	}
 
+	@Override
+	public void deleteRecipeComponent(int id) throws DALException
+	{
+		dao.deleteRecipeComponent(id);
+	}
 	/*
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IRecipeComponentController#getRecipeComponent(int)

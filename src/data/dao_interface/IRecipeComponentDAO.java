@@ -23,6 +23,13 @@ public interface IRecipeComponentDAO {
 	public void updateRecipeComponent(RecipeComponentDTO component) throws DALException;
 
 	/**
+	 * Deletes a Recipe component with the given ID
+	 * @param recipeComponentID
+	 * @throws DALException
+	 */
+	public void deleteRecipeComponent(int recipeComponentID) throws DALException;
+
+	/**
 	 * Returns a list of recipecomponents with recsingle Recipe component
 	 * @param recipeComponentID
 	 * @return A specific Recipe component in form of RecipeComponentDTO

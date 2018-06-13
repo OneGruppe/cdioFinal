@@ -49,6 +49,12 @@ public class ProductBatchComponentDAO implements IProductBatchComponentDAO {
 				+ "netto=" + component.getNetto()
 				+ " WHERE id=" + component.getId());
 	}
+
+	@Override
+	public void deleteProductBatchComponent(int id) throws DALException 
+	{
+		con.doUpdate("DELETE FROM productBatchComponent WHERE id=" + id);
+	}
 	
 	@Override
 	public ProductBatchComponentDTO getSingleProductBatchComponent(int id) throws DALException 

@@ -21,6 +21,15 @@ public interface ISupplierDAO {
 	 */
 	public void updateSupplier(SupplierDTO supplier) throws DALException;
 
+
+	/**
+	 * Deletes the supplier with the given ID
+	 * @param supplierID
+	 * @throws DALException
+	 */
+	public void deleteSupplier(int supplierID) throws DALException;
+
+
 	/**
 	 * Returns a single supplier
 	 * @param supplierID

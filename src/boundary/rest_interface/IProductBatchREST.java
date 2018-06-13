@@ -25,6 +25,14 @@ public interface IProductBatchREST
 	public void updateProductBatch(int id, int recipeID, int status);
 
 	/**
+	 * <h1> <i>deleteProductBatch</i> </h1> <br>
+	 * Deletes a ProductBatch
+	 * @param id
+	 * @throws DALException
+	 */
+	public void deleteProductBatch(int id);
+
+	/**
 	 * <h1> <i>getProductBatch</i> </h1> <br>
 	 * Get a ProductBatch
 	 * @param id

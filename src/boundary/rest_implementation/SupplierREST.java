@@ -1,6 +1,7 @@
 package boundary.rest_implementation;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -97,6 +98,33 @@ public class SupplierREST implements ISupplierREST {
 			message = e.getMessage();
 		}
 		System.out.println(message);
+		return message;
+	}
+
+	@Override
+	@DELETE
+	@Path("deleteSupplier")
+	public String deleteSupplier(@FormParam("id") int id) 
+	{
+		String message;
+
+		try 
+		{
+			if(id < 1) 
+			{
+				message = "Fejl, ugyldigt input!";
+			}
+			else 
+			{
+				String oldName = sc.getSupplier(id).getName();
+				sc.deleteSupplier(id);
+				message = "Levenrandøren " + oldName + " er blevet fjernet";
+			}
+		}
+		catch(DALException e) 
+		{
+			message = e.getMessage();
+		}
 		return message;
 	}
 

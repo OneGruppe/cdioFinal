@@ -43,6 +43,16 @@ public class CommodityController implements ICommodityController {
 
 	/*
 	 * (non-Javadoc)
+	 * @see controller.controller_interface.ICommodityController#deleteCommodity(int)
+	 */
+	@Override
+	public void deleteCommodity(int id) throws DALException 
+	{
+		comdao.deleteCommodity(id);
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see controller.controller_interface.ICommodityController#getCommodity(int)
 	 */
 	@Override
