@@ -225,6 +225,25 @@ $(document).ready(function() {
 		$('#showCommodities').delay(300).fadeIn(200);
 	})
 	
+	
+	$('#navigateToShowRecipeComponent').click(function() {
+		$('#createCommodityForm').fadeOut(200);
+		$('#createRecipeComponentForm').fadeOut(200);
+		$('#createRecipeForm').fadeOut(200)
+		$('#createSupplierForm').fadeOut(200);
+		$('#findCommodityForm').fadeOut(200);
+		$('#findRecipeComponentForm').fadeOut(200)
+		$('#findSupplierForm').fadeOut(200);
+		$('#findRecipeForm').fadeOut(200);
+		$('#showRecipe').fadeOut(200);
+		$('#showRecipes').fadeOut(200);
+		$('#showSupplier').fadeOut(200);
+		$('#showRecCom').fadeOut(200);
+		$('#showCommodities').fadeOut(200);
+		$('#showCommodity').fadeOut(200);
+		$('#showSuppliers').fadeOut(200)
+		$('#showRecComs').delay(300).fadeIn(200);
+	})
 	/*****************
 	 * dropdown menu *
 	 *****************/
