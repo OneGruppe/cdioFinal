@@ -8,7 +8,7 @@
 <script src = "../js/pharmacistJS/navigation_phar.js"></script>
 <script src = "../js/pharmacistJS/showAllRecipes.js"></script>
 <script src = "../js/pharmacistJS/showAllCommodities.js"></script>
-<script src = "../js/pharmacistJS/showAllRecComs.js"></script>
+<script src = "../js/pharmacistJS/showRecCom.js"></script>
 <script src = "../js/pharmacistJS/showCommodity.js"></script>
 <script src = "../js/pharmacistJS/createCommodity.js"></script>
 <script src = "../js/pharmacistJS/showAllSuppliers.js"></script>
@@ -47,7 +47,6 @@
 			<ul>
 				<li><a class = "dropDownOptions" id ="navigateToShowCommodity" href="#">Råvare</a></li>
 				<li><a class = "dropDownOptions" id ="navigateToShowRecipe" href="#">Recept</a></li>
-				<li><a class = "dropDownOptions" id ="navigateToShowRecipeComponent" href="#">Recept komponent</a></li>
 				<li><a class = "dropDownOptions" id ="navigateToShowSupplier" href="#">Leverandør</a></li>
 			</ul>
 		</div>
@@ -97,20 +96,6 @@
 		</td>
 		<td>
 		<button id="navigateToDeleteCom" form="findCommodityForm" type="submit">Slet råvare</button>
-		</td>
-		</tr>
-	</table>
-</form>
-
-<form id = "editCommodityForm" method = "POST">
-	<table>
-		<tr>
-		<td>
-		<label>Navn</label><br>
-		<input type = "text" name = "name"> 
-		</td>
-		<td>
-		<button id="editingCommodity" form="editCommodityForm" type="button">Rediger råvare</button>
 		</td>
 		</tr>
 	</table>
@@ -245,7 +230,6 @@
 <div id = "showSuppliers"></div>
 
 <div id = "showRecCom"></div>	
-<div id = "showRecComs"></div>
 
 <div id = "showCommodity"></div>	
 <div id = "showCommodities"></div>

@@ -17,7 +17,7 @@ import exceptions.DALException;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-@Path("RecipeComponent")
+@Path("recipeComponent")
 public class RecipeComponentREST implements IRecipeComponentREST {
 	private IRecipeComponentController rcc;
 	
