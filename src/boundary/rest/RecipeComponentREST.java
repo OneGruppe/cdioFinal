@@ -5,7 +5,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -35,6 +34,10 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeComponentREST#createRecipeComponent(int, int, int, double, double)
+	 */
 	@Override
 	@POST
 	@Path("createRecipeComponent")
@@ -55,21 +58,10 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 		return message;	
 	}
 
-	@Override
-	@PUT
-	@Path("updateRecipeComponent")
-	public void updateRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
-	{
-		try 
-		{
-			rcc.updateRecipeComponent(id, recipeID, commodityID, nonNetto, tolerance);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeComponentREST#getRecipeComponent(int)
+	 */
 	@Override
 	@POST
 	@Path("getRecipeComponent")
@@ -90,6 +82,10 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 		return recComList.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeComponentREST#getAllRecipeComponents()
+	 */
 	@Override
 	@GET
 	@Path("getAllRecipeComponents")

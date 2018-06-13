@@ -13,15 +13,6 @@ public interface ICommodityBatchREST {
 	 * @throws DALException
 	 */
 	public void createCommodityBatch(int id, int commodityID, double amount);
-	/**
-	 * <h1> <i>updateCommodityBatch</i> </h1> <br>
-	 * Updates a commoditybatch
-	 * @param id
-	 * @param commodityID
-	 * @param amount
-	 * @throws DALException
-	 */
-	public void updateCommodityBatch(int id, int commodityID, double amount);
 	
 	/**
 	 * Returns a single commoditybatch

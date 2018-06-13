@@ -36,6 +36,10 @@ public class ProductBatchREST implements IProductBatchREST
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchREST#createProductBatch(int, int, int)
+	 */
 	@Override
 	@POST
 	@Path("createProductBatch")
@@ -57,22 +61,10 @@ public class ProductBatchREST implements IProductBatchREST
 		return message;
 	}
 
-	@Override
-	@POST
-	@Path("updateProductBatch")
-	public void updateProductBatch(@FormParam("id") int id, @FormParam("recipeID") int recipeID, @FormParam("status") int status)
-	{
-		try 
-		{
-			pbc.updateProductBatch(id, recipeID, status);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchREST#getProductBatch(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -110,6 +102,10 @@ public class ProductBatchREST implements IProductBatchREST
 		return prodJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchREST#getAllProductBatches()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

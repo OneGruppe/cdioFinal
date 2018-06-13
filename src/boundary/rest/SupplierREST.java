@@ -4,7 +4,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -38,6 +37,10 @@ public class SupplierREST implements ISupplierREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ISupplierREST#createSupplier(int, java.lang.String)
+	 */
 	@Override
 	@POST
 	@Path("createSupplier")
@@ -65,6 +68,10 @@ public class SupplierREST implements ISupplierREST {
 		return message;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ISupplierREST#updateSupplier(int, java.lang.String)
+	 */
 	@Override
 	@POST
 	@Path("updateSupplier")
@@ -100,6 +107,10 @@ public class SupplierREST implements ISupplierREST {
 		return message;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ISupplierREST#getSupplier(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -107,7 +118,6 @@ public class SupplierREST implements ISupplierREST {
 	public String getSupplier(@FormParam("id") int id) 
 	{	
 		String message;
-
 		JSONObject supplierJSON = new JSONObject();
 		SupplierDTO supplier;
 
@@ -134,6 +144,10 @@ public class SupplierREST implements ISupplierREST {
 		return supplierJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ISupplierREST#getAllSupplier()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -141,7 +155,6 @@ public class SupplierREST implements ISupplierREST {
 	public String getAllSupplier() 
 	{
 		String message;
-
 		JSONArray suppliers = new JSONArray();
 
 		try 

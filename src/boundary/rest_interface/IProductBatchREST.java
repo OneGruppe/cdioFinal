@@ -15,16 +15,6 @@ public interface IProductBatchREST
 	public String createProductBatch(int id, int recipeID, int status);
 
 	/**
-	 * <h1> <i>updateProductBatch</i> </h1> <br>
-	 * Updates a productbatch
-	 * @param id
-	 * @param recipeID
-	 * @param status
-	 * @throws DALException
-	 */
-	public void updateProductBatch(int id, int recipeID, int status);
-
-	/**
 	 * <h1> <i>getProductBatch</i> </h1> <br>
 	 * Get a ProductBatch
 	 * @param id

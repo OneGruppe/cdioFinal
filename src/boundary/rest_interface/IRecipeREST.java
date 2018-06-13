@@ -13,14 +13,6 @@ public interface IRecipeREST {
 	public String createRecipe(int id, String name) throws DALException;
 
 	/**
-	 * Updates a Recipe
-	 * @param id
-	 * @param name
-	 * @throws DALException
-	 */
-	public void updateRecipe(int id, String name) throws DALException;
-
-	/**
 	 * Gets a single Recipe
 	 * @return
 	 * @throws DALException

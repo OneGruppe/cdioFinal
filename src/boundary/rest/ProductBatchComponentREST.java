@@ -34,6 +34,10 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchComponentREST#createProductBatchComponent(int, int, int, double, double)
+	 */
 	@Override
 	@POST
 	@Path("createProductBatchComponent")
@@ -49,23 +53,11 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		}
 		
 	}
-
-	@Override
-	@POST
-	@Path("updateProductBatchComponent")
-	public void updateProductBatchComponent(@FormParam("id") int id, @FormParam("prodBatchID")int productBatchID, @FormParam("commodityBatchID") int commodityBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto)
-	{
-		try 
-		{
-			prodBatchCompController.updateProductBatchComponent(id, productBatchID, commodityBatchID, userID, tara, netto);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-		
-	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchComponentREST#getSingleProductBatchComponent(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -107,6 +99,10 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		return componentJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchComponentREST#getProductBatchComponent(int)
+	 */
 	@Override
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
@@ -130,6 +126,10 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		return prodComJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IProductBatchComponentREST#getAllProductBatchComponents()
+	 */
 	@Override
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET

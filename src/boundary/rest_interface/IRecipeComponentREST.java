@@ -13,15 +13,6 @@ public interface IRecipeComponentREST {
 	public String createRecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance) throws DALException;
 
 	/**
-	 * Updates a RecipeComponent
-	 * @param id
-	 * @param name
-	 * @return 
-	 * @throws DALException
-	 */
-	public void updateRecipeComponent(int id, int recipeID, int commodityID, double nonNetto, double tolerance) throws DALException;
-
-	/**
 	 * Gets a single RecipeComponent
 	 * @return
 	 * @throws DALException

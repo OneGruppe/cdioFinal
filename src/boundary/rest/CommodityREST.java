@@ -3,7 +3,6 @@ package boundary.rest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -13,9 +12,7 @@ import org.json.JSONObject;
 
 import boundary.rest_interface.ICommodityREST;
 import controller.controller.CommodityController;
-import controller.controller.SupplierController;
 import controller.controller_interface.ICommodityController;
-import controller.controller_interface.ISupplierController;
 import data.dto.CommodityDTO;
 import exceptions.DALException;
 
@@ -24,15 +21,12 @@ import exceptions.DALException;
 public class CommodityREST implements ICommodityREST {
 
 	private ICommodityController cc;
-	private ISupplierController sc;
 
 	public CommodityREST() 
 	{
 		try 
 		{
 			cc = new CommodityController();
-			sc = new SupplierController();
-
 		}
 		catch (DALException e) 
 		{
@@ -40,6 +34,10 @@ public class CommodityREST implements ICommodityREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityREST#createCommodity(int, java.lang.String, int)
+	 */
 	@Override
 	@POST
 	@Path("createCommodity")
@@ -74,6 +72,10 @@ public class CommodityREST implements ICommodityREST {
 		System.out.println(message);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityREST#updateCommodity(int, java.lang.String, int)
+	 */
 	@Override
 	@POST
 	@Path("updateCommodity")
@@ -108,6 +110,10 @@ public class CommodityREST implements ICommodityREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityREST#getCommodity(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -141,6 +147,10 @@ public class CommodityREST implements ICommodityREST {
 		return commodityJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityREST#getAllCommodities()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

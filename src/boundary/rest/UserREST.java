@@ -35,6 +35,10 @@ public class UserREST implements IUserREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IUserREST#createUser(java.lang.String, java.lang.String, int)
+	 */
 	@Override
 	@POST
 	@Path("createUser")
@@ -59,9 +63,13 @@ public class UserREST implements IUserREST {
 			message = e.getMessage();		
 		}
 		System.out.println(message);
-		//		return message;
+		//		return message; //TODO
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IUserREST#updateUser(int, java.lang.String, java.lang.String)
+	 */
 	@Override
 	@POST
 	@Path("updateUser")
@@ -89,6 +97,10 @@ public class UserREST implements IUserREST {
 		return message;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IUserREST#setUserState(int, int)
+	 */
 	@Override
 	@POST
 	@Path("setUserState")
@@ -117,6 +129,10 @@ public class UserREST implements IUserREST {
 		return message;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IUserREST#getUser(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -155,6 +171,10 @@ public class UserREST implements IUserREST {
 		return userJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IUserREST#getAllUsers()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -162,7 +182,6 @@ public class UserREST implements IUserREST {
 	public String getAllUsers() 
 	{
 		String message;
-
 		JSONArray users = new JSONArray();
 
 		try 
@@ -174,7 +193,6 @@ public class UserREST implements IUserREST {
 		{
 			message = e.getMessage();
 		}
-
 		System.out.println(message);
 		return users.toString();
 	}

@@ -4,7 +4,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -37,6 +36,10 @@ public class RecipeREST implements IRecipeREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeREST#createRecipe(int, java.lang.String)
+	 */
 	@Override
 	@POST
 	@Path("createRecipe")
@@ -57,56 +60,48 @@ public class RecipeREST implements IRecipeREST {
 		return message;
 	}
 
-	@Override
-	@POST
-	@Path("updateRecipe")
-	public void updateRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
-	{
-		System.out.println(id +" "+name);
-		try 
-		{
-			rc.updateRecipe(id, name);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeREST#getRecipe(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getRecipe")
 	public String getRecipe(@FormParam("id")int id) throws DALException
 	{
-	String message;
+		String message;
 
-	JSONObject recipeJSON = new JSONObject();
-	RecipeDTO recipe;
+		JSONObject recipeJSON = new JSONObject();
+		RecipeDTO recipe;
 
-	try 
-	{
-		if(id > 0) 
+		try 
 		{
-			recipe = rc.getRecipe(id);
-			
-			recipeJSON.put("id", recipe.getId());
-			recipeJSON.put("name", recipe.getName());
-			message = "Recepten " + recipe.getName() + " blev fundet";
-		}
-		else 
-		{
-			message = "Fejl, der eksiterer ingen recepter med dette ID";
-		}
-	}
-	catch(DALException e) 
-	{
-		message = e.getMessage();
-	}
-	System.out.println(message);
-	return recipeJSON.toString();
-}
+			if(id > 0) 
+			{
+				recipe = rc.getRecipe(id);
 
+				recipeJSON.put("id", recipe.getId());
+				recipeJSON.put("name", recipe.getName());
+				message = "Recepten " + recipe.getName() + " blev fundet";
+			}
+			else 
+			{
+				message = "Fejl, der eksiterer ingen recepter med dette ID";
+			}
+		}
+		catch(DALException e) 
+		{
+			message = e.getMessage();
+		}
+		System.out.println(message);
+		return recipeJSON.toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.IRecipeREST#getAllRecipe()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

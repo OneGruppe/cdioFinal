@@ -35,6 +35,10 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityBatchREST#createCommodityBatch(int, int, double)
+	 */
 	@Override
 	@POST
 	@Path("createCommodityBatch")
@@ -49,22 +53,11 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			System.out.println(e.getMessage());
 		}		
 	}
-
-	@Override
-	@POST
-	@Path("updateCommodityBatch")
-	public void updateCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
-	{
-		try 
-		{
-			cbc.updateCommodityBatch(id, commodityID, amount);
-		} 
-		catch (DALException e) 
-		{
-			System.out.println(e.getMessage());
-		}	
-	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityBatchREST#getCommodityBatchSingle(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -102,6 +95,10 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		return combatchJSON.toString(); 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityBatchREST#getCommodityBatch(int)
+	 */
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -122,6 +119,10 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		return comJSON.toString();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see boundary.rest_interface.ICommodityBatchREST#getAllCommodityBatches()
+	 */
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
