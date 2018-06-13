@@ -26,7 +26,8 @@ public class UserREST implements IUserREST {
 
 	public UserREST() 
 	{
-		try {
+		try 
+		{
 			uc = new UserController();
 		} 
 		catch (DALException e) 
@@ -174,7 +175,6 @@ public class UserREST implements IUserREST {
 		{
 			return e.getMessage();
 		}
-		
 	}
 
 
