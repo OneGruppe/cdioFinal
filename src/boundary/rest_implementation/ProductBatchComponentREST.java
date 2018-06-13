@@ -124,9 +124,10 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 		{
 			System.out.println(e.getMessage());
 		}
+		System.out.println("DIN MOR");
 		System.out.println(prodComJSON.toString());
 		
-		return "din mor";
+		return prodComJSON.toString();
 	}
 
 	@Override
