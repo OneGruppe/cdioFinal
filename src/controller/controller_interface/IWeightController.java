@@ -56,7 +56,7 @@ public interface IWeightController {
 	 * @throws DALException when database communication fails
 	 * @throws WeightException when the weight returns an error
 	 */
-	public void finish() throws DALException, WeightException;
+	public boolean finish() throws DALException, WeightException;
 
 	
 	/**
