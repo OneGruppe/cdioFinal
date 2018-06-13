@@ -75,21 +75,16 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	{
 		JSONArray recComList = new JSONArray();
 
-		try 
+		try
 		{
-			if(recipeID != 0)
-			{
-				recComList.put(rcc.getRecipeComponent(recipeID));
-			}
-			else
-			{
-				System.out.println("FEJL i ID input");
-			}
+			recComList.put(rcc.getRecipeComponent(recipeID));
 		}
-		catch(DALException e) 
+		catch(DALException e)
 		{
 			System.out.println(e.getMessage());
 		}
+	
+		
 		return recComList.toString();
 	}
 
