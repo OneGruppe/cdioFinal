@@ -1,17 +1,18 @@
 /**
- * 
+ * weight.js
  */
 
 $(document).ready(function() {
-	
-	$("#creatingCommodityBatch").click(function() {
+
+	$("#connectToWeight").click(function() {
 		$.ajax({
-			url: "/rest/comBatch/createCommodityBatch",
-			data: $('#createComForm').serialize(),
+			url: "/rest/weight/doConnection",
+			data: $('#').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {
-				alert("Råvarebatch er oprettet");
+				console.log(data);
+				alert(data);
 			}
 		});
 		return false;
