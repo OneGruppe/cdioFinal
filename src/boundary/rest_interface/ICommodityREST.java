@@ -25,15 +25,6 @@ public interface ICommodityREST {
 	public void updateCommodity(int id, String name, int supplier) throws DALException;
 
 	/**
-	 * <h1> <i>deleteCommodity</i> </h1> <br>
-	 * Deletes a commodity
-	 * @param id
-	 * @return 
-	 * @throws DALException
-	 */
-	public String deleteCommodity(int id) throws DALException;
-
-	/**
 	 * <h1> <i>getCommodity</i> </h1> <br>
 	 * Get a commodity
 	 * @param id

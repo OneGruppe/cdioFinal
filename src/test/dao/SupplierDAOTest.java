@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.dao_implementation.SupplierDAO;
+import data.dao.SupplierDAO;
 import data.dao_interface.ISupplierDAO;
 import data.dto.SupplierDTO;
 import exceptions.DALException;
