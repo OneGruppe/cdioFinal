@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {
-	
+
 	$("#creatingRecipe").click(function() {
 		$.ajax({
 			url: "/rest/recipe/createRecipe",
@@ -11,7 +11,8 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			success: function(data) {
-				alert("Recepten er oprettet");
+				console.log(data);
+				alert(data);
 			}
 		});
 		return false;
