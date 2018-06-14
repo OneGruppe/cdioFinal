@@ -48,37 +48,33 @@ public class WeightREST implements IWeightREST {
 	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
 		
-		System.out.println(chooseWeightPort);
-		
-		if (chooseWeightPort != 8000 || chooseWeightPort != 8001)
+//		if (chooseWeightPort != 8000 || chooseWeightPort != 8001)
+//		{
+//			return "Du har valgt en forkert port";
+//		}
+
+		try
 		{
-			return "Du har valgt en forkert port";
+			pbc = new ProductBatchController();
+			uc = new UserController();
+			rcc = new RecipeComponentController();
+			cbc = new CommodityBatchController();
+			cc = new CommodityController();
+			pbcc = new ProductBatchComponentController();
+			iwc = new WeightTranslation(chooseWeightPort);
+			wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
+			wc.weightFlow();
+			return "Forbindelse blev oprettet korrekt";
+		} 
+		catch (DALException | IOException e) 
+		{
+			System.out.println(e.getMessage());
+			return e.getMessage();
 		}
-		else
+		catch (WeightException e)
 		{
-			try
-			{
-				pbc = new ProductBatchController();
-				uc = new UserController();
-				rcc = new RecipeComponentController();
-				cbc = new CommodityBatchController();
-				cc = new CommodityController();
-				pbcc = new ProductBatchComponentController();
-				iwc = new WeightTranslation(chooseWeightPort);
-				wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
-				wc.weightFlow();
-				return "Forbindelse blev oprettet korrekt";
-			} 
-			catch (DALException | IOException e) 
-			{
-				System.out.println(e.getMessage());
-				return e.getMessage();
-			}
-			catch (WeightException e)
-			{
-				System.out.println(e.getMessage());
-				return "WeightError: " + e.getMessage();
-			}
+			System.out.println(e.getMessage());
+			return "WeightError: " + e.getMessage();
 		}
 	}
 
