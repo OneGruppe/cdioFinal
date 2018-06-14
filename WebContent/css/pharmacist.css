@@ -20,7 +20,7 @@ a {
 
 #watermark {
 	position: fixed;
- 	bottom: 26%;
+ 	bottom: 35%;
  	left: 35%;
  	opacity: 0.15;
  	z-index: -1;
