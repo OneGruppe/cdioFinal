@@ -41,7 +41,7 @@ public class WeightTranslation implements IWeightTranslation{
 		}
 		catch (IOException e) 
 		{
-			throw new IOException("Cannot connect to the weight" + e.getMessage());
+			throw new IOException("Cannot connect to the weight: " + e.getMessage());
 		}
 	}
 

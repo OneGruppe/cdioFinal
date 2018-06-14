@@ -29,6 +29,13 @@ public class ProductBatchController implements IProductBatchController {
 		pbdao.createProductBatch(productBatch);
 
 	}
+	
+	public void updateProductBatch(int pbID, int recipeID, int status) throws DALException
+	{
+		ProductBatchDTO productBatch = new ProductBatchDTO(pbID, recipeID, status);
+		
+		pbdao.updateProductBatch(productBatch);
+	}
 
 	/*
 	 * (non-Javadoc)
