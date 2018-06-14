@@ -38,7 +38,7 @@ $(document).ready(function() {
 				alert.log(xhr.status);
 			},
 			success : function(data) {
-				alert(data.message);
+				
 			}
 		});
 		return false;
