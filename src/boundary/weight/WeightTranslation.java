@@ -204,7 +204,7 @@ public class WeightTranslation implements IWeightTranslation{
 		try
 		{
 			String correctedPromtMessage = promtMessage, correctedDefaultNumber = "", correctedUnit = unit;
-			if(promtMessage.length() > 24)
+			if(promtMessage.length() >= 24)
 			{
 				correctedPromtMessage = promtMessage.substring(0, 24);
 			}
@@ -216,7 +216,7 @@ public class WeightTranslation implements IWeightTranslation{
 			{
 				correctedUnit = unit.substring(0, 7);
 			}
-			write.println("RM20 1 " + "\"" + correctedPromtMessage + "\" \"" + correctedDefaultNumber + "\" \"" + correctedUnit + "\"");
+			write.println("RM20 3 " + "\"" + correctedPromtMessage + "\" \"" + correctedDefaultNumber + "\" \"" + correctedUnit + "\"");
 			read.readLine();
 			String response = read.readLine();
 
@@ -458,9 +458,9 @@ public class WeightTranslation implements IWeightTranslation{
 	{
 		try 
 		{
-			socket.close();
 			write.close();
 			read.close();
+			socket.close();
 		} 
 		catch (IOException e) 
 		{
