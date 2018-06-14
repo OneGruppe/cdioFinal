@@ -46,7 +46,7 @@ public class WeightREST implements IWeightREST {
 	@Override
 	@POST
 	@Path("doConnection")
-	public String doConnection(@FormParam("weightType") int chooseWeightPort)
+	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
 		int weightPort = 0;
 
