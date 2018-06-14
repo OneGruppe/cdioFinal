@@ -16,7 +16,7 @@ $(document).ready(function() {
 				console.log(xhr.status);
 			},
 			success: function(data) {
-				console.log(data);
+				alert(data);
 			}
 		});
 		return false;
