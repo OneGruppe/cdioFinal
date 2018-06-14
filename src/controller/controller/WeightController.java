@@ -74,7 +74,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#enterOprID()
 	 */
-	public void enterOprID() throws DALException
+	public void enterOprID()
 	{		
 		System.out.println("State: " + state);
 		try
@@ -90,13 +90,18 @@ public class WeightController implements IWeightController {
 		{
 			System.out.println("failure in enterOprID()" + e.getMessage());
 		}
+		catch (DALException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#welcomeAnswer()
 	 */
-	public void welcomeAnswer() throws DALException
+	public void welcomeAnswer() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -119,6 +124,12 @@ public class WeightController implements IWeightController {
 				System.out.println(e1.getMessage());
 			}
 			state--;
+		} 
+		catch (DALException e) 
+		{
+			System.out.println("Failure in welcomeAnswer(): " + e.getMessage());
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			welcomeAnswer();
 		}
 	}	
 
@@ -126,7 +137,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#enterPBID()
 	 */
-	public void enterPBID() throws DALException, WeightException
+	public void enterPBID() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -140,10 +151,11 @@ public class WeightController implements IWeightController {
 				state++;
 			}
 		}
-		catch (WeightException e)
+		catch (WeightException | DALException e)
 		{
 			System.out.println("Failure in enterPBID(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			enterPBID();
 		}
 	}
 
@@ -168,8 +180,9 @@ public class WeightController implements IWeightController {
 		}
 		catch (WeightException e)
 		{
-			System.out.println("Failure in taraWeight: " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
+			System.out.println("Failure in taraWeight(): " + e.getMessage());
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			taraWeight();
 		}
 	}
 
@@ -177,7 +190,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#weightCommodities()
 	 */
-	public void weightCommodities() throws DALException, WeightException
+	public void weightCommodities() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
@@ -275,11 +288,12 @@ public class WeightController implements IWeightController {
 			}
 			state += 1;
 		}
-		catch (WeightException e)
+		catch (WeightException | DALException e)
 		{
-			System.out.println("Failure in weightCommodities(): " + e.getMessage());	
-			weight.getInputWithMsg("Forkert input prov igen", 0, "");
-		}
+			System.out.println("Failure in weightCommodities(): " + e.getMessage());
+			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			weightCommodities();
+		} 
 	}
 
 	/*

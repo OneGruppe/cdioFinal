@@ -21,8 +21,9 @@ public interface IWeightController {
 	/**
 	 * Welcomes the user with his name
 	 * @throws DALException when database communication fails
+	 * @throws WeightException 
 	 */
-	public void welcomeAnswer() throws DALException;
+	public void welcomeAnswer() throws WeightException;
 
 	/**
 	 * Accepts the productBatchID from the user
