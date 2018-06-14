@@ -1,11 +1,11 @@
 package data.dto;
 
-public class CommodityDTO
-{
+public class CommodityDTO {
+
 	private int id;
 	private String name;
 	private int supplierID;
-	
+
 	/**
 	 * Constructor for CommodityDTO
 	 * @param id
@@ -50,10 +50,10 @@ public class CommodityDTO
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "CommodityDTO [id=" + id + ", name=" + name + ", supplierID=" + supplierID + "]";
 	}
-	
-	
-	
+
+
 }

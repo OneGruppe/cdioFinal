@@ -1,7 +1,7 @@
 package data.dto;
 
-public class ProductBatchDTO
-{
+public class ProductBatchDTO {
+
 	private int id;
 	private int recipeID;
 	private int status;
@@ -54,5 +54,6 @@ public class ProductBatchDTO
 	{
 		return "ProductBatchDTO [id=" + id + ", recipeID=" + recipeID + ", status=" + status + "]";
 	}
-	
+
+
 }
