@@ -51,28 +51,31 @@ public class WeightREST implements IWeightREST {
 		{
 			return "Du har valgt en forkert port";
 		}
-		try
+		else
 		{
-			pbc = new ProductBatchController();
-			uc = new UserController();
-			rcc = new RecipeComponentController();
-			cbc = new CommodityBatchController();
-			cc = new CommodityController();
-			pbcc = new ProductBatchComponentController();
-			iwc = new WeightTranslation(chooseWeightPort);
-			wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
-			wc.weightFlow();
-			return "Forbindelse blev oprettet korrekt";
-		} 
-		catch (DALException | IOException e) 
-		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
-		}
-		catch (WeightException e)
-		{
-			System.out.println(e.getMessage());
-			return "WeightError: " + e.getMessage();
+			try
+			{
+				pbc = new ProductBatchController();
+				uc = new UserController();
+				rcc = new RecipeComponentController();
+				cbc = new CommodityBatchController();
+				cc = new CommodityController();
+				pbcc = new ProductBatchComponentController();
+				iwc = new WeightTranslation(chooseWeightPort);
+				wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
+				wc.weightFlow();
+				return "Forbindelse blev oprettet korrekt";
+			} 
+			catch (DALException | IOException e) 
+			{
+				System.out.println(e.getMessage());
+				return e.getMessage();
+			}
+			catch (WeightException e)
+			{
+				System.out.println(e.getMessage());
+				return "WeightError: " + e.getMessage();
+			}
 		}
 	}
 
