@@ -74,6 +74,19 @@ public class ProductBatchDAO implements IProductBatchDAO {
 		}
 	}
 
+	/* 
+	 * (non-Javadoc) 
+	 * @see data.dao_interface.IProductBatchComponentDAO#updateProductBatchComponent(data.dto.ProductBatchComponentDTO) 
+	 */ 
+	@Override 
+	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException  
+	{ 
+		con.doUpdate("UPDATE productBatch SET " 
+				+ "recipeID= " + productBatch.getRecipeID() + ", " 
+				+ "status= " + productBatch.getStatus() + " " 
+				+ "WHERE id=" + productBatch.getId()); 
+	} 
+
 	/*
 	 * (non-Javadoc)
 	 * @see data.dao_interface.IProductBatchComponentDAO#getProductBatchComponent(int)
@@ -84,7 +97,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 		try 
 		{
 			ResultSet rs = con.doQuery("SELECT * FROM productBatch WHERE id= " + id);
-			
+
 			if(!rs.first()) 
 			{
 				throw new DALException("Produkt batch med productBatchID'et " + id + " findes ikke");
@@ -113,7 +126,7 @@ public class ProductBatchDAO implements IProductBatchDAO {
 		try 
 		{
 			ResultSet rs = con.doQuery("SELECT * FROM productBatch");
-			
+
 			while(rs.next()) 
 			{
 				ProductBatchDTO dto = new ProductBatchDTO(rs.getInt("id"), rs.getInt("recipeID"), rs.getInt("status"));

@@ -14,6 +14,13 @@ public interface IProductBatchDAO {
 	 */
 	public void createProductBatch(ProductBatchDTO productBatch) throws DALException;
 
+	/** 
+	 * Update the information of the given Product batch. 
+	 * @param productBatch 
+	 * @throws DALException 
+	 */ 
+	public void updateProductBatch(ProductBatchDTO productBatch) throws DALException; 
+
 	/**
 	 * Returns a single Product batch.
 	 * @param ProductBatch
