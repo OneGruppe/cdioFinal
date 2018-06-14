@@ -8,11 +8,11 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/rest/user/createUser",
 			data: $('#createUserForm').serialize(),
-			datatype: "application/json",
-			contenttype: "text/plain",
+			contenttype: "application/json",
 			method: "PUT",
-			error: function(data) {
-				console.log(data);
+			error: function(xhr) {
+				console.log(xhr.responseText);
+				console.log(xhr.status);
 			},
 			success: function(data) {
 				console.log(data);
