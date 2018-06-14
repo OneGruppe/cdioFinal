@@ -55,22 +55,22 @@ public class WeightController implements IWeightController {
 		{
 			switch(state)
 			{
-			case 1:
+			case 1:	//Check the users ID
 				enterOprID();
 				break;
-			case 2:
+			case 2:	//Display a wellcome msg on the weight
 				welcomeAnswer();
 				break;
-			case 3:
+			case 3:	//Define the given ProductBatch needed for use
 				enterPBID();
 				break;
-			case 4:
+			case 4:	//Set the tara value of the given container
 				taraWeight();
 				break;
-			case 5:
+			case 5:	//Weigh the given Commodities and add the ProductBatchComponent to the database
 				weightCommodities();
 				break;
-			case 6:
+			case 6:	//Restart the program if desired or finish the weighing process
 				finish();
 				break;
 			default:
