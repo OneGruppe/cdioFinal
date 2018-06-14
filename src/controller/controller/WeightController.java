@@ -24,6 +24,7 @@ public class WeightController implements IWeightController {
 	private double netto = 0;
 	private int goBack = -2;
 	private boolean finish = false;
+	private int recipeID = 0;
 
 	public WeightController(IProductBatchController pbc, IUserController user, IRecipeComponentController rcc, ICommodityBatchController cbc, ICommodityController cc, IProductBatchComponentController pbcc, IWeightTranslation weight) throws DALException
 	{
@@ -147,14 +148,15 @@ public class WeightController implements IWeightController {
 				state--;
 			else
 			{
-				pbc.getProductBatch(productBatchID).setStatus(1);
+				recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
+				pbc.updateProductBatch(productBatchID, recipeID, 1);
 				state++;
 			}
 		}
 		catch (WeightException | DALException e)
 		{
 			System.out.println("Failure in enterPBID(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
 			enterPBID();
 		}
 	}
@@ -181,7 +183,7 @@ public class WeightController implements IWeightController {
 		catch (WeightException e)
 		{
 			System.out.println("Failure in taraWeight(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
 			taraWeight();
 		}
 	}
@@ -195,7 +197,6 @@ public class WeightController implements IWeightController {
 		System.out.println("State: " + state);
 		try
 		{
-			int recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 			pbc.getProductBatch(productBatchID).getRecipeID();
 			System.out.println("RecipeID: " + recipeID);
 			System.out.println("size = " + rcc.getRecipeComponent(recipeID).size());
@@ -308,13 +309,13 @@ public class WeightController implements IWeightController {
 			int response =weight.getInputWithMsg("Afvejning faerdig, sluk?", 0, "");
 			if(response == goBack)
 			{
-				pbc.getProductBatch(productBatchID).setStatus(2);
+				pbc.updateProductBatch(productBatchID, recipeID, 2);
 				state = 1;
 				finish = false;
 			}
 			else
 			{
-				pbc.getProductBatch(productBatchID).setStatus(2);
+				pbc.updateProductBatch(productBatchID, recipeID, 2);;
 				finish = true;
 			}
 		}
