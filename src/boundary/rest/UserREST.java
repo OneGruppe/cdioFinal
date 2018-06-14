@@ -57,13 +57,14 @@ public class UserREST implements IUserREST {
 			else
 			{
 				uc.createUser(name, ini, active);
-				returnMessage.put("message", "Brugeren \" + name + \" er oprettet.");
+				returnMessage.put("message", "Brugeren " + name + " er oprettet.");
 				return returnMessage.toString();
 			}
 		} 
 		catch (DALException e) 
 		{
-			return e.getMessage();		
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();		
 		}
 	}
 
@@ -76,21 +77,26 @@ public class UserREST implements IUserREST {
 	@Path("updateUser")
 	public String updateUser(@FormParam("id") int id, @FormParam("name") String name, @FormParam("ini") String ini) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			if(name.equals("") || ini.equals(""))
 			{
-				return "Fejl i inputtet!";
+				returnMessage.put("message", "Fejl i inputtet!");
+				return returnMessage.toString();
 			}
 			else
 			{
 				uc.updateUser(id, name, ini);
-				return "Brugeren " + name + " er opdateret!";
+				returnMessage.put("message", "Brugeren er opdateret.");
+				return returnMessage.toString();
 			}
 		} 
 		catch (DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
@@ -103,21 +109,26 @@ public class UserREST implements IUserREST {
 	@Path("setUserState")
 	public String setUserState(@FormParam("id") int id, @FormParam("state") int state) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			if(state == 0 || state == 1)
 			{
 				uc.setUserState(id, state);
-				return "Brugerens aktivitetsstatus er �ndret til " + state;
+				returnMessage.put("message", "Brugerens aktivitetsstatus er ændret til " + state);
+				return returnMessage.toString();
 			}
 			else
 			{
-				return "Brugerens aktivitetsstatus kan kun v�re 0 eller 1.";
+				returnMessage.put("message", "Brugerens aktivitetsstatus kan kun være 0 eller 1.");
+				return returnMessage.toString();
 			}
 		} 
 		catch (DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
