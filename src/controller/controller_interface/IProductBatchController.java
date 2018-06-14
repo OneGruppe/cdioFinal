@@ -5,8 +5,7 @@ import java.util.List;
 import data.dto.ProductBatchDTO;
 import exceptions.DALException;
 
-public interface IProductBatchController
-{
+public interface IProductBatchController {
 
 	/**
 	 * Creates a ProductBatch
@@ -40,4 +39,6 @@ public interface IProductBatchController
 	 * @throws DALException
 	 */
 	public List<ProductBatchDTO> getAllProductBatches() throws DALException;
+
+
 }
