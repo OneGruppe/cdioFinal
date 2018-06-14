@@ -43,25 +43,31 @@ public class CommodityREST implements ICommodityREST {
 	@Path("createCommodity")
 	public String createCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplierID") int supplier)
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			if(id < 1) 
 			{
-				return "Fejl, ugyldigt ID!";
+				returnMessage.put("message", "Fejl, ugyldigt ID");
+				return returnMessage.toString();
 			}
 			else if(name.equals("")) 
 			{
-				return "Fejl, ugyldigt navn!";
+				returnMessage.put("message", "Fejl, ugyldigt navn");
+				return returnMessage.toString();
 			}
 			else 
 			{
 				cc.createCommodity(id, name, supplier);
-				return "R�varen er blevet oprettet";
+				returnMessage.put("message", "Råvaren er blevet oprettet");
+				return returnMessage.toString();
 			}
 		}
 		catch(DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
@@ -74,26 +80,32 @@ public class CommodityREST implements ICommodityREST {
 	@Path("updateCommodity")
 	public String updateCommodity(@FormParam("id") int id, @FormParam("name") String name, @FormParam("supplier") int supplier)
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try
 		{
 			if(id < 1) 
 			{
-				return "Fejl, ugyldigt ID!";
+				returnMessage.put("message", "Fejl, ugyldigt ID");
+				return returnMessage.toString();
 			}
 			else if(name.equals("")) 
 			{
-				return "Fejl, ugyldigt navn!";
+				returnMessage.put("message", "Fejl, ugyldigt navn");
+				return returnMessage.toString();
 			}
 			else 
 			{
 				String oldName = cc.getCommodity(id).getName();
 				cc.updateCommodity(id, oldName, supplier);
-				return "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id;
+				returnMessage.put("message", "Råvaren " + oldName + " er blevet opdateret til " + name + " - " + id);
+				return returnMessage.toString();
 			}
 		}
 		catch(DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 

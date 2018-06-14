@@ -45,15 +45,18 @@ public class ProductBatchREST implements IProductBatchREST
 	@Path("createProductBatch")
 	public String createProductBatch(@FormParam("id") int id, @FormParam("recipeID") int recipeID, @FormParam("status") int status) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try
 		{
 			pbc.createProductBatch(id, recipeID, status);
-			return "Batchet blev oprettet";
+			returnMessage.put("message", "Batchet blev oprettet");
+			return returnMessage.toString();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
@@ -87,7 +90,6 @@ public class ProductBatchREST implements IProductBatchREST
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
 			return e.getMessage();
 		}
 	}
@@ -111,7 +113,6 @@ public class ProductBatchREST implements IProductBatchREST
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
 			return e.getMessage();
 		}
 	}

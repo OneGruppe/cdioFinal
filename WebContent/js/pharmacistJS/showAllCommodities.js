@@ -12,6 +12,10 @@ $(document).ready(function() {
 			dataType: "json",
 			contenttype: "application/json",
 			method: "GET",
+			error: function(xhr) {
+				console.log(xhr.responseText);
+				console.log(xhr.status);
+			},
 			success:function(data) {
 				console.log(data);
 				

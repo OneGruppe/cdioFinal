@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import boundary.rest_interface.IRecipeComponentREST;
 import controller.controller.RecipeComponentController;
@@ -43,15 +44,18 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	@Path("createRecipeComponent")
 	public String createRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			rcc.createRecipeComponent(id, recipeID, commodityID, nonNetto, tolerance);
-			return "Recepten komponenten blev oprettet";
+			returnMessage.put("message", "Recepten komponenten blev oprettet");
+			return returnMessage.toString();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
-			return "Recepten komponenten blev ikke oprettet pga. " + e.getMessage();
+			returnMessage.put("message", "Recepten komponenten blev ikke oprettet pga. " + e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 

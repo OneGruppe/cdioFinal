@@ -46,21 +46,26 @@ public class SupplierREST implements ISupplierREST {
 	@Path("createSupplier")
 	public String createSupplier(@FormParam("id") int id, @FormParam("name") String name) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			if(id < 0 || id == 0 || name.equals("")) 
 			{
-				return "Fejl i inputtet!";
+				returnMessage.put("message", "Fejl i inputtet!");
+				return returnMessage.toString();
 			}
 			else 
 			{
 				sc.createSupplier(id, name);
-				return "Leverandøren, " + name + ", med ID " + id + " er oprettet.";
+				returnMessage.put("message", "LeverandÃ¸ren, " + name + ", med ID " + id + " er oprettet.");
+				return returnMessage.toString();
 			}
 		}
 		catch(DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
@@ -73,26 +78,32 @@ public class SupplierREST implements ISupplierREST {
 	@Path("updateSupplier")
 	public String updateSupplier(@FormParam("id") int id, @FormParam("name") String name) 
 	{ 
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			if(id < 0 || id == 0) 
 			{
-				return "Fejl, ID skal være større end 0";
+				returnMessage.put("message", "Fejl, ID skal vÃ¦re stÃ¸rre end 0");
+				return returnMessage.toString();
 			}
 			else if(name.equals("")) 
 			{
-				return "Fejl, ugyldigt navn";
+				returnMessage.put("message", "Fejl, ugyldigt navn");
+				return returnMessage.toString();
 			}
 			else 
 			{
 				String oldName = sc.getSupplier(id).getName();
 				sc.createSupplier(id, name);
-				return "Leverandøren " + oldName + " er opdateret til " + name + " - " + id;
+				returnMessage.put("message", "LeverandÃ¸ren " + oldName + " er opdateret til " + name + " - " + id);
+				return returnMessage.toString();
 			}
 		}
 		catch(DALException e) 
 		{
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
@@ -121,7 +132,7 @@ public class SupplierREST implements ISupplierREST {
 			}
 			else 
 			{
-				return "Fejl, der eksiterer ingen leverandøre med dette ID";
+				return "Fejl, der eksiterer ingen leverandï¿½re med dette ID";
 			}
 		}
 		catch(DALException e) 

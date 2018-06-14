@@ -10,8 +10,12 @@ $(document).ready(function() {
 			data: $('#createProdForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
+			error: function(xhr) {
+				console.log(xhr.responseText);
+				console.log(xhr.status);
+			},
 			success: function(data) {
-				alert("Produktbatch er oprettet");
+				alert(data.message);
 			}
 		});
 		return false;

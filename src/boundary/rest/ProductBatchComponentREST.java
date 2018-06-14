@@ -43,15 +43,18 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	@Path("createProductBatchComponent")
 	public String createProductBatchComponent(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("prodBatchID") int productBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			prodBatchCompController.createProductBatchComponent(productBatchID, commodityBatchID, userID, tara, netto);
-			return "Produktbatchkomponent oprettet";
+			returnMessage.put("message", "Produktbatch komponent " + productBatchID + " oprettet");
+			return returnMessage.toString();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 
 	}
@@ -84,7 +87,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 			}
 			else
 			{
-				return "Ugyldigt ID blev indtastet\nPrøv igen";
+				return "Ugyldigt ID blev indtastet\nPrï¿½v igen";
 			}
 		} 
 		catch (DALException e) 

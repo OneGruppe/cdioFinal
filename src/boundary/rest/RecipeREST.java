@@ -45,15 +45,18 @@ public class RecipeREST implements IRecipeREST {
 	@Path("createRecipe")
 	public String createRecipe(@FormParam("id")int id,@FormParam("name") String name) throws DALException 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			rc.createRecipe(id, name);
-			return "Recepten blev oprettet";
+			returnMessage.put("message", "Recepten blev oprettet");
+			return returnMessage.toString();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 

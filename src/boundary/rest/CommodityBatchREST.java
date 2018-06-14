@@ -44,15 +44,18 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Path("createCommodityBatch")
 	public String createCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try 
 		{
 			cbc.createCommodityBatch(id, commodityID, amount);
-			return "Råvarebatch oprettet";
+			returnMessage.put("message", "RÃ¥varebatch oprettet");
+			return returnMessage.toString();
 		} 
 		catch (DALException e) 
 		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}		
 	}
 	

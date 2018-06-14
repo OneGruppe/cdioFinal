@@ -11,6 +11,10 @@ $(document).ready(function() {
 			dataType: "json",
 			contenttype: "application/json",
 			method: "POST",
+			error: function(xhr) {
+				console.log(xhr.responseText);
+				console.log(xhr.status);
+			},
 			success:function(data) {
 				
 				console.log(data);
