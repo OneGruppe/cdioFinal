@@ -249,9 +249,10 @@ public class WeightController implements IWeightController {
 			System.out.println("size = " + rcc.getRecipeComponent(recipeID).size());
 			System.out.println("ToString = " + rcc.getRecipeComponent(recipeID).toString());
 
+			commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
+			
 			for (int i = 0; i < rcc.getRecipeComponent(recipeID).size(); i++)
 			{
-				commodityBatchID = weight.getInputWithMsg("Indtast raavarebatch ID", 0, "");
 				if (commodityBatchID == goBack)
 				{
 					state--;
