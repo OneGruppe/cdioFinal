@@ -37,8 +37,7 @@ public class WeightTranslation implements IWeightTranslation{
 			// initialize the writer and the reader with the socket output and input stream
 			write = new PrintWriter(socket.getOutputStream(), true);
 			read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			showMsg("Init");
-			removeMsg();
+			read.readLine();
 		}
 		catch (IOException e) 
 		{
@@ -66,14 +65,6 @@ public class WeightTranslation implements IWeightTranslation{
 			{
 			case "D A":
 				// success
-				break;
-			case "I4 A \"3154307\"":
-				clearDisplayAndShowWeight();
-				showMsg(message);
-				break;
-			case "I4 A \"3154308\"":
-				clearDisplayAndShowWeight();
-				showMsg(message);
 				break;
 			case "D I":
 				System.out.println("showMsg - another thing blocks the display, removing and trying again.");
