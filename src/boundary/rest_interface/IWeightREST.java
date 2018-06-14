@@ -12,7 +12,7 @@ public interface IWeightREST {
 	 * @return
 	 * @throws DALException
 	 */
-	public String doConnection(@FormParam("chooseWeight") String chooseWeight) throws DALException;
+	public String doConnection(@FormParam("chooseWeight") int chooseWeight) throws DALException;
 
 
 }

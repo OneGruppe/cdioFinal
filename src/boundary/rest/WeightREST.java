@@ -27,7 +27,7 @@ import controller.controller_interface.IWeightController;
 import exceptions.DALException;
 import exceptions.WeightException;
 
-@Path("Weight")
+@Path("weight")
 public class WeightREST implements IWeightREST {
 
 	private IWeightController wc;
@@ -46,15 +46,15 @@ public class WeightREST implements IWeightREST {
 	@Override
 	@POST
 	@Path("doConnection")
-	public String doConnection(@FormParam("chooseWeightPort") String chooseWeightPort)
+	public String doConnection(@FormParam("connectToWeight") int chooseWeightPort)
 	{
 		int weightPort = 0;
 
-		if(chooseWeightPort.equals("Vægt 1"))
+		if(chooseWeightPort == 1)
 		{
 			weightPort = Constant.weightPortOne;
 		}
-		else if (chooseWeightPort.equals("Vægt 2"))
+		else if (chooseWeightPort == 2)
 		{
 			weightPort = Constant.weightPortTwo;
 		}
