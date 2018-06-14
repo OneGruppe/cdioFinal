@@ -47,6 +47,9 @@ public class WeightREST implements IWeightREST {
 	@Path("doConnection")
 	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
+		
+		System.out.println(chooseWeightPort);
+		
 		if (chooseWeightPort != 8000 || chooseWeightPort != 8001)
 		{
 			return "Du har valgt en forkert port";
