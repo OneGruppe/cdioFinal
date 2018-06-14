@@ -17,6 +17,15 @@ public interface IProductBatchController
 	 */
 	public void createProductBatch(int id, int recipeID, int status) throws DALException;
 
+	/** 
+	 * Updates a ProductBatch 
+	 * @param id 
+	 * @param recipeID 
+	 * @param status 
+	 * @throws DALException 
+	 */ 
+	public void updateProductBatch(int id, int recipeID, int status) throws DALException; 
+
 	/**
 	 * Get a ProductBatch
 	 * @param id
