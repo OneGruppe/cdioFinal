@@ -12,8 +12,8 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			error: function(xhr) {
-				alert(xhr.responseText);
-				console.log(xhr.status);
+				console.log(xhr.responseText);
+				alert(xhr.status);
 			},
 			success:function(data) {
 				

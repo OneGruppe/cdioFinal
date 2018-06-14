@@ -175,11 +175,14 @@ public class WeightController implements IWeightController {
 				if(pbc.getProductBatch(productBatchID).getStatus() == 2)
 				{
 					weight.getInputWithMsg("Produktbatch er afsluttet", 0, "");
-					state--;
+					enterPBID();
 				}
+				else 
+				{
 				recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
 				pbc.updateProductBatch(productBatchID, recipeID, 1);
 				state++;
+				}
 			}
 		}
 		catch (WeightException | DALException e)
@@ -262,7 +265,7 @@ public class WeightController implements IWeightController {
 					String commodityName = cc.getCommodity(commodityID).getName();
 					System.out.println(commodityName);
 
-					int choice = weight.getInputWithMsg("Afvej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
+					int choice = weight.getInputWithMsg("Afvej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg - T: " + rcc.getRecipeComponent(recipeID).get(i).getTolerance() + "%");
 					if (choice == goBack)
 					{
 						state--;
