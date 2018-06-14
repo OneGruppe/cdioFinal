@@ -1,0 +1,69 @@
+body {
+	background-color: #e0e0e0;
+}
+
+#headerDiv {
+	background-color: #b50404;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-size: .85em; 
+}
+
+#headerContainer {
+	float: right;
+	position: relative;
+	top: -80%;
+	right: 8%;
+}
+
+#watermark {
+	position: fixed;
+ 	bottom: 26%;
+ 	left: 35%;
+ 	opacity: 0.15;
+ 	z-index: -1;
+}
+
+#connectToWeight, #navigateToHome, #navigateToCreateUser, #navigateToFindUser, #navigateToUpdateUser {
+	padding-right: 8px;
+	margin-right: 8px;
+	border-right: white 2px solid;
+}
+
+#dtuLogo {
+	position: fixed;
+	top: 38%;
+	left: 35%;
+}
+
+#connectToWeight {
+	padding: 100px;
+	background-color: rgba(181, 4, 4, 0.8);
+	position: fixed;
+	top: 15%;
+	left: 45%;
+	border: 2px solid whitesmoke;
+	border-top-left-radius: 500px;
+	border-bottom-right-radius:400px;
+	border-style: inset;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: #fff;
+	margin-left: 1%;
+	font-size: 20px;
+}
+
+html {
+  font-family: sans-serif;
+}
