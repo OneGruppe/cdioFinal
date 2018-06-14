@@ -5,6 +5,7 @@
 $(document).ready(function() {
 
 	$("#connectToWeightButton").click(function() {
+		alert("Du har trykket på noget");
 		$.ajax({
 			url: "/rest/weight/doConnection",
 			data: $('#connectToWeight').serialize(),
