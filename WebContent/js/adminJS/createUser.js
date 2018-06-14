@@ -7,8 +7,7 @@ $(document).ready(function() {
 	$("#creatingUser").click(function() {
 		$.ajax({
 			url: "/rest/user/createUser",
-			data: $('#createUserForm').serialize(),
-			contenttype: "application/x-ww-form-urlencoded",
+			data: $('#createUserForm'),
 			method: "PUT",
 			error: function(xhr) {
 				console.log(xhr.responseText);
