@@ -9,10 +9,9 @@ $(document).ready(function() {
 			url: "/rest/user/createUser",
 			data: $('#createUserForm').serialize(),
 			contenttype: "application/json",
-			method: "POST",
+			method: "PUT",
 			success: function(data) {
 				console.log(data);
-				alert(data);
 			}
 		});
 		return false;

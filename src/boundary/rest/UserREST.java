@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -41,7 +42,7 @@ public class UserREST implements IUserREST {
 	 * @see boundary.rest_interface.IUserREST#createUser(java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	@POST
+	@PUT
 	@Path("createUser")
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
@@ -104,11 +105,11 @@ public class UserREST implements IUserREST {
 			if(state == 0 || state == 1)
 			{
 				uc.setUserState(id, state);
-				return "Brugerens aktivitetsstatus er ændret til " + state;
+				return "Brugerens aktivitetsstatus er ï¿½ndret til " + state;
 			}
 			else
 			{
-				return "Brugerens aktivitetsstatus kan kun være 0 eller 1.";
+				return "Brugerens aktivitetsstatus kan kun vï¿½re 0 eller 1.";
 			}
 		} 
 		catch (DALException e) 
@@ -144,7 +145,7 @@ public class UserREST implements IUserREST {
 			}
 			else
 			{
-				return "Ugyldigt ID blev indtastet\nPrøv igen";
+				return "Ugyldigt ID blev indtastet\nPrï¿½v igen";
 			}
 		} 
 		catch (DALException e) 
