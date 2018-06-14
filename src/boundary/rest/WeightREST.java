@@ -6,6 +6,8 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import org.json.JSONObject;
+
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
 import boundary.weight_interface.IWeightTranslation;
@@ -47,6 +49,8 @@ public class WeightREST implements IWeightREST {
 	@Path("doConnection")
 	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
+		JSONObject returnMessage = new JSONObject();
+		
 		try
 		{
 			pbc = new ProductBatchController();
@@ -58,17 +62,18 @@ public class WeightREST implements IWeightREST {
 			iwc = new WeightTranslation(chooseWeightPort);
 			wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
 			wc.weightFlow();
-			return "Forbindelse blev oprettet korrekt";
+			returnMessage.put("message", "Forbindelse blev oprettet korrekt!");
+			return returnMessage.toString();
 		} 
 		catch (DALException | IOException e) 
 		{
-			System.out.println(e.getMessage());
-			return e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 		catch (WeightException e)
 		{
-			System.out.println(e.getMessage());
-			return "WeightError: " + e.getMessage();
+			returnMessage.put("message", e.getMessage());
+			return returnMessage.toString();
 		}
 	}
 
