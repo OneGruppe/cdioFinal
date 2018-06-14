@@ -10,7 +10,7 @@ $(document).ready(function() {
 			data: $('#createUserForm').serialize(),
 			contenttype: "application/json",
 			method: "POST",
-			success: function(data) {
+			error: function(data) {
 				console.log(data);
 				alert(data);
 			}
