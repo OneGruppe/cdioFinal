@@ -273,10 +273,13 @@ public class WeightController implements IWeightController {
 					}
 					else 
 					{
-						double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 - (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
-						double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 + (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100));
+						double min = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 - (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100)); //Minimum weight of the commodity
+						double max = rcc.getRecipeComponent(recipeID).get(i).getNonNetto() * (1 + (rcc.getRecipeComponent(recipeID).get(i).getTolerance()/100)); //Maximum weight of the commodity
 						System.out.println("Min = " + min + " max = " + max);
 
+						/*
+						 * While true loop that will only continue if current weight load is between min and max
+						 */
 						while(true)
 						{
 							comWeight = weight.getWeight();
@@ -300,7 +303,7 @@ public class WeightController implements IWeightController {
 									weight.removeLongMsg();
 									choice = weight.getInputWithMsg("Ravare afvejet, fortsat?", 0, "");
 									weight.removeMsg();
-									if(choice == -2) 
+									if(choice == -2) //If cancel is pressed, sleep for 2 seconds and continues in the loop
 										TimeUnit.SECONDS.sleep(2);
 								}
 								catch (InterruptedException e) 
@@ -308,13 +311,13 @@ public class WeightController implements IWeightController {
 									System.out.println(e.getMessage());
 								}
 
-								if(choice == -1) 
+								if(choice == -1) //OK is pressed on the weight
 								{
-									netto = weight.getWeight();
-									pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
-									double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
-									double newAmount = originalAmount - comWeight;
-									cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
+									netto = weight.getWeight(); //Current weight load is saved into variable
+									pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto); //Creates a new productBatch with the weight, and all IDs
+									double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount(); //Saves the stored amount from the storage into a variable
+									double newAmount = originalAmount - comWeight; //Calculates the new amount that will be in the storage
+									cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount); //Updates the commodity batch with the new amount
 									System.out.println("BATCH ID =" + commodityBatchID + " ID =" + commodityID + " " + originalAmount + " " + newAmount + " " + comWeight);
 									System.out.println(comWeight + " fjernet fra " + commodityName + " totalt på lager " + cbc.getCommodityBatchSingle(commodityID).getAmount());
 									break;
@@ -362,14 +365,14 @@ public class WeightController implements IWeightController {
 			int response =weight.getInputWithMsg("Afvejning faerdig, sluk?", 0, "");
 			if(response == goBack)
 			{
-				pbc.updateProductBatch(productBatchID, recipeID, 2);
-				state = 1;
-				finish = false;
+				pbc.updateProductBatch(productBatchID, recipeID, 2); //No matter what, the productBatch is done by now
+				state = 1; //Sets state back to one to restart the loop
+				finish = false; //While loop continues to be true
 			}
 			else
 			{
-				pbc.updateProductBatch(productBatchID, recipeID, 2);;
-				finish = true;
+				pbc.updateProductBatch(productBatchID, recipeID, 2); //No matter what, the productBatch is done by now
+				finish = true; //This will close the while loop that runs the entire flow
 				weight.closeAllLeaks();
 			}
 		}
