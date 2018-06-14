@@ -35,7 +35,7 @@ $(document).ready(function() {
 			method : "POST",
 			error: function(xhr) {
 				console.log(xhr.responseText);
-				alert(xhr.status);
+				console.log(xhr.status);
 			},
 			success : function(data) {
 				alert(data.message);
