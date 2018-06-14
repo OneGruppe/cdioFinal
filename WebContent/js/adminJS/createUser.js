@@ -11,7 +11,7 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "PUT",
 			error: function(data) {
-				console.log("Lort");
+				console.log(data);
 			},
 			success: function(data) {
 				console.log(data);
