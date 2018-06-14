@@ -8,6 +8,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/rest/user/createUser",
 			data: $('#createUserForm').serialize(),
+			dataType: "json",
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			error: function(xhr) {
@@ -15,7 +16,7 @@ $(document).ready(function() {
 				console.log(xhr.status);
 			},
 			success: function(data) {
-				console.log(data);
+				alert(data);
 			}
 		});
 		return false;

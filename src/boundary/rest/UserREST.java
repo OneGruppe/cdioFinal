@@ -45,17 +45,20 @@ public class UserREST implements IUserREST {
 	@Path("createUser")
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
+		JSONObject returnMessage = new JSONObject();
 		
 		try 
 		{
 			if(name.equals("") || ini.equals("") || active < 0 && active > 1)
 			{
-				return "Fejl i inputtet!";
+				returnMessage.put("message", "Fejl i inputtet!");
+				return returnMessage.toString();
 			}
 			else
 			{
 				uc.createUser(name, ini, active);
-				return "Brugeren " + name + " er oprettet.";
+				returnMessage.put("message", "Brugeren \" + name + \" er oprettet.");
+				return returnMessage.toString();
 			}
 		} 
 		catch (DALException e) 
