@@ -80,7 +80,7 @@ public class WeightController implements IWeightController {
 		try
 		{
 			userID = weight.getInputWithMsg("Indtast operatoer ID", 0, "");
-			if (userID == goBack)
+			if (userID == goBack || userID == -1)
 				weightFlow();
 			if(user.getUser(userID).getActive() == 0) 
 				weight.getInputWithMsg("Bruger inaktiv proov igen", 0, "");
