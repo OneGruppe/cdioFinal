@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
 import boundary.weight_interface.IWeightTranslation;
-import config.Constant;
 import controller.controller.CommodityBatchController;
 import controller.controller.CommodityController;
 import controller.controller.ProductBatchComponentController;
@@ -48,7 +47,11 @@ public class WeightREST implements IWeightREST {
 	@Path("doConnection")
 	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
-		try 
+		if (chooseWeightPort != 8000 || chooseWeightPort != 8001)
+		{
+			return "Du har valgt en forkert port";
+		}
+		try
 		{
 			pbc = new ProductBatchController();
 			uc = new UserController();
