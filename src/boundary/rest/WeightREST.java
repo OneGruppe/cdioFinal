@@ -48,21 +48,6 @@ public class WeightREST implements IWeightREST {
 	@Path("doConnection")
 	public String doConnection(@FormParam("portNumber") int chooseWeightPort)
 	{
-		int weightPort = 0;
-
-		if(chooseWeightPort == 1)
-		{
-			weightPort = Constant.weightPortOne;
-		}
-		else if (chooseWeightPort == 2)
-		{
-			weightPort = Constant.weightPortTwo;
-		}
-		else
-		{
-			return "Der findes ikke en port til '" + chooseWeightPort + "'";
-		}
-
 		try 
 		{
 			pbc = new ProductBatchController();
@@ -71,7 +56,7 @@ public class WeightREST implements IWeightREST {
 			cbc = new CommodityBatchController();
 			cc = new CommodityController();
 			pbcc = new ProductBatchComponentController();
-			iwc = new WeightTranslation(weightPort);
+			iwc = new WeightTranslation(chooseWeightPort);
 			wc = new WeightController(pbc, uc, rcc, cbc, cc, pbcc, iwc);
 			wc.weightFlow();
 			return "Forbindelse blev oprettet korrekt";
