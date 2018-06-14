@@ -27,21 +27,24 @@ public class WeightFlowTEST {
 
 	public static void main(String[] args) 
 	{
+		IProductBatchController pbc;
 		try {
-			IProductBatchController pbc = new ProductBatchController();
+			pbc = new ProductBatchController();
 			IUserController user = new UserController();
 			IRecipeComponentController rcc = new RecipeComponentController();
 			ICommodityBatchController cbc = new CommodityBatchController();
 			ICommodityController cc = new CommodityController();
 			IProductBatchComponentController pbcc = new ProductBatchComponentController();
 			IWeightTranslation weight = new WeightTranslation(Constant.weightPortOne);
-			
+
 			IWeightController wc = new WeightController(pbc, user, rcc, cbc, cc, pbcc, weight);
 			wc.weightFlow();
-			
-		} catch (DALException | WeightException | IOException e) {
+		} 
+		catch (DALException | WeightException | IOException e)
+		{
 			System.out.println(e.getMessage());
 		}
+
 	}
 
 
