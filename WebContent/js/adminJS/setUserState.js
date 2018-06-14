@@ -35,10 +35,10 @@ $(document).ready(function() {
 			method : "POST",
 			error: function(xhr) {
 				console.log(xhr.responseText);
-				alert.log(xhr.status);
+				console.log(xhr.status);
 			},
 			success : function(data) {
-				
+				alert(data.message);
 			}
 		});
 		return false;
