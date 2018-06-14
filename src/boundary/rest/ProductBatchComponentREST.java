@@ -44,7 +44,7 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 	public String createProductBatchComponent(@FormParam("commodityBatchID") int commodityBatchID, @FormParam("prodBatchID") int productBatchID, @FormParam("userID") int userID, @FormParam("tara") double tara, @FormParam("netto") double netto) 
 	{
 		JSONObject returnMessage = new JSONObject();
-		
+
 		try 
 		{
 			prodBatchCompController.createProductBatchComponent(productBatchID, commodityBatchID, userID, tara, netto);
@@ -145,5 +145,6 @@ public class ProductBatchComponentREST implements IProductBatchComponentREST {
 			return e.getMessage();
 		}
 	}
+
 
 }

@@ -45,7 +45,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	public String createCommodityBatch(@FormParam("id") int id, @FormParam("commodityID") int commodityID, @FormParam("amount") double amount) 
 	{
 		JSONObject returnMessage = new JSONObject();
-		
+
 		try 
 		{
 			cbc.createCommodityBatch(id, commodityID, amount);
@@ -58,7 +58,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			return returnMessage.toString();
 		}		
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see boundary.rest_interface.ICommodityBatchREST#getCommodityBatchSingle(int)
@@ -94,7 +94,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 		}
 
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see boundary.rest_interface.ICommodityBatchREST#getCommodityBatch(int)
@@ -105,7 +105,7 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 	@Path("getCommodityBatch")
 	public String getCommodityBatch(@FormParam("commodityID") int commodityID) 
 	{
-		
+
 		JSONArray comJSON = new JSONArray();
 
 		try
@@ -143,4 +143,6 @@ public class CommodityBatchREST implements ICommodityBatchREST {
 			return e.getMessage();
 		}
 	}
+
+
 }

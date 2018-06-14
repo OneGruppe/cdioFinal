@@ -45,7 +45,7 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 	public String createRecipeComponent(@FormParam("id")int id,@FormParam("recipeID") int recipeID,@FormParam("commodityID") int commodityID,@FormParam("nonNetto") double nonNetto,@FormParam("tolerance") double tolerance) throws DALException
 	{
 		JSONObject returnMessage = new JSONObject();
-		
+
 		try 
 		{
 			rcc.createRecipeComponent(id, recipeID, commodityID, nonNetto, tolerance);
@@ -101,5 +101,6 @@ public class RecipeComponentREST implements IRecipeComponentREST {
 			return e.getMessage();
 		}
 	}
+
 
 }

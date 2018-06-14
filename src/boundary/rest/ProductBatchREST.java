@@ -20,8 +20,8 @@ import exceptions.DALException;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Path("prodBatch")
-public class ProductBatchREST implements IProductBatchREST
-{
+public class ProductBatchREST implements IProductBatchREST {
+	
 	private IProductBatchController pbc;
 
 	public ProductBatchREST() 

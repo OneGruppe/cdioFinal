@@ -2,8 +2,8 @@ package boundary.rest_interface;
 
 import exceptions.DALException;
 
-public interface IProductBatchREST
-{
+public interface IProductBatchREST {
+	
 	/**
 	 * <h1> <i>createProductBatch</i> </h1> <br>
 	 * Creates a ProductBatch
