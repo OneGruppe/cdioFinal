@@ -291,7 +291,7 @@ public class WeightController implements IWeightController {
 		System.out.println("State: " + state);
 		try
 		{
-			int response =weight.getInputWithMsg("Sluk vaegt?", 0, "");
+			int response =weight.getInputWithMsg("Afvejning faerdig, sluk?", 0, "");
 			if(response == goBack)
 			{
 				pbc.getProductBatch(productBatchID).setStatus(2);
