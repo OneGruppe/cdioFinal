@@ -4,10 +4,10 @@
 
 $(document).ready(function() {
 
-	$("#connectToWeight").click(function() {
+	$("#connectToWeightButton").click(function() {
 		$.ajax({
 			url: "/rest/weight/doConnection",
-			data: $('#').serialize(),
+			data: $('#connectToWeight').serialize(),
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			success: function(data) {

@@ -10,44 +10,30 @@
 
 </head>
 <body>
-<!------- HEADER DIV START -------->
-	<div id = "headerDiv">
+	<!------- HEADER DIV START -------->
+	<div id="headerDiv">
 		<h2>WEIGHT</h2>
-		<div id = "headerContainer">
-			<a id = "navigateToHome" href="../index.html">Forside</a>
+		<div id="headerContainer">
+			<a id="navigateToHome" href="../index.html">Forside</a>
 		</div>
 	</div>
-<!------- HEADER DIV END -------->
+	<!------- HEADER DIV END -------->
 
-<!------- WATERMARK DIV START -------->
-	<div id = "watermark">
-		<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
+	<!------- WATERMARK DIV START -------->
+	<div id="watermark">
+		<img id="dtuLogo" alt="DTU LOGO"
+			src="https://astra.dk/sites/default/files/DTU%20logo.png">
 	</div>
-<!------- WATERMARK DIV END -------->
+	<!------- WATERMARK DIV END -------->
 
-<!------- CREATE USER FORM START -------->
-<form id = "connectToWeight" method = "POST">
-	<table>
-		<tr>
-		<td>
-		<label>Navn</label><br>
-		<input type = "text" name = "name" autofocus> 
-		</td>
-		<td>
-		<label>Initialer</label><br>
-		<input type = "text" name = "ini"> 
-		</td>
-		<td>
-		<label>Status</label><br>
-		<input type = "number" name = "active"> 
-		</td>
-		<td>
-		<button id="creatingUser" form="createUserForm" type="submit">Forbind til vægt</button>
-		</td>
-		</tr>
-	</table> <br>
-</form>
-<!------- CREATE USER FORM END -------->
+	<!------- CONNECT TO WEIGHT -------->
+	<form id="connectToWeight" method="POST">
+		<br> <br> <select name="weightType">
+			<option value="Vægt 1">Vægt 1</option>
+			<option value="Vægt 2">Vægt 2</option>
+		</select> <br> <br> <input id="connectToWeightButton" value="Connect" type="submit">
+	</form>
+	<!------- CREATE USER FORM END -------->
 
 </body>
 </html>
