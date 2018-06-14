@@ -23,6 +23,7 @@ public class WeightController implements IWeightController {
 	private double tara = 0;
 	private double netto = 0;
 	private int goBack = -2;
+	private boolean finish = false;
 
 	public WeightController(IProductBatchController pbc, IUserController user, IRecipeComponentController rcc, ICommodityBatchController cbc, ICommodityController cc, IProductBatchComponentController pbcc, IWeightTranslation weight) throws DALException
 	{
@@ -41,7 +42,7 @@ public class WeightController implements IWeightController {
 	 */
 	public void weightFlow() throws WeightException, DALException
 	{
-		while(!finish())
+		while(!finish)
 		{
 			switch(state)
 			{
@@ -80,7 +81,7 @@ public class WeightController implements IWeightController {
 		{
 			userID = weight.getInputWithMsg("Indtast operatoer ID", 0, "");
 			if (userID == goBack)
-				state--;
+				weightFlow();
 			if(user.getUser(userID).getActive() == 0) 
 				weight.getInputWithMsg("Bruger inaktiv proov igen", 0, "");
 			else state++;
@@ -285,21 +286,22 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#finish()
 	 */
-	public boolean finish() throws WeightException
+	public void finish() throws WeightException
 	{
 		System.out.println("State: " + state);
 		try
 		{
-			int response =weight.getInputWithMsg("Afvej mere?", 0, "");
+			int response =weight.getInputWithMsg("Sluk vaegt?", 0, "");
 			if(response == goBack)
 			{
 				pbc.getProductBatch(productBatchID).setStatus(2);
 				state = 1;
+				finish = false;
 			}
 			else
 			{
 				pbc.getProductBatch(productBatchID).setStatus(2);
-				return true;
+				finish = true;
 			}
 		}
 		catch (WeightException | DALException e)
@@ -308,7 +310,6 @@ public class WeightController implements IWeightController {
 			weight.getInputWithMsg("Forkert input proov igen", 0, "");
 			state--;
 		}
-		return false;
 	}
 
 	public void restart() throws WeightException, DALException
