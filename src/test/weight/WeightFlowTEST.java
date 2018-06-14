@@ -27,7 +27,6 @@ public class WeightFlowTEST {
 
 	public static void main(String[] args) 
 	{
-		
 		try {
 			IProductBatchController pbc = new ProductBatchController();
 			IUserController user = new UserController();
@@ -43,6 +42,7 @@ public class WeightFlowTEST {
 		} catch (DALException | WeightException | IOException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
+
+
 }

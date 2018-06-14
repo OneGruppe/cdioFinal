@@ -88,7 +88,7 @@ public class SupplierDAOTEST {
 			dao.createSupplier(expected2);
 
 			List<SupplierDTO> actualList = new ArrayList<SupplierDTO>();
-			
+
 			for (SupplierDTO dto : dao.getAllSuppliers())
 			{
 				if (dto.getId() == testID1) 

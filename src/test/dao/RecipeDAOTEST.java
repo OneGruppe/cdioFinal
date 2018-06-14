@@ -88,7 +88,7 @@ public class RecipeDAOTEST {
 			dao.createRecipe(expected2);
 
 			List<RecipeDTO> actualList = new ArrayList<RecipeDTO>();
-			
+
 			for (RecipeDTO dto : dao.getAllRecipes())
 			{
 				if (dto.getId() == testID2) 
@@ -108,4 +108,6 @@ public class RecipeDAOTEST {
 			fail(e.getMessage());
 		}
 	}
+
+
 }
