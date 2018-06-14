@@ -51,6 +51,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#createProdTitel').delay(300).fadeIn(200);
 		$('#createProdForm').delay(300).fadeIn(200);
 	})
@@ -66,6 +68,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#createComForm').delay(300).fadeIn(200);
 	})
 	
@@ -80,6 +84,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#findComForm').delay(300).fadeIn(200);
 	})
 	
@@ -93,6 +99,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#findProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -107,6 +115,7 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
 		$('#showProds').delay(300).fadeIn(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
@@ -123,6 +132,7 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#showComs').delay(300).fadeIn(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
@@ -137,6 +147,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#editProdForm').delay(300).fadeIn(200);
 	})
 	
@@ -150,6 +162,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#editComForm').delay(300).fadeIn(200);
 	})
 	
@@ -164,6 +178,8 @@ $(document).ready(function() {
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
 		$('#createProdForm').fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#createProdCompForm').delay(300).fadeIn(200);
 	})
 	
@@ -178,6 +194,8 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200)
 		$("#showProdCompTable").fadeOut(200);
 		$('#createProdForm').fadeOut(200);
+		$('#showComs').fadeOut(200);
+		$('#showProds').fadeOut(200);
 		$('#findProdCompForm').delay(300).fadeIn(200);
 	})
 	
