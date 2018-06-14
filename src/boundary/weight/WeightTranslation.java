@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import boundary.weight_interface.IWeightTranslation;
-import data.connector.Constant;
+import config.Constant;
 import exceptions.DALException;
 import exceptions.WeightException;
 

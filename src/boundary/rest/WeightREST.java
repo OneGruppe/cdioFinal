@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import boundary.rest_interface.IWeightREST;
 import boundary.weight.WeightTranslation;
 import boundary.weight_interface.IWeightTranslation;
+import config.Constant;
 import controller.controller.CommodityBatchController;
 import controller.controller.CommodityController;
 import controller.controller.ProductBatchComponentController;
@@ -23,7 +24,6 @@ import controller.controller_interface.IProductBatchController;
 import controller.controller_interface.IRecipeComponentController;
 import controller.controller_interface.IUserController;
 import controller.controller_interface.IWeightController;
-import data.connector.Constant;
 import exceptions.DALException;
 import exceptions.WeightException;
 

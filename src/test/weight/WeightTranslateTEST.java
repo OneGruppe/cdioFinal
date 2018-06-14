@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import boundary.weight.WeightTranslation;
-import data.connector.Constant;
+import config.Constant;
 import exceptions.WeightException;
 
 public class WeightTranslateTEST {
