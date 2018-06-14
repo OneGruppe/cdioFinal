@@ -50,11 +50,16 @@ a {
 	background-color: rgba(181, 4, 4, 0.8);
 	position: fixed;
 	top: 15%;
-	left: 45%;
+	left: 38%;
 	border: 2px solid whitesmoke;
 	border-top-left-radius: 500px;
 	border-bottom-right-radius:400px;
 	border-style: inset;
+}
+
+#connectToWeightButton {
+	margin-top: 12.5%;
+	margin-left: 10%;
 }
 
 
