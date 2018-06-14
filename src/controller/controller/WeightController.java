@@ -41,6 +41,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#weightFlow()
 	 */
+	@Override
 	public void weightFlow() throws WeightException, DALException
 	{
 		while(!finish)
@@ -75,6 +76,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#enterOprID()
 	 */
+	@Override
 	public void enterOprID()
 	{		
 		System.out.println("State: " + state);
@@ -102,6 +104,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#welcomeAnswer()
 	 */
+	@Override
 	public void welcomeAnswer() throws WeightException
 	{
 		System.out.println("State: " + state);
@@ -138,6 +141,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#enterPBID()
 	 */
+	@Override
 	public void enterPBID() throws WeightException
 	{
 		System.out.println("State: " + state);
@@ -165,6 +169,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#taraWeight()
 	 */
+	@Override
 	public void taraWeight() throws WeightException
 	{
 		System.out.println("State: " + state);
@@ -192,6 +197,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#weightCommodities()
 	 */
+	@Override
 	public void weightCommodities() throws WeightException
 	{
 		System.out.println("State: " + state);
@@ -266,8 +272,7 @@ public class WeightController implements IWeightController {
 									pbcc.createProductBatchComponent(commodityID, productBatchID, userID, tara, netto);
 									double originalAmount = cbc.getCommodityBatchSingle(commodityBatchID).getAmount();
 									double newAmount = originalAmount - comWeight;
-									//TODO
-									//cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
+									cbc.updateCommodityBatch(commodityBatchID, commodityID, newAmount);
 									System.out.println("BATCH ID =" + commodityBatchID + " ID =" + commodityID + " " + originalAmount + " " + newAmount + " " + comWeight);
 									System.out.println(comWeight + " fjernet fra " + commodityName + " totalt på lager " + cbc.getCommodityBatchSingle(commodityID).getAmount());
 									break;
@@ -301,6 +306,7 @@ public class WeightController implements IWeightController {
 	 * (non-Javadoc)
 	 * @see controller.controller_interface.IWeightController#finish()
 	 */
+	@Override
 	public void finish() throws WeightException
 	{
 		System.out.println("State: " + state);
@@ -317,6 +323,7 @@ public class WeightController implements IWeightController {
 			{
 				pbc.updateProductBatch(productBatchID, recipeID, 2);;
 				finish = true;
+				weight.closeAllLeaks();
 			}
 		}
 		catch (WeightException | DALException e)
@@ -326,23 +333,5 @@ public class WeightController implements IWeightController {
 			state--;
 		}
 	}
-
-	public void restart() throws WeightException, DALException
-	{
-		try 
-		{
-			weight.showLongMsg("En fejl opstod, genstarter");
-			TimeUnit.SECONDS.sleep(2);
-			weight.removeLongMsg();
-			weightFlow();
-		} 
-		catch (InterruptedException e) 
-		{
-			weight.removeLongMsg();
-			weight.showLongMsg("Fejl under genstart");
-		}
-
-	}
-
 
 }
