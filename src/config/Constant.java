@@ -13,8 +13,8 @@ public class Constant {
 	
 	dbServer					= "nasdino.myds.me", 
 	databaseName				= "CDIOFinal",
-	dbUsername					= System.getenv("cdioFinal12_NSQL_User"), 
-	dbPassword					= System.getenv("cdioFinal12_NSQL_Password"),
+	dbUsername					= "s160198", 
+	dbPassword					= "lkjhgfdsalkjhfdslkjh",
 	weightConstantIP			= "62.79.16.17";
 
 	public static final int
