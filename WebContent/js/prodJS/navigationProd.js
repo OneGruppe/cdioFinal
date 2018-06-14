@@ -16,6 +16,8 @@ $(document).ready(function() {
 	$('#findProdForm').hide();
 	$('#createProdCompForm').hide();
 	$('#findProdCompForm').hide();
+	$('#showComs').hide();
+	$('#showProds').hide();
 
 	$('#navigateToCreateOptions').click(function() {
 		$('#dropDownCreateProd').slideToggle(250);
@@ -105,6 +107,7 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showProds').delay(300).fadeIn(200);
 		$('#showProdsTable').delay(300).fadeIn(200);
 	})
 	
@@ -120,6 +123,7 @@ $(document).ready(function() {
 		$('#createProdCompForm').fadeOut(200);
 		$('#findProdCompForm').fadeOut(200);
 		$("#showProdCompTable").fadeOut(200);
+		$('#showComs').delay(300).fadeIn(200);
 		$('#showComsTable').delay(300).fadeIn(200);
 	})
 	
