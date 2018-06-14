@@ -10,6 +10,9 @@ $(document).ready(function() {
 			data: $('#createUserForm').serialize(),
 			contenttype: "application/json",
 			method: "PUT",
+			error: function(data) {
+				console.log("Lort");
+			},
 			success: function(data) {
 				console.log(data);
 			}
