@@ -11,7 +11,18 @@
 <script src = "../js/adminJS/showAllUsers.js"></script>
 <script src = "../js/adminJS/editUser.js"></script>
 <script src = "../js/adminJS/setUserState.js"></script>
-
+<script>
+$(document).ready(function(){
+	var status = document.getElementById("#userStatus");
+	$('#creatingUser').click(function() {		
+        if($(status).val() < 0){
+            $(status).val('0');
+        } else if($(status).val > 1) {
+        	$(status).val('1');
+        }
+	})
+});
+</script>
 <link rel="shortcut icon" href="//www.inside.dtu.dk/favicon.ico">
 
 </head>
@@ -48,7 +59,7 @@
 		</td>
 		<td>
 		<label>Status</label><br>
-		<input type = "number" name = "active" min = "0" max = "1"> 
+		<input id="userStatus" type = "number" name = "active" min = "0" max = "1"> 
 		</td>
 		<td>
 		<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger</button>
