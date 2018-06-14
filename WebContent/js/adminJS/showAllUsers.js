@@ -13,8 +13,8 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "GET",
 			error: function(xhr) {
-				alert(xhr.responseText);
-				console.log(xhr.status);
+				console.log(xhr.responseText);
+				alert(xhr.status);
 			},
 			success:function(data) {
 

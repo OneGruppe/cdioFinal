@@ -12,8 +12,8 @@ $(document).ready(function() {
 			contenttype: "application/x-ww-form-urlencoded",
 			method: "POST",
 			error: function(xhr) {
-				alert(xhr.responseText);
-				console.log(xhr.status);
+				console.log(xhr.responseText);
+				alert(xhr.status);
 			},
 			success: function(data) {
 				alert(data.message);

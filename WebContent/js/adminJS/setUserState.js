@@ -12,8 +12,8 @@ $(document).ready(function() {
 			contenttype : "application/json",
 			method : "POST",
 			error: function(xhr) {
-				alert(xhr.responseText);
-				console.log(xhr.status);
+				console.log(xhr.responseText);
+				alert(xhr.status);
 			},
 			success : function(data) {
 				alert(data.message);
@@ -35,7 +35,7 @@ $(document).ready(function() {
 			method : "POST",
 			error: function(xhr) {
 				console.log(xhr.responseText);
-				console.log(xhr.status);
+				alert(xhr.status);
 			},
 			success : function(data) {
 				alert(data.message);
