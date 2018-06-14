@@ -38,7 +38,7 @@ public class WeightREST implements IWeightREST {
 	private ICommodityController cc;
 	private IProductBatchComponentController pbcc;
 	private IWeightTranslation iwc;
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see boundary.rest_interface.IWeightREST#doConnection(java.lang.String)

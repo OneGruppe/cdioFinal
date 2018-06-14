@@ -67,11 +67,11 @@ public class WeightTranslation implements IWeightTranslation{
 			case "D A":
 				// success
 				break;
-			case "I4 A 3154307":
+			case "I4 A \"3154307\"":
 				clearDisplayAndShowWeight();
 				showMsg(message);
 				break;
-			case "I4 A 3154308":
+			case "I4 A \"3154308\"":
 				clearDisplayAndShowWeight();
 				showMsg(message);
 				break;
