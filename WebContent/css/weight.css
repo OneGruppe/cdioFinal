@@ -18,6 +18,10 @@ a {
 	font-size: .85em; 
 }
 
+label {
+	color: white;
+}
+
 #headerContainer {
 	float: right;
 	position: relative;
