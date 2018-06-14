@@ -11,11 +11,11 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			error: function(xhr) {
-				console.log(xhr.responseText);
+				alert(xhr.responseText);
 				console.log(xhr.status);
 			},
 			success:function(data) {
-				console.log(data);
+				alert(data.message);
 				$("#lockedID").attr("value", data.ID);
 				$("#setName").attr("value", data.name);
 				$("#setIni").attr("value", data.ini);
@@ -37,7 +37,7 @@ $(document).ready(function() {
 				console.log(xhr.status);
 			},
 			success: function(data) {
-				alert("Brugerens information er blevet ændret!");
+				alert(data.message);
 			}
 		});
 		return false;

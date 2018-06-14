@@ -12,11 +12,11 @@ $(document).ready(function() {
 			contenttype : "application/json",
 			method : "POST",
 			error: function(xhr) {
-				console.log(xhr.responseText);
+				alert(xhr.responseText);
 				console.log(xhr.status);
 			},
 			success : function(data) {
-				console.log(data);
+				alert(data.message);
 				$("#setID").attr("value", data.ID);
 				$("#setStatus").attr("value", data.active);
 
@@ -38,8 +38,7 @@ $(document).ready(function() {
 				console.log(xhr.status);
 			},
 			success : function(data) {
-				console.log(data);
-				alert("Brugerens status er blevet ændret!");
+				alert(data.message);
 			}
 		});
 		return false;

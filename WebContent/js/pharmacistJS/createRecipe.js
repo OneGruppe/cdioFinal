@@ -11,12 +11,11 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "POST",
 			error: function(xhr) {
-				console.log(xhr.responseText);
+				alert(xhr.responseText);
 				console.log(xhr.status);
 			},
 			success: function(data) {
-				console.log(data);
-				alert(data);
+				alert(data.message);
 			}
 		});
 		return false;

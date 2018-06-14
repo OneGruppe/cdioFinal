@@ -13,11 +13,10 @@ $(document).ready(function() {
 			contenttype: "application/json",
 			method: "GET",
 			error: function(xhr) {
-				console.log(xhr.responseText);
+				alert(xhr.responseText);
 				console.log(xhr.status);
 			},
 			success:function(data) {
-				console.log(data);
 				
 				if(document.contains(document.getElementById("showComsTable")))
 				{
