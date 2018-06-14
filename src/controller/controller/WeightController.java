@@ -83,7 +83,7 @@ public class WeightController implements IWeightController {
 			if (userID == goBack || userID == -1)
 				weightFlow();
 			if(user.getUser(userID).getActive() == 0) 
-				weight.getInputWithMsg("Bruger inaktiv proov igen", 0, "");
+				weight.getInputWithMsg("Bruger inaktiv prov igen", 0, "");
 			else state++;
 		}
 		catch (WeightException e)
@@ -112,7 +112,7 @@ public class WeightController implements IWeightController {
 			System.out.println("Failure in WelcomeAnswer(): " + e.getMessage());
 			try 
 			{
-				weight.getInputWithMsg("Forkert input proov igen", 0, "");
+				weight.getInputWithMsg("Forkert input prov igen", 0, "");
 			} 
 			catch (WeightException e1) 
 			{
@@ -143,7 +143,7 @@ public class WeightController implements IWeightController {
 		catch (WeightException e)
 		{
 			System.out.println("Failure in enterPBID(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
 		}
 	}
 
@@ -169,7 +169,7 @@ public class WeightController implements IWeightController {
 		catch (WeightException e)
 		{
 			System.out.println("Failure in taraWeight: " + e.getMessage());
-			weight.getInputWithMsg("Forkert input, proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input, prov igen", 0, "");
 		}
 	}
 
@@ -204,7 +204,7 @@ public class WeightController implements IWeightController {
 					String commodityName = cc.getCommodity(commodityID).getName();
 					System.out.println(commodityName);
 
-					int choice = weight.getInputWithMsg("vej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
+					int choice = weight.getInputWithMsg("Afvej " + commodityName, 0, rcc.getRecipeComponent(recipeID).get(i).getNonNetto() + " kg");
 					if (choice == goBack)
 					{
 						state--;
@@ -278,7 +278,7 @@ public class WeightController implements IWeightController {
 		catch (WeightException e)
 		{
 			System.out.println("Failure in weightCommodities(): " + e.getMessage());	
-			weight.getInputWithMsg("Forkert input proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input prov igen", 0, "");
 		}
 	}
 
@@ -307,7 +307,7 @@ public class WeightController implements IWeightController {
 		catch (WeightException | DALException e)
 		{
 			System.out.println("Failure in finish(): " + e.getMessage());
-			weight.getInputWithMsg("Forkert input proov igen", 0, "");
+			weight.getInputWithMsg("Forkert input prov igen", 0, "");
 			state--;
 		}
 	}
