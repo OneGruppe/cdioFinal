@@ -46,6 +46,7 @@ public class UserREST implements IUserREST {
 	@Path("createUser")
 	public String createUser(@FormParam("name") String name, @FormParam("ini") String ini, @FormParam("active")int active) 
 	{
+		
 		try 
 		{
 			if(name.equals("") || ini.equals("") || active < 0 && active > 1)
