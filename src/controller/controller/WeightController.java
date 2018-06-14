@@ -90,11 +90,17 @@ public class WeightController implements IWeightController {
 		try
 		{
 			userID = weight.getInputWithMsg("Indtast operatoer ID", 0, "");
+			
+			//Check if the user wants to go back
 			if (userID == goBack || userID == -1)
 				weightFlow();
+			
+			//Check if the user is inactive and thereby not able to interact with the weight 
 			if(user.getUser(userID).getActive() == 0) 
 				weight.getInputWithMsg("Bruger inaktiv prov igen", 0, "");
-			else state++;
+			
+			//Else continue the flow
+			else state++; 
 		}
 		catch (WeightException | DALException e)
 		{
@@ -122,6 +128,8 @@ public class WeightController implements IWeightController {
 		try
 		{
 			int response = weight.getInputWithMsg("Velkommen " + user.getUser(userID).getName(), 0, "");
+			
+			//Check if the user wants to go back
 			if(response == goBack)
 				state--;
 			else
@@ -166,17 +174,21 @@ public class WeightController implements IWeightController {
 		try
 		{
 			productBatchID = weight.getInputWithMsg("Indtast produktBatchID", 0, "");
+		
+			//Check if the user wants to go back
 			if(productBatchID == goBack)
 				state--;
 			else
 			{
 				System.out.println(pbc.getProductBatch(productBatchID).getStatus());
 				
+				//Check if the entered ProductBatch is a finished product
 				if(pbc.getProductBatch(productBatchID).getStatus() == 2)
 				{
 					weight.getInputWithMsg("Produktbatch er afsluttet", 0, "");
-					enterPBID();
+					enterPBID(); 
 				}
+				//Update the given ProductBatch to be "under process" and continue flow
 				else 
 				{
 				recipeID = pbc.getProductBatch(productBatchID).getRecipeID();
@@ -211,8 +223,12 @@ public class WeightController implements IWeightController {
 		try
 		{
 			int response = weight.getInputWithMsg("Placer beholderen", 0, "");
+			
+			//Check if the user wants to go back
 			if(response == goBack)
 				state--;
+			
+			//Assign tara and continue flow
 			else
 			{
 				tara = weight.getTaraWeight();
@@ -360,12 +376,15 @@ public class WeightController implements IWeightController {
 		try
 		{
 			int response =weight.getInputWithMsg("Afvejning faerdig, sluk?", 0, "");
+			
+			//Check if the user is done using the weight
 			if(response == goBack)
 			{
-				pbc.updateProductBatch(productBatchID, recipeID, 2);
-				state = 1;
+				pbc.updateProductBatch(productBatchID, recipeID, 2);	//Change Product to be finished
+				state = 1; 	//Redo flow
 				finish = false;
 			}
+			//Change Product to be finished and make sure all leaks are covered
 			else
 			{
 				pbc.updateProductBatch(productBatchID, recipeID, 2);;
