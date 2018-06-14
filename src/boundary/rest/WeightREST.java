@@ -61,10 +61,15 @@ public class WeightREST implements IWeightREST {
 			wc.weightFlow();
 			return "Forbindelse blev oprettet korrekt";
 		} 
-		catch (DALException | IOException | WeightException e) 
+		catch (DALException | IOException e) 
 		{
 			System.out.println(e.getMessage());
 			return e.getMessage();
+		}
+		catch (WeightException e)
+		{
+			System.out.println(e.getMessage());
+			return "WeightError: " + e.getMessage();
 		}
 	}
 

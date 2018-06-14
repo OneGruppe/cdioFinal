@@ -67,6 +67,14 @@ public class WeightTranslation implements IWeightTranslation{
 			case "D A":
 				// success
 				break;
+			case "I4 A 3154307":
+				clearDisplayAndShowWeight();
+				showMsg(message);
+				break;
+			case "I4 A 3154308":
+				clearDisplayAndShowWeight();
+				showMsg(message);
+				break;
 			case "D I":
 				System.out.println("showMsg - another thing blocks the display, removing and trying again.");
 				clearDisplayAndShowWeight();
@@ -230,9 +238,6 @@ public class WeightTranslation implements IWeightTranslation{
 				System.out.println("Command to getInputWithMsg returned an error");
 				break;
 			case "RM20 C":
-				//TODO clearDisplayAndShowWeight virker ikke?
-				//clearDisplayAndShowWeight();
-				//getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
 				return -2;
 			case "ES":
 				getInputWithMsg(correctedPromtMessage, defaultNumber, correctedUnit);
