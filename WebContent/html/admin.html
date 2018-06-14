@@ -2,9 +2,135 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CDIOFINAL</title>
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
+<title>CDIOFINAL - ADMINISTRATOR</title>
+<script src = "../js/jquery-3.3.1.js"></script>
+<script src = "../js/adminJS/navigation.js"></script>
+<script src = "../js/adminJS/createUser.js"></script>
+<script src = "../js/adminJS/showUser.js"></script>
+<script src = "../js/adminJS/showAllUsers.js"></script>
+<script src = "../js/adminJS/editUser.js"></script>
+<script src = "../js/adminJS/setUserState.js"></script>
+
+<link rel="shortcut icon" href="//www.inside.dtu.dk/favicon.ico">
+
 </head>
 <body>
-	<h2>ADMINISTRATOR</h2>
+<!------- HEADER DIV START -------->
+	<div id = "headerDiv">
+		<h2>ADMINISTRATOR</h2>
+		<div id = "headerContainer">
+			<a id = "navigateToHome" href="../index.html">Forside</a>
+			<a id = "navigateToCreateUser" href="#" >Opret bruger</a>
+			<a id = "navigateToFindUser" href="#" >Find en bruger</a>
+			<a id = "navigateToShowUsers" href="#" >Vis alle brugere</a>
+		</div>
+	</div>
+<!------- HEADER DIV END -------->
+
+<!------- WATERMARK DIV START -------->
+	<div id = "watermark">
+		<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
+	</div>
+<!------- WATERMARK DIV END -------->
+
+<!------- CREATE USER FORM START -------->
+<form id = "createUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name" autofocus> 
+		</td>
+		<td>
+		<label>Initialer</label><br>
+		<input type = "text" name = "ini"> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input id="userStatus" type = "number" name = "active" min = "0" max = "1"> 
+		</td>
+		<td>
+		<button id="creatingUser" form="createUserForm" type="submit">Opret Bruger</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- CREATE USER FORM END -------->
+
+<!------- FIND USER FORM START -------->
+<form id = "findUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findUser" form="findUserForm" type="submit">Find bruger</button>
+		</td>
+		<td>
+		<button id ="navigateToEditUser" form = "findUserForm" type = "button"> Rediger bruger </button>
+		</td>
+		<td>
+		<button id ="navigateToSetUser" form = "findUserForm" type = "button"> Ændre bruger status</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- FIND USER FORM END -------->
+
+<!------- EDIT USER FORM START -------->
+<form id = "editUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "text" name = "id" id = "lockedID" readonly> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name" id = "setName"> 
+		</td>
+		<td>
+		<label>Initialer</label><br>
+		<input type = "text" name = "ini" id = "setIni"> 
+		</td>
+		<td>
+		<button id="editUser" form="editUserForm" type="submit">Rediger bruger</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- EDIT USER FORM END -------->
+
+<!------- SET USER FORM START -------->
+<form id = "setUserForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" id = "setID" name = "id" readonly> 
+		</td>
+		<td>
+		<label>Status</label><br>
+		<input type = "number" id = "setStatus" name = "state"> 
+		</td>
+		<td>
+		<button id="setUser" form="setUserForm" type="submit">Ændre bruger status</button>
+		</td>
+		</tr>
+	</table> <br>
+</form>
+<!------- SET USER FORM END -------->
+
+<!------- SHOW USER DIV START -------->
+<div id = "showUser"></div>
+<!------- SHOW USER DIV END -------->
+
+<!------- SHOW USERS DIV START -------->
+<div id = "showUsers"></div>
+<!------- SHOW USERS DIV END -------->
+
 </body>
 </html>

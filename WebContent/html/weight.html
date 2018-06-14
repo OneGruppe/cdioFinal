@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/weight.css">
+<title>CDIOFINAL - WEIGHT</title>
+<script src = "../js/jquery-3.3.1.js"></script>
+<script src = "../js/weight.js"></script>
+<link rel="shortcut icon" href="//www.inside.dtu.dk/favicon.ico">
+
+</head>
+<body>
+	<!------- HEADER DIV START -------->
+	<div id="headerDiv">
+		<h2>WEIGHT</h2>
+		<div id="headerContainer">
+			<a id="navigateToHome" href="../index.html">Forside</a>
+		</div>
+	</div>
+	<!------- HEADER DIV END -------->
+
+	<!------- WATERMARK DIV START -------->
+	<div id="watermark">
+		<img id="dtuLogo" alt="DTU LOGO"
+			src="https://astra.dk/sites/default/files/DTU%20logo.png">
+	</div>
+	<!------- WATERMARK DIV END -------->
+
+	<!------- CONNECT TO WEIGHT -------->
+	<form id="connectToWeight" method="POST">
+		<table>
+			<tr>
+				<td>
+					<label>PORT NUMMER</label><br>
+					<input type = "number" name = "portNumber" autofocus min = "8000" max = "8001" placeholder="f.eks. 8000"> 
+				</td>
+				<td>
+					<button id=connectToWeightButton form="connectToWeight" type="submit">Forbind til vægt</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<!------- CREATE USER FORM END -------->
+
+</body>
+</html>

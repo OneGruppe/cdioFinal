@@ -1,0 +1,154 @@
+body {
+	background-color: #e0e0e0;
+}
+
+#headerDiv {
+	background-color: #b50404;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	width: 100%;
+}
+
+a {
+	width: 10px;
+	text-decoration: none;
+	color: white;
+	font-size: .85em;
+}
+
+#watermark {
+	position: fixed;
+ 	bottom: 35%;
+ 	left: 35%;
+ 	opacity: 0.15;
+ 	z-index: -1;
+}
+
+#navigateToCreateComBatch, #navigateToCreateProdBatch, #navigateToFindComBatch, #navigateToFindProdBatch, #navigateToShowComBatch, #navigateToShowProdBatch  {
+	color: white;
+}
+
+#headerContainer {
+	float: right;
+	position: relative;
+	top: -80%;
+	right: 8%;
+}
+
+#dropDownCreateProd {
+	position: absolute;
+	top: 165%;
+	left: 29.9%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 8px;
+	padding-right: 8px;
+	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
+}
+
+#dropDownFindProd {
+	position: absolute;
+	top: 165%;
+	left: 62.2%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 2px;
+	padding-right: 2px;
+	border: 1px solid black;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
+}
+
+#dropDownVisProd {
+	position: absolute;
+	top: 165%;
+	left: 93.3%;
+	background-color: rgba(181, 4, 4, 0.7);
+	padding-left: 8px;
+	padding-right: 8px;
+	border: 1px solid black;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 5px;
+	text-align: center;
+}
+
+.dropDownSingleDirect:hover {
+	font-style: italic;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	padding-bottom: 10px;
+}
+
+#navigateToHome, #navigateToCreateOptions, #navigateToFindOptions {
+	padding-left: 15px;
+	padding-right: 30px;
+	margin-right: 8px;
+	border-right: white 2px solid;
+}
+
+h4 {
+	margin-top: 4%;
+	margin-left: 1%;
+	color: #3d3f3f;
+}
+
+p {
+	margin-left: 1%;
+	font-size: 0.85em;
+}
+
+h1, h2, h3, h5, h6 {
+	color: #fff;
+	margin-left: 1%;
+	font-size: 20px;
+	z-index: 1;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+table {
+  	border-collapse: collapse;
+  	border: 2px solid rgb(200,200,200);
+  	letter-spacing: 1px;
+  	font-size: 0.8rem;
+  	margin-left: .5%;
+}
+
+td, th {
+  border: 1px solid rgb(190,190,190);
+  padding: 10px 20px;
+}
+
+th {
+  background-color: rgb(235,235,235);
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+  background-color: rgb(245,245,245);
+}
+
+caption {
+  padding: 10px;
+}
+

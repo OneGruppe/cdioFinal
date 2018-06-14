@@ -2,9 +2,248 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CDIOFINAL</title>
+<link rel="stylesheet" type="text/css" href="../css/pharmacist.css">
+<title>CDIOFINAL - FARMARCEUT</title>
+<script src = "../js/jquery-3.3.1.js"></script>
+<script src = "../js/pharmacistJS/navigation_phar.js"></script>
+<script src = "../js/pharmacistJS/showAllRecipes.js"></script>
+<script src = "../js/pharmacistJS/showAllCommodities.js"></script>
+<script src = "../js/pharmacistJS/showAllSuppliers.js"></script>
+<script src = "../js/pharmacistJS/showRecCom.js"></script>
+<script src = "../js/pharmacistJS/showCommodity.js"></script>
+<script src = "../js/pharmacistJS/showRecipe.js"></script>
+<script src = "../js/pharmacistJS/showSupplier.js"></script>
+<script src = "../js/pharmacistJS/createCommodity.js"></script>
+<script src = "../js/pharmacistJS/createRecCom.js"></script>
+<script src = "../js/pharmacistJS/createRecipe.js"></script>
+<script src = "../js/pharmacistJS/createSupplier.js"></script>
+
+<link rel="shortcut icon" href="//www.inside.dtu.dk/favicon.ico">
+
 </head>
 <body>
-	<h2>FARMACEUT</h2>
+<!-- HEADER DIV -->
+	<div id = "headerDiv">
+		<h2>FARMARCEUT</h2>
+		
+		<div id = "headerContainer">
+		<a id="Home" href="../index.html">Forside</a>		
+		
+		<a id="dropDownCreate" href='#'>Opret</a>
+		<div id="dropDownContentCreate">
+			<ul>
+				<li><a class = "dropDownOptions" id = "navigateToCreateCommodity" href="#" >Råvare</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToCreateRecipe" href="#" >Recept</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToCreateRecipeComponent" href="#">Recept komponent</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToCreateSupplier" href="#" >Leverandør</a></li>
+			</ul>
+		</div>
+
+	<a id="dropDownFind" href='#'>Find</a>
+		<div id="dropDownContentFind">
+			<ul>
+				<li><a class = "dropDownOptions" id = "navigateToFindCommodity" href="#" >Råvare</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToFindRecipe" href="#" >Recept</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToFindRecipeComponent" href="#" >Recept komponent</a></li>
+				<li><a class = "dropDownOptions" id = "navigateToFindSupplier" href="#" >Leverandør</a></li>
+			</ul>
+		</div>
+		
+	<a id ="dropdownShow" href='#'>Vis</a>
+		<div id ="dropDownContentShow">
+			<ul>
+				<li><a class = "dropDownOptions" id ="navigateToShowCommodity" href="#">Råvare</a></li>
+				<li><a class = "dropDownOptions" id ="navigateToShowRecipe" href="#">Recept</a></li>
+				<li><a class = "dropDownOptions" id ="navigateToShowSupplier" href="#">Leverandør</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- HEADER END -->
+
+<!-- LOGO START -->
+<div id = "watermark">
+	<img id = "dtuLogo" alt="DTU LOGO" src="https://astra.dk/sites/default/files/DTU%20logo.png">
+</div>
+<!-- LOGO END -->
+
+<!-- CREATE COMMODITY FORM START -->
+<form id = "createCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<label>Supplier ID</label><br>
+		<input type = "number" name = "supplierID" autofocus> 
+		</td>
+		<td>
+		<button id="creatingCommodity" form="createCommodityForm" type="button">Opret råvare</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- CREATE COMMODITY FORM END -->
+
+<!-- FIND COMMODITY FORM START -->
+<form id = "findCommodityForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Råvare ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findCommodity" form="findCommodityForm" type="submit">Find råvare</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- FIND COMMODITY FORM END -->
+	
+<!-- CREATE RECIPE COMPONENT FORM START -->
+<form id = "createRecipeComponentForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Recept Komponent ID</label><br>
+		<input type = "number" name = "id" autofocus> 
+		</td>
+		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" name = "recipeID" autofocus> 
+		</td>
+		<td>
+		<label>Råvare ID</label><br>
+		<input type = "number" name = "commodityID" autofocus> 
+		</td>
+		<td>
+		<label>Non_netto</label><br>
+		<input type = "number" name = "nonNetto"> 
+		</td>
+		<td>
+		<label>Tolerance</label><br>
+		<input type = "number" name = "tolerance" autofocus> 
+		</td>
+		<td>
+		<button id="creatingRecipeComponent" form="createRecipeComponentForm" type="button">Opret recept komponent</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- CREATE RECIPE COMPONENT FORM END -->
+
+<!-- FIND RECIPE COMPONENT FORM START -->
+<form id = "findRecipeComponentForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" name = "recipeID"> 
+		</td>
+		<td>
+		<button id="findRecipeComponent" form="findRecipeComponentForm" type="button">Find recept komponent</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- FIND RECIPE COMPONENT FORM END -->
+
+<!-- CREATE SUPPLIER FORM START -->
+<form id = "createSupplierForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<button id="creatingSupplier" form="createSupplierForm" type="button">Opret leverandør</button>
+		</td>
+		</tr>
+	</table> 
+</form>
+<!-- CREATE SUPPLIER FORM END -->
+
+<!-- FIND SUPPLIER FORM START -->
+<form id = "findSupplierForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Leverandør ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findSupplier" form="findSupplierForm" type="button">Find levarondør</button>
+		</td>
+		</tr>
+	</table> 
+</form>
+<!-- FIND SUPPLIER FORM END -->
+
+<!-- CREATE RECIPE FORM START -->
+<form id = "createRecipeForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>ID</label><br>
+		<input type = "number" name = "id" autofocus> 
+		</td>
+		<td>
+		<label>Navn</label><br>
+		<input type = "text" name = "name"> 
+		</td>
+		<td>
+		<button id="creatingRecipe" form="createRecipeForm" type="button">Opret recept</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- CREATE RECIPE FORM END -->
+
+<!-- FIND RECIPE FORM START -->
+<form id = "findRecipeForm" method = "POST">
+	<table>
+		<tr>
+		<td>
+		<label>Recept ID</label><br>
+		<input type = "number" name = "id"> 
+		</td>
+		<td>
+		<button id="findRecipe" form="findRecipeForm" type="button">Find recept</button>
+		</td>
+		</tr>
+	</table>
+</form>
+<!-- FIND RECIPE FORM END -->
+
+<!-- SHOW SINGLE AND MULTI RECIPE(S) START -->
+<div id = "showRecipe"></div>	
+<div id = "showRecipes"></div>
+<!-- SHOW SINGLE AND MULTI RECIPE(S) END -->
+
+<!-- SHOW SINGLE AND MULTI SUPPLIER(S) START -->
+<div id = "showSupplier"></div>	
+<div id = "showSuppliers"></div>
+<!-- SHOW SINGLE AND MULTI SUPPLIER(S) END -->
+
+<!-- SHOW MULTI RECIPE COMPONENT(S) START -->
+<div id = "showRecCom"></div>	
+<!-- SHOW MULTI RECIPE COMPONENT(S) END -->
+
+<!-- SHOW SINGLE AND MULTI COMMODITY(IES) START -->
+<div id = "showCommodity"></div>	
+<div id = "showCommodities"></div>
+<!-- SHOW SINGLE AND MULTI COMMODITY(IES) END -->
 </body>
 </html>
