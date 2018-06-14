@@ -458,9 +458,9 @@ public class WeightTranslation implements IWeightTranslation{
 	{
 		try 
 		{
-			socket.close();
 			write.close();
 			read.close();
+			socket.close();
 		} 
 		catch (IOException e) 
 		{
