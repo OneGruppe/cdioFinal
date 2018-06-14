@@ -236,7 +236,7 @@ public class WeightController implements IWeightController {
 									weight.showLongMsg("Vaegt: " + comWeight);
 									TimeUnit.SECONDS.sleep(3);
 									weight.removeLongMsg();
-									choice = weight.getInputWithMsg("Fortsaet?", 0, "");
+									choice = weight.getInputWithMsg("Ravare afvejet, fortsat?", 0, "");
 									weight.removeMsg();
 									if(choice == -2) 
 										TimeUnit.SECONDS.sleep(5);
@@ -316,7 +316,7 @@ public class WeightController implements IWeightController {
 	{
 		try 
 		{
-			weight.showLongMsg("Erorr has occured, restarting");
+			weight.showLongMsg("En fejl opstod, genstarter");
 			TimeUnit.SECONDS.sleep(2);
 			weight.removeLongMsg();
 			weightFlow();
@@ -324,7 +324,7 @@ public class WeightController implements IWeightController {
 		catch (InterruptedException e) 
 		{
 			weight.removeLongMsg();
-			weight.showLongMsg("Error in restart");
+			weight.showLongMsg("Fejl under genstart");
 		}
 
 	}
